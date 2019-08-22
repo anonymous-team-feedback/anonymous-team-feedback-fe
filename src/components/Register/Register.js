@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { register } from '../actions';
 
 //--- Styled Components ---//
 
 // Form Styling//
-export const FormGroup = styled.div`
+export const FormGroup = styled.form`
   background: whitesmoke;
   display: block;
 	margin: 1em auto;
@@ -58,6 +59,26 @@ class Register extends React.Component {
     }
   };
 
+  // Handles Change //
+  handleChange = e => {
+    e.preventDefault();
+    console.log("Changed User Information")
+    this.setState({
+       newUser: {
+          ...this.state.newUser,
+          [e.target.name]: e.target.value
+       }
+    });
+ };
+
+ // Handles Submit //
+ handleSubmit = e => {
+  e.preventDefault()
+  this.props.register(this.state.newUser)
+  .then(res => (res === false) ? null : this.props.history.push("/login")      
+  );
+};
+
   render() {
     return (
       <div className="Register">
@@ -66,29 +87,55 @@ class Register extends React.Component {
           <p>Fill this form to get instant access</p>
 
               {/* <!-- Register Form --> */}
-              <FormGroup>
+              <FormGroup onSubmit={this.handleSubmit}>
+                {this.props.registerError && <p>You are already registered. Please login.</p>}
 
                 <RegisterContainer>
 
                   <Label>First Name</Label>
                   {/* <!-- First Name --> */}
-                  <Input type="name" name="firstName" id="RegisterFormFirstName" value={this.state.newUser.firstName} placeholder="First Name"/>
+                  <Input 
+                  type="text" 
+                  name="firstName" 
+                  id="RegisterFormFirstName" 
+                  value={this.state.newUser.firstName} 
+                  onChange={this.handleChange}
+                  placeholder="First Name"/>
 
                   <Label>Last Name</Label>
                   {/* <!-- Last Name --> */}
-                  <Input type="name" name="lastName" id="RegisterFormLastName" value={this.state.newUser.lastName} placeholder="Last Name"/>
+                  <Input 
+                  type="text" 
+                  name="lastName" 
+                  id="RegisterFormLastName" 
+                  value={this.state.newUser.lastName} 
+                  onChange={this.handleChange}
+                  placeholder="Last Name"/>
 
                   <Label>E-mail</Label>
                   {/* <!-- E-mail --> */}
-                  <Input type="email" name="email" id="RegisterFormEmail" value={this.state.newUser.email} placeholder="E-mail"/>
+                  <Input 
+                  type="email" 
+                  name="email" 
+                  id="RegisterFormEmail" 
+                  value={this.state.newUser.email}
+                  onChange={this.handleChange} 
+                  placeholder="E-mail"/>
 
                   <Label>Password</Label>
                   {/* <!-- Password --> */}
-                  <Input type="password" name="password" id="RegisterFormPassword" value={this.state.newUser.password} placeholder="Password"/>
+                  <Input 
+                  type="password" 
+                  name="password" 
+                  id="RegisterFormPassword" 
+                  value={this.state.newUser.password} 
+                  onChange={this.handleChange}
+                  placeholder="Password"/>
+
                   <p/>
 
                   {/* <!-- Sign up button --> */}
-                  <Button type="submit">Register</Button>
+                  <Button type="submit">Sign up</Button>
 
                 </RegisterContainer>
 
@@ -100,10 +147,12 @@ class Register extends React.Component {
 };
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    registerError: state.registerError
+  };
 };
 
 export default connect(
   mapStateToProps,
-  { }
+  { register }
 )(Register);
