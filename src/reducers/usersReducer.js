@@ -1,4 +1,4 @@
-import {LOGIN_LOADING, LOGIN_SUCCESS, LOGIN_FAILURE} from '../actions/usersActions';
+import { LOGIN_LOADING, LOGIN_SUCCESS, LOGIN_FAILURE } from '../actions/usersActions';
 
 const initialState = {
     user: {
@@ -15,7 +15,7 @@ const initialState = {
 
 export const usersReducer = (state = initialState, action) => {
     switch (action.type) {
-        case LOGIN_LOADING:
+        case LOGIN_START:
             return {
                 ...state,
                 loginLoading: true,
