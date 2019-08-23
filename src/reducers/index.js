@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import { exampleReducer } from "./exampleReducer.js";
-// import { whateverReducer } from "./whateverReducer";
+import { usersReducer } from "./usersReducer.js";
 
-export default combineReducers({ exampleReducer /*, whateverReducer*/ });
+export default combineReducers({ usersReducer });
