@@ -1,4 +1,4 @@
-import { REGISTER_START, REGISTER_SUCCESS, REGISTER_FAILURE } from "../actions/index";
+import { REGISTER_START, REGISTER_SUCCESS, REGISTER_FAILURE } from "../actions";
 
 const initialState = {   
   registering: false,
@@ -7,10 +7,10 @@ const initialState = {
 
 export const exampleReducer = (state = initialState, action) => {
   switch (action.type) {
-    case AN_ACTION:
-      return {
-        ...state
-      }
+    // case AN_ACTION:
+    //   return {
+    //     ...state
+    //   }
       
       case REGISTER_START: {
           return {

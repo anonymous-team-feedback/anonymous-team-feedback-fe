@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { register } from '../actions';
+import { register } from "../../actions/";
 
 //--- Styled Components ---//
 
