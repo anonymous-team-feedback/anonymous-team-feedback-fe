@@ -19,7 +19,7 @@ export const register = newUser => dispatch => {
    dispatch({type: REGISTER_START});
    console.log(newUser);  
 
-   return axios.post('https://serversite.com/api/auth/register', newUser)
+   return axios.post('https://anonymous-team-feedback.herokuapp.com/api/auth/register', newUser)
    .then(res => {
       console.log(res)
       dispatch({type: REGISTER_SUCCESS});

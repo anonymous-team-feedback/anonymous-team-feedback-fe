@@ -36,8 +36,35 @@ export const Input = styled.input`
 	background: #C7C3FA;
 	border: none;
 	border-radius: 3px;
-	width: 50%;
+  width: 50%;
+  margin: 0.5em 0.5em;
 `;
+
+// Name Input Container Styling //
+export const NameContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding-top: 1em;
+  color: black;
+  background: #grey;
+  border: none;
+  border-radius: 3px;
+  width: 55%;
+`;
+
+// Name Input Styling //
+export const InputName = styled.input`
+  display: flex;
+  flex-direction: row;
+  padding: 1em;
+  color: black;
+  background: #C7C3FA;
+  border: none;
+  border-radius: 3px;
+  margin: 0.5em 0.25em;
+  width: 55%;
+`;
+
 
 // Button Styling//
 export const Button = styled.button`
@@ -92,27 +119,29 @@ class Register extends React.Component {
 
                 <RegisterContainer>
 
-                  <Label>First Name</Label>
-                  {/* <!-- First Name --> */}
-                  <Input 
-                  type="text" 
-                  name="firstName" 
-                  id="RegisterFormFirstName" 
-                  value={this.state.newUser.firstName} 
-                  onChange={this.handleChange}
-                  placeholder="First Name"/>
+                  <NameContainer>
+                    {/* <Label>First Name</Label> */}
+                    {/* <!-- First Name --> */}
+                    <InputName 
+                    type="text" 
+                    name="firstName" 
+                    id="RegisterFormFirstName" 
+                    value={this.state.newUser.firstName} 
+                    onChange={this.handleChange}
+                    placeholder="First Name"/>
 
-                  <Label>Last Name</Label>
-                  {/* <!-- Last Name --> */}
-                  <Input 
-                  type="text" 
-                  name="lastName" 
-                  id="RegisterFormLastName" 
-                  value={this.state.newUser.lastName} 
-                  onChange={this.handleChange}
-                  placeholder="Last Name"/>
+                    {/* <Label>Last Name</Label> */}
+                    {/* <!-- Last Name --> */}
+                    <InputName 
+                    type="text" 
+                    name="lastName" 
+                    id="RegisterFormLastName" 
+                    value={this.state.newUser.lastName} 
+                    onChange={this.handleChange}
+                    placeholder="Last Name"/>
+                  </NameContainer>
 
-                  <Label>E-mail</Label>
+                  {/* <Label>E-mail</Label> */}
                   {/* <!-- E-mail --> */}
                   <Input 
                   type="email" 
@@ -122,7 +151,7 @@ class Register extends React.Component {
                   onChange={this.handleChange} 
                   placeholder="E-mail"/>
 
-                  <Label>Password</Label>
+                  {/* <Label>Password</Label> */}
                   {/* <!-- Password --> */}
                   <Input 
                   type="password" 
