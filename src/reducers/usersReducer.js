@@ -1,8 +1,10 @@
-import { REGISTER_START, REGISTER_SUCCESS, REGISTER_FAILURE } from "../actions";
+import { REGISTER_START, REGISTER_SUCCESS, REGISTER_FAILURE } from "../actions/usersActions.js";
 
 const initialState = {
     registering: false,
-    registerError: null
+    registerStartError: null,
+    registerFailureError: null
+
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -11,7 +13,7 @@ export const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 registering: true,
-                registerError: null,
+                registerStartError: null
             }
         }
         case REGISTER_SUCCESS: {
@@ -24,7 +26,7 @@ export const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 registering: false,
-                registerError: "failed to register"
+                registerFailureError: null
             }
         }
 
