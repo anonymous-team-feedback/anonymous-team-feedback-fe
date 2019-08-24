@@ -1,13 +1,13 @@
 import axios from 'axios';
 // login
-export const LOGIN_LOADING = 'LOGIN_LOADING';
+export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 
 export function login(email, password) {
     return dispatch => {
-        dispatch({type: LOGIN_LOADING});
+        dispatch({ type: LOGIN_START });
 
         const endpoint = 'http://localhost:5050/api/auth/login';
         const user = {
@@ -24,11 +24,11 @@ export function login(email, password) {
                 localStorage.setItem('lastName', res.data.lastName);
                 localStorage.setItem('user_id', res.data.user_id);
 
-                dispatch({type: LOGIN_SUCCESS, payload: res.data});
+                dispatch({ type: LOGIN_SUCCESS, payload: res.data });
                 console.log(user)
             })
             .catch(err => {
-                dispatch({type: LOGIN_FAILURE, payload: err})
+                dispatch({ type: LOGIN_FAILURE, payload: err })
             })
     }
 };
