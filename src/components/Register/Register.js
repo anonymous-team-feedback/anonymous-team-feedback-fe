@@ -6,10 +6,9 @@ import {
   Input,
   Label,
   NameContainer,
-  InputName,
-  Button
+  InputName
 } from "./register-style.js";
-
+import { Button, Header, Icon, Modal } from "semantic-ui-react";
 import { register } from "../../actions/usersActions.js";
 
 class Register extends React.Component {
@@ -19,7 +18,17 @@ class Register extends React.Component {
       lastName: "",
       email: "",
       password: ""
-    }
+    },
+    modalOpen: false
+  };
+
+  handleModalOpen = () => {
+    this.setState({ modalOpen: true });
+  };
+
+  handleModalClose = () => {
+    this.setState({ modalOpen: false });
+    this.props.history.push("/dashboard");
   };
 
   handleChange = e => {
@@ -35,7 +44,7 @@ class Register extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.register(this.state.newUser);
-    this.props.history.push("/dashboard");
+    this.handleModalOpen();
   };
 
   validateForm() {
@@ -109,9 +118,27 @@ class Register extends React.Component {
             <p />
 
             {/* <!-- Sign up button --> */}
-            <Button type="submit" disabled={!this.validateForm()}>
-              Sign up
-            </Button>
+            <Modal
+              trigger={
+                <Button type="submit" disabled={!this.validateForm()}>
+                  Sign up
+                </Button>
+              }
+              open={this.state.modalOpen}
+              onClose={this.handleModalClose}
+              basic
+              size="small"
+            >
+              <Header icon="browser" content="Registration"></Header>
+              <Modal.Content>
+                <h3>You have successfully registered.</h3>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button color="green" onClick={this.handleModalClose} inverted>
+                  <Icon name="checkmark"></Icon> Got it
+                </Button>
+              </Modal.Actions>
+            </Modal>
           </RegisterContainer>
         </FormGroup>
         {/* <!-- Register Form --> */}
