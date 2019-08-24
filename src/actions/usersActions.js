@@ -15,9 +15,11 @@ export const register = newUser => dispatch => {
     .then(res => {
       localStorage.setItem("token", res.headers["x-auth-token"]);
       localStorage.setItem("_id", res.data._id);
+      alert(JSON.stringify(res.data));
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
     })
     .catch(err => {
+      alert(err);
       dispatch({ type: REGISTER_FAILURE, payload: err });
     });
 };
