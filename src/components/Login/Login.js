@@ -21,7 +21,7 @@ class Login extends React.Component {
     };
   }
 
-  loginHandler = e => {
+  handleSubmit = e => {
     e.preventDefault();
 
     this.props.login(this.state.email, this.state.password, this.props.history);
@@ -39,7 +39,7 @@ class Login extends React.Component {
     return (
       <div className="Login">
         <p>Sign in</p>
-        <form onSubmit={this.loginHandler}>
+        <form onSubmit={this.handleSubmit}>
           <FormGroup>
             <LoginContainer>
               <Label>Email</Label>
