@@ -8,7 +8,7 @@ import {
   NameContainer,
   InputName
 } from "./register-style.js";
-import { Button, Header, Icon, Modal } from "semantic-ui-react";
+import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 import { register } from "../../actions/usersActions.js";
 
 class Register extends React.Component {
@@ -63,16 +63,15 @@ class Register extends React.Component {
         <p>Fill this form to get instant access</p>
 
         {/* <!-- Register Form --> */}
-        <FormGroup onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit}>
           {this.props.registerError && (
             <p>You are already registered. Please login.</p>
           )}
 
           <RegisterContainer>
-            <NameContainer>
-              {/* <Label>First Name</Label> */}
-              {/* <!-- First Name --> */}
-              <InputName
+            <Form.Field>
+              <Label>First name</Label>
+              <Input
                 type="text"
                 name="firstName"
                 id="RegisterFormFirstName"
@@ -80,10 +79,11 @@ class Register extends React.Component {
                 onChange={this.handleChange}
                 placeholder="First Name"
               />
+            </Form.Field>
 
-              {/* <Label>Last Name</Label> */}
-              {/* <!-- Last Name --> */}
-              <InputName
+            <Form.Field>
+              <Label>Last name</Label>
+              <Input
                 type="text"
                 name="lastName"
                 id="RegisterFormLastName"
@@ -91,33 +91,31 @@ class Register extends React.Component {
                 onChange={this.handleChange}
                 placeholder="Last Name"
               />
-            </NameContainer>
+            </Form.Field>
 
-            {/* <Label>E-mail</Label> */}
-            {/* <!-- E-mail --> */}
-            <Input
-              type="email"
-              name="email"
-              id="RegisterFormEmail"
-              value={this.state.newUser.email}
-              onChange={this.handleChange}
-              placeholder="E-mail"
-            />
+            <Form.Field>
+              <Label>Email</Label>
+              <Input
+                type="email"
+                name="email"
+                id="RegisterFormEmail"
+                value={this.state.newUser.email}
+                onChange={this.handleChange}
+                placeholder="E-mail"
+              />
+            </Form.Field>
 
-            {/* <Label>Password</Label> */}
-            {/* <!-- Password --> */}
-            <Input
-              type="password"
-              name="password"
-              id="RegisterFormPassword"
-              value={this.state.newUser.password}
-              onChange={this.handleChange}
-              placeholder="Password"
-            />
-
-            <p />
-
-            {/* <!-- Sign up button --> */}
+            <Form.Field>
+              <Label>Password</Label>
+              <Input
+                type="password"
+                name="password"
+                id="RegisterFormPassword"
+                value={this.state.newUser.password}
+                onChange={this.handleChange}
+                placeholder="Password"
+              />
+            </Form.Field>
             <Modal
               trigger={
                 <Button type="submit" disabled={!this.validateForm()}>
@@ -140,7 +138,7 @@ class Register extends React.Component {
               </Modal.Actions>
             </Modal>
           </RegisterContainer>
-        </FormGroup>
+        </Form>
         {/* <!-- Register Form --> */}
       </div>
     );
