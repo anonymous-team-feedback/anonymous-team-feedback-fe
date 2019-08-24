@@ -5,7 +5,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 
-export function login(email, password) {
+export function login(email, password, history) {
     return dispatch => {
         dispatch({ type: LOGIN_START });
 
@@ -25,6 +25,7 @@ export function login(email, password) {
                 localStorage.setItem('user_id', res.data.user_id);
 
                 dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+                history.push('/');
                 console.log(user)
             })
             .catch(err => {
