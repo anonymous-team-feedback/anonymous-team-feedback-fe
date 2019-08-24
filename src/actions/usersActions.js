@@ -27,6 +27,7 @@ export function login(email, password, history) {
                 dispatch({ type: LOGIN_SUCCESS, payload: res.data });
                 history.push('/');
                 console.log(user)
+                history.push('/');
             })
             .catch(err => {
                 dispatch({ type: LOGIN_FAILURE, payload: err })

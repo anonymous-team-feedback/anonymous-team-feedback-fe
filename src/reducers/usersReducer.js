@@ -8,7 +8,7 @@ const initialState = {
         email: '',
         user_id: ''
     },
-    loginLoading: false,
+    loginStart: false,
     isLoggedIn: false,
     loginError: false
 };
@@ -18,7 +18,7 @@ export const usersReducer = (state = initialState, action) => {
         case LOGIN_START:
             return {
                 ...state,
-                loginLoading: true,
+                loginStart: true,
                 user: {
                     token: '',
                     firstName: '',
@@ -32,7 +32,7 @@ export const usersReducer = (state = initialState, action) => {
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                loginLoading: false,
+                loginStart: false,
                 user: action.payload,
                 isLoggedIn: true,
                 loginError: false
@@ -40,7 +40,7 @@ export const usersReducer = (state = initialState, action) => {
         case LOGIN_FAILURE:
             return {
                 ...state,
-                loginLoading: false,
+                loginStart: false,
                 user: {
                     token: '',
                     firstName: '',
