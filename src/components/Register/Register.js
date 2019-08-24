@@ -8,7 +8,8 @@ import {
   NameContainer,
   InputName,
   Button
-} from "./RegisterStyling";
+} from "./register-style.js";
+
 import { register } from "../../actions/usersActions.js";
 
 class Register extends React.Component {
