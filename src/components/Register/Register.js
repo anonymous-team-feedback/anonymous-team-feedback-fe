@@ -39,10 +39,10 @@ class Register extends React.Component {
 
   validateForm() {
     return (
-      this.state.newUser.firstName.length > 0 &&
-      this.state.newUser.lastName.length > 0 &&
-      this.state.newUser.email.length > 0 &&
-      this.state.newUser.password.length > 0
+      this.state.newUser.firstName.length > 2 &&
+      this.state.newUser.lastName.length > 2 &&
+      this.state.newUser.email.length > 5 &&
+      this.state.newUser.password.length > 5
     );
   }
   render() {
