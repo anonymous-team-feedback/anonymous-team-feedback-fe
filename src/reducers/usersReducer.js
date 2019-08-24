@@ -15,10 +15,9 @@ const initialState = {
     email: "",
     user_id: ""
   },
-  loginStart: false,
   isLoggedIn: false,
   loginError: false,
-  registering: false,
+  isRegistering: false,
   registerError: null
 };
 
@@ -63,20 +62,20 @@ export const usersReducer = (state = initialState, action) => {
     case REGISTER_START: {
       return {
         ...state,
-        registering: true,
+        isRegistering: true,
         registerError: action.payload
       };
     }
     case REGISTER_SUCCESS: {
       return {
         ...state,
-        registering: false
+        isRegistering: false
       };
     }
     case REGISTER_FAILURE: {
       return {
         ...state,
-        registering: false,
+        isRegistering: false,
         registerError: action.payload
       };
     }
