@@ -19,7 +19,7 @@ export const register = newUser => dispatch => {
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      alert(err);
+      alert(JSON.stringify(err));
       dispatch({ type: REGISTER_FAILURE, payload: err });
     });
 };
