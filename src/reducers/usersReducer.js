@@ -6,8 +6,7 @@ import {
 
 const initialState = {
   registering: false,
-  registerStartError: null,
-  registerFailureError: null
+  registerError: null
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -16,7 +15,7 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         registering: true,
-        registerStartError: action.payload
+        registerError: action.payload
       };
     }
     case REGISTER_SUCCESS: {
@@ -29,7 +28,7 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         registering: false,
-        registerFailureError: action.payload
+        registerError: action.payload
       };
     }
 
