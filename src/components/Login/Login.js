@@ -8,9 +8,9 @@ import {
   Input,
   Label,
   NameContainer,
-  InputName,
-  Button
-} from "./LoginStyling.js";
+  InputName
+} from "./login-style.js";
+import { Button, Form } from "semantic-ui-react";
 
 class Login extends React.Component {
   constructor(props) {
@@ -33,6 +33,10 @@ class Login extends React.Component {
       [e.target.name]: e.target.value
     });
   };
+
+  validateForm() {
+    return this.state.email.length > 5 && this.state.password.length > 5;
+  }
 
   render() {
     return (
@@ -60,7 +64,9 @@ class Login extends React.Component {
               {this.props.loginError && <p>Incorrect username or password</p>}
             </LoginContainer>
           </FormGroup>
-          <Button type="submit">Submit</Button>
+          <Button type="submit" disabled={!this.validateForm()}>
+            Submit
+          </Button>
         </form>
       </div>
     );
