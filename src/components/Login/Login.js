@@ -23,7 +23,6 @@ class Login extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
     this.props.login(this.state.email, this.state.password, this.props.history);
     this.setState({ email: "", password: "" });
     this.props.history.push("/dashboard");
