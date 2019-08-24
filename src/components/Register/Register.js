@@ -1,12 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  FormGroup,
   RegisterContainer,
   Input,
-  Label,
   NameContainer,
-  InputName
+  InputName,
+  Label
 } from "./register-style.js";
 import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 import { register } from "../../actions/usersActions.js";
@@ -70,7 +69,7 @@ class Register extends React.Component {
 
           <RegisterContainer>
             <Form.Field>
-              <Label>First name</Label>
+              <Label color="teal">First name</Label>
               <Input
                 type="text"
                 name="firstName"
@@ -118,7 +117,11 @@ class Register extends React.Component {
             </Form.Field>
             <Modal
               trigger={
-                <Button type="submit" disabled={!this.validateForm()}>
+                <Button
+                  color="teal "
+                  type="submit"
+                  disabled={!this.validateForm()}
+                >
                   Sign up
                 </Button>
               }
@@ -132,7 +135,7 @@ class Register extends React.Component {
                 <h3>You have successfully registered.</h3>
               </Modal.Content>
               <Modal.Actions>
-                <Button color="green" onClick={this.handleModalClose} inverted>
+                <Button color="teal" onClick={this.handleModalClose} inverted>
                   <Icon name="checkmark"></Icon> Got it
                 </Button>
               </Modal.Actions>
