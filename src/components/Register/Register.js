@@ -1,6 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { FormGroup, RegisterContainer, Input, Label, NameContainer, InputName, Button} from "./RegisterStyling";
+import {
+  FormGroup,
+  RegisterContainer,
+  Input,
+  Label,
+  NameContainer,
+  InputName,
+  Button
+} from "./RegisterStyling";
 import { register } from "../../actions/usersActions.js";
 
 class Register extends React.Component {
@@ -13,94 +21,94 @@ class Register extends React.Component {
     }
   };
 
-  // Handles Change //
   handleChange = e => {
     e.preventDefault();
-    console.log("Changed User Information")
     this.setState({
-       newUser: {
-          ...this.state.newUser,
-          [e.target.name]: e.target.value
-       }
+      newUser: {
+        ...this.state.newUser,
+        [e.target.name]: e.target.value
+      }
     });
- };
+  };
 
- // Handles Submit //
- handleSubmit = e => {
-  e.preventDefault()
-  this.props.register(this.state.newUser)
-  .then(res => (res === false) ? null : this.props.history.push("/login")      
-  );
-};
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props
+      .register(this.state.newUser)
+      .then(res => (res === false ? null : this.props.history.push("/login")));
+  };
 
   render() {
     return (
       <div className="Register">
         <h1>Sign up now</h1>
 
-          <p>Fill this form to get instant access</p>
+        <p>Fill this form to get instant access</p>
 
-              {/* <!-- Register Form --> */}
-              <FormGroup onSubmit={this.handleSubmit}>
-                {this.props.registerError && <p>You are already registered. Please login.</p>}
+        {/* <!-- Register Form --> */}
+        <FormGroup onSubmit={this.handleSubmit}>
+          {this.props.registerError && (
+            <p>You are already registered. Please login.</p>
+          )}
 
-                <RegisterContainer>
+          <RegisterContainer>
+            <NameContainer>
+              {/* <Label>First Name</Label> */}
+              {/* <!-- First Name --> */}
+              <InputName
+                type="text"
+                name="firstName"
+                id="RegisterFormFirstName"
+                value={this.state.newUser.firstName}
+                onChange={this.handleChange}
+                placeholder="First Name"
+              />
 
-                  <NameContainer>
-                    {/* <Label>First Name</Label> */}
-                    {/* <!-- First Name --> */}
-                    <InputName 
-                    type="text" 
-                    name="firstName" 
-                    id="RegisterFormFirstName" 
-                    value={this.state.newUser.firstName} 
-                    onChange={this.handleChange}
-                    placeholder="First Name"/>
+              {/* <Label>Last Name</Label> */}
+              {/* <!-- Last Name --> */}
+              <InputName
+                type="text"
+                name="lastName"
+                id="RegisterFormLastName"
+                value={this.state.newUser.lastName}
+                onChange={this.handleChange}
+                placeholder="Last Name"
+              />
+            </NameContainer>
 
-                    {/* <Label>Last Name</Label> */}
-                    {/* <!-- Last Name --> */}
-                    <InputName 
-                    type="text" 
-                    name="lastName" 
-                    id="RegisterFormLastName" 
-                    value={this.state.newUser.lastName} 
-                    onChange={this.handleChange}
-                    placeholder="Last Name"/>
-                  </NameContainer>
+            {/* <Label>E-mail</Label> */}
+            {/* <!-- E-mail --> */}
+            <Input
+              type="email"
+              name="email"
+              id="RegisterFormEmail"
+              value={this.state.newUser.email}
+              onChange={this.handleChange}
+              placeholder="E-mail"
+            />
 
-                  {/* <Label>E-mail</Label> */}
-                  {/* <!-- E-mail --> */}
-                  <Input 
-                  type="email" 
-                  name="email" 
-                  id="RegisterFormEmail" 
-                  value={this.state.newUser.email}
-                  onChange={this.handleChange} 
-                  placeholder="E-mail"/>
+            {/* <Label>Password</Label> */}
+            {/* <!-- Password --> */}
+            <Input
+              type="password"
+              name="password"
+              id="RegisterFormPassword"
+              value={this.state.newUser.password}
+              onChange={this.handleChange}
+              placeholder="Password"
+            />
 
-                  {/* <Label>Password</Label> */}
-                  {/* <!-- Password --> */}
-                  <Input 
-                  type="password" 
-                  name="password" 
-                  id="RegisterFormPassword" 
-                  value={this.state.newUser.password} 
-                  onChange={this.handleChange}
-                  placeholder="Password"/>
+            <p />
 
-                  <p/>
-
-                  {/* <!-- Sign up button --> */}
-                  <Button type="submit">Sign up</Button>
-
-                </RegisterContainer>
-
-              </FormGroup>
-              {/* <!-- Register Form --> */}
+            {/* <!-- Sign up button --> */}
+            <Button type="submit">Sign up</Button>
+          </RegisterContainer>
+        </FormGroup>
+        {/* <!-- Register Form --> */}
       </div>
-    )
+    );
   }
-};
+}
 
 const mapStateToProps = state => {
   return {
