@@ -38,7 +38,6 @@ class Login extends React.Component {
   render() {
     return (
       <div className="Login">
-        <h1>Login component💻</h1>
         <p>Sign in</p>
         <form onSubmit={this.loginHandler}>
           <FormGroup>
