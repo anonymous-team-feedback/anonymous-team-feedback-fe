@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar/Navbar.js";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.js";
 import Dashboard from "./components/Dashboard/Dashboard.js";
 import Register from "./components/Register/Register.js";
+import "semantic-ui-css/semantic.min.css";
 
 const App = props => {
   return (

@@ -1,4 +1,4 @@
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from '../actions/usersActions';
+import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE,  REGISTER_START, REGISTER_SUCCESS, REGISTER_FAILURE } from '../actions/usersActions';
 
 const initialState = {
     user: {
@@ -11,6 +11,8 @@ const initialState = {
     loginStart: false,
     isLoggedIn: false,
     loginError: false
+    registering: false,
+    registerError: null
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -51,9 +53,30 @@ export const usersReducer = (state = initialState, action) => {
                 isLoggedIn: false,
                 loginError: true
             }
-        default:
-            return state;
-    }
+        case REGISTER_START: {
+          return {
+            ...state,
+            registering: true,
+            registerError: action.payload
+          };
+        }
+        case REGISTER_SUCCESS: {
+          return {
+            ...state,
+            registering: false
+          };
+        }
+        case REGISTER_FAILURE: {
+          return {
+            ...state,
+            registering: false,
+            registerError: action.payload
+          };
+        }
+
+    default:
+      return state;
+  }
 };
 
 export default usersReducer;
