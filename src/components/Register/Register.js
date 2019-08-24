@@ -38,6 +38,14 @@ class Register extends React.Component {
       .then(res => (res === false ? null : this.props.history.push("/login")));
   };
 
+  validateForm() {
+    return (
+      this.state.newUser.firstName.length > 0 &&
+      this.state.newUser.lastName.length > 0 &&
+      this.state.newUser.email.length > 0 &&
+      this.state.newUser.password.length > 0
+    );
+  }
   render() {
     return (
       <div className="Register">
@@ -101,7 +109,9 @@ class Register extends React.Component {
             <p />
 
             {/* <!-- Sign up button --> */}
-            <Button type="submit">Sign up</Button>
+            <Button type="submit" disabled={!this.validateForm()}>
+              Sign up
+            </Button>
           </RegisterContainer>
         </FormGroup>
         {/* <!-- Register Form --> */}
