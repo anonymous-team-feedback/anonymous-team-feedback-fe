@@ -4,7 +4,7 @@ export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
-const host = "https://anonymous-team-feedback.herokuapp.com/";
+const host = "http://anonymous-team-feedback.herokuapp-stage.com/api/";
 
 export function login(email, password, history) {
   return dispatch => {
@@ -18,7 +18,7 @@ export function login(email, password, history) {
     axios
       .post(`${host}auth/login`, user)
       .then(res => {
-        localStorage.setItem("token", res.headers["x-auth-token"]);
+        localStorage.setItem("token", res.data.token);
         localStorage.setItem("_id", res.data._id);
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
         history.push("/dashboard");
