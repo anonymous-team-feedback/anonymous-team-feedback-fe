@@ -39,7 +39,6 @@ export const register = newUser => dispatch => {
   return axios
     .post(`${host}auth/register/`, newUser)
     .then(res => {
-      localStorage.setItem("token", res.data.token);
       localStorage.setItem("_id", res.data._id);
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
     })

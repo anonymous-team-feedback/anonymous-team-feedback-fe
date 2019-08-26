@@ -42,7 +42,7 @@ class Login extends React.Component {
       <div className="Login">
         <p>Sign in</p>
         <form onSubmit={this.handleSubmit}>
-          <FormGroup>
+          <Form>
             <LoginContainer>
               <Label>Email</Label>
               <Input
@@ -62,7 +62,7 @@ class Login extends React.Component {
               />
               {this.props.loginError && <p>Incorrect username or password</p>}
             </LoginContainer>
-          </FormGroup>
+          </Form>
           <Button type="submit" disabled={!this.validateForm()}>
             Submit
           </Button>
