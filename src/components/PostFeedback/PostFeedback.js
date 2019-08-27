@@ -19,14 +19,20 @@ class PostFeedback extends React.Component {
     feedback: ""
   };
 
-  handleChange = (event, { name, value }) => {
+  handleDateChange = (event, { name, value }) => {
     if (this.state.hasOwnProperty(name)) {
       this.setState({ [name]: value });
     }
   };
 
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
   validateForm() {
-    return this.state.email.length > 5 && this.state.feedback.length > 20;
+    return this.state.email.length > 5 && this.state.feedback.length > 20 && this.state.date;
   }
 
   render() {
@@ -41,6 +47,7 @@ class PostFeedback extends React.Component {
               name="email"
               value={this.state.email}
               placeholder="mycolleague@myorgization.com"
+              onChange={this.handleChange}
             />
           </Form>
           <Form>
@@ -49,7 +56,7 @@ class PostFeedback extends React.Component {
               placeholder="Date"
               value={this.state.date}
               iconPosition="left"
-              onChange={this.handleChange}
+              onChange={this.handleDateChange}
             />
           </Form>
           <Form>
@@ -58,6 +65,7 @@ class PostFeedback extends React.Component {
               name="feedback"
               value={this.state.feedback}
               placeholder="You should really start/stop/keep..."
+              onChange={this.handleChange}
             />
           </Form>
           <Button type="submit" color="teal" disabled={!this.validateForm()}>
