@@ -1,16 +1,28 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Navbar = props => {
   return (
-    <div className="Navbar">
-      <h1>Navbar component🍫</h1>
-    </div>
+    <nav className="Navbar">
+      <div>
+        <h1>Incog</h1>
+      </div>
+      {!props.isLoggedIn && <div>
+        <Link to="/login">Login</Link>
+        <Link to="/signup">Register</Link>
+      </div>}
+      {props.isLoggedIn && <div>
+        <Link to="/dashboard">Dashboard</Link>
+      </div>}
+    </nav>
   );
 };
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    isLoggedIn: state.isLoggedIn
+  };
 };
 
 export default connect(
