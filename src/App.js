@@ -13,7 +13,6 @@ import "semantic-ui-css/semantic.min.css";
 const App = props => {
   return (
     <div className="App">
-      <h1>🙊🙉🙈😎🗣👉anonymous feedback app👈🗣😎🙊🙉🙈</h1>{" "}
       <div>
         <div>
           <div>
