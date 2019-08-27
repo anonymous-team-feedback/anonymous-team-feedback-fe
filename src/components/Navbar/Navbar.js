@@ -8,12 +8,14 @@ const Navbar = props => {
       <div>
         <h1>Incog</h1>
       </div>
+      {/* conditionally render login and signup routes */}
       {!props.isLoggedIn && <div>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Register</Link>
+        <Link to="/login">Login</Link> {/* login route */}
+        <Link to="/signup">Register</Link> {/* signup route */}
       </div>}
+      {/* conditionally render dashboard route */}
       {props.isLoggedIn && <div>
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/dashboard">Dashboard</Link> {/* dashboard route */}
       </div>}
     </nav>
   );
@@ -21,7 +23,7 @@ const Navbar = props => {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.isLoggedIn
+    isLoggedIn: state.isLoggedIn // set isLoggedIn to props
   };
 };
 
