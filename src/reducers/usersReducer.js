@@ -94,14 +94,15 @@ export const usersReducer = (state = initialState, action) => {
     case SEARCH_EMAIL_SUCCESS: {
       return {
         ...state,
-        isSearchingEmails: false
+        isSearchingEmails: false,
+        searchedEmails: action.payload
       };
     }
     case SEARCH_EMAIL_FAILURE: {
       return {
         ...state,
         isSearchingEmails: false,
-        searchedEmails: action.payload
+        searchedEmailsError: action.payload
       };
     }
 
