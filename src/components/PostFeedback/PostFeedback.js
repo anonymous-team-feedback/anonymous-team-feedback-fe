@@ -46,7 +46,7 @@ class PostFeedback extends React.Component {
               type="email"
               name="email"
               value={this.state.email}
-              placeholder="mycolleague@myorgization.com"
+              placeholder="mycolleague@myorganization.com"
               onChange={this.handleChange}
             />
           </Form>
