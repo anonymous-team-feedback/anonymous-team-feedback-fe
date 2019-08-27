@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Form, Modal, Icon, Header } from "semantic-ui-react";
+import { Form, Modal, Icon, Header, Input } from "semantic-ui-react";
 import {
   DateInput,
   TimeInput,
@@ -13,7 +13,18 @@ class PostFeedback extends React.Component {
   render() {
     return (
       <div className="PostFeedback">
-        <h1>PostFeedback component📝</h1>
+        <h2>Send feedback to others</h2>
+        <p>Start typing a colleague's email address to send them feedback</p>
+        <form onSubmit={this.handleSubmit}>
+          <Form>
+            <Input
+              type="email"
+              name="email"
+              value={this.state.email}
+              placeholder="mycolleague@myorgization.com"
+            />
+          </Form>
+        </form>
       </div>
     );
   }
