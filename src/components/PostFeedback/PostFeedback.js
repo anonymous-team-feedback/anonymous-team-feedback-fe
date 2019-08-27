@@ -1,5 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Form, Modal, Icon, Header } from "semantic-ui-react"
+import {
+  DateInput,
+  TimeInput,
+  DateTimeInput,
+  DatesRangeInput
+} from 'semantic-ui-calendar-react';
+
 
 const PostFeedback = props => {
   return (
@@ -16,4 +24,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {}
-)(PostFeedback);
+)(PostFeedback)
