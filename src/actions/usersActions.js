@@ -5,6 +5,7 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
 const host = "https://anonymous-team-feedback-stage.herokuapp.com/api/";
+const token = { headers: { ["x-auth-token"]: localStorage.getItem("token") } };
 
 export function login(email, password, history) {
   return dispatch => {
@@ -45,5 +46,26 @@ export const register = newUser => dispatch => {
     .catch(err => {
       alert(JSON.stringify(err));
       dispatch({ type: REGISTER_FAILURE, payload: err });
+    });
+};
+
+export const SEARCH_EMAIL_START = "SEARCH_EMAIL_START";
+export const SEARCH_EMAIL_SUCCESS = "SEARCH_EMAIL_SUCCESS";
+export const SEARCH_EMAIL_FAILURE = "SEARCH_EMAIL_FAILURE";
+
+export const searchEmails = email => dispatch => {
+  dispatch({ type: SEARCH_EMAIL_START });
+
+  return axios
+    .post(`${host}users/`, email, token)
+    .then(res => {
+      dispatch({ type: SEARCH_EMAIL_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      if (err.status === 401) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("_id");
+      }
+      dispatch({ type: SEARCH_EMAIL_FAILURE, payload: err });
     });
 };
