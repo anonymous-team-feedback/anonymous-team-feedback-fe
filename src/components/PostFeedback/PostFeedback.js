@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Form, Modal, Icon, Header, Input } from "semantic-ui-react";
+import { Form, Modal, Icon, Header, Input, Button } from "semantic-ui-react";
 import {
   DateInput,
   TimeInput,
@@ -10,7 +10,25 @@ import {
 import moment from "moment";
 
 class PostFeedback extends React.Component {
-  state = {};
+  state = {
+    email: "",
+    date: "",
+    time: "",
+    dateTime: "",
+    datesRange: "",
+    feedback: ""
+  };
+
+  handleChange = (event, { name, value }) => {
+    if (this.state.hasOwnProperty(name)) {
+      this.setState({ [name]: value });
+    }
+  };
+
+  validateForm() {
+    return this.state.email.length > 5 && this.state.feedback.length > 20;
+  }
+
   render() {
     return (
       <div className="PostFeedback">
@@ -25,6 +43,26 @@ class PostFeedback extends React.Component {
               placeholder="mycolleague@myorgization.com"
             />
           </Form>
+          <Form>
+            <DateInput
+              name="date"
+              placeholder="Date"
+              value={this.state.date}
+              iconPosition="left"
+              onChange={this.handleChange}
+            />
+          </Form>
+          <Form>
+            <Input
+              type="feedback"
+              name="feedback"
+              value={this.state.feedback}
+              placeholder="You should really start/stop/keep..."
+            />
+          </Form>
+          <Button type="submit" color="teal" disabled={!this.validateForm()}>
+            Send
+          </Button>
         </form>
       </div>
     );
