@@ -63,7 +63,9 @@ class Login extends React.Component {
               {this.props.loginError && <p>Incorrect username or password</p>}
             </LoginContainer>
           </Form>
-          <Button type="submit" disabled={!this.validateForm()}>
+          <Button type="submit" 
+        //   disabled={!this.validateForm()}
+          >
             Submit
           </Button>
         </form>
