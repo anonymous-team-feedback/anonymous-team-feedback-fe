@@ -37,7 +37,7 @@ export const Label = styled.label`
 // Input Styling//
 export const Input = styled.input`
   padding: 1em;
-  color: black;
+  color: white !important;
   background: #4D505F !important; 
   border: none;
   border-radius: 3px;
