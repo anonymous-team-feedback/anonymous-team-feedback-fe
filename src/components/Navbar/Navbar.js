@@ -13,7 +13,7 @@ const Navbar = props => {
       {!props.isLoggedIn && <form>
         <Field name='Email' type='text' placeholder='email'/>
         <Field name='Password' type='text' placeholder='password'/>
-        <button type='submit'>Sign in</button>
+        <Button type='submit'>Sign in</Button>
       </form>}
       {/* conditionally render dashboard route */}
       {props.isLoggedIn && <div>
@@ -50,5 +50,15 @@ background-color: #4d505f;
 border: none;
 border-radius: 4px;
 padding: 0.3rem 0.8rem;
-margin: 0 0.5rem;
+margin: 0 0.7rem;
+`
+const Button = styled.button`
+border: 1px solid #51e3c2;
+border-radius: 4px;
+background-color: #393945;
+color: #51e3c2;
+font-weight: bold;
+padding: 0.3rem 0.6rem;
+font-size: 0.9rem;
+margin-left: 0.5rem;
 `
