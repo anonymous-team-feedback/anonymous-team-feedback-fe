@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import styled from 'styled-components';
 
 const Navbar = props => {
   return (
@@ -9,10 +10,11 @@ const Navbar = props => {
         <h1>Incog</h1>
       </div>
       {/* conditionally render login and signup routes */}
-      {!props.isLoggedIn && <div>
-        <Link to="/login">Login</Link> {/* login route */}
-        <Link to="/signup">Register</Link> {/* signup route */}
-      </div>}
+      {!props.isLoggedIn && <form>
+        <input name='Email' type='text' placeholder='email'/>
+        <input name='Password' type='text' placeholder='password'/>
+        <button type='submit'>Sign in</button>
+      </form>}
       {/* conditionally render dashboard route */}
       {props.isLoggedIn && <div>
         <Link to="/dashboard">Dashboard</Link> {/* dashboard route */}
