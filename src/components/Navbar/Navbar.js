@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const Navbar = props => {
   return (
-    <nav className="Navbar">
+    <NavBar className="Navbar">
       <div>
         <h1>Incog</h1>
       </div>
@@ -19,7 +19,7 @@ const Navbar = props => {
       {props.isLoggedIn && <div>
         <Link to="/dashboard">Dashboard</Link> {/* dashboard route */}
       </div>}
-    </nav>
+    </NavBar>
   );
 };
 
@@ -33,3 +33,11 @@ export default connect(
   mapStateToProps,
   {}
 )(Navbar);
+
+const NavBar = styled.nav`
+background-color: #393945;
+display: flex;
+justify-content: space-between;
+padding: 0.5rem 20rem 0.5rem 2rem;
+align-items: center;
+`
