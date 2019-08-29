@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
 const Navbar = props => {
@@ -12,13 +11,9 @@ const Navbar = props => {
       {/* conditionally render login and signup routes */}
       {!props.isLoggedIn && <form>
         <Field name='Email' type='text' placeholder='email'/>
-        <Field name='Password' type='text' placeholder='password'/>
+        <Field name='Password' type='password' placeholder='password'/>
         <Button type='submit'>Sign in</Button>
       </form>}
-      {/* conditionally render dashboard route */}
-      {props.isLoggedIn && <div>
-        <Link to="/dashboard">Dashboard</Link> {/* dashboard route */}
-      </div>}
     </NavBar>
   );
 };
@@ -44,6 +39,7 @@ align-items: center;
 const Title = styled.h1`
 color: white;
 font-family: sans-serif;
+font-size: 1.8rem;
 `
 const Field = styled.input`
 background-color: #4d505f;
@@ -51,6 +47,7 @@ border: none;
 border-radius: 4px;
 padding: 0.3rem 0.8rem;
 margin: 0 0.7rem;
+color: white;
 `
 const Button = styled.button`
 border: 1px solid #51e3c2;
