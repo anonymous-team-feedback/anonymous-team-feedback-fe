@@ -7,7 +7,7 @@ const Navbar = props => {
   return (
     <NavBar className="Navbar">
       <div>
-        <h1>Incog</h1>
+        <Title>InCog</Title>
       </div>
       {/* conditionally render login and signup routes */}
       {!props.isLoggedIn && <form>
@@ -40,4 +40,8 @@ display: flex;
 justify-content: space-between;
 padding: 0.5rem 20rem 0.5rem 2rem;
 align-items: center;
+`
+const Title = styled.h1`
+color: white;
+font-family: sans-serif;
 `
