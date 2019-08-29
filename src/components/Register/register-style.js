@@ -1,36 +1,44 @@
 import styled from "styled-components";
+import { whileStatement } from "@babel/types";
 
 //--- Styled Components ---//
 
+// PageDiv Styling//
+export const PageDiv= styled.div`
+  background: #32323E;
+  padding:
+`;
+
 // Form Styling//
 export const FormGroup = styled.form`
-  background: whitesmoke;
+  background: #32323E;
   display: block;
   margin: 1em auto;
 `;
 
-// Register Container Styling//
+// RegisterContainer Styling//
 export const RegisterContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: 0em auto;
+  margin: 0 50% 0 15%;
+  background: #32323E;
+  padding-bottom: 200px;
 `;
 
 // Label Styling//
 export const Label = styled.label`
   display: flex;
   font-weight: bold;
-  padding: 0.5em;
-  margin: 0.5em auto;
+  text-align: left;
   color: #008080 !important;
+  padding: 0.25em;
 `;
 
 // Input Styling//
 export const Input = styled.input`
   padding: 1em;
   color: black;
-  background: #c7c3fa;
+  background: #4D505F !important; 
   border: none;
   border-radius: 3px;
   width: 50%;
@@ -66,9 +74,23 @@ export const InputName = styled.input`
 // Button Styling//
 export const Button = styled.button`
   padding: 1em 2em;
-  color: #6558f5;
-  background: white;
+  color: black !important;
   border-radius: 3px;
-  margin: 0em auto;
-  margin-bottom: 2em;
+  margin: 0em 0em !important;
+`;
+
+// H1 styling//
+export const H1 = styled.h1`
+  text-align: left;
+  color: white;
+  margin: 0 50% 0 15%;
+  padding-top: 25px;
+`;
+
+// P styling//
+export const P = styled.p`
+  text-align: left;
+  color: white;
+  margin: 0 50% 0 15%;
+  padding-bottom: 25px;
 `;
