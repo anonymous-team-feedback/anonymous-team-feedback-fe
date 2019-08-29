@@ -11,8 +11,8 @@ const Navbar = props => {
       </div>
       {/* conditionally render login and signup routes */}
       {!props.isLoggedIn && <form>
-        <input name='Email' type='text' placeholder='email'/>
-        <input name='Password' type='text' placeholder='password'/>
+        <Field name='Email' type='text' placeholder='email'/>
+        <Field name='Password' type='text' placeholder='password'/>
         <button type='submit'>Sign in</button>
       </form>}
       {/* conditionally render dashboard route */}
@@ -44,4 +44,11 @@ align-items: center;
 const Title = styled.h1`
 color: white;
 font-family: sans-serif;
+`
+const Field = styled.input`
+background-color: #4d505f;
+border: none;
+border-radius: 4px;
+padding: 0.3rem 0.8rem;
+margin: 0 0.5rem;
 `
