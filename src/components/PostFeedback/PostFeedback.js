@@ -9,6 +9,7 @@ import {
 } from "semantic-ui-calendar-react";
 import moment from "moment";
 import { searchEmails } from "../../actions/usersActions.js";
+import { withRouter } from "react-router-dom";
 
 class PostFeedback extends React.Component {
   state = {
@@ -101,7 +102,9 @@ const mapStateToProps = state => {
   return { searchedEmails: state.searchedEmails };
 };
 
-export default connect(
-  mapStateToProps,
-  { searchEmails }
-)(PostFeedback);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { searchEmails }
+  )(PostFeedback)
+);
