@@ -46,15 +46,16 @@ class PostFeedback extends React.Component {
     return this.state.feedback.length > 20 && this.state.date;
   }
 
-  handleDropdown = () => {
+  handleDropdown = (event) => {
+    console.log(event.target.value)
     this.setState(
       {
-        searchQuery: this.searchEmail.inputRef.current.value
+        searchQuery: event.target.value
       },
       () => {
         if (this.state.searchQuery && this.state.searchQuery.length > 1) {
           if (this.state.searchQuery.length % 2 === 0) {
-            this.props.searchEmails();
+            this.props.searchEmails(this.state.searchQuery);
           }
         }
       }
@@ -71,16 +72,10 @@ class PostFeedback extends React.Component {
         <h2>Send feedback to others</h2>
         <p>Start typing a colleague's email address to send them feedback</p>
         <form onSubmit={this.handleSubmit}>
-          {/* <Input
-              placeholder="mycolleague@myorganization.com"
-              onChange={this.handleSearchAsYouType}
-              ref={input => (this.searchEmail = input)}
-            /> */}
           <Form>
             <Form.Select
               placeholder="mycolleague@myorganization.com"
-              onChange={this.onChangeCheck}
-              ref={input => (this.searchEmail = input)}
+              onSearchChange={this.handleDropdown}
               fluid
               search
               options={this.props.searchedEmails}
