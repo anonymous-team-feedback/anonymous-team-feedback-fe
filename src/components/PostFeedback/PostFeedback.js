@@ -41,9 +41,8 @@ class PostFeedback extends React.Component {
       this.state.date
     );
   }
-  handleSearchAsYouType = () => {
-    this.setState(
-      {
+  handleSearchAsYouType = e => {
+    this.setState({
         searchQuery: this.searchEmail.value
       },
       () => {
@@ -66,9 +65,9 @@ class PostFeedback extends React.Component {
             <Input
               type="email"
               name="email"
-              value={this.state.email}
               placeholder="mycolleague@myorganization.com"
               onChange={this.handleSearchAsYouType}
+              ref={Input => this.searchEmail = Input}
             />
           </Form>
           <Form>
