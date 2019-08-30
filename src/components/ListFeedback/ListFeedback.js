@@ -15,15 +15,12 @@ class ListFeedback extends React.Component {
     return (
       <div className="Listfeedback">
         <h1>ListFeedback component👂</h1>
-        {/* {this.props.posts.map(post => (
-          console.log(post)
-        ))} */}
-        {/* <h1>{this.props.posts.date}</h1>
-        <h1>{this.props.posts.post}</h1>
-        <h1>{this.props.posts.poster}</h1>
-        <h1>{this.props.posts.colleague}</h1> */}
-
-
+        {this.props.posts.map(post => (
+          <div key={post.id}>
+            <h1>{post.post}</h1>
+            <h1>{post.date}</h1>
+          </div>
+))}
       </div>
     );
   };
