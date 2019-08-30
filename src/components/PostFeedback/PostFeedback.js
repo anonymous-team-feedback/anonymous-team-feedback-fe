@@ -44,10 +44,10 @@ class PostFeedback extends React.Component {
   handleSearchAsYouType = () => {
     this.setState(
       {
-        query: this.searchEmail.value
+        searchQuery: this.searchEmail.value
       },
       () => {
-        if (this.state.searchquery && this.state.searchQuery.length > 1) {
+        if (this.state.searchQuery && this.state.searchQuery.length > 1) {
           if (this.state.query.length % 2 === 0) {
             this.props.searchEmails();
           }
