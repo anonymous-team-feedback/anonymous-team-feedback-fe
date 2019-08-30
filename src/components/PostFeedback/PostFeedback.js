@@ -23,11 +23,8 @@ class PostFeedback extends React.Component {
   state = {
     email: "",
     date: "",
-    time: "",
-    dateTime: "",
-    datesRange: "",
     feedback: "",
-    searchQuery: ""
+    searchQuery: "",
   };
 
   handleDateChange = (event, { name, value }) => {
@@ -78,6 +75,7 @@ class PostFeedback extends React.Component {
               onSearchChange={this.handleDropdown}
               fluid
               search
+              selection
               options={this.props.searchedEmails}
             />
           </Form>
