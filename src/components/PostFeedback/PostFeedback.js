@@ -35,19 +35,16 @@ class PostFeedback extends React.Component {
   };
 
   validateForm() {
-    return (
-      this.state.email.length > 5 &&
-      this.state.feedback.length > 20 &&
-      this.state.date
-    );
+    return this.state.feedback.length > 20 && this.state.date;
   }
-  handleSearchAsYouType = e => {
-    this.setState({
-        searchQuery: this.searchEmail.value
+  handleSearchAsYouType = () => {
+    this.setState(
+      {
+        searchQuery: this.searchEmail.inputRef.current.value
       },
       () => {
         if (this.state.searchQuery && this.state.searchQuery.length > 1) {
-          if (this.state.query.length % 2 === 0) {
+          if (this.state.searchQuery.length % 2 === 0) {
             this.props.searchEmails();
           }
         }
@@ -63,11 +60,9 @@ class PostFeedback extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <Form>
             <Input
-              type="email"
-              name="email"
               placeholder="mycolleague@myorganization.com"
               onChange={this.handleSearchAsYouType}
-              ref={Input => this.searchEmail = Input}
+              ref={input => (this.searchEmail = input)}
             />
           </Form>
           <Form>
