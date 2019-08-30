@@ -57,7 +57,7 @@ export const searchEmails = email => dispatch => {
   dispatch({ type: SEARCH_EMAIL_START });
 
   return axios
-    .post(`${host}users/`, email, token)
+    .post(`${host}posts/users`, email, token)
     .then(res => {
       dispatch({ type: SEARCH_EMAIL_SUCCESS, payload: res.data });
     })
