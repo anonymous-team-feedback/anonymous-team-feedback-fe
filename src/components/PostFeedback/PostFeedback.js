@@ -25,6 +25,7 @@ class PostFeedback extends React.Component {
     date: "",
     feedback: "",
     searchQuery: "",
+    selected: ""
   };
 
   handleDateChange = (event, { name, value }) => {
@@ -43,11 +44,12 @@ class PostFeedback extends React.Component {
     return this.state.feedback.length > 20 && this.state.date;
   }
 
-  handleDropdown = (event) => {
-    console.log(event.target.value)
+  handleDropdown = (event, { value }) => {
+    console.log(value)
     this.setState(
       {
-        searchQuery: event.target.value
+        searchQuery: event.target.value,
+        selected: value
       },
       () => {
         if (this.state.searchQuery && this.state.searchQuery.length > 1) {
@@ -77,6 +79,7 @@ class PostFeedback extends React.Component {
               search
               selection
               options={this.props.searchedEmails}
+              value={this.state.selected}
             />
           </Form>
           <Form>
