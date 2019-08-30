@@ -8,17 +8,17 @@ import {
 } from "../actions/usersActions";
 
 const initialState = {
-  user: {
-    token: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    user_id: ""
-  },
-  isLoggedIn: false,
-  loginError: false,
-  isRegistering: false,
-  registerError: null
+    user: {
+        token: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        user_id: ''
+    },
+    isLoggedIn: false,
+    loginError: false,
+    registering: false,
+    registerError: null
 };
 
 export const usersReducer = (state = initialState, action) => {
