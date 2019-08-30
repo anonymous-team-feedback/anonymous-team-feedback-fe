@@ -8,6 +8,7 @@ import {
   DatesRangeInput
 } from "semantic-ui-calendar-react";
 import moment from "moment";
+import { searchEmails } from "../../actions/usersActions.js";
 
 class PostFeedback extends React.Component {
   state = {
@@ -16,7 +17,8 @@ class PostFeedback extends React.Component {
     time: "",
     dateTime: "",
     datesRange: "",
-    feedback: ""
+    feedback: "",
+    searchQuery: ""
   };
 
   handleDateChange = (event, { name, value }) => {
@@ -32,8 +34,26 @@ class PostFeedback extends React.Component {
   };
 
   validateForm() {
-    return this.state.email.length > 5 && this.state.feedback.length > 20 && this.state.date;
+    return (
+      this.state.email.length > 5 &&
+      this.state.feedback.length > 20 &&
+      this.state.date
+    );
   }
+  handleSearchAsYouType = () => {
+    this.setState(
+      {
+        query: this.searchEmail.value
+      },
+      () => {
+        if (this.state.searchquery && this.state.searchQuery.length > 1) {
+          if (this.state.query.length % 2 === 0) {
+            this.props.searchEmails();
+          }
+        }
+      }
+    );
+  };
 
   render() {
     return (
@@ -47,7 +67,7 @@ class PostFeedback extends React.Component {
               name="email"
               value={this.state.email}
               placeholder="mycolleague@myorganization.com"
-              onChange={this.handleChange}
+              onChange={this.handleSearchAsYouType}
             />
           </Form>
           <Form>
@@ -78,10 +98,10 @@ class PostFeedback extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return { searchedEmails: state.searchedEmails };
 };
 
 export default connect(
   mapStateToProps,
-  {}
+  { searchEmails }
 )(PostFeedback);
