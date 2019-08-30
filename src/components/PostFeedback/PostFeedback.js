@@ -1,7 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import PostFeedbackSuggestions from "../PostFeedbackSuggestions/PostFeedbackSuggestions.js";
-import { Form, Modal, Icon, Header, Input, Button } from "semantic-ui-react";
+import {
+  Form,
+  Modal,
+  Icon,
+  Header,
+  Input,
+  Button,
+  Dropdown
+} from "semantic-ui-react";
 import {
   DateInput,
   TimeInput,
@@ -38,7 +45,8 @@ class PostFeedback extends React.Component {
   validateForm() {
     return this.state.feedback.length > 20 && this.state.date;
   }
-  handleSearchAsYouType = () => {
+
+  handleDropdown = () => {
     this.setState(
       {
         searchQuery: this.searchEmail.inputRef.current.value
@@ -53,19 +61,30 @@ class PostFeedback extends React.Component {
     );
   };
 
+  onChangeCheck = () => {
+    console.log("woop");
+  };
+
   render() {
     return (
       <div className="PostFeedback">
         <h2>Send feedback to others</h2>
         <p>Start typing a colleague's email address to send them feedback</p>
         <form onSubmit={this.handleSubmit}>
-          <Form>
-            <Input
+          {/* <Input
               placeholder="mycolleague@myorganization.com"
               onChange={this.handleSearchAsYouType}
               ref={input => (this.searchEmail = input)}
+            /> */}
+          <Form>
+            <Form.Select
+              placeholder="mycolleague@myorganization.com"
+              onChange={this.onChangeCheck}
+              ref={input => (this.searchEmail = input)}
+              fluid
+              search
+              options={this.props.searchedEmails}
             />
-            <PostFeedbackSuggestions/>
           </Form>
           <Form>
             <DateInput
@@ -94,7 +113,7 @@ class PostFeedback extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ usersReducer: state }) => {
   return { searchedEmails: state.searchedEmails };
 };
 
