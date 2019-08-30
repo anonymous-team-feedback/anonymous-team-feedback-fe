@@ -1,12 +1,21 @@
-import React from 'react'
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
-const PostFeedbackSuggestions = props => {
-  const options = props.results.map(res => (
-    <li key={res.id}>
-      {res.name}
-    </li>
-  ))
-  return <ul>{options}</ul>
+class PostFeedbackSuggestions extends React.Component {
+  render() {
+    return this.props.searchedEmails.map(res => <option value={res.email} />);
+  }
 }
+const mapStateToProps = state => {
+  return {
+    searchedEmails: state.searchedEmails
+  };
+};
 
-export default PostFeedbackSuggestions
+export default withRouter(
+  connect(
+    mapStateToProps,
+    {}
+  )(PostFeedbackSuggestions)
+);

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import PostFeedbackSuggestions from "../PostFeedbackSuggestions/PostFeedbackSuggestions.js";
 import { Form, Modal, Icon, Header, Input, Button } from "semantic-ui-react";
 import {
   DateInput,
@@ -64,6 +65,7 @@ class PostFeedback extends React.Component {
               onChange={this.handleSearchAsYouType}
               ref={input => (this.searchEmail = input)}
             />
+            <PostFeedbackSuggestions/>
           </Form>
           <Form>
             <DateInput
