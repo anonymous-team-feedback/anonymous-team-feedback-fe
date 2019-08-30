@@ -3,14 +3,14 @@ import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom';
 import {login} from "../../actions/usersActions";
 import {
-    FormGroup,
+    PageDiv,
     LoginContainer,
     Input,
-    Label,
-    NameContainer,
-    InputName,
-    Button
+    H1,
+    P,
+    Label
 } from './LoginStyling.js';
+import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 
 class Login extends React.Component {
 
@@ -40,33 +40,43 @@ class Login extends React.Component {
     render() {
         return (
 
-            <div className="Login">
-                <h1>Login component💻</h1>
-                <p>Sign in</p>
-                <form onSubmit={this.loginHandler}>
-                <FormGroup>
-                    <LoginContainer>
-                        <Label>Email</Label>
-                        <Input
-                            type="email"
-                            name="email"
-                            value={this.state.email}
-                            placeholder='email@email.com'
-                            onChange={this.handleChange}/>
-                        <Label>Password</Label>
-                        <Input
-                            type="password"
-                            name="password"
-                            value={this.state.password}
-                            placeholder='password'
-                            onChange={this.handleChange}/>
-                    {this.props.loginError && <p>Incorrect username or password</p>}
+            <PageDiv className="Login">
+                <H1>Login component💻</H1>
 
-                    </LoginContainer>
-                </FormGroup>
-                <Button type='submit'>Submit</Button>
-                </form>
-            </div>
+                <P>Sign in</P>
+
+                <Form onSubmit={this.loginHandler}>
+                        <LoginContainer>
+                            <Form.Field>
+                                <Label color="teal">Email</Label>
+                                <Input
+                                    type="email"
+                                    name="email"
+                                    value={this.state.email}
+                                    placeholder='email@email.com'
+                                    onChange={this.handleChange}/>
+                            </Form.Field>
+
+                            <Form.Field>
+                                <Label>Password</Label>
+                                <Input
+                                    type="password"
+                                    name="password"
+                                    value={this.state.password}
+                                    placeholder='password'
+                                    onChange={this.handleChange}/>
+                            {this.props.loginError && <p>Incorrect username or password</p>}
+                            </Form.Field>
+
+                                <Button 
+                                    color="teal"
+                                    type='submit'
+                                >
+                                    Submit
+                                </Button>
+                        </LoginContainer>
+                </Form>
+            </PageDiv>
         );
     }
 };

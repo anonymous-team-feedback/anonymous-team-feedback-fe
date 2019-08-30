@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import {
   RegisterContainer,
   Input,
-  NameContainer,
-  InputName,
   Label
 } from "./register-style.js";
 import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";

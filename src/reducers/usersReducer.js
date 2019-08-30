@@ -10,7 +10,7 @@ const initialState = {
     },
     loginStart: false,
     isLoggedIn: false,
-    loginError: false
+    loginError: false,
     registering: false,
     registerError: null
 };
