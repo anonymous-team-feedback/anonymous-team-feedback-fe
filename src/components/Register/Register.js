@@ -46,14 +46,12 @@ class Register extends React.Component {
     this.handleModalOpen();
   };
 
-  validateForm() {
-    return (
-      this.state.newUser.firstName.length > 2 &&
-      this.state.newUser.lastName.length > 2 &&
-      this.state.newUser.email.length > 5 &&
-      this.state.newUser.password.length > 5
-    );
-  }
+  validateForm = () =>
+    this.state.newUser.firstName.length > 2 &&
+    this.state.newUser.lastName.length > 2 &&
+    this.state.newUser.email.length > 5 &&
+    this.state.newUser.password.length > 5;
+
   render() {
     return (
       <div className="Register">
