@@ -112,7 +112,8 @@ export const usersReducer = (state = initialState, action) => {
         ...state,
         transformedSearchedEmails: action.payload.map((email, index) => ({
           text: email.email,
-          value: index
+          key: index,
+          value: email.email
         }))
       };
     }

@@ -29,6 +29,7 @@ class PostFeedback extends React.Component {
   };
 
   handleDateChange = (event, { name, value }) => {
+    console.log("hdc value: " + value);
     if (this.state.hasOwnProperty(name)) {
       this.setState({ [name]: value });
     }
@@ -44,12 +45,10 @@ class PostFeedback extends React.Component {
     return this.state.feedback.length > 20 && this.state.date;
   }
 
-  handleDropdown = (event, { value }) => {
-    console.log(value);
+  handleDropdownSearch = e => {
     this.setState(
       {
-        searchQuery: event.target.value,
-        selected: value
+        searchQuery: e.target.value
       },
       () => {
         if (this.state.searchQuery && this.state.searchQuery.length > 1) {
@@ -61,6 +60,8 @@ class PostFeedback extends React.Component {
     );
   };
 
+  handleDropdownChange = (e, { value }) => this.setState({ selected: value });
+
   render() {
     return (
       <div className="PostFeedback">
@@ -68,9 +69,10 @@ class PostFeedback extends React.Component {
         <p>Start typing a colleague's email address to send them feedback</p>
         <form onSubmit={this.handleSubmit}>
           <Form>
-            <Form.Select
+            <Dropdown
               placeholder="mycolleague@myorganization.com"
-              onSearchChange={this.handleDropdown}
+              onSearchChange={this.handleDropdownSearch}
+              onChange={this.handleDropdownChange}
               fluid
               search
               selection
@@ -106,8 +108,10 @@ class PostFeedback extends React.Component {
 }
 
 const mapStateToProps = ({ usersReducer: state }) => {
-  return { searchedEmails: state.searchedEmails,
-  transformedSearchedEmails: state.transformedSearchedEmails };
+  return {
+    searchedEmails: state.searchedEmails,
+    transformedSearchedEmails: state.transformedSearchedEmails
+  };
 };
 
 export default withRouter(
