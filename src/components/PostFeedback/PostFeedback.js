@@ -61,10 +61,6 @@ class PostFeedback extends React.Component {
     );
   };
 
-  onChangeCheck = () => {
-    console.log("woop");
-  };
-
   render() {
     return (
       <div className="PostFeedback">
