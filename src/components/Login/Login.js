@@ -34,7 +34,7 @@ class Login extends React.Component {
       <PageDiv className="Login">
         <H1>Sign in</H1>
 
-        <Form onSubmit={this.loginHandler}>
+        <Form onSubmit={this.handleSubmit}>
           <LoginContainer>
             <Form.Field>
               <Label color="teal">Email</Label>
