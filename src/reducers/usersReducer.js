@@ -16,7 +16,7 @@ const initialState = {
     user_id: ""
   },
   isLoggedIn: false,
-  loginError: false,
+  loginError: null,
   isRegistering: false,
   registerError: null
 };
@@ -57,7 +57,7 @@ export const usersReducer = (state = initialState, action) => {
           user_id: ""
         },
         isLoggedIn: false,
-        loginError: true
+        loginError: action.payload
       };
     case REGISTER_START: {
       return {
