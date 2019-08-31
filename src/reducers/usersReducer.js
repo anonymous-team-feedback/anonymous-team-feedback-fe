@@ -110,10 +110,10 @@ export const usersReducer = (state = initialState, action) => {
     case TRANSFORM_EMAILS_FOR_DROPDOWN: {
       return {
         ...state,
-        transformedSearchedEmails: action.payload.map((email, index) => ({
-          text: email.email,
+        transformedSearchedEmails: action.payload.map(({ email }, index) => ({
+          text: email,
           key: index,
-          value: email.email
+          value: email
         }))
       };
     }

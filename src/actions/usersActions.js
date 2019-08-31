@@ -71,3 +71,7 @@ export const searchEmails = email => dispatch => {
       dispatch({ type: SEARCH_EMAIL_FAILURE, payload: err });
     });
 };
+
+export const SUBMIT_FEEDBACK_START = "SUBMIT_FEEDBACK_START";
+export const SUBMIT_FEEDBACK_SUCCESS = "SUBMIT_FEEDBACK_SUCCESS";
+export const SUBMIT_FEEDBACK_FAILURE = "SUBMIT_FEEDBACK_FAILURE";
