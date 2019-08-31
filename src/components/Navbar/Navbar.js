@@ -1,23 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
 
 const Navbar = props => {
   return (
-    <nav className="Navbar">
+    <NavBar className="Navbar">
       <div>
-        <h1>Incog</h1>
+        <Title>InCog</Title>
       </div>
       {/* conditionally render login and signup routes */}
-      {!props.isLoggedIn && <div>
-        <Link to="/login">Login</Link> {/* login route */}
-        <Link to="/signup">Register</Link> {/* signup route */}
-      </div>}
-      {/* conditionally render dashboard route */}
-      {props.isLoggedIn && <div>
-        <Link to="/dashboard">Dashboard</Link> {/* dashboard route */}
-      </div>}
-    </nav>
+      {!props.isLoggedIn && <form>
+        <Field name='Email' type='text' placeholder='email'/>
+        <Field name='Password' type='password' placeholder='password'/>
+        <Button type='submit'>Sign in</Button>
+      </form>}
+    </NavBar>
   );
 };
 
@@ -31,3 +28,34 @@ export default connect(
   mapStateToProps,
   {}
 )(Navbar);
+
+const NavBar = styled.nav`
+background-color: #393945;
+display: flex;
+justify-content: space-between;
+padding: 0.5rem 20rem 0.5rem 2rem;
+align-items: center;
+`
+const Title = styled.h1`
+color: white;
+font-family: sans-serif;
+font-size: 1.8rem;
+`
+const Field = styled.input`
+background-color: #4d505f;
+border: none;
+border-radius: 4px;
+padding: 0.3rem 0.8rem;
+margin: 0 0.7rem;
+color: white;
+`
+const Button = styled.button`
+border: 1px solid #51e3c2;
+border-radius: 4px;
+background-color: #393945;
+color: #51e3c2;
+font-weight: bold;
+padding: 0.3rem 0.6rem;
+font-size: 0.9rem;
+margin-left: 0.5rem;
+`
