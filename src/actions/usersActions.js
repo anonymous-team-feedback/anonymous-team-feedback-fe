@@ -52,6 +52,7 @@ export const register = newUser => dispatch => {
 export const SEARCH_EMAIL_START = "SEARCH_EMAIL_START";
 export const SEARCH_EMAIL_SUCCESS = "SEARCH_EMAIL_SUCCESS";
 export const SEARCH_EMAIL_FAILURE = "SEARCH_EMAIL_FAILURE";
+export const TRANSFORM_EMAILS_FOR_DROPDOWN = "TRANSFORM_EMAILS_FOR_DROPDOWN";
 
 export const searchEmails = email => dispatch => {
   dispatch({ type: SEARCH_EMAIL_START });
@@ -60,6 +61,7 @@ export const searchEmails = email => dispatch => {
     .post(`${host}posts/users`, { email: email }, token)
     .then(res => {
       dispatch({ type: SEARCH_EMAIL_SUCCESS, payload: res.data });
+      dispatch({ type: TRANSFORM_EMAILS_FOR_DROPDOWN, payload: res.data})
     })
     .catch(err => {
       if (err.status === 401) {

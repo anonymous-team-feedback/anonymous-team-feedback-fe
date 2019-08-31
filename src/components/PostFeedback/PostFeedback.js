@@ -45,7 +45,7 @@ class PostFeedback extends React.Component {
   }
 
   handleDropdown = (event, { value }) => {
-    console.log(value)
+    console.log(value);
     this.setState(
       {
         searchQuery: event.target.value,
@@ -78,7 +78,7 @@ class PostFeedback extends React.Component {
               fluid
               search
               selection
-              options={this.props.searchedEmails}
+              options={this.props.transformedSearchedEmails}
               value={this.state.selected}
             />
           </Form>
@@ -110,7 +110,8 @@ class PostFeedback extends React.Component {
 }
 
 const mapStateToProps = ({ usersReducer: state }) => {
-  return { searchedEmails: state.searchedEmails };
+  return { searchedEmails: state.searchedEmails,
+  transformedSearchedEmails: state.transformedSearchedEmails };
 };
 
 export default withRouter(
