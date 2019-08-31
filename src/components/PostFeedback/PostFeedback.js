@@ -95,7 +95,7 @@ class PostFeedback extends React.Component {
               search
               selection
               options={this.props.transformedSearchedEmails}
-              value={this.state.selected}
+              value={this.state.email}
             />
           </Form>
           <Form>
