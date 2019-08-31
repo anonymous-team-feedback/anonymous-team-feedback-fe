@@ -17,6 +17,7 @@ import {
 } from "semantic-ui-calendar-react";
 import moment from "moment";
 import { searchEmails } from "../../actions/usersActions.js";
+import { submitFeedback } from "../../actions/postsActions.js"
 import { withRouter } from "react-router-dom";
 
 class PostFeedback extends React.Component {
@@ -60,7 +61,24 @@ class PostFeedback extends React.Component {
     );
   };
 
-  handleDropdownChange = (e, { value }) => this.setState({ selected: value });
+  handleDropdownChange = (e, { value }) => this.setState({ email: value });
+
+  handleSubmit = e => { 
+    e.preventDefault();
+    let newFeedback = { 
+      date: moment(this.state.date, "YYYY-MM-DD").format(),
+      post: this.state.feedback, 
+      poster: localStorage.getItem("_id"),
+      colleague: this.state.email
+    }
+    console.log(newFeedback);
+    this.props.submitFeedback(newFeedback);
+    this.setState({
+      date: "",
+      feedback: "",
+      email: ""
+    })
+  }
 
   render() {
     return (
@@ -117,6 +135,6 @@ const mapStateToProps = ({ usersReducer: state }) => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { searchEmails }
+    { searchEmails, submitFeedback }
   )(PostFeedback)
 );

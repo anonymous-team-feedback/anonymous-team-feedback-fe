@@ -1,11 +1,11 @@
 import axios from "axios";
 
+const host = "https://anonymous-team-feedback-stage.herokuapp.com/api/";
+const token = { headers: { ["x-auth-token"]: localStorage.getItem("token") } };
+
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
-
-const host = "https://anonymous-team-feedback-stage.herokuapp.com/api/";
-const token = { headers: { ["x-auth-token"]: localStorage.getItem("token") } };
 
 export function login(email, password, history) {
   return dispatch => {
@@ -61,7 +61,7 @@ export const searchEmails = email => dispatch => {
     .post(`${host}posts/users`, { email: email }, token)
     .then(res => {
       dispatch({ type: SEARCH_EMAIL_SUCCESS, payload: res.data });
-      dispatch({ type: TRANSFORM_EMAILS_FOR_DROPDOWN, payload: res.data})
+      dispatch({ type: TRANSFORM_EMAILS_FOR_DROPDOWN, payload: res.data });
     })
     .catch(err => {
       if (err.status === 401) {
@@ -71,7 +71,3 @@ export const searchEmails = email => dispatch => {
       dispatch({ type: SEARCH_EMAIL_FAILURE, payload: err });
     });
 };
-
-export const SUBMIT_FEEDBACK_START = "SUBMIT_FEEDBACK_START";
-export const SUBMIT_FEEDBACK_SUCCESS = "SUBMIT_FEEDBACK_SUCCESS";
-export const SUBMIT_FEEDBACK_FAILURE = "SUBMIT_FEEDBACK_FAILURE";
