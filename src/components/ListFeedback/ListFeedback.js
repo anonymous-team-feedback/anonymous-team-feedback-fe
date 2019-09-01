@@ -33,7 +33,9 @@ class ListFeedback extends React.Component {
       (page - 1) * itemsPerPage,
       (page - 1) * itemsPerPage + itemsPerPage
     );
+    console.log("items: " + items);
     return (
+        
       <div className="Listfeedback">
         {this.props.posts.length > 0 ? (
           <div>
@@ -45,13 +47,13 @@ class ListFeedback extends React.Component {
                 </Table.Row>
               </Table.Header>
               <Table.Body>
-                {items.map(post => (
+                {items.map((post, index) => (
                   <Table.Row>
                     <Table.Cell>
                       <Table.Cell width={3}>
                         {moment(post.date).fromNow()}
                       </Table.Cell>
-                      <Table.Cell width={7}>{post.post}</Table.Cell>
+                      <Table.Cell width={7} key={index}>{post.post}</Table.Cell>
                     </Table.Cell>
                   </Table.Row>
                 ))}
