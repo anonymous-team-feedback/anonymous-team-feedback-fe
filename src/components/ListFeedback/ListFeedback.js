@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { fetchAllPosts } from "../../actions/postsActions";
+import { Icon, Label, Menu, Table } from 'semantic-ui-react'
 
 class ListFeedback extends React.Component {
   componentDidMount() {
