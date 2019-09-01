@@ -13,14 +13,42 @@ class ListFeedback extends React.Component {
     return (
       <div className="Listfeedback">
         {this.props.posts.length > 0 ? (
-          <div>
-            {this.props.posts.map(post => (
-              <div key={post.id}>
-                <h1>{post.post}</h1>
-                <h1>{post.date}</h1>
-              </div>
-            ))}
-          </div>
+          <Table celled>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Date</Table.HeaderCell>
+                <Table.HeaderCell>Feedback</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {this.props.posts.map(post => (
+                <Table.Row>
+                  <Table.Cell>
+                    <Table.Cell>{post.date}</Table.Cell>
+                    <Table.Cell>{post.post}</Table.Cell>
+                  </Table.Cell>
+                </Table.Row>
+              ))}
+              <Table.Footer>
+                <Table.Row>
+                  <Table.HeaderCell colSpan="3">
+                    <Menu floated="right" pagination>
+                      <Menu.Item as="a" icon>
+                        <Icon name="chevron left" />
+                      </Menu.Item>
+                      <Menu.Item as="a">1</Menu.Item>
+                      <Menu.Item as="a">2</Menu.Item>
+                      <Menu.Item as="a">3</Menu.Item>
+                      <Menu.Item as="a">4</Menu.Item>
+                      <Menu.Item as="a" icon>
+                        <Icon name="chevron right" />
+                      </Menu.Item>
+                    </Menu>
+                  </Table.HeaderCell>
+                </Table.Row>
+              </Table.Footer>
+            </Table.Body>
+          </Table>
         ) : (
           <Message negative>
             <Message.Header>
