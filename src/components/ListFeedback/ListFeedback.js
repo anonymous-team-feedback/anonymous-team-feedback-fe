@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { fetchAllPosts } from "../../actions/postsActions";
-import { Icon, Label, Menu, Table } from 'semantic-ui-react'
+import { Icon, Label, Menu, Table, Message } from "semantic-ui-react";
 
 class ListFeedback extends React.Component {
   componentDidMount() {
@@ -22,7 +22,12 @@ class ListFeedback extends React.Component {
             ))}
           </div>
         ) : (
-          <p>You have no feedback.</p>
+          <Message negative>
+            <Message.Header>
+              It doesn't look like you have any feedback
+            </Message.Header>
+            <p>Maybe ask a coworker to give you some?</p>
+          </Message>
         )}
       </div>
     );
