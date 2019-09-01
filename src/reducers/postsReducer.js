@@ -6,8 +6,8 @@ import {
 
 const initialState = {
     posts: [],
-    fetchAllPostsloading: false,
-    fetchAllPostserror: null,
+    fetchAllPostsLoading: false,
+    fetchAllPostsError: null,
 };
 
 export const postsReducer = (state = initialState, action) => {
