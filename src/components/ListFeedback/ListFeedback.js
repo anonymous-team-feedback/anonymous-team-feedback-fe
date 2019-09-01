@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { fetchAllPosts } from "../../actions/postsActions";
 import { Icon, Label, Menu, Table, Message } from "semantic-ui-react";
+import moment from "moment";
 
 class ListFeedback extends React.Component {
   componentDidMount() {
@@ -24,7 +25,7 @@ class ListFeedback extends React.Component {
               {this.props.posts.map(post => (
                 <Table.Row>
                   <Table.Cell>
-                    <Table.Cell>{post.date}</Table.Cell>
+                    <Table.Cell>{moment(post.date).fromNow()}</Table.Cell>
                     <Table.Cell>{post.post}</Table.Cell>
                   </Table.Cell>
                 </Table.Row>
