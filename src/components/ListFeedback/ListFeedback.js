@@ -21,7 +21,7 @@ class ListFeedback extends React.Component {
     this.props.fetchAllPosts();
   }
 
-  setPageNumber = (event, { activePage }) => {
+  setPageNumber = (e, { activePage }) => {
     this.setState({ page: activePage });
   };
 
@@ -33,9 +33,7 @@ class ListFeedback extends React.Component {
       (page - 1) * itemsPerPage,
       (page - 1) * itemsPerPage + itemsPerPage
     );
-    console.log("items: " + items);
     return (
-        
       <div className="Listfeedback">
         {this.props.posts.length > 0 ? (
           <div>
