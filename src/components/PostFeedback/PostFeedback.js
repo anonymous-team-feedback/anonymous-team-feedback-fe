@@ -7,7 +7,8 @@ import {
   Header,
   Input,
   Button,
-  Dropdown
+  Dropdown, 
+  Message
 } from "semantic-ui-react";
 import {
   DateInput,
@@ -17,7 +18,7 @@ import {
 } from "semantic-ui-calendar-react";
 import moment from "moment";
 import { searchEmails } from "../../actions/usersActions.js";
-import { submitFeedback } from "../../actions/postsActions.js"
+import { submitFeedback } from "../../actions/postsActions.js";
 import { withRouter } from "react-router-dom";
 
 class PostFeedback extends React.Component {
@@ -26,19 +27,24 @@ class PostFeedback extends React.Component {
     date: "",
     feedback: "",
     searchQuery: "",
-    selected: ""
+    selected: "",
+    showSuccessMessage: false
   };
 
   handleDateChange = (event, { name, value }) => {
     console.log("hdc value: " + value);
     if (this.state.hasOwnProperty(name)) {
-      this.setState({ [name]: value });
+      this.setState({
+        [name]: value,
+        showSuccessMessage: false
+      });
     }
   };
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      showSuccessMessage: false
     });
   };
 
@@ -49,7 +55,8 @@ class PostFeedback extends React.Component {
   handleDropdownSearch = e => {
     this.setState(
       {
-        searchQuery: e.target.value
+        searchQuery: e.target.value,
+        showSuccessMessage: false
       },
       () => {
         if (this.state.searchQuery && this.state.searchQuery.length > 1) {
@@ -63,22 +70,23 @@ class PostFeedback extends React.Component {
 
   handleDropdownChange = (e, { value }) => this.setState({ email: value });
 
-  handleSubmit = e => { 
+  handleSubmit = e => {
     e.preventDefault();
-    let newFeedback = { 
+    let newFeedback = {
       date: moment(this.state.date, "YYYY-MM-DD").format(),
-      post: this.state.feedback, 
+      post: this.state.feedback,
       poster: localStorage.getItem("_id"),
       colleague: this.state.email
-    }
+    };
     console.log(newFeedback);
     this.props.submitFeedback(newFeedback);
     this.setState({
       date: "",
       feedback: "",
-      email: ""
-    })
-  }
+      email: "",
+      showSuccessMessage: true
+    });
+  };
 
   render() {
     return (
@@ -119,6 +127,17 @@ class PostFeedback extends React.Component {
           <Button type="submit" color="teal" disabled={!this.validateForm()}>
             Send
           </Button>
+          <div>
+            {this.state.showSuccessMessage && (
+              <Message positive>
+              <Message.Header>
+                You have successfully submitted feedback.
+              </Message.Header>
+              <p>You are a true hero.</p>
+            </Message>
+            ) }
+          </div>
+          
         </form>
       </div>
     );
