@@ -1,37 +1,37 @@
 import {    
-    FETCH_START,
-    FETCH_SUCCESS,
-    FETCH_FAILURE
+    FETCH_ALL_POSTS_START,
+    FETCH_ALL_POSTS_SUCCESS,
+    FETCH_ALL_POSTS_FAILURE
 } from '../actions/postsActions';
 
 const initialState = {
     posts: [],
     loading: false,
-    error: ''
+    error: null,
 };
 
 export const postsReducer = (state = initialState, action) => {
     switch(action.type) {
-        case FETCH_START:
+        case FETCH_ALL_POSTS_START:
             return {
                 ...state,
                 posts: [],
                 loading: true,
                 error: ''
             };
-        case FETCH_SUCCESS:
+        case FETCH_ALL_POSTS_SUCCESS:
             return {
                 ...state,
                 posts: action.payload,
                 loading: false,
                 error: ''
             };
-        case FETCH_FAILURE:
+        case FETCH_ALL_POSTS_FAILURE:
             return {
                 ...state,
                 posts: [],
                 loading: false,
-                error: 'There are no posts available'
+                error: action.payload
             }
         default: 
             return state;
