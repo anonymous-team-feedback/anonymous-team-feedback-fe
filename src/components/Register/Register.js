@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
+  PageDiv,
   RegisterContainer,
   Input,
-  NameContainer,
-  InputName,
+  H1,
+  P,
   Label
 } from "./register-style.js";
 import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
@@ -46,20 +47,18 @@ class Register extends React.Component {
     this.handleModalOpen();
   };
 
-  validateForm() {
-    return (
-      this.state.newUser.firstName.length > 2 &&
-      this.state.newUser.lastName.length > 2 &&
-      this.state.newUser.email.length > 5 &&
-      this.state.newUser.password.length > 5
-    );
-  }
+  validateForm = () =>
+    this.state.newUser.firstName.length > 2 &&
+    this.state.newUser.lastName.length > 2 &&
+    this.state.newUser.email.length > 5 &&
+    this.state.newUser.password.length > 5;
+
   render() {
     return (
-      <div className="Register">
-        <h1>Sign up now</h1>
+      <PageDiv className="Register">
+        <H1>Sign up for InCog</H1>
 
-        <p>Fill this form to get instant access</p>
+        <P>In order to get started, let's setup your account.</P>
 
         {/* <!-- Register Form --> */}
         <Form onSubmit={this.handleSubmit}>
@@ -118,11 +117,12 @@ class Register extends React.Component {
             <Modal
               trigger={
                 <Button
-                  color="teal "
+                  className="RegisterButton"
+                  color="teal"
                   type="submit"
                   disabled={!this.validateForm()}
                 >
-                  Sign up
+                  Complete Sign Up
                 </Button>
               }
               open={this.state.modalOpen}
@@ -135,7 +135,7 @@ class Register extends React.Component {
                 <h3>You have successfully registered.</h3>
               </Modal.Content>
               <Modal.Actions>
-                <Button color="teal" onClick={this.handleModalClose} inverted>
+                <Button className="RegisterButton" color="teal" onClick={this.handleModalClose} inverted>
                   <Icon name="checkmark"></Icon> Got it
                 </Button>
               </Modal.Actions>
@@ -143,7 +143,7 @@ class Register extends React.Component {
           </RegisterContainer>
         </Form>
         {/* <!-- Register Form --> */}
-      </div>
+      </PageDiv>
     );
   }
 }

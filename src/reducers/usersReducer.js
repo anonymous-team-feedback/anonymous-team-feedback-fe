@@ -8,17 +8,18 @@ import {
 } from "../actions/usersActions";
 
 const initialState = {
-    user: {
-        token: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        user_id: ''
-    },
-    isLoggedIn: false,
-    loginError: false,
-    registering: false,
-    registerError: null
+
+  user: {
+    token: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    user_id: ""
+  },
+  isLoggedIn: false,
+  loginError: null,
+  isRegistering: false,
+  registerError: null
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -57,7 +58,7 @@ export const usersReducer = (state = initialState, action) => {
           user_id: ""
         },
         isLoggedIn: false,
-        loginError: true
+        loginError: action.payload
       };
     case REGISTER_START: {
       return {
