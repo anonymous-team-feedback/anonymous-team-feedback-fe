@@ -14,8 +14,8 @@ import moment from "moment";
 
 class ListFeedback extends React.Component {
   state = {
-    page: 2,
-    itemsPerPage: 2
+    page: 1,
+    itemsPerPage: 10
   };
   componentDidMount() {
     this.props.fetchAllPosts();
