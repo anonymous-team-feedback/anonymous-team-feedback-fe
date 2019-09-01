@@ -1,22 +1,5 @@
-import styled from "styled-components";
-import { whileStatement } from "@babel/types";
+import styled from 'styled-components';
 
-//--- Styled Components ---//
-
-// PageDiv Styling//
-export const PageDiv= styled.div`
-  background: #32323E;
-  padding:
-`;
-
-// Form Styling//
-export const FormGroup = styled.form`
-  background: #32323E;
-  display: block;
-  margin: 1em auto;
-`;
-
-// RegisterContainer Styling//
 export const RegisterContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -93,4 +76,4 @@ export const P = styled.p`
   color: white;
   margin: 0 50% 0 15%;
   padding-bottom: 25px;
-`;
+  `
