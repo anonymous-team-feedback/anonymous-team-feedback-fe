@@ -4,7 +4,11 @@ import {
   LOGIN_FAILURE,
   REGISTER_START,
   REGISTER_SUCCESS,
-  REGISTER_FAILURE
+  REGISTER_FAILURE,
+  SEARCH_EMAIL_START,
+  SEARCH_EMAIL_SUCCESS,
+  SEARCH_EMAIL_FAILURE,
+  TRANSFORM_EMAILS_FOR_DROPDOWN
 } from "../actions/usersActions";
 
 const initialState = {
@@ -15,10 +19,14 @@ const initialState = {
     email: "",
     user_id: ""
   },
+  searchedEmails: [],
+  transformedSearchedEmails: [],
   isLoggedIn: false,
   loginError: null,
   isRegistering: false,
-  registerError: null
+  registerError: null,
+  isSearchingEmails: false,
+  searchEmailsError: null
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -77,6 +85,36 @@ export const usersReducer = (state = initialState, action) => {
         ...state,
         isRegistering: false,
         registerError: action.payload
+      };
+    }
+    case SEARCH_EMAIL_START: {
+      return {
+        ...state,
+        isSearchingEmails: true
+      };
+    }
+    case SEARCH_EMAIL_SUCCESS: {
+      return {
+        ...state,
+        isSearchingEmails: false,
+        searchedEmails: action.payload
+      };
+    }
+    case SEARCH_EMAIL_FAILURE: {
+      return {
+        ...state,
+        isSearchingEmails: false,
+        searchedEmailsError: action.payload
+      };
+    }
+    case TRANSFORM_EMAILS_FOR_DROPDOWN: {
+      return {
+        ...state,
+        transformedSearchedEmails: action.payload.map(({ email }, index) => ({
+          text: email,
+          key: index,
+          value: email
+        }))
       };
     }
 
