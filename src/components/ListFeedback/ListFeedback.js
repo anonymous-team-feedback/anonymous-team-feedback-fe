@@ -17,16 +17,16 @@ class ListFeedback extends React.Component {
           <Table celled>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Date</Table.HeaderCell>
-                <Table.HeaderCell>Feedback</Table.HeaderCell>
+                <Table.HeaderCell width={3}>Date</Table.HeaderCell>
+                <Table.HeaderCell width={7}>Feedback</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
               {this.props.posts.map(post => (
                 <Table.Row>
                   <Table.Cell>
-                    <Table.Cell>{moment(post.date).fromNow()}</Table.Cell>
-                    <Table.Cell>{post.post}</Table.Cell>
+                    <Table.Cell width={3}>{moment(post.date).fromNow()}</Table.Cell>
+                    <Table.Cell width={7}>{post.post}</Table.Cell>
                   </Table.Cell>
                 </Table.Row>
               ))}
