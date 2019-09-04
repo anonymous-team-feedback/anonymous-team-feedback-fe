@@ -7,9 +7,11 @@ import postsReducer from './reducers/postsReducer';
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { BrowserRouter as Router } from "react-router-dom";
+import { composeWithDevTools } from 'redux-devtools-extension';
 import "./index.css";
 
 import App from "./App";
+
 
 const store = createStore(combineReducers({ usersReducer, postsReducer }), applyMiddleware(thunk, logger));
 
