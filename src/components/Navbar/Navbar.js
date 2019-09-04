@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
-import {login} from "../../actions/usersActions"
+import { login } from "../../actions/usersActions"
 
 class Navbar extends React.Component {
   state = {
@@ -27,6 +27,7 @@ class Navbar extends React.Component {
 
 
   render() {
+    console.log(this.props.location.pathname)
     return (
       <NavBar className="Navbar">
         <div>
@@ -34,40 +35,55 @@ class Navbar extends React.Component {
         </div>
 
         {/* if not logged in, display inputs fields */}
-        {!this.props.isLoggedIn && this.props.location.pathname != '/login' && this.props.location.pathname != '/' &&
+        {!this.props.isLoggedIn &&
+          this.props.location.pathname != '/login' &&
+          this.props.location.pathname != '/' &&
+          this.props.location.pathname != '/register' &&
           <form>
-            <Field 
-            name='email' 
-            type='email' 
-            placeholder='email@email.com' 
-            onChange={this.handleChange} 
-            value={this.state.email}
+            <Field
+              name='email'
+              type='email'
+              placeholder='email@email.com'
+              onChange={this.handleChange}
+              value={this.state.email}
             />
-            <Field 
-            name='password' 
-            type='password' 
-            placeholder='password' 
-            onChange={this.handleChange}
-            value={this.state.password}
+            <Field
+              name='password'
+              type='password'
+              placeholder='password'
+              onChange={this.handleChange}
+              value={this.state.password}
             />
-            <Button 
-            type='submit'
-            onClick={this.handleSubmit}
-            disabled={!this.validateForm()}
+            <Button
+              type='submit'
+              onClick={this.handleSubmit}
+              disabled={!this.validateForm()}
             >Sign in</Button>
-            <ButtonLink 
-            to='/register'
+            <ButtonLink
+              to='/register'
             >Register</ButtonLink>
           </form>
+        }
+        {this.props.location.pathname == '/' || this.props.location.pathname == '/login' &&
+          <ButtonLink
+            to='/register'
+          >Register</ButtonLink>
+        }
+        {this.props.isLoggedIn && 
+        <ButtonLink
+        to='/logout'
+        >
+          Logout
+        </ButtonLink>
         }
       </NavBar>
     )
   }
 };
 
-const mapStateToProps = ({usersReducer: state}) => {
+const mapStateToProps = ({ usersReducer: state }) => {
   return {
-    isLoggedIn: state.isLoggedIn , // set isLoggedIn to props
+    isLoggedIn: state.isLoggedIn, // set isLoggedIn to props
     loginError: state.loginError,
     loginLoading: state.loginLoading
   };
@@ -75,7 +91,7 @@ const mapStateToProps = ({usersReducer: state}) => {
 
 export default connect(
   mapStateToProps,
-  {login}
+  { login }
 )(withRouter(Navbar));
 
 const NavBar = styled.nav`
