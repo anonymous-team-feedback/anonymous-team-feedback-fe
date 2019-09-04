@@ -12,6 +12,7 @@ import {
 } from "../actions/usersActions";
 
 const initialState = {
+
   user: {
     token: "",
     firstName: "",
