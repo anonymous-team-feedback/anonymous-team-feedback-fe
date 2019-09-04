@@ -3,25 +3,29 @@ import { connect } from "react-redux";
 import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
 
-const Navbar = props => {
-  console.log(props)
-  return (
-    <NavBar className="Navbar">
-      <div>
-        <Title to='/'>InCog</Title>
-      </div>
+class Navbar extends React.Component {
+  state = {
 
-      {/* if not logged in, display inputs fields */}
-      {!props.isLoggedIn && props.location.pathname != '/login' && props.location.pathname != '/' &&
-        <form>
-          <Field name='Email' type='text' placeholder='email' />
-          <Field name='Password' type='password' placeholder='password' />
-          <Button type='submit'>Sign in</Button>
-          <ButtonLink to='/register'>Register</ButtonLink>
-        </form>
-      }
-    </NavBar>
-  );
+  }
+  render() {
+    return (
+      <NavBar className="Navbar">
+        <div>
+          <Title to='/'>InCog</Title>
+        </div>
+
+        {/* if not logged in, display inputs fields */}
+        {!this.props.isLoggedIn && this.props.location.pathname != '/login' && this.props.location.pathname != '/' &&
+          <form>
+            <Field name='Email' type='text' placeholder='email' />
+            <Field name='Password' type='password' placeholder='password' />
+            <Button type='submit'>Sign in</Button>
+            <ButtonLink to='/register'>Register</ButtonLink>
+          </form>
+        }
+      </NavBar>
+    )
+  }
 };
 
 const mapStateToProps = state => {
