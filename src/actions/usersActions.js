@@ -65,7 +65,7 @@ export const searchEmails = email => dispatch => {
       dispatch({ type: TRANSFORM_EMAILS_FOR_DROPDOWN, payload: res.data });
     })
     .catch(err => {
-      if (err.status === 401) {
+      if (err.response.status === 401) {
         localStorage.removeItem("token");
         localStorage.removeItem("_id");
       }
