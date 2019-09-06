@@ -7,7 +7,7 @@ import {
   Header,
   Input,
   Button,
-  Dropdown, 
+  Dropdown,
   Message
 } from "semantic-ui-react";
 import {
@@ -122,6 +122,9 @@ class PostFeedback extends React.Component {
               value={this.state.feedback}
               placeholder="You should really start/stop/keep..."
               onChange={this.handleChange}
+              onKeyPress={e => {
+                e.key === "Enter" && e.preventDefault();
+              }}
             />
           </Form>
           <Button type="submit" color="teal" disabled={!this.validateForm()}>
@@ -130,14 +133,13 @@ class PostFeedback extends React.Component {
           <div>
             {this.state.showSuccessMessage && (
               <Message positive>
-              <Message.Header>
-                You have successfully submitted feedback.
-              </Message.Header>
-              <p>You are a true hero.</p>
-            </Message>
-            ) }
+                <Message.Header>
+                  You have successfully submitted feedback.
+                </Message.Header>
+                <p>You are a true hero.</p>
+              </Message>
+            )}
           </div>
-          
         </form>
       </div>
     );
