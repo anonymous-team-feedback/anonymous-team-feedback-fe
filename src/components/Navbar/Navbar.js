@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
 import { login } from "../../actions/usersActions";
-import {storageUtil} from '../../utils'
 
 class Navbar extends React.Component {
   state = {
@@ -29,7 +28,7 @@ class Navbar extends React.Component {
     logout = (e) => {
 e.preventDefault()
 this.props.history.push('/login')
-this.props.storageUtil('clear')
+localStorage.clear()
     }
 
   render() {
@@ -97,7 +96,7 @@ const mapStateToProps = ({ usersReducer: state }) => {
 
 export default connect(
   mapStateToProps,
-  { login, storageUtil }
+  { login }
 )(withRouter(Navbar));
 
 const NavBar = styled.nav`
