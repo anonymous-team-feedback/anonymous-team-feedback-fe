@@ -73,7 +73,7 @@ class PostFeedback extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     let newFeedback = {
-      date: moment(this.state.date, "YYYY-MM-DD").format(),
+      date: moment(this.state.date, "DD-MM-YYYY").format(),
       post: this.state.feedback,
       poster: localStorage.getItem("_id"),
       colleague: this.state.email
