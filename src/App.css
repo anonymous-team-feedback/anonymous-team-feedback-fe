@@ -38,3 +38,44 @@
   padding-top: 10px; 
   margin: 0 0 0 60%;
 }
+
+/* Register Button Styling */
+
+.ui.button.FeedbackButton {
+  padding-top: 10px; 
+  margin: 3% 5% 0 80%;
+}
+
+/* Feedback Input PostFeedback Component Styling */
+
+.ui.input.FeedbackInput {
+  background-color: #32323F !important;
+  color: white !important;
+  width: 90%;
+  margin: 3% 0% 0% 5%;
+  resize: vertical;
+}
+
+/* Search Field Name Input PostFeedback Component Styling */
+
+.ui.fluid.dropdown.DropDownNameInput {
+  background-color: #32323F !important;
+  color: white !important;
+  width: 50%;
+}
+
+
+/* Search Field Dropdown PostFeedback Component Styling */
+
+.ui.search.dropdown>input.search {
+  background-color: #32323F !important;
+  color: white !important;
+}
+
+
+/* Date Input PostFeedback Component Styling */
+
+.ui.field.DateInput {
+  background-color: #32323F !important;
+  color: white !important;
+}
