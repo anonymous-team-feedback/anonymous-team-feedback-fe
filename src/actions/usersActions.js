@@ -22,11 +22,11 @@ export function login(email, password, history) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("_id", res.data._id);
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
-        history.push("/dashboard");
       })
       .catch(err => {
         dispatch({ type: LOGIN_FAILURE, payload: err });
       });
+      history.push("/dashboard");
   };
 }
 
