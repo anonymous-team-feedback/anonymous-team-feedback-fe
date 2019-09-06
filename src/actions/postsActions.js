@@ -18,7 +18,7 @@ export const fetchAllPosts = () => dispatch => {
       });
     })
     .catch(err => {
-      if (err.status === 401) {
+      if (err.response.status === 401) {
         localStorage.removeItem("token");
         localStorage.removeItem("_id");
       }
