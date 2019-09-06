@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components';
-import { Link, withRouter, Redirect } from 'react-router-dom';
-import { login } from "../../actions/usersActions"
+import { Link, withRouter } from 'react-router-dom';
+import { login } from "../../actions/usersActions";
+import {storageUtil} from '../../utils'
 
 class Navbar extends React.Component {
   state = {
@@ -28,7 +29,7 @@ class Navbar extends React.Component {
     logout = (e) => {
 e.preventDefault()
 this.props.history.push('/login')
-window.localStorage.clear()
+this.props.storageUtil('clear')
     }
 
   render() {
@@ -96,7 +97,7 @@ const mapStateToProps = ({ usersReducer: state }) => {
 
 export default connect(
   mapStateToProps,
-  { login }
+  { login, storageUtil }
 )(withRouter(Navbar));
 
 const NavBar = styled.nav`
