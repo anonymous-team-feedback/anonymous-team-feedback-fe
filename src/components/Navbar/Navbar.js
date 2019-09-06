@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, Redirect } from 'react-router-dom';
 import { login } from "../../actions/usersActions"
 
 class Navbar extends React.Component {
@@ -22,9 +22,14 @@ class Navbar extends React.Component {
     });
   };
 
-  validateForm = () =>
+  validateForm = () => 
     this.state.email.length >= 5 && this.state.password.length >= 5;
 
+    logout = (e) => {
+e.preventDefault()
+this.props.history.push('/login')
+window.localStorage.clear()
+    }
 
   render() {
     console.log(this.props.location.pathname)
@@ -70,11 +75,11 @@ class Navbar extends React.Component {
           >Register</ButtonLink>
         }
         {this.props.isLoggedIn && 
-        <ButtonLink
-        to='/logout'
+        <button
+        onClick={this.logout}
         >
           Logout
-        </ButtonLink>
+        </button>
         }
       </NavBar>
     )
