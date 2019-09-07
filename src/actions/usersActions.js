@@ -30,6 +30,17 @@ export function login(email, password, history) {
   };
 }
 
+export const CHECK_AUTH_STATUS_SUCCESS = "CHECK_AUTH_STATUS_SUCCESS";
+export const CHECK_AUTH_STATUS_FAILURE = "CHECK_AUTH_STATUS_FAILURE";
+
+export const checkAuthStatus = () => dispatch => {
+  if (localStorage.getItem("token")) {
+    dispatch({ type: CHECKLOGIN_SUCCESS });
+  } else {
+    dispatch({ type: CHECKLOGIN_FAILURE });
+  }
+};
+
 export const REGISTER_START = "REGISTER_START";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
