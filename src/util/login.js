@@ -1,6 +1,6 @@
 exports.removeAuthInfo = () => {
     localStorage.removeItem("token");
-    localStorage.remoteItem("_id");
+    localStorage.removeItem("_id");
 }
 exports.saveAuthInfo = (token, id) => {
     localStorage.setItem("token", token);
