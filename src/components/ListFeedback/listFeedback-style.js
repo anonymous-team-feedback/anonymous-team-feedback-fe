@@ -1,15 +1,32 @@
 import styled from 'styled-components';
 
-export const ListContainer = styled.div `
-    width: 60%;
+export const MainListContainer = styled.div `
+    width: 100%;
     flex-direction: column;
+    background-color: #32323E;
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
     margin: 0 auto;
     background: #32323E;
     padding: 3%;
     `;
+
+export const SubListContainer = styled.div `
+    width: 80%;
+    flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #393945;
+    margin: 0 auto;
+    background: #393945;
+    padding: 3%;
+    `;
+
+export const H2 = styled.h2 `
+    text-align: left;
+    color: white;
+    background: #393945;
+`;
 
 export const HeaderDiv = styled.div `
     display: flex;
@@ -59,7 +76,3 @@ export const H1 = styled.h1 `
     color: white;
 `;
 
-export const H2 = styled.h2 `
-    font-size: 16px;
-    color: #6F7282;
-`;
