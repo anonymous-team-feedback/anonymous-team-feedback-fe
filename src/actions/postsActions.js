@@ -1,4 +1,5 @@
 import axios from "axios";
+const Login = require("../util/login.js");
 
 const host = "https://anonymous-team-feedback-stage.herokuapp.com/api/";
 const token = { headers: { ["x-auth-token"]: localStorage.getItem("token") } };
@@ -19,8 +20,7 @@ export const fetchAllPosts = () => dispatch => {
     })
     .catch(err => {
       if (err.response.status === 401) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("_id");
+        Login.removeAuthInfo();
       }
       dispatch({ type: FETCH_ALL_POSTS_FAILURE, payload: err });
     });
@@ -42,8 +42,7 @@ export const submitFeedback = feedback => dispatch => {
     })
     .catch(err => {
       if (err.response.status === 401) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("_id");
+        Login.removeAuthInfo();
       }
       dispatch({ type: SUBMIT_FEEDBACK_FAILURE, paylod: err });
     });

@@ -1,4 +1,5 @@
 import axios from "axios";
+const Login = require("../util/login.js");
 
 const host = "https://anonymous-team-feedback-stage.herokuapp.com/api/";
 const token = { headers: { ["x-auth-token"]: localStorage.getItem("token") } };
@@ -19,8 +20,7 @@ export function login(email, password, history) {
     axios
       .post(`${host}auth/login`, user)
       .then(res => {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("_id", res.data._id);
+        Login.saveAuthInfo(res.data.token, res.data._id);
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       })
       .catch(err => {
@@ -75,8 +75,7 @@ export const searchEmails = email => dispatch => {
     })
     .catch(err => {
       if (err.response.status === 401) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("_id");
+        Login.removeAuthInfo();
       }
       dispatch({ type: SEARCH_EMAIL_FAILURE, payload: err });
     });
