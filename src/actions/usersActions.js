@@ -2,7 +2,7 @@ import axios from "axios";
 const Login = require("../util/login.js");
 
 const host = "https://anonymous-team-feedback-stage.herokuapp.com/api/";
-const token = { headers: { ["x-auth-token"]: localStorage.getItem("token") } };
+const token = { headers: { ["x-auth-token"]: Login.getAuthInfo().token } };
 
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -32,8 +32,9 @@ export function login(email, password, history) {
 export const CHECK_AUTH_STATUS_SUCCESS = "CHECK_AUTH_STATUS_SUCCESS";
 export const CHECK_AUTH_STATUS_FAILURE = "CHECK_AUTH_STATUS_FAILURE";
 
-export const checkAuthStatus = () => dispatch => {
-  if (localStorage.getItem("token")) {
+export const checkAuthStatus = () => async dispatch => {
+  const authInfo = await Login.getAuthInfo();
+  if (authInfo.token) {
     dispatch({ type: CHECK_AUTH_STATUS_SUCCESS });
   } else {
     dispatch({ type: CHECK_AUTH_STATUS_FAILURE });
