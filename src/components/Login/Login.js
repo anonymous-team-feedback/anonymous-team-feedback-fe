@@ -30,7 +30,8 @@ class Login extends React.Component {
     this.state.email.length >= 5 && this.state.password.length >= 5;
 
   render() {
-    if (this.props.isloggedIn) {
+    if (this.props.isLoggedIn) {
+      console.log("pushing to dashboard bc " + this.props.isLoggedIn)
       this.props.history.push("/dashboard");
     }
     return (
