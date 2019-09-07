@@ -35,9 +35,9 @@ export const CHECK_AUTH_STATUS_FAILURE = "CHECK_AUTH_STATUS_FAILURE";
 
 export const checkAuthStatus = () => dispatch => {
   if (localStorage.getItem("token")) {
-    dispatch({ type: CHECKLOGIN_SUCCESS });
+    dispatch({ type: CHECK_AUTH_STATUS_SUCCESS });
   } else {
-    dispatch({ type: CHECKLOGIN_FAILURE });
+    dispatch({ type: CHECK_AUTH_STATUS_FAILURE });
   }
 };
 
