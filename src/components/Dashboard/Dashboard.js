@@ -19,7 +19,9 @@ const mapStateToProps = state => {
   return {};
 };
 
-export default withRouter(connect(
-  mapStateToProps,
-  {}
-)(Dashboard));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    {}
+  )(Dashboard)
+);

@@ -75,7 +75,7 @@ class Login extends React.Component {
 const MapStateToProps = ({ usersReducer: state }) => {
   return {
     email: state.user.email,
-    isLoggedIn: state.logginIn
+    isLoggedIn: state.isLoggedIn
   };
 };
 
