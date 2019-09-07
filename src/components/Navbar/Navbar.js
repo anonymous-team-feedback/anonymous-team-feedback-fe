@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
-import { login } from "../../actions/usersActions"
+import { login } from "../../actions/usersActions";
 
 const Login = require("../../util/login.js");
 
@@ -24,13 +24,14 @@ class Navbar extends React.Component {
     });
   };
 
-  validateForm = () =>
+  validateForm = () => 
     this.state.email.length >= 5 && this.state.password.length >= 5;
 
   handleLogout = () => {
     Login.removeAuthInfo();
     window.location.reload();
   }
+
 
 
   render() {
@@ -77,6 +78,7 @@ class Navbar extends React.Component {
           >Register</ButtonLink>
         }
         {this.props.isLoggedIn && 
+
         <Button
         onClick={this.handleLogout}
         >
