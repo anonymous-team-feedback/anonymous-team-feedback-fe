@@ -2,7 +2,6 @@ import axios from "axios";
 const Login = require("../util/login.js");
 
 const host = "https://anonymous-team-feedback-stage.herokuapp.com/api/";
-const token = { headers: { ["x-auth-token"]: Login.getAuthInfo().token } };
 
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -65,11 +64,12 @@ export const SEARCH_EMAIL_SUCCESS = "SEARCH_EMAIL_SUCCESS";
 export const SEARCH_EMAIL_FAILURE = "SEARCH_EMAIL_FAILURE";
 export const TRANSFORM_EMAILS_FOR_DROPDOWN = "TRANSFORM_EMAILS_FOR_DROPDOWN";
 
-export const searchEmails = email => dispatch => {
+export const searchEmails = email => async dispatch => {
+  const authInfo = await Login.getAuthInfo()
   dispatch({ type: SEARCH_EMAIL_START });
 
   return axios
-    .post(`${host}posts/users`, { email }, token)
+    .post(`${host}posts/users`, { email },  { headers: { ["x-auth-token"]: authInfo.token} })
     .then(res => {
       dispatch({ type: SEARCH_EMAIL_SUCCESS, payload: res.data });
       dispatch({ type: TRANSFORM_EMAILS_FOR_DROPDOWN, payload: res.data });
