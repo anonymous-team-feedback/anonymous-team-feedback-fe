@@ -72,7 +72,7 @@ class Login extends React.Component {
   }
 }
 
-const MapStateToProps = ({ usersReducer: state }) => {
+const mapStateToProps = ({ usersReducer: state }) => {
   return {
     email: state.user.email,
     isLoggedIn: state.isLoggedIn
@@ -81,7 +81,7 @@ const MapStateToProps = ({ usersReducer: state }) => {
 
 export default withRouter(
   connect(
-    MapStateToProps,
+    mapStateToProps,
     { login }
   )(Login)
 );
