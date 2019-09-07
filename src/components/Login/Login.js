@@ -30,6 +30,9 @@ class Login extends React.Component {
     this.state.email.length >= 5 && this.state.password.length >= 5;
 
   render() {
+    if (this.props.isloggedIn) {
+      this.props.history.push("/dashboard");
+    }
     return (
       <PageDiv className="Login">
         <H1>Sign in</H1>
