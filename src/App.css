@@ -67,6 +67,7 @@
   color: white !important;
   table-layout: auto;
   width: 100%;
+  border: none;
 }
 
 /* ListFeedback Footer Styling */
@@ -86,10 +87,15 @@
   display: flex;
   justify-content: flex-end;
   vertical-align: middle;
+  border: 1px solid #444451 !important;
 }
 
 /* ListFeedback Pagination Items Styling */
 
 .ui.menu .item {
   color: #50D9BB !important;
+}
+
+.ui.table td {
+  border-bottom: 1px solid #444451;
 }
