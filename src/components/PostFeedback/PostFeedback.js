@@ -1,6 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
+  PageDiv,
+  PostContainer,
+  NameDateContainer,
+  H2,
+  P,
+  FormGroup
+} from "./postFeedback-style.js";
+import {
   Form,
   Modal,
   Icon,
@@ -49,7 +57,7 @@ class PostFeedback extends React.Component {
   };
 
   validateForm() {
-    return this.state.feedback.length > 20 && this.state.date;
+    return this.state.feedback.length > 2 && this.state.date;
   }
 
   handleDropdownSearch = e => {
@@ -90,58 +98,62 @@ class PostFeedback extends React.Component {
 
   render() {
     return (
-      <div className="PostFeedback">
-        <h2>Send feedback to others</h2>
-        <p>Start typing a colleague's email address to send them feedback</p>
-        <form onSubmit={this.handleSubmit}>
-          <Form>
-            <Dropdown
-              placeholder="mycolleague@myorganization.com"
-              onSearchChange={this.handleDropdownSearch}
-              onChange={this.handleDropdownChange}
-              fluid
-              search
-              selection
-              options={this.props.transformedSearchedEmails}
-              value={this.state.email}
-            />
-          </Form>
-          <Form>
-            <DateInput
-              name="date"
-              placeholder="Date"
-              value={this.state.date}
-              iconPosition="left"
-              onChange={this.handleDateChange}
-            />
-          </Form>
-          <Form>
-            <Input
-              type="feedback"
-              name="feedback"
-              value={this.state.feedback}
-              placeholder="You should really start/stop/keep..."
-              onChange={this.handleChange}
-              onKeyPress={e => {
-                e.key === "Enter" && e.preventDefault();
-              }}
-            />
-          </Form>
-          <Button type="submit" color="teal" disabled={!this.validateForm()}>
-            Send
-          </Button>
-          <div>
-            {this.state.showSuccessMessage && (
-              <Message positive>
-                <Message.Header>
-                  You have successfully submitted feedback.
-                </Message.Header>
-                <p>You are a true hero.</p>
-              </Message>
-            )}
-          </div>
-        </form>
-      </div>
+      <PostContainer>
+        <PageDiv className="PostFeedback">
+          <H2>Send feedback to others</H2>
+          <P>Start typing a colleague's email address to send them feedback</P>
+          
+          <FormGroup onSubmit={this.handleSubmit}>
+
+            <NameDateContainer>
+                <Dropdown
+                  className="DropDownNameInput"
+                  placeholder="mycolleague@myorganization.com"
+                  onSearchChange={this.handleDropdownSearch}
+                  onChange={this.handleDropdownChange}
+                  fluid
+                  search
+                  selection
+                  options={this.props.transformedSearchedEmails}
+                  value={this.state.email}
+                />
+
+                <DateInput
+                  className="DateInput"
+                  name="date"
+                  placeholder="Date"
+                  value={this.state.date}
+                  iconPosition="left"
+                  onChange={this.handleDateChange}
+                />
+            </NameDateContainer>
+
+              <Input
+                className="FeedbackInput"
+                type="feedback"
+                name="feedback"
+                value={this.state.feedback}
+                placeholder="You should really start/stop/keep..."
+                onChange={this.handleChange}
+              />
+            <Button className="FeedbackButton" type="submit" color="teal" disabled={!this.validateForm()}>
+              Send
+            </Button>
+
+            <div>
+              {this.state.showSuccessMessage && (
+                <Message positive>
+                  <Message.Header>
+                    You have successfully submitted feedback.
+                  </Message.Header>
+                  <p>You are a true hero.</p>
+                </Message>
+              )}
+            </div>
+            
+          </FormGroup>
+        </PageDiv>
+    </PostContainer>
     );
   }
 }
