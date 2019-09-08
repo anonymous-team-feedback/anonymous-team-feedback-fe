@@ -41,9 +41,10 @@
 
 /* Feedback Button Styling */
 
-.ui.button.FeedbackButton {
-  padding-top: 10px; 
-  margin: 3% 5% 0 80%;
+.ui.button.FeedbackButton { 
+  margin: 3% 5% 2% 80%;
+  background-color: #51E3C2 !important;
+  color: #32323E !important;
 }
 
 /* Feedback Input PostFeedback Component Styling */
@@ -65,17 +66,16 @@
 }
 
 
-/* Search Field Dropdown PostFeedback Component Styling */
+/* Search Field Dropdown - PostFeedback Component Styling */
 
 .ui.search.dropdown>input.search {
   background-color: #32323F !important;
   color: white !important;
 }
 
+/* Feedback and Date Input - PostFeedback Component Styling */
 
-/* Date Input PostFeedback Component Styling */
-
-.ui.field.DateInput {
+.ui.input>input {
   background-color: #32323F !important;
   color: white !important;
 }
@@ -101,5 +101,5 @@
 
 .ui.table thead th {
   background-color: #40424F !important;
-  color: #50D9BB !important;
+  color: #51E3C2 !important;
 }
