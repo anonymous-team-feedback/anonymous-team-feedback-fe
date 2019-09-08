@@ -1,7 +1,7 @@
 import axios from "axios";
+const Login = require("../util/login.js");
 
 const host = "https://anonymous-team-feedback-stage.herokuapp.com/api/";
-const token = { headers: { ["x-auth-token"]: localStorage.getItem("token") } };
 
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -19,16 +19,26 @@ export function login(email, password, history) {
     axios
       .post(`${host}auth/login`, user)
       .then(res => {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("_id", res.data._id);
+        Login.saveAuthInfo(res.data.token, res.data._id);
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       })
       .catch(err => {
         dispatch({ type: LOGIN_FAILURE, payload: err });
       });
-      history.push("/dashboard");
   };
 }
+
+export const CHECK_AUTH_STATUS_SUCCESS = "CHECK_AUTH_STATUS_SUCCESS";
+export const CHECK_AUTH_STATUS_FAILURE = "CHECK_AUTH_STATUS_FAILURE";
+
+export const checkAuthStatus = () => async dispatch => {
+  const authInfo = await Login.getAuthInfo();
+  if (authInfo.token) {
+    dispatch({ type: CHECK_AUTH_STATUS_SUCCESS });
+  } else {
+    dispatch({ type: CHECK_AUTH_STATUS_FAILURE });
+  }
+};
 
 export const REGISTER_START = "REGISTER_START";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
@@ -54,20 +64,19 @@ export const SEARCH_EMAIL_SUCCESS = "SEARCH_EMAIL_SUCCESS";
 export const SEARCH_EMAIL_FAILURE = "SEARCH_EMAIL_FAILURE";
 export const TRANSFORM_EMAILS_FOR_DROPDOWN = "TRANSFORM_EMAILS_FOR_DROPDOWN";
 
-export const searchEmails = email => dispatch => {
-
+export const searchEmails = email => async dispatch => {
+  const authInfo = await Login.getAuthInfo()
   dispatch({ type: SEARCH_EMAIL_START });
 
   return axios
-    .post(`${host}posts/users`, { email }, token)
+    .post(`${host}posts/users`, { email },  { headers: { ["x-auth-token"]: authInfo.token} })
     .then(res => {
       dispatch({ type: SEARCH_EMAIL_SUCCESS, payload: res.data });
       dispatch({ type: TRANSFORM_EMAILS_FOR_DROPDOWN, payload: res.data });
     })
     .catch(err => {
       if (err.response.status === 401) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("_id");
+        Login.removeAuthInfo();
       }
       dispatch({ type: SEARCH_EMAIL_FAILURE, payload: err });
     });

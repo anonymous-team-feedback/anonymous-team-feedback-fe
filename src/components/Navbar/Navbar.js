@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { Link, withRouter } from 'react-router-dom';
 import { login } from "../../actions/usersActions";
 
+const Login = require("../../util/login.js");
+
 class Navbar extends React.Component {
   state = {
     email: "",
@@ -25,11 +27,12 @@ class Navbar extends React.Component {
   validateForm = () => 
     this.state.email.length >= 5 && this.state.password.length >= 5;
 
-    logout = (e) => {
-e.preventDefault()
-this.props.history.push('/login')
-localStorage.clear()
-    }
+  handleLogout = () => {
+    Login.removeAuthInfo();
+    window.location.reload();
+  }
+
+
 
   render() {
     console.log(this.props.location.pathname)
@@ -75,11 +78,12 @@ localStorage.clear()
           >Register</ButtonLink>
         }
         {this.props.isLoggedIn && 
-        <button
-        onClick={this.logout}
+
+        <Button
+        onClick={this.handleLogout}
         >
           Logout
-        </button>
+        </Button>
         }
       </NavBar>
     )

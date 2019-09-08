@@ -30,6 +30,10 @@ class Login extends React.Component {
     this.state.email.length >= 5 && this.state.password.length >= 5;
 
   render() {
+    if (this.props.isLoggedIn) {
+      console.log("pushing to dashboard bc " + this.props.isLoggedIn)
+      this.props.history.push("/dashboard");
+    }
     return (
       <PageDiv className="Login">
         <H1>Sign in</H1>
@@ -69,17 +73,17 @@ class Login extends React.Component {
   }
 }
 
-const MapStateToProps = ({ usersReducer: state }) => {
+const mapStateToProps = ({ usersReducer: state }) => {
   return {
     email: state.user.email,
-    loginLoading: state.loginLoading,
+    isLoggedIn: state.isLoggedIn,
     loginError: state.loginError
   };
 };
 
 export default withRouter(
   connect(
-    MapStateToProps,
+    mapStateToProps,
     { login }
   )(Login)
 );
