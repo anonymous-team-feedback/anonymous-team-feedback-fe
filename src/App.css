@@ -78,4 +78,23 @@
 .ui.field.DateInput {
   background-color: #32323F !important;
   color: white !important;
+
+/* ListFeedback Negative Message Styling */
+.ui.negative.message {
+  background-color: #393945 !important;
+  color: white !important;
+  border: 1px solid #393945 !important;
+  box-shadow: 0 0 0 1px #393945  inset, 0 0 0 0 transparent !important;
+}
+
+.ui.negative.message .header {
+  background-color: #393945 !important;
+  color: white !important;
+  border: 1px solid #393945 !important;
+}
+
+.ui.table thead th {
+  background-color: #40424F !important;
+  color: #50D9BB !important;
+
 }

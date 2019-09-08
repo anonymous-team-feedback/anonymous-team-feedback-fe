@@ -15,7 +15,7 @@ import {
   Header,
   Input,
   Button,
-  Dropdown, 
+  Dropdown,
   Message
 } from "semantic-ui-react";
 import {
@@ -81,7 +81,7 @@ class PostFeedback extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     let newFeedback = {
-      date: moment(this.state.date, "YYYY-MM-DD").format(),
+      date: moment(this.state.date, "DD-MM-YYYY").format(),
       post: this.state.feedback,
       poster: localStorage.getItem("_id"),
       colleague: this.state.email
@@ -142,11 +142,6 @@ class PostFeedback extends React.Component {
             <div>
               {this.state.showSuccessMessage && (
                 <Message positive>
-                <Message.Header>
-                  You have successfully submitted feedback.
-                </Message.Header>
-                <p>You are a true hero.</p>
-              </Message>
               ) }
             </div>
             
