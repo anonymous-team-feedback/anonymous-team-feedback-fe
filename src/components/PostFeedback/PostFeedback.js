@@ -57,7 +57,7 @@ class PostFeedback extends React.Component {
   };
 
   validateForm() {
-    return this.state.feedback.length > 1 && this.state.date;
+    return this.state.feedback.length > 1 && this.state.email.length > 1 && this.state.date;
   }
 
   handleDropdownSearch = e => {
