@@ -6,10 +6,7 @@ import {
   PageDiv,
   MainListContainer,
   SubListContainer,
-  NameDateContainer,
-  H2,
-  P,
-  FormGroup
+  H2
 } from "./listFeedback-style.js";
 
 import {
@@ -52,25 +49,26 @@ class ListFeedback extends React.Component {
               <Table celled>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell className="date-tab" width={3}>Date</Table.HeaderCell>
-                    <Table.HeaderCell className="feedback-tab" width={7}>Feedback</Table.HeaderCell>
+                    <Table.HeaderCell className="date-tab" width={2}>Date</Table.HeaderCell>
+                    <Table.HeaderCell className="feedback-tab" width={8}>Feedback</Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
-                <Table.Body>
+
+                <Table.Body className="submittedFeedback">
                   {items.map((post, index) => (
                     <Table.Row>
-                      <Table.Cell>
-                        <Table.Cell width={3}>
+                        <Table.Cell width={2}>
                           {moment(post.date).fromNow()}
                         </Table.Cell>
-                        <Table.Cell width={7} key={index}>{post.post}</Table.Cell>
-                      </Table.Cell>
+                        <Table.Cell width={8} key={index}>" {post.post} "</Table.Cell>
                     </Table.Row>
                   ))}
-                  <Table.Footer>
+                  </Table.Body>
+
+                  <Table.Footer className="listFeedbackPageNav">
                     <Table.Row>
                       <Table.HeaderCell colSpan="3">
-                        <Menu floated="right" pagination>
+                        <Menu pagination>
                           <Menu.Item as="a" icon>
                             <Pagination
                               activePage={page}
@@ -83,7 +81,7 @@ class ListFeedback extends React.Component {
                       </Table.HeaderCell>
                     </Table.Row>
                   </Table.Footer>
-                </Table.Body>
+
               </Table>
             </div>
           ) : (
