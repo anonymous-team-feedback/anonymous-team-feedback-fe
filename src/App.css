@@ -32,19 +32,50 @@
   }
 }
 
-/* Register Button Styling */
+/* Register Register Button Styling */
 
-.ui.button.RegisterButton {
+.ui.button.RegisterSignupButton {
+  background-color: #51E3C2;
+  color: black;
   padding-top: 10px; 
-  margin: 0 0 0 60%;
+  margin: 2.5% 0 0 25%;
+  width: 20%;
 }
 
-/* Feedback Button Styling */
+.ui.button.RegisterSignupButton:hover{
+  background-color: rgba(81, 227, 193, 0.774) !important;
+  color: white !important;
+  border:1px solid white !important;
+}
+
+/* Login Submit Button Styling */
+
+.ui.button.LoginSubmitButton {
+  background-color: #51E3C2;
+  color: black;
+  padding-top: 10px; 
+  margin: 2.5% auto 0 auto;
+  width: 20%;
+}
+
+.ui.button.LoginSubmitButton:hover{
+  background-color: rgba(81, 227, 193, 0.774) !important;
+  color: white !important;
+  border:1px solid white !important;
+}
+
+/* Postfeedback Feedback Button Styling */
 
 .ui.button.FeedbackButton { 
   margin: 3% 5% 2% 80%;
   background-color: #51E3C2 !important;
   color: #32323E !important;
+}
+
+.ui.button.FeedbackButton:hover{
+  background-color: rgba(81, 227, 193, 0.774) !important;
+  color: white !important;
+  border:1px solid white !important;
 }
 
 /* Feedback Input PostFeedback Component Styling */

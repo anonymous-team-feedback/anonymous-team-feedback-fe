@@ -30,7 +30,7 @@ export const Label = styled.label`
   display: flex;
   font-weight: bold;
   text-align: left;
-  color: #008080 !important;
+  color: #51E3C2 !important;
   padding: 0.25em;
 `;
 

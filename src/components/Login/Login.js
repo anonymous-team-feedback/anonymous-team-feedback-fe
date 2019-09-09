@@ -41,7 +41,7 @@ class Login extends React.Component {
         <Form onSubmit={this.handleSubmit}>
           <LoginContainer>
             <Form.Field>
-              <Label color="teal">Email</Label>
+              <Label>Email</Label>
               <Input
                 type="email"
                 name="email"
@@ -63,7 +63,9 @@ class Login extends React.Component {
               {this.props.loginError && <p>Incorrect username or password</p>}
             </Form.Field>
 
-            <Button color="teal" type="submit">
+            <Button 
+            className="LoginSubmitButton"
+            type="submit">
               Submit
             </Button>
           </LoginContainer>
