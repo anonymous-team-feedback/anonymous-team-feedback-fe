@@ -3,17 +3,19 @@ import ReactDOM from "react-dom";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import usersReducer from "./reducers/usersReducer";
-import postsReducer from './reducers/postsReducer';
+import postsReducer from "./reducers/postsReducer";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { BrowserRouter as Router } from "react-router-dom";
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from "redux-devtools-extension";
 import "./index.css";
 
 import App from "./App";
 
-
-const store = createStore(combineReducers({ usersReducer, postsReducer }), applyMiddleware(thunk, logger));
+const store = createStore(
+  combineReducers({ usersReducer, postsReducer }),
+  composeWithDevTools(applyMiddleware(thunk, logger))
+);
 
 ReactDOM.render(
   <Router>

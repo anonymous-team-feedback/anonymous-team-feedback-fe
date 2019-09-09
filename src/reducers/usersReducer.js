@@ -5,6 +5,8 @@ import {
   REGISTER_START,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
+  CHECK_AUTH_STATUS_SUCCESS,
+  CHECK_AUTH_STATUS_FAILURE,
   SEARCH_EMAIL_START,
   SEARCH_EMAIL_SUCCESS,
   SEARCH_EMAIL_FAILURE,
@@ -12,7 +14,6 @@ import {
 } from "../actions/usersActions";
 
 const initialState = {
-
   user: {
     token: "",
     firstName: "",
@@ -86,6 +87,18 @@ export const usersReducer = (state = initialState, action) => {
         ...state,
         isRegistering: false,
         registerError: action.payload
+      };
+    }
+    case CHECK_AUTH_STATUS_SUCCESS: {
+      return {
+        ...state,
+        isLoggedIn: true
+      };
+    }
+    case CHECK_AUTH_STATUS_FAILURE: {
+      return {
+        ...state,
+        isLoggedIn: false
       };
     }
     case SEARCH_EMAIL_START: {
