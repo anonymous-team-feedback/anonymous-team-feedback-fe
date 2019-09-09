@@ -20,7 +20,7 @@ export const FormGroup = styled.form`
 export const RegisterContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 50% 0 15%;
+  margin: 0 15% 0 15%;
   background: #32323E;
   padding-bottom: 200px;
 `;

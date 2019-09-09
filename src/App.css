@@ -146,3 +146,85 @@ textarea.FeedbackInput {
 .ui.table td {
   border-bottom: 1px solid #444451;
 }
+
+.ui.form .field {
+  width: 45%;
+}
+
+/* NavBar Input Styling */
+
+input[type=email], input[type=password], input[type=search], input[type=text] {
+  width: 25%;
+  background-color: #4D505F !important;
+  color: white !important;
+}
+
+form .navbarContainer {
+  width:100% !important;
+}
+
+
+/* NavBar Buttons Styling */
+
+.ui.button.incogButton {
+  color: white !important;
+  background-color: #393945 !important;
+  font-family: sans-serif !important;
+  font-size: 1.8rem !important;
+  font-weight: bold !important;
+  transition: color .1s ease-in-out !important;
+}
+
+.ui.button.signinButton {
+  color: #51e3c2 !important;
+  background-color: #393945 !important;
+  border:1px solid #51e3c2 !important;
+  font-weight: bold !important;
+  padding: 0.6rem 0.6rem !important;
+  font-size: 0.9rem !important;
+  margin-left: 0.5rem!important;
+}
+
+.ui.button.registerButton {
+  color: #51e3c2 !important;
+  background-color: #393945 !important;
+  border:1px solid #51e3c2 !important;
+  font-weight: bold !important;
+  padding: 0.6rem 0.6rem !important;
+  font-size: 0.9rem !important;
+  margin-left: 0.5rem!important;
+  margin-right: 2.5rem !important;
+}
+
+.ui.button.logoutButton {
+  color: #51e3c2 !important;
+  background-color: #393945 !important;
+  border:1px solid #51e3c2 !important;
+  font-weight: bold !important;
+  padding: 0.6rem 0.6rem !important;
+  font-size: 0.9rem !important;
+  margin-left: 0.5rem !important;
+  margin-right: 2rem !important;
+}
+
+/* NavBar Buttons (Hover Effect) Styling */
+
+
+.ui.button.incogButton:hover{
+  color: #51e3c2 !important;
+}
+
+.ui.button.signinButton:hover{
+  color: white !important;
+  border:1px solid white !important;
+}
+
+.ui.button.registerButton:hover{
+  color: white !important;
+  border:1px solid white !important;
+}
+
+.ui.button.logoutButton:hover{
+  color: white !important;
+  border:1px solid white !important;
+}

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { login } from "../../actions/usersActions";
 import { PageDiv, LoginContainer, Input, Label, H1 } from "./login-style.js";
-import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
 
 class Login extends React.Component {
   constructor(props) {
