@@ -53,7 +53,49 @@
   border: 1px solid #393945 !important;
 }
 
+/* ListFeedback Header Tabs Styling */
+
 .ui.table thead th {
   background-color: #40424F !important;
   color: #50D9BB !important;
+}
+
+/* ListFeedback Body Styling */
+
+.ui.table {
+  background-color: #393945 !important;
+  color: white !important;
+  table-layout: auto;
+  width: 100%;
+  border: none;
+}
+
+/* ListFeedback Footer Styling */
+
+.ui.table tfoot th {
+  background-color: #393945 !important;
+  color: white !important;
+}
+
+/* ListFeedback Pagination Styling */
+
+.ui.pagination.menu {
+  width: 100%;
+  margin: 0;
+  background-color: #393945 !important;
+  color: white !important;
+  display: flex;
+  justify-content: flex-end;
+  vertical-align: middle;
+  border: 1px solid #444451 !important;
+}
+
+/* ListFeedback Pagination Items Styling */
+
+.ui.menu .item {
+  color: #50D9BB !important;
+}
+
+.ui.table td {
+  border-bottom: 1px solid #444451;
 }

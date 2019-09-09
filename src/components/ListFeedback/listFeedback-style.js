@@ -9,6 +9,7 @@ export const MainListContainer = styled.div `
     margin: 0 auto;
     background: #32323E;
     padding: 3%;
+    border: none;
     `;
 
 export const SubListContainer = styled.div `

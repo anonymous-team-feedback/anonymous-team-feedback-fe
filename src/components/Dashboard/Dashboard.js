@@ -8,7 +8,7 @@ import PostFeedback from "../PostFeedback/PostFeedback.js";
 const Dashboard = props => {
   return (
     <div className="Dashboard">
-      <h1>Dashboard component🚗</h1>
+      {/* <h1>Dashboard component🚗</h1> */}
       <ListFeedback />
       <PostFeedback />
     </div>
