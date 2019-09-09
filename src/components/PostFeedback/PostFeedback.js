@@ -24,6 +24,7 @@ import {
   DateTimeInput,
   DatesRangeInput
 } from "semantic-ui-calendar-react";
+import Textarea from "react-textarea-autosize";
 import moment from "moment";
 import { searchEmails } from "../../actions/usersActions.js";
 import { submitFeedback } from "../../actions/postsActions.js";
@@ -128,7 +129,7 @@ class PostFeedback extends React.Component {
                 />
             </NameDateContainer>
 
-              <Input
+              <Textarea
                 className="FeedbackInput"
                 type="feedback"
                 name="feedback"

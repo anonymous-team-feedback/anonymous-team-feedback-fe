@@ -13,7 +13,7 @@ export const PostContainer = styled.div`
 // PageDiv Styling//
 export const PageDiv= styled.div`
   background: #393946;
-  margin: 2% 20% 0% 20%;
+  margin: 0% 20% 0% 20%;
 `;
 
 // Form Styling//
@@ -40,13 +40,13 @@ export const NameDateContainer = styled.div`
 export const H2 = styled.h2`
   text-align: left;
   color: white;
-  margin: 0% 0% 0% 7%;
-  padding-top: 25px;
+  margin: 0% 0% 0% 6.25%;
+  padding-top: 35px;
 `;
 
 // P styling//
 export const P = styled.p`
   text-align: left;
   color: white;
-  margin: 0% 0% 0% 7%;
+  margin: 0% 0% 3% 6.25%;
 `; 
