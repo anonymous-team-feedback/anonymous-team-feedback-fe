@@ -1,5 +1,5 @@
 import axios from "axios";
-import Login from "../util/login.js";
+import { removeAuthInfo, getAuthInfo } from "../util/login.js";
 
 const host = "https://anonymous-team-feedback-stage.herokuapp.com/api/";
 
@@ -8,7 +8,7 @@ export const FETCH_ALL_POSTS_SUCCESS = "FETCH_ALL_POSTS_SUCCESS";
 export const FETCH_ALL_POSTS_FAILURE = "FETCH_ALL_POSTS_FAILURE";
 
 export const fetchAllPosts = () => async dispatch => {
-  const authInfo = await Login.getAuthInfo()
+  const authInfo = await getAuthInfo()
   dispatch({ type: FETCH_ALL_POSTS_START });
   return axios
     .get(`${host}posts/`, { headers: { ["x-auth-token"]: authInfo.token} })
@@ -20,7 +20,7 @@ export const fetchAllPosts = () => async dispatch => {
     })
     .catch(err => {
       if (err.response.status === 401) {
-        Login.removeAuthInfo();
+        removeAuthInfo();
       }
       dispatch({ type: FETCH_ALL_POSTS_FAILURE, payload: err });
     });
@@ -31,7 +31,7 @@ export const SUBMIT_FEEDBACK_SUCCESS = "SUBMIT_FEEDBACK_SUCCESS";
 export const SUBMIT_FEEDBACK_FAILURE = "SUBMIT_FEEDBACK_FAILURE";
 
 export const submitFeedback = feedback => async dispatch => {
-  const authInfo = await Login.getAuthInfo()
+  const authInfo = await getAuthInfo()
   dispatch({ type: SUBMIT_FEEDBACK_START });
   const { date, post, poster, colleague } = feedback;
   const newFeedback = { date, post, poster, colleague };
@@ -43,7 +43,7 @@ export const submitFeedback = feedback => async dispatch => {
     })
     .catch(err => {
       if (err.response.status === 401) {
-        Login.removeAuthInfo();
+        removeAuthInfo();
       }
       dispatch({ type: SUBMIT_FEEDBACK_FAILURE, paylod: err });
     });

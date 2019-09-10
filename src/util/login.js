@@ -1,4 +1,4 @@
-exports.removeAuthInfo = async () => {
+export async function removeAuthInfo() {
   try {
     localStorage.removeItem("token");
     localStorage.removeItem("_id");
@@ -6,8 +6,8 @@ exports.removeAuthInfo = async () => {
   } catch (err) {
     console.log(err);
   }
-};
-exports.saveAuthInfo = async (token, id) => {
+}
+export async function saveAuthInfo(token, id) {
   try {
     localStorage.setItem("token", token);
     localStorage.setItem("_id", id);
@@ -15,9 +15,9 @@ exports.saveAuthInfo = async (token, id) => {
   } catch (err) {
     console.log(err);
   }
-};
+}
 
-exports.getAuthInfo = async () => {
+export async function getAuthInfo() {
   try {
     return {
       token: localStorage.getItem("token"),
@@ -26,4 +26,4 @@ exports.getAuthInfo = async () => {
   } catch (err) {
     console.log(err);
   }
-};
+}

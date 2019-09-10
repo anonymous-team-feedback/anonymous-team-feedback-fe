@@ -8,7 +8,7 @@ import {
 import { Button } from "semantic-ui-react";
 import { Link, withRouter } from 'react-router-dom';
 import { login } from "../../actions/usersActions";
-import Login from "../../util/login.js";
+import { removeAuthInfo } from "../../util/login.js";
 
 class Navbar extends React.Component {
   state = {
@@ -32,7 +32,7 @@ class Navbar extends React.Component {
     this.state.email.length >= 5 && this.state.password.length >= 5;
 
   handleLogout = () => {
-    Login.removeAuthInfo();
+    removeAuthInfo();
     window.location.reload();
   }
 
