@@ -3,6 +3,7 @@ import styled from 'styled-components';
 // PageDiv Styling//
 export const PageDiv= styled.div`
   background: #32323E;
+  padding-bottom: 100px;
 `;
 
 // Form styling//
@@ -11,6 +12,7 @@ export const FormGroup = styled.form`
     display: block;
     margin: 1rem auto;
 `;
+
 // Login container styling//
 export const LoginContainer = styled.div`
     width: 50%;
@@ -26,7 +28,7 @@ export const Label = styled.label`
     display: flex;
     font-weight: bold;
     text-align: left !important;
-    color: #008080 !important;
+    color: #51E3C2 !important;
     padding: 0.25em;
 `;
 
@@ -37,7 +39,7 @@ export const Input = styled.input`
     background: #4D505F !important; 
     border: none;
     border-radius: 3px;
-    width: 50%;
+    width: 100% !important;
     margin: 0.5rem, 0.5rem;
 `;
 
@@ -54,7 +56,7 @@ export const H1 = styled.h1`
     text-align: center;
     color: white;
     margin: 0 auto;
-    padding-top: 25px;
+    padding-top: 26px;
 `;
 
 //p styling//
