@@ -8,8 +8,7 @@ import {
 import { Button } from "semantic-ui-react";
 import { Link, withRouter } from 'react-router-dom';
 import { login } from "../../actions/usersActions";
-
-const Login = require("../../util/login.js");
+import Login from "../../util/login.js";
 
 class Navbar extends React.Component {
   state = {

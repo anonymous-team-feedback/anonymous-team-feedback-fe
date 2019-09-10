@@ -1,5 +1,5 @@
 import axios from "axios";
-const Login = require("../util/login.js");
+import Login from "../util/login.js";
 
 const host = "https://anonymous-team-feedback-stage.herokuapp.com/api/";
 
