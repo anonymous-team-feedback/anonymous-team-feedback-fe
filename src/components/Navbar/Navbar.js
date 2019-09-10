@@ -1,19 +1,112 @@
 import React from "react";
 import { connect } from "react-redux";
+import { NavBar, Field, FormGroup } from "./navbar-style.js";
+import { Button } from "semantic-ui-react";
+import { Link, withRouter } from "react-router-dom";
+import { login } from "../../actions/usersActions";
+import { removeAuthInfo } from "../../util/login.js";
 
-const Navbar = props => {
-  return (
-    <div className="Navbar">
-      <h1>Navbar component🍫</h1>
-    </div>
-  );
-};
+class Navbar extends React.Component {
+  state = {
+    email: "",
+    password: ""
+  };
 
-const mapStateToProps = state => {
-  return {};
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.login(this.state.email, this.state.password, this.props.history);
+    this.setState({ email: "", password: "" });
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  validateForm = () =>
+    this.state.email.length >= 5 && this.state.password.length >= 5;
+
+  handleLogout = () => {
+    removeAuthInfo();
+    window.location.reload();
+  };
+
+  render() {
+    console.log(this.props.location.pathname);
+    return (
+      <NavBar className="Navbar">
+        <div>
+          <Button as={Link} className="incogButton" name="home" to="/">
+            InCog
+          </Button>
+        </div>
+        {!this.props.isLoggedIn && this.props.location.pathname != "/login" && (
+          <FormGroup className="navbarContainer">
+            <Field
+              name="email"
+              type="email"
+              placeholder="email@email.com"
+              onChange={this.handleChange}
+              value={this.state.email}
+            />
+            <Field
+              name="password"
+              type="password"
+              placeholder="password"
+              onChange={this.handleChange}
+              value={this.state.password}
+            />
+            <Button
+              className="signinButton"
+              type="submit"
+              onClick={this.handleSubmit}
+              disabled={!this.validateForm()}
+            >
+              Sign in
+            </Button>
+
+            <Button
+              as={Link}
+              className="registerButton"
+              name="register"
+              to="/register"
+            >
+              Register
+            </Button>
+          </FormGroup>
+        )}
+        {this.props.location.pathname == "/" ||
+          (this.props.location.pathname == "/login" && (
+            <Button
+              as={Link}
+              className="registerButton"
+              name="register"
+              to="/register"
+            >
+              Register
+            </Button>
+          ))}
+
+        {this.props.isLoggedIn && (
+          <Button onClick={this.handleLogout} className="logoutButton">
+            Logout
+          </Button>
+        )}
+      </NavBar>
+    );
+  }
+}
+
+const mapStateToProps = ({ usersReducer: state }) => {
+  return {
+    isLoggedIn: state.isLoggedIn,
+    loginError: state.loginError,
+    loginLoading: state.loginLoading
+  };
 };
 
 export default connect(
   mapStateToProps,
-  {}
-)(Navbar);
+  { login }
+)(withRouter(Navbar));

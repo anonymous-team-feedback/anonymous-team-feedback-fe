@@ -8,11 +8,11 @@ import Navbar from "./components/Navbar/Navbar.js";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.js";
 import Dashboard from "./components/Dashboard/Dashboard.js";
 import Register from "./components/Register/Register.js";
+import "semantic-ui-css/semantic.min.css";
 
 const App = props => {
   return (
     <div className="App">
-      <h1>🙊🙉🙈😎🗣👉anonymous feedback app👈🗣😎🙊🙉🙈</h1>{" "}
       <div>
         <div>
           <div>
@@ -25,7 +25,7 @@ const App = props => {
             <Route path="/login" component={Login} />
           </div>
           <div>
-            <Route path="/signup" component={Register} />
+            <Route path="/register" component={Register} />
           </div>
           <div>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
