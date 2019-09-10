@@ -1,3 +1,5 @@
+const exports = module.exports = {};
+
 exports.removeAuthInfo = async () => {
   try {
     localStorage.removeItem("token");
