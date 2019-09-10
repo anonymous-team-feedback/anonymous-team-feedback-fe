@@ -4,14 +4,14 @@ import { whileStatement } from "@babel/types";
 //--- Styled Components ---//
 
 // PageDiv Styling//
-export const PageDiv= styled.div`
-  background: #32323E;
-  padding:
+export const PageDiv = styled.div`
+  background: #32323e;
+  padding: ;
 `;
 
 // Form Styling//
 export const FormGroup = styled.form`
-  background: #32323E;
+  background: #32323e;
   display: block;
   margin: 1em auto;
 `;
@@ -21,7 +21,7 @@ export const RegisterContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 15% 0 15%;
-  background: #32323E;
+  background: #32323e;
   padding-bottom: 200px;
 `;
 
@@ -30,7 +30,7 @@ export const Label = styled.label`
   display: flex;
   font-weight: bold;
   text-align: left;
-  color: #51E3C2 !important;
+  color: #51e3c2 !important;
   padding: 0.25em;
 `;
 
@@ -38,7 +38,7 @@ export const Label = styled.label`
 export const Input = styled.input`
   padding: 1em;
   color: white !important;
-  background: #4D505F !important; 
+  background: #4d505f !important;
   border: none;
   border-radius: 3px;
   width: 50%;

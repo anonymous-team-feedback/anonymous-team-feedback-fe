@@ -31,7 +31,7 @@ class Login extends React.Component {
 
   render() {
     if (this.props.isLoggedIn) {
-      console.log("pushing to dashboard bc " + this.props.isLoggedIn)
+      console.log("pushing to dashboard bc " + this.props.isLoggedIn);
       this.props.history.push("/dashboard");
     }
     return (
@@ -63,9 +63,7 @@ class Login extends React.Component {
               {this.props.loginError && <p>Incorrect username or password</p>}
             </Form.Field>
 
-            <Button 
-            className="LoginSubmitButton"
-            type="submit">
+            <Button className="LoginSubmitButton" type="submit">
               Submit
             </Button>
           </LoginContainer>

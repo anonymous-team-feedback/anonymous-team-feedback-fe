@@ -1,12 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  NavBar,
-  Field,
-  FormGroup
-} from "./navbar-style.js";
+import { NavBar, Field, FormGroup } from "./navbar-style.js";
 import { Button } from "semantic-ui-react";
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter } from "react-router-dom";
 import { login } from "../../actions/usersActions";
 import { removeAuthInfo } from "../../util/login.js";
 
@@ -14,7 +10,7 @@ class Navbar extends React.Component {
   state = {
     email: "",
     password: ""
-  }
+  };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -28,89 +24,83 @@ class Navbar extends React.Component {
     });
   };
 
-  validateForm = () => 
+  validateForm = () =>
     this.state.email.length >= 5 && this.state.password.length >= 5;
 
   handleLogout = () => {
     removeAuthInfo();
     window.location.reload();
-  }
-
+  };
 
   render() {
-    console.log(this.props.location.pathname)
+    console.log(this.props.location.pathname);
     return (
       <NavBar className="Navbar">
         <div>
-          <Button as={ Link }
-            className="incogButton" 
-            name='home' 
-            to='/'
-            >InCog</Button>
+          <Button as={Link} className="incogButton" name="home" to="/">
+            InCog
+          </Button>
         </div>
-
-        {/* if not logged in, display inputs fields */}
-        {!this.props.isLoggedIn &&
-          this.props.location.pathname != '/login' &&
-          
-          /* commented this out so nav bar was more practical */
-          // this.props.location.pathname != '/' &&
-          // this.props.location.pathname != '/register' &&
-          
+        {!this.props.isLoggedIn && this.props.location.pathname != "/login" && (
           <FormGroup className="navbarContainer">
             <Field
-              name='email'
-              type='email'
-              placeholder='email@email.com'
+              name="email"
+              type="email"
+              placeholder="email@email.com"
               onChange={this.handleChange}
               value={this.state.email}
             />
             <Field
-              name='password'
-              type='password'
-              placeholder='password'
+              name="password"
+              type="password"
+              placeholder="password"
               onChange={this.handleChange}
               value={this.state.password}
             />
             <Button
               className="signinButton"
-              type='submit'
+              type="submit"
               onClick={this.handleSubmit}
               disabled={!this.validateForm()}
-            >Sign in</Button>
+            >
+              Sign in
+            </Button>
 
-            <Button as={ Link } 
+            <Button
+              as={Link}
               className="registerButton"
-              name='register'
-              to='/register'
-            >Register</Button>
+              name="register"
+              to="/register"
+            >
+              Register
+            </Button>
           </FormGroup>
-        }
-        {this.props.location.pathname == '/' || this.props.location.pathname == '/login' &&
-          <Button as={ Link } 
-            className="registerButton"
-            name='register'
-            to='/register'
-          >Register</Button>
-        }
-        
-        {this.props.isLoggedIn && 
+        )}
+        {this.props.location.pathname == "/" ||
+          (this.props.location.pathname == "/login" && (
+            <Button
+              as={Link}
+              className="registerButton"
+              name="register"
+              to="/register"
+            >
+              Register
+            </Button>
+          ))}
 
-        <Button
-        onClick={this.handleLogout}
-        className="logoutButton"
-        >
-          Logout
-        </Button>
-        }
+        {this.props.isLoggedIn && (
+          <Button onClick={this.handleLogout} className="logoutButton">
+            Logout
+          </Button>
+        )}
       </NavBar>
-    )
+    );
   }
-};
+}
 
 const mapStateToProps = ({ usersReducer: state }) => {
   return {
-    isLoggedIn: state.isLoggedIn, // set isLoggedIn to props
+    isLoggedIn: state.isLoggedIn,
     loginError: state.loginError,
     loginLoading: state.loginLoading
   };

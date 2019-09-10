@@ -9,20 +9,12 @@ import {
   FormGroup
 } from "./postFeedback-style.js";
 import {
-  Form,
-  Modal,
-  Icon,
-  Header,
-  Input,
   Button,
   Dropdown,
   Message
 } from "semantic-ui-react";
 import {
   DateInput,
-  TimeInput,
-  DateTimeInput,
-  DatesRangeInput
 } from "semantic-ui-calendar-react";
 import Textarea from "react-textarea-autosize";
 import moment from "moment";
@@ -58,7 +50,11 @@ class PostFeedback extends React.Component {
   };
 
   validateForm() {
-    return this.state.feedback.length > 1 && this.state.email.length > 1 && this.state.date;
+    return (
+      this.state.feedback.length > 1 &&
+      this.state.email.length > 1 &&
+      this.state.date
+    );
   }
 
   handleDropdownSearch = e => {
@@ -103,41 +99,45 @@ class PostFeedback extends React.Component {
         <PageDiv className="PostFeedback">
           <H2>Send feedback to others</H2>
           <P>Start typing a colleague's email address to send them feedback</P>
-          
+
           <FormGroup onSubmit={this.handleSubmit}>
-
             <NameDateContainer>
-                <Dropdown
-                  className="DropDownNameInput"
-                  placeholder="mycolleague@myorganization.com"
-                  onSearchChange={this.handleDropdownSearch}
-                  onChange={this.handleDropdownChange}
-                  fluid
-                  search
-                  selection
-                  options={this.props.transformedSearchedEmails}
-                  value={this.state.email}
-                />
+              <Dropdown
+                className="DropDownNameInput"
+                placeholder="mycolleague@myorganization.com"
+                onSearchChange={this.handleDropdownSearch}
+                onChange={this.handleDropdownChange}
+                fluid
+                search
+                selection
+                options={this.props.transformedSearchedEmails}
+                value={this.state.email}
+              />
 
-                <DateInput
-                  className="DateInput"
-                  name="date"
-                  placeholder="Date"
-                  value={this.state.date}
-                  iconPosition="left"
-                  onChange={this.handleDateChange}
-                />
+              <DateInput
+                className="DateInput"
+                name="date"
+                placeholder="Date"
+                value={this.state.date}
+                iconPosition="left"
+                onChange={this.handleDateChange}
+              />
             </NameDateContainer>
 
-              <Textarea
-                className="FeedbackInput"
-                type="feedback"
-                name="feedback"
-                value={this.state.feedback}
-                placeholder="You should really start/stop/keep..."
-                onChange={this.handleChange}
-              />
-            <Button className="FeedbackButton" type="submit" color="teal" disabled={!this.validateForm()}>
+            <Textarea
+              className="FeedbackInput"
+              type="feedback"
+              name="feedback"
+              value={this.state.feedback}
+              placeholder="You should really start/stop/keep..."
+              onChange={this.handleChange}
+            />
+            <Button
+              className="FeedbackButton"
+              type="submit"
+              color="teal"
+              disabled={!this.validateForm()}
+            >
               Send
             </Button>
 
@@ -151,10 +151,9 @@ class PostFeedback extends React.Component {
                 </Message>
               )}
             </div>
-            
           </FormGroup>
         </PageDiv>
-    </PostContainer>
+      </PostContainer>
     );
   }
 }

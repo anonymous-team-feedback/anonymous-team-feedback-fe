@@ -6,12 +6,12 @@ import styled from "styled-components";
 export const PostContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background: #32323E;
+  background: #32323e;
   padding-bottom: 200px;
 `;
 
 // PageDiv Styling//
-export const PageDiv= styled.div`
+export const PageDiv = styled.div`
   background: #393946;
   margin: 0% 20% 0% 20%;
 `;
@@ -25,7 +25,6 @@ export const FormGroup = styled.form`
   // border: 1px solid green;
 `;
 
-
 // Name-DateContainer Styling//
 export const NameDateContainer = styled.div`
   display: flex;
@@ -34,7 +33,6 @@ export const NameDateContainer = styled.div`
   margin: 0 5% 0 5%;
   // border: 1px solid red;
 `;
-
 
 // H2 styling//
 export const H2 = styled.h2`
@@ -49,4 +47,4 @@ export const P = styled.p`
   text-align: left;
   color: white;
   margin: 0% 0% 3% 6.25%;
-`; 
+`;

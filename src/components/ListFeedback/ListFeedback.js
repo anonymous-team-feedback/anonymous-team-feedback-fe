@@ -3,15 +3,12 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { fetchAllPosts } from "../../actions/postsActions";
 import {
-  PageDiv,
   MainListContainer,
   SubListContainer,
   H2
 } from "./listFeedback-style.js";
 
 import {
-  Icon,
-  Label,
   Menu,
   Table,
   Message,
@@ -49,39 +46,44 @@ class ListFeedback extends React.Component {
               <Table celled>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell className="date-tab" width={2}>Date</Table.HeaderCell>
-                    <Table.HeaderCell className="feedback-tab" width={8}>Feedback</Table.HeaderCell>
+                    <Table.HeaderCell className="date-tab" width={2}>
+                      Date
+                    </Table.HeaderCell>
+                    <Table.HeaderCell className="feedback-tab" width={8}>
+                      Feedback
+                    </Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
 
                 <Table.Body className="submittedFeedback">
                   {items.map((post, index) => (
                     <Table.Row>
-                        <Table.Cell width={2}>
-                          {moment(post.date).fromNow()}
-                        </Table.Cell>
-                        <Table.Cell width={8} key={index}>" {post.post} "</Table.Cell>
+                      <Table.Cell width={2}>
+                        {moment(post.date).fromNow()}
+                      </Table.Cell>
+                      <Table.Cell width={8} key={index}>
+                        " {post.post} "
+                      </Table.Cell>
                     </Table.Row>
                   ))}
-                  </Table.Body>
+                </Table.Body>
 
-                  <Table.Footer className="listFeedbackPageNav">
-                    <Table.Row>
-                      <Table.HeaderCell colSpan="3">
-                        <Menu pagination>
-                          <Menu.Item as="a" icon>
-                            <Pagination
-                              activePage={page}
-                              totalPages={totalPages}
-                              siblingRange={1}
-                              onPageChange={this.setPageNumber}
-                            />
-                          </Menu.Item>
-                        </Menu>
-                      </Table.HeaderCell>
-                    </Table.Row>
-                  </Table.Footer>
-
+                <Table.Footer className="listFeedbackPageNav">
+                  <Table.Row>
+                    <Table.HeaderCell colSpan="3">
+                      <Menu pagination>
+                        <Menu.Item as="a" icon>
+                          <Pagination
+                            activePage={page}
+                            totalPages={totalPages}
+                            siblingRange={1}
+                            onPageChange={this.setPageNumber}
+                          />
+                        </Menu.Item>
+                      </Menu>
+                    </Table.HeaderCell>
+                  </Table.Row>
+                </Table.Footer>
               </Table>
             </div>
           ) : (

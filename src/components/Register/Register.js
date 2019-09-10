@@ -135,14 +135,18 @@ class Register extends React.Component {
                 <h3>You have successfully registered.</h3>
               </Modal.Content>
               <Modal.Actions>
-                <Button className="RegisterButton" color="teal" onClick={this.handleModalClose} inverted>
+                <Button
+                  className="RegisterButton"
+                  color="teal"
+                  onClick={this.handleModalClose}
+                  inverted
+                >
                   <Icon name="checkmark"></Icon> Got it
                 </Button>
               </Modal.Actions>
             </Modal>
           </RegisterContainer>
         </Form>
-        {/* <!-- Register Form --> */}
       </PageDiv>
     );
   }
