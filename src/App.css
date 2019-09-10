@@ -32,19 +32,50 @@
   }
 }
 
-/* Register Button Styling */
+/* Register Register Button Styling */
 
-.ui.button.RegisterButton {
+.ui.button.RegisterSignupButton {
+  background-color: #51E3C2;
+  color: black;
   padding-top: 10px; 
-  margin: 0 0 0 60%;
+  margin: 2.5% 0 0 25%;
+  width: 20%;
 }
 
-/* Feedback Button Styling */
+.ui.button.RegisterSignupButton:hover{
+  background-color: rgba(81, 227, 193, 0.774) !important;
+  color: white !important;
+  border:1px solid white !important;
+}
+
+/* Login Submit Button Styling */
+
+.ui.button.LoginSubmitButton {
+  background-color: #51E3C2;
+  color: black;
+  padding-top: 10px; 
+  margin: 2.5% auto 0 auto;
+  width: 20%;
+}
+
+.ui.button.LoginSubmitButton:hover{
+  background-color: rgba(81, 227, 193, 0.774) !important;
+  color: white !important;
+  border:1px solid white !important;
+}
+
+/* Postfeedback Feedback Button Styling */
 
 .ui.button.FeedbackButton { 
   margin: 3% 5% 2% 80%;
   background-color: #51E3C2 !important;
   color: #32323E !important;
+}
+
+.ui.button.FeedbackButton:hover{
+  background-color: rgba(81, 227, 193, 0.774) !important;
+  color: white !important;
+  border:1px solid white !important;
 }
 
 /* Feedback Input PostFeedback Component Styling */
@@ -145,4 +176,86 @@ textarea.FeedbackInput {
 
 .ui.table td {
   border-bottom: 1px solid #444451;
+}
+
+.ui.form .field {
+  width: 45%;
+}
+
+/* NavBar Input Styling */
+
+input[type=email], input[type=password], input[type=search], input[type=text] {
+  width: 25%;
+  background-color: #4D505F !important;
+  color: white !important;
+}
+
+form .navbarContainer {
+  width:100% !important;
+}
+
+
+/* NavBar Buttons Styling */
+
+.ui.button.incogButton {
+  color: white !important;
+  background-color: #393945 !important;
+  font-family: sans-serif !important;
+  font-size: 1.8rem !important;
+  font-weight: bold !important;
+  transition: color .1s ease-in-out !important;
+}
+
+.ui.button.signinButton {
+  color: #51e3c2 !important;
+  background-color: #393945 !important;
+  border:1px solid #51e3c2 !important;
+  font-weight: bold !important;
+  padding: 0.6rem 0.6rem !important;
+  font-size: 0.9rem !important;
+  margin-left: 0.5rem!important;
+}
+
+.ui.button.registerButton {
+  color: #51e3c2 !important;
+  background-color: #393945 !important;
+  border:1px solid #51e3c2 !important;
+  font-weight: bold !important;
+  padding: 0.6rem 0.6rem !important;
+  font-size: 0.9rem !important;
+  margin-left: 0.5rem!important;
+  margin-right: 2.5rem !important;
+}
+
+.ui.button.logoutButton {
+  color: #51e3c2 !important;
+  background-color: #393945 !important;
+  border:1px solid #51e3c2 !important;
+  font-weight: bold !important;
+  padding: 0.6rem 0.6rem !important;
+  font-size: 0.9rem !important;
+  margin-left: 0.5rem !important;
+  margin-right: 2rem !important;
+}
+
+/* NavBar Buttons (Hover Effect) Styling */
+
+
+.ui.button.incogButton:hover{
+  color: #51e3c2 !important;
+}
+
+.ui.button.signinButton:hover{
+  color: white !important;
+  border:1px solid white !important;
+}
+
+.ui.button.registerButton:hover{
+  color: white !important;
+  border:1px solid white !important;
+}
+
+.ui.button.logoutButton:hover{
+  color: white !important;
+  border:1px solid white !important;
 }

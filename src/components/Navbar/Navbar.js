@@ -1,6 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import styled from 'styled-components';
+import {
+  NavBar,
+  Field,
+  FormGroup
+} from "./navbar-style.js";
+import { Button } from "semantic-ui-react";
 import { Link, withRouter } from 'react-router-dom';
 import { login } from "../../actions/usersActions";
 
@@ -33,21 +38,27 @@ class Navbar extends React.Component {
   }
 
 
-
   render() {
     console.log(this.props.location.pathname)
     return (
       <NavBar className="Navbar">
         <div>
-          <Title to='/'>InCog</Title>
+          <Button as={ Link }
+            className="incogButton" 
+            name='home' 
+            to='/'
+            >InCog</Button>
         </div>
 
         {/* if not logged in, display inputs fields */}
         {!this.props.isLoggedIn &&
           this.props.location.pathname != '/login' &&
-          this.props.location.pathname != '/' &&
-          this.props.location.pathname != '/register' &&
-          <form>
+          
+          /* commented this out so nav bar was more practical */
+          // this.props.location.pathname != '/' &&
+          // this.props.location.pathname != '/register' &&
+          
+          <FormGroup className="navbarContainer">
             <Field
               name='email'
               type='email'
@@ -63,24 +74,32 @@ class Navbar extends React.Component {
               value={this.state.password}
             />
             <Button
+              className="signinButton"
               type='submit'
               onClick={this.handleSubmit}
               disabled={!this.validateForm()}
             >Sign in</Button>
-            <ButtonLink
+
+            <Button as={ Link } 
+              className="registerButton"
+              name='register'
               to='/register'
-            >Register</ButtonLink>
-          </form>
+            >Register</Button>
+          </FormGroup>
         }
         {this.props.location.pathname == '/' || this.props.location.pathname == '/login' &&
-          <ButtonLink
+          <Button as={ Link } 
+            className="registerButton"
+            name='register'
             to='/register'
-          >Register</ButtonLink>
+          >Register</Button>
         }
+        
         {this.props.isLoggedIn && 
 
         <Button
         onClick={this.handleLogout}
+        className="logoutButton"
         >
           Logout
         </Button>
@@ -102,59 +121,3 @@ export default connect(
   mapStateToProps,
   { login }
 )(withRouter(Navbar));
-
-const NavBar = styled.nav`
-background-color: #393945;
-display: flex;
-justify-content: space-between;
-padding: 0.5rem 12rem 0.5rem 2rem;
-align-items: center;
-`
-const Title = styled(Link)`
-color: white;
-font-family: sans-serif;
-font-size: 1.8rem;
-font-weight: bold;
-transition: color .1s ease-in-out;
-
-:hover{
-  color: #51e3c2;
-}
-`
-const Field = styled.input`
-background-color: #4d505f;
-border: none;
-border-radius: 4px;
-padding: 0.3rem 0.8rem;
-margin: 0 0.7rem;
-color: white;
-`
-const Button = styled.button`
-border: 1px solid #51e3c2;
-border-radius: 4px;
-background-color: #393945;
-color: #51e3c2;
-font-weight: bold;
-padding: 0.3rem 0.6rem;
-font-size: 0.9rem;
-margin-left: 0.5rem;
-transition: .1s ease-in-out;
-:hover:enabled{
-  color: white;
-  background-color: #51e3c2;
-}
-:disabled{
-  color: grey;
-  border: 1px solid grey;
-}
-`
-const ButtonLink = styled(Link)`
-color: #51e3c2;
-font-weight: bold;
-padding: 0.3rem 0.6rem;
-font-size: 0.9rem;
-margin-left: 0.5rem;
-:hover{
-  color: white;
-}
-`

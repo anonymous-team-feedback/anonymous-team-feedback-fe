@@ -117,8 +117,8 @@ class Register extends React.Component {
             <Modal
               trigger={
                 <Button
-                  className="RegisterButton"
-                  color="teal"
+                  className="RegisterSignupButton"
+                  // color="teal"
                   type="submit"
                   disabled={!this.validateForm()}
                 >
