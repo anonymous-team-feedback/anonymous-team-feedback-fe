@@ -2,6 +2,7 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  AUTO_LOGIN,
   REGISTER_START,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
@@ -130,6 +131,12 @@ export const usersReducer = (state = initialState, action) => {
           value: email
         }))
       };
+    }
+    case AUTO_LOGIN: {
+      return {
+        ...state,
+        isLoggedIn: true
+      }
     }
 
     default:
