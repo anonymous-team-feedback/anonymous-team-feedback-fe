@@ -30,8 +30,8 @@ export const Title = styled.button`
 export const Field = styled.input`
   background-color: #4d505f;
   border: none;
-  border-radius: 4px;
-  padding: 0.3rem 0.8rem;
+  border-radius: 3px;
+  padding: .7rem;
   margin: 0 0.7rem;
   color: white;
 `;
