@@ -103,7 +103,7 @@ class ListFeedback extends React.Component {
 const MapStateToProps = ({ postsReducer: state }) => {
   return {
     posts: state.posts,
-    loading: state.loading
+    loading: state.loading,
   };
 };
 
