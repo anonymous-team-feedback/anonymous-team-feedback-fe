@@ -10,6 +10,7 @@ import {
 } from "./register-style.js";
 import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 import { register } from "../../actions/usersActions.js";
+import "./register.css"
 
 class Register extends React.Component {
   state = {
@@ -76,7 +77,10 @@ class Register extends React.Component {
                 value={this.state.newUser.firstName}
                 onChange={this.handleChange}
                 placeholder="First Name"
+                required
+                minLength="2"
               />
+              <div className="requirements">Please input atleast 2 characters!</div>
             </Form.Field>
 
             <Form.Field>
@@ -88,7 +92,10 @@ class Register extends React.Component {
                 value={this.state.newUser.lastName}
                 onChange={this.handleChange}
                 placeholder="Last Name"
+                required
+                minLength="2"
               />
+              <div className="requirements">Please input atleast 2 characters!</div>
             </Form.Field>
 
             <Form.Field>
@@ -96,11 +103,13 @@ class Register extends React.Component {
               <Input
                 type="email"
                 name="email"
+                required
                 id="RegisterFormEmail"
                 value={this.state.newUser.email}
                 onChange={this.handleChange}
                 placeholder="E-mail"
               />
+              <div className="requirements">Please input a valid email address!</div>
             </Form.Field>
 
             <Form.Field>
@@ -112,7 +121,10 @@ class Register extends React.Component {
                 value={this.state.newUser.password}
                 onChange={this.handleChange}
                 placeholder="Password"
+                required
+                minLength="2"
               />
+              <div className="requirements">Please add atleast 2 characters!</div>
             </Form.Field>
             <Modal
               trigger={
