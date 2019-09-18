@@ -108,6 +108,7 @@ class Register extends React.Component {
                 value={this.state.newUser.email}
                 onChange={this.handleChange}
                 placeholder="E-mail"
+                minLength="5"
               />
               <div className="requirements">Please input a valid email address!</div>
             </Form.Field>
@@ -122,9 +123,9 @@ class Register extends React.Component {
                 onChange={this.handleChange}
                 placeholder="Password"
                 required
-                minLength="2"
+                minLength="5"
               />
-              <div className="requirements">Please add atleast 2 characters!</div>
+              <div className="requirements">Please input atleast 5 characters!</div>
             </Form.Field>
             <Modal
               trigger={

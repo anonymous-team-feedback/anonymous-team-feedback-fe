@@ -1,6 +1,6 @@
-input[type="email"]:invalid:focus:not(:placeholder-shown) ~ .requirements,
-input[type="text"]:invalid:focus:not(:placeholder-shown) ~ .requirements,
-input[type="password"]:invalid:focus:not(:placeholder-shown) ~ .requirements{
+input[type="email"]:invalid:not(:placeholder-shown) ~ .requirements,
+input[type="text"]:invalid:not(:placeholder-shown) ~ .requirements,
+input[type="password"]:invalid:not(:placeholder-shown) ~ .requirements{
     max-height: 100px;
 }
 
