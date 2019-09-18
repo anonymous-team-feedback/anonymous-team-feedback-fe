@@ -19,7 +19,7 @@ class FormVal extends React.Component {
         return (
             <Popup
                 trigger={this.props.comp}
-                content={`Invalid email or password. Please input the correct credentials!`}
+                content={this.props.message || `Invalid email or password. Please input the correct credentials!`}
                 on='click'
                 open={this.state.isOpen}
                 onClose={this.handleClose}
