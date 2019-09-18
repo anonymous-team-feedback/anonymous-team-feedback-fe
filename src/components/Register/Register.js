@@ -10,7 +10,7 @@ import {
 } from "./register-style.js";
 import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 import { register } from "../../actions/usersActions.js";
-import "./register.css"
+import "../../App.css"
 
 class Register extends React.Component {
   state = {
