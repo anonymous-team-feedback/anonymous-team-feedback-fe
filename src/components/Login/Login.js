@@ -5,6 +5,7 @@ import { login } from "../../actions/usersActions";
 import { PageDiv, LoginContainer, Input, Label, H1 } from "./login-style.js";
 import { Button, Form } from "semantic-ui-react";
 import FormVal from "../Global/formVal";
+import '../../App.css'
 
 class Login extends React.Component {
   constructor(props) {
@@ -49,7 +50,10 @@ class Login extends React.Component {
                 value={this.state.email}
                 placeholder="email@email.com"
                 onChange={this.handleChange}
+                minLength="5"
+                required
               />
+              <div className="requirements">Please input a valid email!</div>
             </Form.Field>
 
             <Form.Field>
@@ -60,7 +64,10 @@ class Login extends React.Component {
                 value={this.state.password}
                 placeholder="password"
                 onChange={this.handleChange}
+                minLength="2"
+                required
               />
+              <div className="requirements">Please input atleast 2 characters!</div>
             </Form.Field>
 
             {!this.props.loginError && <Button className="LoginSubmitButton" type="submit">
