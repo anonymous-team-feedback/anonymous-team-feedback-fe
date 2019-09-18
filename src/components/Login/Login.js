@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { login } from "../../actions/usersActions";
 import { PageDiv, LoginContainer, Input, Label, H1 } from "./login-style.js";
 import { Button, Form } from "semantic-ui-react";
+import FormVal from "../Global/formVal";
 
 class Login extends React.Component {
   constructor(props) {
@@ -60,12 +61,14 @@ class Login extends React.Component {
                 placeholder="password"
                 onChange={this.handleChange}
               />
-              {this.props.loginError && <p>Incorrect username or password</p>}
             </Form.Field>
 
-            <Button className="LoginSubmitButton" type="submit">
+            {!this.props.loginError && <Button className="LoginSubmitButton" type="submit">
               Submit
-            </Button>
+            </Button>}
+            {this.props.loginError && <FormVal comp={<Button className="LoginSubmitButton" type="submit">
+              Submit
+            </Button>}/>}
           </LoginContainer>
         </Form>
       </PageDiv>
