@@ -40,6 +40,7 @@ export const Input = styled.input`
   border: none;
   border-radius: 3px;
   width: 100% !important;
+  height: 35px !important;
   margin: 0.5rem, 0.5rem;
 `;
 

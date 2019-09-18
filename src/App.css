@@ -207,6 +207,17 @@ form .navbarContainer {
   transition: color 0.1s ease-in-out !important;
 }
 
+/* Username */
+
+.ui.button.usernameButton {
+  color: white !important;
+  background-color: #393945 !important;
+  font-family: sans-serif !important;
+  font-size: .9rem !important;
+  font-weight: bold !important;
+  transition: color 0.1s ease-in-out !important;
+}
+
 .ui.button.signinButton {
   color: #51e3c2 !important;
   background-color: #393945 !important;
