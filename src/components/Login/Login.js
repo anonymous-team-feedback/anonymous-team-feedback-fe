@@ -64,10 +64,10 @@ class Login extends React.Component {
                 value={this.state.password}
                 placeholder="password"
                 onChange={this.handleChange}
-                minLength="2"
+                minLength="5"
                 required
               />
-              <div className="requirements">Please input atleast 2 characters!</div>
+              <div className="requirements">Please input atleast 5 characters!</div>
             </Form.Field>
 
             {!this.props.loginError && <Button className="LoginSubmitButton" type="submit">
