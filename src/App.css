@@ -270,3 +270,10 @@ form .navbarContainer {
   color: white !important;
   border: 1px solid white !important;
 }
+
+/* Form validation styling */
+
+.ui.bottom.center.popup:before{
+  background-color: #c94940;
+  box-shadow: -1px -1px 0 0 #c94940 !important;
+}
