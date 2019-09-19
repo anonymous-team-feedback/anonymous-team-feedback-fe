@@ -1,109 +1,121 @@
 import React from "react";
-import {connect} from "react-redux";
-import {NavBar, Field, FormGroup} from "./navbar-style.js";
-import {Button} from "semantic-ui-react";
-import {Link, withRouter} from "react-router-dom";
-import {login} from "../../actions/usersActions";
-import {removeAuthInfo, getAuthInfo, saveAuthInfo} from "../../util/login.js";
-
+import { connect } from "react-redux";
+import { NavBar, Field, FormGroup } from "./navbar-style.js";
+import { Button } from "semantic-ui-react";
+import { Link, withRouter } from "react-router-dom";
+import { login } from "../../actions/usersActions";
+import { removeAuthInfo, getAuthInfo, saveAuthInfo } from "../../util/login.js";
 
 class Navbar extends React.Component {
-    state = {
-        email: "",
-        password: "",
-        firstName: ""
-    };
+  state = {
+    email: "",
+    password: ""
+  };
 
-    componentDidMount = async() => {
-        const authInfo = await getAuthInfo();
-        this.setState({ firstName: authInfo.firstName })
-    }
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.login(this.state.email, this.state.password, this.props.history);
+    this.setState({ email: "", password: "" });
+  };
 
-    handleSubmit = e => {
-        e.preventDefault();
-        this
-            .props
-            .login(this.state.email, this.state.password, this.props.history);
-        this.setState({email: "", password: ""});
-    };
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
-    handleChange = e => {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
-    };
+  validateForm = () =>
+    this.state.email.length >= 5 && this.state.password.length >= 5;
 
-    validateForm = () => this.state.email.length >= 5 && this.state.password.length >= 5;
+  handleLogout = () => {
+    removeAuthInfo();
+    window.location.reload();
+  };
 
-    handleLogout = () => {
-        removeAuthInfo();
-        window
-            .location
-            .reload();
-    };
+  render() {
+    console.log(this.props.location.pathname);
+    return (
+      <NavBar className="Navbar">
+        <div>
+          <Button as={Link} className="incogButton" name="home" to="/">
+            InCog
+          </Button>
+        </div>
+        {!this.props.isLoggedIn && this.props.location.pathname != "/login" && (
+          <FormGroup className="navbarContainer">
+            <Field
+              name="email"
+              type="email"
+              placeholder="email@email.com"
+              onChange={this.handleChange}
+              value={this.state.email}
+            />
+            <Field
+              name="password"
+              type="password"
+              placeholder="password"
+              onChange={this.handleChange}
+              value={this.state.password}
+            />
+            <Button
+              className="signinButton"
+              type="submit"
+              onClick={this.handleSubmit}
+              disabled={!this.validateForm()}
+            >
+              Sign in
+            </Button>
 
-    render() {
-        console.log(this.props.location.pathname);
-        return (
-            <NavBar className="Navbar">
-                <div>
-                    <Button as={Link} className="incogButton" name="home" to="/">
-                        InCog
-                    </Button>
-                </div>
-                {!this.props.isLoggedIn && this.props.location.pathname != "/login" && (
-                    <FormGroup className="navbarContainer">
-                        <Field
-                            name="email"
-                            type="email"
-                            placeholder="email@email.com"
-                            onChange={this.handleChange}
-                            value={this.state.email}/>
-                        <Field
-                            name="password"
-                            type="password"
-                            placeholder="password"
-                            onChange={this.handleChange}
-                            value={this.state.password}/>
-                        <Button
-                            className="signinButton"
-                            type="submit"
-                            onClick={this.handleSubmit}
-                            disabled={!this.validateForm()}>
-                            Sign in
-                        </Button>
+            <Button
+              as={Link}
+              className="registerButton"
+              name="register"
+              to="/register"
+            >
+              Register
+            </Button>
+          </FormGroup>
+        )}
+        {this.props.location.pathname == "/" ||
+          (this.props.location.pathname == "/login" && (
+            <Button
+              as={Link}
+              className="registerButton"
+              name="register"
+              to="/register"
+            >
+              Register
+            </Button>
+          ))}
 
-                        <Button as={Link} className="registerButton" name="register" to="/register">
-                            Register
-                        </Button>
-                    </FormGroup>
-                )}
-                {this.props.location.pathname == "/" || (this.props.location.pathname == "/login" && (
-                    <Button as={Link} className="registerButton" name="register" to="/register">
-                        Register
-                    </Button>
-                ))}
+        {this.props.isLoggedIn && (
+          <div>
+            {/* need to update route with user page */}
 
-                {this.props.isLoggedIn && (
-                    <div>
-                      {/* need to update route with user page */}
+            <Button as={Link} className="usernameButton" name="home" to="/">
+              Hi, {this.props.firstName}
+            </Button>
 
-                        <Button as={Link} className="usernameButton" name="home" to="/">
-                         Hi, {this.state.firstName}
-                        </Button>
-
-                        <Button onClick={this.handleLogout} className="logoutButton">
-                            Logout
-                        </Button>
-                    </div>
-                )}
-            </NavBar>
-        );
-    }
+            <Button onClick={this.handleLogout} className="logoutButton">
+              Logout
+            </Button>
+          </div>
+        )}
+      </NavBar>
+    );
+  }
 }
 
-const mapStateToProps = ({usersReducer: state}) => {
-    return {isLoggedIn: state.isLoggedIn, loginError: state.loginError, loginLoading: state.loginLoading, username: state.user.firstName};
+const mapStateToProps = ({ usersReducer: state }) => {
+  return {
+    isLoggedIn: state.isLoggedIn,
+    loginError: state.loginError,
+    loginLoading: state.loginLoading,
+    firstName: state.user.firstName
+  };
 };
 
-export default connect(mapStateToProps, {login})(withRouter(Navbar));
+export default connect(
+  mapStateToProps,
+  { login }
+)(withRouter(Navbar));
