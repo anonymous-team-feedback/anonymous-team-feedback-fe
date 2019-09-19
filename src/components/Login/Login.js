@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { login } from "../../actions/usersActions";
 import { PageDiv, LoginContainer, Input, Label, H1 } from "./login-style.js";
-import { Button, Form } from "semantic-ui-react";
-import FormVal from "../Global/formVal";
+import { Button, Form, Message, Dimmer, Loader } from "semantic-ui-react";
 import '../../App.css'
 
 class Login extends React.Component {
@@ -38,9 +37,13 @@ class Login extends React.Component {
     }
     return (
       <PageDiv className="Login">
+        {this.props.loginStart &&
+          <Dimmer active>
+            <Loader inverted content="Loading" size="large" />
+          </Dimmer>}
         <H1>Sign in</H1>
 
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} error>
           <LoginContainer>
             <Form.Field>
               <Label>Email</Label>
@@ -50,10 +53,7 @@ class Login extends React.Component {
                 value={this.state.email}
                 placeholder="email@email.com"
                 onChange={this.handleChange}
-                minLength="5"
-                required
               />
-              <div className="requirements">Please input a valid email!</div>
             </Form.Field>
 
             <Form.Field>
@@ -64,21 +64,17 @@ class Login extends React.Component {
                 value={this.state.password}
                 placeholder="password"
                 onChange={this.handleChange}
-                minLength="5"
-                required
               />
-              <div className="requirements">Please input atleast 5 characters!</div>
             </Form.Field>
 
-            {!this.props.loginError && !this.props.loginStart && <Button className="LoginSubmitButton" type="submit">
+            <Button className="LoginSubmitButton" type="submit">
               Submit
-            </Button>}
-            {this.props.loginError && <FormVal comp={<Button className="LoginSubmitButton" type="submit">
-              Submit
-            </Button>} />}
-            {this.props.loginStart && <Button className="LoginSubmitButton" type="submit">
-              <div class="ui mini inverted active inline loader"></div>
-            </Button>}
+            </Button>
+            {this.props.loginError && <Message
+              error
+              header="You can't log in!"
+              content='Incorrect credentials! Please login using a valid email and password combination!'
+            />}
           </LoginContainer>
         </Form>
       </PageDiv>
