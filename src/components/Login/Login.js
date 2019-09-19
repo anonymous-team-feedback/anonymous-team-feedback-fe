@@ -70,12 +70,15 @@ class Login extends React.Component {
               <div className="requirements">Please input atleast 5 characters!</div>
             </Form.Field>
 
-            {!this.props.loginError && <Button className="LoginSubmitButton" type="submit">
+            {!this.props.loginError && !this.props.loginStart && <Button className="LoginSubmitButton" type="submit">
               Submit
             </Button>}
             {this.props.loginError && <FormVal comp={<Button className="LoginSubmitButton" type="submit">
               Submit
-            </Button>}/>}
+            </Button>} />}
+            {this.props.loginStart && <Button className="LoginSubmitButton" type="submit">
+              <div class="ui mini inverted active inline loader"></div>
+            </Button>}
           </LoginContainer>
         </Form>
       </PageDiv>
@@ -87,7 +90,8 @@ const mapStateToProps = ({ usersReducer: state }) => {
   return {
     email: state.user.email,
     isLoggedIn: state.isLoggedIn,
-    loginError: state.loginError
+    loginError: state.loginError,
+    loginStart: state.loginStart
   };
 };
 
