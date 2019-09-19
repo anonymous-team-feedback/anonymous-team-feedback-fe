@@ -12,7 +12,9 @@ import {
   Menu,
   Table,
   Message,
-  Pagination
+  Pagination,
+  Dimmer,
+  Loader
 } from "semantic-ui-react";
 import moment from "moment";
 
@@ -36,9 +38,13 @@ class ListFeedback extends React.Component {
     const items = this.props.posts.slice(
       (page - 1) * itemsPerPage,
       (page - 1) * itemsPerPage + itemsPerPage
-    );
+      );
     return (
       <MainListContainer>
+          {this.props.loading &&
+          <Dimmer active>
+            <Loader inverted content="Loading" size="large" />
+          </Dimmer>}
         <SubListContainer className="Listfeedback">
           <H2>My Feedback</H2>
           {this.props.posts.length > 0 ? (
