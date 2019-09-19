@@ -8,7 +8,7 @@ import {
   P,
   Label
 } from "./register-style.js";
-import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
+import { Button, Header, Icon, Modal, Form, Message } from "semantic-ui-react";
 import { register } from "../../actions/usersActions.js";
 import "../../App.css"
 
@@ -68,7 +68,7 @@ class Register extends React.Component {
           )}
 
           <RegisterContainer>
-            <Form.Field>
+            <Form.Field required error={this.state.newUser.firstName.length < 2}>
               <Label color="teal">First name</Label>
               <Input
                 type="text"
@@ -77,13 +77,11 @@ class Register extends React.Component {
                 value={this.state.newUser.firstName}
                 onChange={this.handleChange}
                 placeholder="First Name"
-                required
-                minLength="2"
+                error
               />
-              <div className="requirements">Please input atleast 2 characters!</div>
             </Form.Field>
 
-            <Form.Field>
+            <Form.Field required error={this.state.newUser.lastName.length < 2}>
               <Label>Last name</Label>
               <Input
                 type="text"
@@ -92,13 +90,10 @@ class Register extends React.Component {
                 value={this.state.newUser.lastName}
                 onChange={this.handleChange}
                 placeholder="Last Name"
-                required
-                minLength="2"
               />
-              <div className="requirements">Please input atleast 2 characters!</div>
             </Form.Field>
 
-            <Form.Field>
+            <Form.Field required error={this.state.newUser.email.length < 5}>
               <Label>Email</Label>
               <Input
                 type="email"
@@ -107,13 +102,10 @@ class Register extends React.Component {
                 id="RegisterFormEmail"
                 value={this.state.newUser.email}
                 onChange={this.handleChange}
-                placeholder="E-mail"
-                minLength="5"
               />
-              <div className="requirements">Please input a valid email address!</div>
             </Form.Field>
 
-            <Form.Field>
+            <Form.Field required error={this.state.newUser.password.length < 5}>
               <Label>Password</Label>
               <Input
                 type="password"
@@ -122,10 +114,7 @@ class Register extends React.Component {
                 value={this.state.newUser.password}
                 onChange={this.handleChange}
                 placeholder="Password"
-                required
-                minLength="5"
               />
-              <div className="requirements">Please input atleast 5 characters!</div>
             </Form.Field>
             <Modal
               trigger={
@@ -143,6 +132,11 @@ class Register extends React.Component {
               basic
               size="small"
             >
+              {this.props.registerError && <Message // error message
+                error
+                header='Could not register'
+                content='A user with this email has already been created!'
+              />}
               <Header icon="browser" content="Registration"></Header>
               <Modal.Content>
                 <h3>You have successfully registered.</h3>
