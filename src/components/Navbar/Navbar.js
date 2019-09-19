@@ -4,13 +4,20 @@ import {NavBar, Field, FormGroup} from "./navbar-style.js";
 import {Button} from "semantic-ui-react";
 import {Link, withRouter} from "react-router-dom";
 import {login} from "../../actions/usersActions";
-import {removeAuthInfo} from "../../util/login.js";
+import {removeAuthInfo, getAuthInfo, saveAuthInfo} from "../../util/login.js";
+
 
 class Navbar extends React.Component {
     state = {
         email: "",
-        password: ""
+        password: "",
+        firstName: ""
     };
+
+    componentDidMount = async() => {
+        const authInfo = await getAuthInfo();
+        this.setState({ firstName: authInfo.firstName })
+    }
 
     handleSubmit = e => {
         e.preventDefault();
@@ -37,7 +44,6 @@ class Navbar extends React.Component {
 
     render() {
         console.log(this.props.location.pathname);
-        console.log(this.props.username);
         return (
             <NavBar className="Navbar">
                 <div>
@@ -83,7 +89,7 @@ class Navbar extends React.Component {
                       {/* need to update route with user page */}
 
                         <Button as={Link} className="usernameButton" name="home" to="/">
-                         Hi, {this.props.username}
+                         Hi, {this.state.firstName}
                         </Button>
 
                         <Button onClick={this.handleLogout} className="logoutButton">

@@ -19,7 +19,7 @@ export function login(email, password, history) {
     axios
       .post(`${host}auth/login`, user)
       .then(res => {
-        saveAuthInfo(res.data.token, res.data._id);
+        saveAuthInfo(res.data.token, res.data._id, res.data.firstName);
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       })
       .catch(err => {
