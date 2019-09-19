@@ -1,11 +1,10 @@
 import React from "react";
-import {connect} from "react-redux";
-import {NavBar, Field, FormGroup} from "./navbar-style.js";
-import {Button, Popup } from "semantic-ui-react";
-import {Link, withRouter} from "react-router-dom";
-import {login} from "../../actions/usersActions";
-import {removeAuthInfo} from "../../util/login.js";
-import FormVal from "../Global/formVal.js";
+import { connect } from "react-redux";
+import { NavBar, Field, FormGroup } from "./navbar-style.js";
+import { Button } from "semantic-ui-react";
+import { Link, withRouter } from "react-router-dom";
+import { login } from "../../actions/usersActions";
+import { removeAuthInfo } from "../../util/login.js";
 
 class Navbar extends React.Component {
   state = {
@@ -18,7 +17,7 @@ class Navbar extends React.Component {
     this
       .props
       .login(this.state.email, this.state.password, this.props.history);
-    this.setState({email: "", password: ""});
+    this.setState({ email: "", password: "" });
   };
 
   handleChange = e => {
@@ -53,13 +52,13 @@ class Navbar extends React.Component {
               type="email"
               placeholder="email@email.com"
               onChange={this.handleChange}
-              value={this.state.email}/>
+              value={this.state.email} />
             <Field
               name="password"
               type="password"
               placeholder="password"
               onChange={this.handleChange}
-              value={this.state.password}/>
+              value={this.state.password} />
             {!this.props.loginError && <Button
               className="signinButton"
               type="submit"
@@ -67,13 +66,7 @@ class Navbar extends React.Component {
               disabled={!this.validateForm()}>
               Sign in
                       </Button>}
-            {this.props.loginError && <FormVal comp={<Button
-              className="signinButton"
-              type="submit"
-              onClick={this.handleSubmit}
-              disabled={!this.validateForm()}>
-              Sign in
-                      </Button>} />}
+            {/* {this.props.loginError} error message goes here*/}
 
             <Button as={Link} className="registerButton" name="register" to="/register">
               Register
@@ -104,8 +97,12 @@ class Navbar extends React.Component {
   }
 }
 
-const mapStateToProps = ({usersReducer: state}) => {
-  return {isLoggedIn: state.isLoggedIn, loginError: state.loginError, loginLoading: state.loginLoading, username: state.user.firstName};
+const mapStateToProps = ({ usersReducer: state }) => {
+  return { 
+    isLoggedIn: state.isLoggedIn, 
+    loginError: state.loginError, 
+    loginLoading: state.loginLoading, 
+    username: state.user.firstName };
 };
 
-export default connect(mapStateToProps, {login})(withRouter(Navbar));
+export default connect(mapStateToProps, { login })(withRouter(Navbar));
