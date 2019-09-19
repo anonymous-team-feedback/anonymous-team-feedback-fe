@@ -2,7 +2,6 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  AUTO_LOGIN,
   REGISTER_START,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
@@ -80,7 +79,8 @@ export const usersReducer = (state = initialState, action) => {
     case REGISTER_SUCCESS: {
       return {
         ...state,
-        isRegistering: false
+        isRegistering: false,
+        isLoggedIn: true
       };
     }
     case REGISTER_FAILURE: {
@@ -112,7 +112,8 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         isSearchingEmails: false,
-        searchedEmails: action.payload
+        searchedEmails: action.payload,
+        isLoggedIn: true,
       };
     }
     case SEARCH_EMAIL_FAILURE: {
@@ -131,12 +132,6 @@ export const usersReducer = (state = initialState, action) => {
           value: email
         }))
       };
-    }
-    case AUTO_LOGIN: {
-      return {
-        ...state,
-        isLoggedIn: true
-      }
     }
 
     default:

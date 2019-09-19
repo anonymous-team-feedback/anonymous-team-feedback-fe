@@ -29,7 +29,7 @@ export const postsReducer = (state = initialState, action) => {
         ...state,
         posts: action.payload,
         loading: false,
-        error: ""
+        error: "",
       };
     case FETCH_ALL_POSTS_FAILURE:
       return {
@@ -48,7 +48,7 @@ export const postsReducer = (state = initialState, action) => {
     case SUBMIT_FEEDBACK_SUCCESS: {
       return {
         ...state,
-        isSubmittingFeedback: false
+        isSubmittingFeedback: false,
       };
     }
     case SUBMIT_FEEDBACK_FAILURE: {

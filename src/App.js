@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 
 import { Route } from "react-router-dom";
-import {autoLogin} from './actions/usersActions';
 import {connect} from 'react-redux';
 
 import Login from "./components/Login/Login.js";
@@ -14,14 +13,6 @@ import {Redirect} from 'react-router-dom';
 import "semantic-ui-css/semantic.min.css";
 
 class App extends React.Component {
-
-  componentDidMount(){
-    if(localStorage.getItem('token')){
-      this.props.autoLogin()
-      return <Redirect to="/dashboard" />
-    }
-  }
-
   render() {
     return (
       <div className="App">
@@ -51,5 +42,5 @@ class App extends React.Component {
 
 export default connect(
     null,
-    { autoLogin }
+    {}
   )(App);

@@ -33,7 +33,6 @@ class Navbar extends React.Component {
   };
 
   render() {
-    console.log(this.props.location.pathname);
     return (
       <NavBar className="Navbar">
         <div>
@@ -41,31 +40,8 @@ class Navbar extends React.Component {
             InCog
           </Button>
         </div>
-        {!this.props.isLoggedIn && this.props.location.pathname != "/login" && (
+        {!this.props.isLoggedIn && (
           <FormGroup className="navbarContainer">
-            <Field
-              name="email"
-              type="email"
-              placeholder="email@email.com"
-              onChange={this.handleChange}
-              value={this.state.email}
-            />
-            <Field
-              name="password"
-              type="password"
-              placeholder="password"
-              onChange={this.handleChange}
-              value={this.state.password}
-            />
-            <Button
-              className="signinButton"
-              type="submit"
-              onClick={this.handleSubmit}
-              disabled={!this.validateForm()}
-            >
-              Sign in
-            </Button>
-
             <Button
               as={Link}
               className="registerButton"
@@ -76,24 +52,12 @@ class Navbar extends React.Component {
             </Button>
           </FormGroup>
         )}
-        {this.props.location.pathname == "/" ||
-          (this.props.location.pathname == "/login" && (
-            <Button
-              as={Link}
-              className="registerButton"
-              name="register"
-              to="/register"
-            >
-              Register
-            </Button>
-          ))}
-
-        {this.props.isLoggedIn && (
+        {localStorage.getItem("firstName") && (
           <div>
             {/* need to update route with user page */}
 
             <Button as={Link} className="usernameButton" name="home" to="/">
-              Hi, {this.props.firstName}
+              Hi, {localStorage.getItem("firstName")}
             </Button>
 
             <Button onClick={this.handleLogout} className="logoutButton">

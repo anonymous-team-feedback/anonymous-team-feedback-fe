@@ -85,9 +85,3 @@ export const searchEmails = email => async dispatch => {
       dispatch({ type: SEARCH_EMAIL_FAILURE, payload: err });
     });
 };
-
-export const AUTO_LOGIN= "AUTO_LOGIN";
-
-export const autoLogin = () => dispatch => {
-  dispatch({type: AUTO_LOGIN});
-}
