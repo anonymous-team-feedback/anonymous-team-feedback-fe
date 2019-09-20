@@ -20,7 +20,13 @@ class Register extends React.Component {
       email: "",
       password: ""
     },
-    modalOpen: false
+    modalOpen: false,
+    validForm: {
+      fn: true,
+      ln: true,
+      email: true,
+      
+    }
   };
 
   handleModalOpen = () => {
@@ -48,11 +54,14 @@ class Register extends React.Component {
     this.handleModalOpen();
   };
 
-  validateForm = () =>
-    this.state.newUser.firstName.length > 2 &&
-    this.state.newUser.lastName.length > 2 &&
-    this.state.newUser.email.length > 5 &&
-    this.state.newUser.password.length > 5;
+  validateForm = () => {
+
+  }
+    // this.state.newUser.firstName.length > 2 &&
+    // this.state.newUser.lastName.length > 2 &&
+    // this.state.newUser.email.length > 5 &&
+    // this.state.newUser.password.length > 5;
+
 
   render() {
     return (
@@ -68,54 +77,91 @@ class Register extends React.Component {
           )}
 
           <RegisterContainer>
-            <Form.Field required error={this.state.newUser.firstName.length < 2}>
-              <Label color="teal">First name</Label>
-              <Input
-                type="text"
-                name="firstName"
-                id="RegisterFormFirstName"
-                value={this.state.newUser.firstName}
-                onChange={this.handleChange}
-                placeholder="First Name"
-                error
-              />
-            </Form.Field>
 
-            <Form.Field required error={this.state.newUser.lastName.length < 2}>
-              <Label>Last name</Label>
-              <Input
-                type="text"
-                name="lastName"
-                id="RegisterFormLastName"
-                value={this.state.newUser.lastName}
-                onChange={this.handleChange}
-                placeholder="Last Name"
-              />
-            </Form.Field>
+            {/* conditional for first name */}
+            <Label color="teal" >First name</Label>
+            {this.state.newUser.firstName.length < 2 ? <Form.Input
+              error={{ content: 'Please enter your first name' }}
+              fluid
+              placeholder='First Name'
+              id="RegisterFormFirstName"
+              name="firstName"
+              value={this.state.newUser.firstName}
+              onChange={this.handleChange}
+            /> :
+            <Form.Input
+              fluid
+              placeholder='First Name'
+              id="RegisterFormFirstName"
+              name="firstName"
+              value={this.state.newUser.firstName}
+              onChange={this.handleChange}
+            />}
+            {/* end */}
 
-            <Form.Field required error={this.state.newUser.email.length < 5}>
-              <Label>Email</Label>
-              <Input
-                type="email"
-                name="email"
-                required
-                id="RegisterFormEmail"
-                value={this.state.newUser.email}
-                onChange={this.handleChange}
-              />
-            </Form.Field>
+              {/* conditional for last name  */}
+            <Label color="teal" >Last name</Label>
+            {this.state.newUser.lastName < 2 ? <Form.Input
+              error={{ content: 'Please enter your last name' }}
+              fluid
+              placeholder='Last Name'
+              id="RegisterFormLastName"
+              name="lastName"
+              value={this.state.newUser.lastName}
+              onChange={this.handleChange}
+            /> : 
+            <Form.Input
+              fluid
+              placeholder='Last Name'
+              id="RegisterFormLastName"
+              name="lastName"
+              value={this.state.newUser.lastName}
+              onChange={this.handleChange}
+            />}
+            {/* end */}
 
-            <Form.Field required error={this.state.newUser.password.length < 5}>
-              <Label>Password</Label>
-              <Input
-                type="password"
-                name="password"
-                id="RegisterFormPassword"
-                value={this.state.newUser.password}
-                onChange={this.handleChange}
-                placeholder="Password"
-              />
-            </Form.Field>
+              {/* conditional for email */}
+            <Label color="teal" >Email</Label>
+            {this.state.newUser.email < 5 ? <Form.Input
+              error={{ content: 'Please enter your email address' }}
+              fluid
+              placeholder='someonesEmail@example.com'
+              id="RegisterFormEmail"
+              name="email"
+              value={this.state.newUser.email}
+              onChange={this.handleChange}
+            /> :
+            <Form.Input
+              fluid
+              placeholder='someonesEmail@example.com'
+              id="RegisterFormEmail"
+              name="email"
+              value={this.state.newUser.email}
+              onChange={this.handleChange}
+            />}
+            {/* end */}
+
+              {/* conditional for password */}
+            <Label color="teal" >Password</Label>
+            {this.state.newUser.password < 5 ? <Form.Input
+              error={{ content: 'Please enter your password' }}
+              fluid
+              placeholder='Password'
+              id="RegisterFormPassword"
+              name="password"
+              value={this.state.newUser.password}
+              onChange={this.handleChange}
+            /> : 
+            <Form.Input
+              fluid
+              placeholder='Password'
+              id="RegisterFormPassword"
+              name="password"
+              value={this.state.newUser.password}
+              onChange={this.handleChange}
+            />}
+            {/* end */}
+
             <Modal
               trigger={
                 <Button
