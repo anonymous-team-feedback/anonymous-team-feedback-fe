@@ -85,6 +85,10 @@ export const H1 = styled.h1`
   color: white;
   margin: 0 50% 0 15%;
   padding-top: 25px;
+
+  @media (max-width: 700px) {
+    margin: 0 15% 0 15%;
+  }
 `;
 
 // P styling//
@@ -93,4 +97,8 @@ export const P = styled.p`
   color: white;
   margin: 0 50% 0 15%;
   padding-bottom: 25px;
+
+  @media (max-width: 700px) {
+    margin: 0 15% 0 15%;
+  }
 `;

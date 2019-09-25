@@ -55,7 +55,7 @@
   color: black;
   padding-top: 10px;
   margin: 2.5% auto 0 auto;
-  width: 20%;
+  width: 50%;
 }
 
 .ui.button.LoginSubmitButton:hover {
@@ -91,7 +91,7 @@ textarea.FeedbackInput {
   max-height: 300px !important;
 }
 
-/* Search Field Name Input PostFeedback Component Styling */
+/* Search Field Name Input - PostFeedback Component Styling */
 
 .ui.fluid.dropdown.DropDownNameInput {
   background-color: #32323f !important;
@@ -178,7 +178,7 @@ textarea.FeedbackInput {
 }
 
 .ui.form .field {
-  width: 45%;
+  width: 75%;
 }
 
 /* NavBar Input Styling */
@@ -269,4 +269,55 @@ form .navbarContainer {
 .ui.button.logoutButton:hover {
   color: white !important;
   border: 1px solid white !important;
+}
+
+
+/* At 800px and below do the following for PostFeedback: */
+
+@media screen and (max-width: 800px){
+  /* Search Field Name Input - PostFeedback Component Styling */
+  .ui.fluid.dropdown.DropDownNameInput {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  /* Search Field Name Input - PostFeedback Component Styling */
+  .ui.input #DateInput {
+    width: 100% !important;
+    text-align: left;
+  }
+
+  .ui.input > input {
+    margin: 0% !important;
+    width: 100%  !important;
+  }
+
+  /* Send Feedback Button Styling */
+  .ui.button.FeedbackButton {
+    margin: 5% 10% 5% 10%;
+    width: 80%;
+  }
+}
+
+
+/* At 700px and below do the following for Login and Register: */
+
+@media screen and (max-width: 700px){
+  /* Login Fields Styling */
+  .ui.form .field {
+    width: 100%;
+  }
+
+  /* Login Button Styling */
+  .ui.button.LoginSubmitButton {
+    width: 80%;
+  }
+
+  /* Register Button Styling */
+  .ui.button.RegisterSignupButton {
+    margin: 0%;
+    margin-top: 25px;
+    width: 100%;
+  }
+
 }
