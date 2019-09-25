@@ -32,14 +32,28 @@
   }
 }
 
+/* Login Input Email and Password Styling */
+
+input[type="email"]#LoginFormEmail,
+input[type="password"]#LoginFormPassword {
+  width: 100%;
+  margin: 0.2rem;
+  background-color: #4d505f !important;
+  color: white !important;
+}
+
 /* Register Register Button Styling */
 
 .ui.button.RegisterSignupButton {
+  /* display: flex; */
+  margin: 0% 48% 0 20%;;
+  text-align: center;
+  margin-top: 25px;
+  max-width: 250px;
+
   background-color: #51e3c2;
   color: black;
   padding-top: 10px;
-  margin: 2.5% 0 0 25%;
-  width: 20%;
 }
 
 .ui.button.RegisterSignupButton:hover {
@@ -56,6 +70,7 @@
   padding-top: 10px;
   margin: 2.5% auto 0 auto;
   width: 50%;
+  max-width: 150px;
 }
 
 .ui.button.LoginSubmitButton:hover {
@@ -178,16 +193,31 @@ textarea.FeedbackInput {
 }
 
 .ui.form .field {
-  width: 75%;
+  text-align: left;
+  display: block;
+  width: 70%;
 }
 
-/* NavBar Input Styling */
+/* Login and Register Input Fields Styling */
 
 input[type="email"],
 input[type="password"],
-input[type="search"],
 input[type="text"] {
-  width: 25%;
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+  min-width: 170px;
+  background-color: #4d505f !important;
+  color: white !important;
+}
+
+/* NavBar Input Email and Password Styling */
+
+input[type="email"].NavBarEmail,
+input[type="password"].NavBarPassword {
+  width: 45%;
+  max-width: 200px;
+  margin: 0.2rem;
   background-color: #4d505f !important;
   color: white !important;
 }
@@ -195,6 +225,8 @@ input[type="text"] {
 form .navbarContainer {
   width: 100% !important;
 }
+
+
 
 /* NavBar Buttons Styling */
 
@@ -218,25 +250,32 @@ form .navbarContainer {
   transition: color 0.1s ease-in-out !important;
 }
 
+/* NavBar Sign In Button Styling */
+
 .ui.button.signinButton {
   color: #51e3c2 !important;
   background-color: #393945 !important;
   border: 1px solid #51e3c2 !important;
   font-weight: bold !important;
-  padding: 0.7rem 0.7rem !important;
+  padding: 0.7rem !important;
   font-size: 0.9rem !important;
+  margin: 0.2rem;
   margin-left: 0.5rem !important;
 }
+
+/* NavBar Register Button Styling */
 
 .ui.button.registerButton {
   color: #51e3c2 !important;
   background-color: #393945 !important;
   border: 1px solid #51e3c2 !important;
   font-weight: bold !important;
-  padding: 0.6rem 0.6rem !important;
+  padding: 0.7rem !important;
   font-size: 0.9rem !important;
+  margin: 0.2rem;
   margin-left: 0.5rem !important;
-  margin-right: 2.5rem !important;
+  margin-right: 0.5rem !important;
+
 }
 
 .ui.button.logoutButton {
@@ -271,6 +310,72 @@ form .navbarContainer {
   border: 1px solid white !important;
 }
 
+/* At 700px and below do the following for Login and Register: */
+
+@media screen and (max-width: 700px){
+  /* Login Fields Styling */
+  .ui.form .field {
+    width: 100%;
+  }
+
+  /* Login Input Email and Password Styling */
+  input[type="email"]#RegisterFormEmail,
+  input[type="password"]#RegisterFormLastName {
+  width: 100%;
+}
+
+  /* Login Button Styling */
+  .ui.button.LoginSubmitButton {
+    width: 100%;
+  }
+
+  /* NavBar Input Email and Password Styling */
+
+  input[type="email"]#NavBarEmail,
+  input[type="password"]#NavBarPassword {
+    width: 100%;
+    margin: 0px;
+  }
+
+
+    /* Register Input First and Last Name Styling */
+    input[type="text"]#RegisterFormFirstName,
+    input[type="text"]#RegisterFormLastName {
+    width: 100% !important;
+  }
+
+  /* Register Sign Up Button Styling */
+  .ui.button.RegisterSignupButton {
+    margin: 0% auto;
+    text-align: center;
+    margin-top: 25px;
+    width: 100%;
+    max-width: 250px;
+  }
+
+  /* NavBar Register Button Styling */
+  .ui.button.registerButton {
+    margin-right: 0.1rem !important;
+  }
+  
+  /* NavBar Sign In Button Styling */
+
+.ui.button.signinButton {
+  margin-left: 0rem !important;
+}
+
+/* NavBar Input Email and Password Styling */
+
+input[type="email"].NavBarEmail,
+input[type="password"].NavBarPassword {
+  width: 100%;
+  min-width: 0px;
+  padding: 0.5rem;
+  margin: 0.2rem;
+  background-color: #4d505f !important;
+  color: white !important;
+  }
+}
 
 /* At 800px and below do the following for PostFeedback: */
 
@@ -287,6 +392,10 @@ form .navbarContainer {
     text-align: left;
   }
 
+  #DateInput {
+    width: 100%;
+  }
+
   .ui.input > input {
     margin: 0% !important;
     width: 100%  !important;
@@ -299,25 +408,22 @@ form .navbarContainer {
   }
 }
 
+/* At min-width 900px (bigger resolution) do the following: */
 
-/* At 700px and below do the following for Login and Register: */
-
-@media screen and (max-width: 700px){
-  /* Login Fields Styling */
-  .ui.form .field {
-    width: 100%;
-  }
-
-  /* Login Button Styling */
-  .ui.button.LoginSubmitButton {
-    width: 80%;
-  }
-
-  /* Register Button Styling */
+@media screen and (min-width: 900px){
   .ui.button.RegisterSignupButton {
-    margin: 0%;
+    margin: 0% 48% 0 20%;
     margin-top: 25px;
-    width: 100%;
   }
-
+  
 }
+
+/* At min-width 1000px (bigger resolution) do the following: */
+
+@media screen and (min-width: 1000px){
+  .ui.button.RegisterSignupButton {
+    margin: 0% 26% 0 26%;
+    margin-top: 25px;
+  }
+}
+

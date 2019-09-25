@@ -8,6 +8,7 @@ export const PostContainer = styled.div`
   flex-direction: column;
   // justify-content: center;
   background: #32323e;
+  padding: 3%;
   padding-bottom: 200px;
 `;
 

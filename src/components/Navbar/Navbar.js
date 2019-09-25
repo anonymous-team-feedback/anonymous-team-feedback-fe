@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {NavBar, Field, FormGroup} from "./navbar-style.js";
+import {NavBar, Field, FormGroup, NavBarLoginContainer, NavBarButtonsContainer} from "./navbar-style.js";
 import {Button} from "semantic-ui-react";
 import {Link, withRouter} from "react-router-dom";
 import {login} from "../../actions/usersActions";
@@ -47,18 +47,24 @@ class Navbar extends React.Component {
                 </div>
                 {!this.props.isLoggedIn && this.props.location.pathname != "/login" && (
                     <FormGroup className="navbarContainer">
+                        <NavBarLoginContainer>
                         <Field
+                            className="NavBarEmail"
                             name="email"
                             type="email"
                             placeholder="email@email.com"
                             onChange={this.handleChange}
                             value={this.state.email}/>
                         <Field
+                            className="NavBarPassword"
                             name="password"
                             type="password"
                             placeholder="password"
                             onChange={this.handleChange}
                             value={this.state.password}/>
+                        </NavBarLoginContainer>
+
+                        <NavBarButtonsContainer>
                         <Button
                             className="signinButton"
                             type="submit"
@@ -70,6 +76,8 @@ class Navbar extends React.Component {
                         <Button as={Link} className="registerButton" name="register" to="/register">
                             Register
                         </Button>
+                        </NavBarButtonsContainer>
+
                     </FormGroup>
                 )}
                 {this.props.location.pathname == "/" || (this.props.location.pathname == "/login" && (
