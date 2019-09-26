@@ -17,7 +17,9 @@ class Register extends React.Component {
       firstName: "",
       lastName: "",
       email: "",
-      password: ""
+      password: "",
+      jobTitle: "",
+      team: ""
     },
     modalOpen: false
   };
@@ -51,7 +53,9 @@ class Register extends React.Component {
     this.state.newUser.firstName.length > 2 &&
     this.state.newUser.lastName.length > 2 &&
     this.state.newUser.email.length > 5 &&
-    this.state.newUser.password.length > 5;
+    this.state.newUser.password.length > 5 &&
+    this.state.newUser.jobTitle.length > 5 &&
+    this.state.newUser.team.length > 2 ;
 
   render() {
     return (
@@ -79,7 +83,7 @@ class Register extends React.Component {
               />
             </Form.Field>
 
-            <Form.Field>
+            <Form.Field>``
               <Label>Last name</Label>
               <Input
                 type="text"
@@ -88,6 +92,30 @@ class Register extends React.Component {
                 value={this.state.newUser.lastName}
                 onChange={this.handleChange}
                 placeholder="Last Name"
+              />
+            </Form.Field>
+
+            <Form.Field>
+              <Label>Job Title</Label>
+              <Input
+                type="text"
+                name="jobTitle"
+                id="RegisterFormJobTitle"
+                value={this.state.newUser.jobTitle}
+                onChange={this.handleChange}
+                placeholder="Job Title"
+              />
+            </Form.Field>
+
+            <Form.Field>
+              <Label>Team</Label>
+              <Input
+                type="text"
+                name="team"
+                id="RegisterFormTeam"
+                value={this.state.newUser.team}
+                onChange={this.handleChange}
+                placeholder="Team"
               />
             </Form.Field>
 
@@ -114,6 +142,7 @@ class Register extends React.Component {
                 placeholder="Password"
               />
             </Form.Field>
+
             <Modal
               trigger={
                 <Button
