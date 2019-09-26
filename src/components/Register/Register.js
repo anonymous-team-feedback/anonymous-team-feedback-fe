@@ -83,7 +83,7 @@ class Register extends React.Component {
               />
             </Form.Field>
 
-            <Form.Field>``
+            <Form.Field>
               <Label>Last name</Label>
               <Input
                 type="text"
