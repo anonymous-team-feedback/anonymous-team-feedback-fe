@@ -1,19 +1,59 @@
 import styled from "styled-components";
 
-// NavBar styling//
+// Whole NavBar Container styling//
 
 export const NavBar = styled.nav`
   background-color: #393945;
+  width: 100%
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 1.5rem 0.5rem 2rem;
+  padding: 1.0rem 1.5rem 1rem 2rem;
   align-items: center;
 `;
 
-// Form styling//
+// NavBar Form Component Container (contains Input & Buttons) styling//
 
 export const FormGroup = styled.form`
-  width: 70%;
+  // border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+
+  @media (max-width: 760px) {  
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+  }
+`;
+
+// NavBar Login Input Container styling//
+
+export const NavBarLoginContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  // border: 1px solid yellow;
+
+  @media (max-width: 760px) {  
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+    // margin: 1rem;
+  }
+`;
+
+// NavBar Buttons Container styling//
+
+export const NavBarButtonsContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  // border: 1px solid blue;
+
+
+  @media (max-width: 760px) {  
+    width: 100%;
+  }
 `;
 
 export const Title = styled.button`

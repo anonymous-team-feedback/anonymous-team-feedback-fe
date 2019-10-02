@@ -104,7 +104,7 @@ class PostFeedback extends React.Component {
             <NameDateContainer>
               <Dropdown
                 className="DropDownNameInput"
-                placeholder="mycolleague@myorganization.com"
+                placeholder="mycolleague@myorg.com"
                 onSearchChange={this.handleDropdownSearch}
                 onChange={this.handleDropdownChange}
                 fluid
@@ -115,6 +115,7 @@ class PostFeedback extends React.Component {
               />
 
               <DateInput
+                id="DateInput"
                 className="DateInput"
                 name="date"
                 placeholder="Date"

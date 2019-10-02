@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { login } from "../../actions/usersActions";
-import { PageDiv, LoginContainer, Input, Label, H1 } from "./login-style.js";
+import { PageDiv, LoginContainer, LoginInputsContainer, Input, Label, H1 } from "./login-style.js";
 import { Button, Form } from "semantic-ui-react";
 
 class Login extends React.Component {
@@ -40,28 +40,33 @@ class Login extends React.Component {
 
         <Form onSubmit={this.handleSubmit}>
           <LoginContainer>
-            <Form.Field>
-              <Label>Email</Label>
-              <Input
-                type="email"
-                name="email"
-                value={this.state.email}
-                placeholder="email@email.com"
-                onChange={this.handleChange}
-              />
-            </Form.Field>
+            <LoginInputsContainer>
+              <Form.Field>
+                <Label>Email</Label>
+                <Input
+                  id="LoginFormEmail"
+                  type="email"
+                  name="email"
+                  value={this.state.email}
+                  placeholder="email@email.com"
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
 
-            <Form.Field>
-              <Label>Password</Label>
-              <Input
-                type="password"
-                name="password"
-                value={this.state.password}
-                placeholder="password"
-                onChange={this.handleChange}
-              />
-              {this.props.loginError && <p>Incorrect username or password</p>}
-            </Form.Field>
+              <Form.Field>
+                <Label>Password</Label>
+                <Input
+                  id="LoginFormPassword"
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  placeholder="password"
+                  onChange={this.handleChange}
+                />
+                {this.props.loginError && <p>Incorrect username or password</p>}
+              </Form.Field>
+            </LoginInputsContainer>
+
 
             <Button className="LoginSubmitButton" type="submit">
               Submit
