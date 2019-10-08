@@ -10,6 +10,7 @@ import {
 } from "./register-style.js";
 import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 import { register } from "../../actions/usersActions.js";
+import JoinTeamRequest from "../JoinTeamRequest/JoinTeamRequest.js";
 
 class Register extends React.Component {
   state = {
@@ -19,7 +20,8 @@ class Register extends React.Component {
       email: "",
       password: "",
       jobTitle: "",
-      team: ""
+      team: "",
+      slug:""
     },
     modalOpen: false
   };
@@ -54,8 +56,7 @@ class Register extends React.Component {
     this.state.newUser.lastName.length > 2 &&
     this.state.newUser.email.length > 5 &&
     this.state.newUser.password.length > 5 &&
-    this.state.newUser.jobTitle.length > 5 &&
-    this.state.newUser.team.length > 2 ;
+    this.state.newUser.jobTitle.length > 5 ;
 
   render() {
     return (
@@ -104,18 +105,6 @@ class Register extends React.Component {
                 value={this.state.newUser.jobTitle}
                 onChange={this.handleChange}
                 placeholder="Job Title"
-              />
-            </Form.Field>
-
-            <Form.Field>
-              <Label>Team</Label>
-              <Input
-                type="text"
-                name="team"
-                id="RegisterFormTeam"
-                value={this.state.newUser.team}
-                onChange={this.handleChange}
-                placeholder="Team"
               />
             </Form.Field>
 
@@ -176,6 +165,9 @@ class Register extends React.Component {
             </Modal>
           </RegisterContainer>
         </Form>
+
+        <JoinTeamRequest />
+
       </PageDiv>
     );
   }
