@@ -29,6 +29,8 @@ export const H2 = styled.h2`
   text-align: left;
   color: white;
   background: #393945;
+  margin-top:50px !important;
+  padding: 7px;
 `;
 
 // PageDiv Styling//
@@ -50,9 +52,9 @@ export const CreateTeamLandingPage = styled.div`
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  margin: 0 15%;
+  margin: 15%;
   background: #32323e;
-  padding-bottom: 200px;
+  // padding-bottom: 200px;
 `;
 
 
@@ -60,6 +62,7 @@ export const CreateTeamLandingPage = styled.div`
 export const TeamCreationContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   margin: 0 15%;
   background: #32323e;
   padding-bottom: 200px;
@@ -121,13 +124,11 @@ export const Button = styled.button`
 
 // H1 styling//
 export const H1 = styled.h1`
-  text-align: left;
+  text-align: center;
   color: white;
-  margin: 0 50% 0 15%;
-  padding-top: 25px;
-
+  padding-bottom: 25px;
+  
   @media (max-width: 700px) {
-    margin: 0 15% 0 15%;
   }
 `;
 
@@ -135,10 +136,8 @@ export const H1 = styled.h1`
 export const P = styled.p`
   text-align: left;
   color: white;
-  margin: 0 50% 0 15%;
   padding-bottom: 25px;
 
   @media (max-width: 700px) {
-    margin: 0 15% 0 15%;
   }
 `;

@@ -154,10 +154,11 @@ class JoinTeamRequest extends React.Component {
         {/* Landing Component */}
         {this.state.showLanding ? (
           <CreateTeamLandingPage id="landingpage">
-            <h1>
+            <H1>
               It looks like you're not a member of a team. You'll need to either
               join or create a team to use InCog.
-            </h1>
+            </H1>
+
             <Button
               className="Join or Create a TeamButton"
               onClick={this.showLanding}
@@ -178,9 +179,9 @@ class JoinTeamRequest extends React.Component {
             )}
 
             <TeamCreationContainer>
-              <Form.Field>
-                <h2 color="white">Join an existing team</h2>
-                <p>Type the exact name of your team here (case sensitive).</p>
+              <Form.Field id="jointeamfield">
+                <H2 color="white">Join an existing team</H2>
+                <P>Type the exact name of your team here (case sensitive).</P>
                 <Input
                   type="text"
                   name="team"
@@ -200,13 +201,13 @@ class JoinTeamRequest extends React.Component {
                 Next
               </Button>
 
-              <Form.Field>
-                <h2 color="white">Create a new team</h2>
-                <p>
+              <Form.Field id="jointeamfield">
+                <H2 color="white">Create a new team</H2>
+                <P>
                   An InCog team is a group of colleagues who can give, receive,
                   and request anonymous feedback. When you create a team, you'll
                   be added to the team as a administrator.
-                </p>
+                </P>
                 <Input
                   type="text"
                   name="slug"
@@ -261,10 +262,10 @@ class JoinTeamRequest extends React.Component {
 
         {/* Next page after joining existing team or creating a new team */}
 
-        <MainListContainer>
-          <SubListContainer className="ShowDashboard">
-            {/* shows list of team members, if joining an existing team */}
-            {this.state.showDashboardJoined ? (
+        {/* shows list of team members, if joining an existing team */}
+        {this.state.showDashboardJoined ? (
+          <MainListContainer>
+            <SubListContainer>
               <div>
                 <H2>
                   Here's a list of your colleagues who have joined your InCog
@@ -350,10 +351,14 @@ class JoinTeamRequest extends React.Component {
                   </Message>
                 )}
               </div>
-            ) : null}
+            </SubListContainer>
+          </MainListContainer>
+        ) : null}
 
-            {/* shows dashboard option after a new team is created */}
-            {this.state.showDashboardCreated ? (
+        {/* shows dashboard option after a new team is created */}
+        {this.state.showDashboardCreated ? (
+          <MainListContainer>
+            <SubListContainer>
               <Message>
                 <Message.Header>
                   You have successfully created a new team, but will need other
@@ -369,9 +374,9 @@ class JoinTeamRequest extends React.Component {
                   Take me to my dashboard
                 </Button>
               </Message>
-            ) : null}
-          </SubListContainer>
-        </MainListContainer>
+            </SubListContainer>
+          </MainListContainer>
+        ) : null}
       </PageDiv>
     );
   }

@@ -198,6 +198,14 @@ textarea.FeedbackInput {
   width: 70%;
 }
 
+/* Join Team Input Fields Styling */
+
+.ui.form .field#jointeamfield {
+  text-align: left;
+  display: block;
+  width: 100% !important;
+}
+
 /* Login and Register Input Fields Styling */
 
 input[type="email"],
