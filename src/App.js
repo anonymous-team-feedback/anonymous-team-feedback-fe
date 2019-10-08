@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar/Navbar.js";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.js";
 import Dashboard from "./components/Dashboard/Dashboard.js";
 import Register from "./components/Register/Register.js";
+import JoinTeamRequest from "./components/JoinTeamRequest/JoinTeamRequest.js";
 import {Redirect} from 'react-router-dom';
 import "semantic-ui-css/semantic.min.css";
 
@@ -38,6 +39,9 @@ class App extends React.Component {
             </div>
             <div>
               <Route path="/register" component={Register} />
+            </div>
+            <div>
+              <Route path="/jointeam" component={JoinTeamRequest} />
             </div>
             <div>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />

@@ -80,6 +80,16 @@ class JoinTeamRequest extends React.Component {
     });
   };
 
+  handleChangeSlug = e => {
+    e.preventDefault();
+    this.setState({
+      newUser: {
+        ...this.state.newUser.slug,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
+
   // onClick hides landing page and shows create team form
   showLanding = () => {
     const { showLanding } = this.state;

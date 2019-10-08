@@ -10,7 +10,7 @@ import {
 } from "./register-style.js";
 import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 import { register } from "../../actions/usersActions.js";
-import JoinTeamRequest from "../JoinTeamRequest/JoinTeamRequest.js";
+
 
 class Register extends React.Component {
   state = {
@@ -165,9 +165,6 @@ class Register extends React.Component {
             </Modal>
           </RegisterContainer>
         </Form>
-
-        <JoinTeamRequest />
-
       </PageDiv>
     );
   }
