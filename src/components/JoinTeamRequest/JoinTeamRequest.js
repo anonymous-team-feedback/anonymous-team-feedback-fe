@@ -17,20 +17,13 @@ import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 
 import { Menu, Table, Message, Pagination } from "semantic-ui-react";
 
-import { fetchAllTeamMembers } from "../../actions/joinTeamRequestActions";
+import {
+  submitCreateNewTeam,
+  fetchAllTeamMembers
+} from "../../actions/joinTeamRequestActions";
 
 class JoinTeamRequest extends React.Component {
   state = {
-    newUser: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      jobTitle: "",
-      team: "",
-      slug: "",
-      members: ""
-    },
     page: 1,
     itemsPerPage: 10,
     team: "",
@@ -73,10 +66,8 @@ class JoinTeamRequest extends React.Component {
   handleChange = e => {
     e.preventDefault();
     this.setState({
-      newUser: {
-        ...this.state.newUser,
-        [e.target.name]: e.target.value
-      }
+      [e.target.name]: e.target.value
+      // showSuccessMessage: false
     });
   };
 
@@ -127,10 +118,22 @@ class JoinTeamRequest extends React.Component {
     this.props.history.push("/login");
   };
 
-  handleSubmit = e => {
+  // Handle Submit for Joining a Team
+  handleSubmitJoinTeam = e => {
     e.preventDefault();
-    this.props.register(this.state.newUser);
+    this.props.teams(this.state.slug);
     this.handleModalOpen();
+  };
+
+  // Handle Submit for Create a Team Name
+  handleSubmitCreateTeam = e => {
+    // e.preventDefault();
+    let newTeamInfo = {
+      name: this.state.name,
+      slug: this.state.slug
+    };
+    console.log(newTeamInfo);
+    this.props.submitCreateNewTeam(newTeamInfo);
   };
 
   validateForm = () =>
@@ -186,7 +189,7 @@ class JoinTeamRequest extends React.Component {
                   type="text"
                   name="team"
                   id="JoinExistingTeamFormTeam"
-                  value={this.state.newUser.team}
+                  value={this.state.slug}
                   onChange={this.handleChange}
                   placeholder="Existing Team Name"
                 />
@@ -206,32 +209,42 @@ class JoinTeamRequest extends React.Component {
                 <P>
                   An InCog team is a group of colleagues who can give, receive,
                   and request anonymous feedback. When you create a team, you'll
-                  be added to the team as a administrator.
+                  be added to the team as an administrator.
                 </P>
+
+                <P>Please enter a team name below:</P>
+
+                <Input
+                  type="text"
+                  name="name"
+                  id="CreateNewTeamFormName"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                  placeholder="Team Name"
+                />
+              </Form.Field>
+
+              <Form.Field id="jointeamfield">
+                <P>Please enter a team "nick name" (slug) below:</P>
                 <Input
                   type="text"
                   name="slug"
                   id="CreateNewTeamFormSlug"
-                  value={this.state.newUser.slug}
+                  value={this.state.slug}
                   onChange={this.handleChange}
-                  placeholder="New Team Name"
+                  placeholder="Team Nick Name"
                 />
               </Form.Field>
-
-              {/* <Button
-                  className="CreateTeamCancelButton"
-                  type="submit"
-                  onclick={this.handleToLogin}
-                >
-                  Cancel
-                </Button> */}
 
               <Modal
                 trigger={
                   <Button
                     className="CreateTeamNextButton"
                     type="submit"
-                    onClick={this.showDashboardCreated}
+                    onClick={() => {
+                      this.handleSubmitCreateTeam();
+                      this.showDashboardCreated();
+                    }}
                   >
                     Next
                   </Button>
@@ -394,5 +407,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchAllTeamMembers }
+  { submitCreateNewTeam, fetchAllTeamMembers }
 )(JoinTeamRequest);

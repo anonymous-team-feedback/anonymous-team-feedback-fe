@@ -46,8 +46,16 @@ class Register extends React.Component {
   };
 
   handleSubmit = e => {
+    const {firstName, lastName, email, password, jobTitle} = this.state.newUser
+    const user = {
+      firstName,
+      lastName, 
+      email,
+      password, 
+      jobTitle
+    }
     e.preventDefault();
-    this.props.register(this.state.newUser);
+    this.props.register(user);
     this.handleModalOpen();
   };
 
