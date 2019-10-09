@@ -16,10 +16,12 @@ import "semantic-ui-css/semantic.min.css";
 
 class App extends React.Component {
 
-  componentDidMount(){
+  componentWillMount(){
     if(localStorage.getItem('token')){
       this.props.autoLogin()
-      return <Redirect to="/dashboard" />
+      /*placing the auto login in the app component sort of future proofs the auto login
+      functionality. Im sure there is a better way, but this way ensures, atleast, that 
+      potential route will be covered under the auto login*/
     }
   }
 
