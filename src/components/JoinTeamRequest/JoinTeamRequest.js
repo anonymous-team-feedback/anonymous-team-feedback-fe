@@ -18,6 +18,7 @@ import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 import { Menu, Table, Message, Pagination } from "semantic-ui-react";
 
 import {
+  submitJoinExistingTeam,
   submitCreateNewTeam,
   fetchAllTeamMembers
 } from "../../actions/joinTeamRequestActions";
@@ -28,6 +29,7 @@ class JoinTeamRequest extends React.Component {
     itemsPerPage: 10,
     team: "",
     slug: "",
+    existingSlug: "",
     members: [
       {
         firstName: "John",
@@ -71,16 +73,6 @@ class JoinTeamRequest extends React.Component {
     });
   };
 
-  handleChangeSlug = e => {
-    e.preventDefault();
-    this.setState({
-      newUser: {
-        ...this.state.newUser.slug,
-        [e.target.name]: e.target.value
-      }
-    });
-  };
-
   // onClick hides landing page and shows create team form
   showLanding = () => {
     const { showLanding } = this.state;
@@ -120,14 +112,15 @@ class JoinTeamRequest extends React.Component {
 
   // Handle Submit for Joining a Team
   handleSubmitJoinTeam = e => {
-    e.preventDefault();
-    this.props.teams(this.state.slug);
-    this.handleModalOpen();
+    let teamSlug = {
+      slug: this.state.existingSlug
+    };
+    console.log(teamSlug);
+    this.props.submitJoinExistingTeam(teamSlug);
   };
 
   // Handle Submit for Create a Team Name
   handleSubmitCreateTeam = e => {
-    // e.preventDefault();
     let newTeamInfo = {
       name: this.state.name,
       slug: this.state.slug
@@ -181,17 +174,21 @@ class JoinTeamRequest extends React.Component {
               </p>
             )}
 
+            {/* Join Existing Team Form */}
             <TeamCreationContainer>
               <Form.Field id="jointeamfield">
                 <H2 color="white">Join an existing team</H2>
-                <P>Type the exact name of your team here (case sensitive).</P>
+                <P>
+                  Type the exact name of your team nick name here (should be all
+                  lower case with no spaces).
+                </P>
                 <Input
                   type="text"
-                  name="team"
-                  id="JoinExistingTeamFormTeam"
-                  value={this.state.slug}
+                  name="existingSlug"
+                  id="JoinExistingTeamFormSlug"
+                  value={this.state.existingSlug}
                   onChange={this.handleChange}
-                  placeholder="Existing Team Name"
+                  placeholder="Existing Team Nick Name"
                 />
               </Form.Field>
 
@@ -199,11 +196,15 @@ class JoinTeamRequest extends React.Component {
                 className="ExistingTeamNextButton"
                 type="submit"
                 //   disabled={!this.validateForm()}
-                onClick={this.showDashboardJoined}
+                onClick={() => {
+                  this.handleSubmitJoinTeam();
+                  this.showDashboardJoined();
+                }}
               >
                 Next
               </Button>
 
+              {/* Create New Team Form  */}
               <Form.Field id="jointeamfield">
                 <H2 color="white">Create a new team</H2>
                 <P>
@@ -401,11 +402,12 @@ const mapStateToProps = state => {
     createTeamNameError: state.createTeamNameError,
     team: state.team,
     members: state.members,
-    slug: state.slug
+    slug: state.slug,
+    existingSlug: state.existingSlug,
   };
 };
 
 export default connect(
   mapStateToProps,
-  { submitCreateNewTeam, fetchAllTeamMembers }
+  { submitJoinExistingTeam, submitCreateNewTeam, fetchAllTeamMembers }
 )(JoinTeamRequest);

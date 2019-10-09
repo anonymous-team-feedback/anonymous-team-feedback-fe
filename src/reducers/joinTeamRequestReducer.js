@@ -1,7 +1,12 @@
 import {
+  SUBMIT_JOIN_EXISTING_TEAM_START,
+  SUBMIT_JOIN_EXISTING_TEAM_SUCCESS,
+  SUBMIT_JOIN_EXISTING_TEAM_FAILURE,
+
   SUBMIT_CREATE_NEW_TEAM_START,
   SUBMIT_CREATE_NEW_TEAM_SUCCESS,
   SUBMIT_CREATE_NEW_TEAM_FAILURE,
+
   FETCH_ALL_MEMBERS_START,
   FETCH_ALL_MEMBERS_SUCCESS,
   FETCH_ALL_MEMBERS_FAILURE
@@ -12,14 +17,41 @@ const initialState = {
   name: "",
   slug: "",
   members: [],
+  existingSlug: "",
+
+  isJoiningExistingTeam: false,
+  joiningExistingTeamError: null,
+
   isSubmittingNewTeam: false,
   submitNewTeamError: null,
+
   fetchAllMembersLoading: false,
   fetchAllMembersError: null
 };
 
 export const joinTeamRequestReducer = (state = initialState, action) => {
   switch (action.type) {
+
+    case SUBMIT_JOIN_EXISTING_TEAM_START: {
+        return {
+          ...state,
+          isJoiningExistingTeam: true
+        };
+      }
+      case SUBMIT_JOIN_EXISTING_TEAM_SUCCESS: {
+        return {
+          ...state,
+          isJoiningExistingTeam: false
+        };
+      }
+      case SUBMIT_JOIN_EXISTING_TEAM_FAILURE: {
+        return {
+          ...state,
+          isJoiningExistingTeam: false,
+          joiningExistingTeamError: action.payload
+        };
+      }
+
     case SUBMIT_CREATE_NEW_TEAM_START: {
       return {
         ...state,
