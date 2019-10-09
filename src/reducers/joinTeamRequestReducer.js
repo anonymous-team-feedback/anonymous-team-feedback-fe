@@ -75,10 +75,6 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
     case FETCH_ALL_MEMBERS_START:
       return {
         ...state,
-        team: [],
-        name: "",
-        slug: "",
-        members: [],
         loading: true,
         error: ""
       };
@@ -92,10 +88,6 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
     case FETCH_ALL_MEMBERS_FAILURE:
       return {
         ...state,
-        team: [],
-        name: "",
-        slug: "",
-        members: [],
         loading: false,
         error: action.payload
       };
