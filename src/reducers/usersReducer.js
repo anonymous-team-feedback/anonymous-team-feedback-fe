@@ -3,6 +3,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   AUTO_LOGIN,
+  AUTO_LOGIN_FAIL,
+  AUTO_LOGIN_SUCCESS,
   REGISTER_START,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
@@ -24,6 +26,7 @@ const initialState = {
   },
   searchedEmails: [],
   transformedSearchedEmails: [],
+  loggingIn: false,
   isLoggedIn: false,
   loginError: null,
   isRegistering: false,
@@ -135,7 +138,29 @@ export const usersReducer = (state = initialState, action) => {
     case AUTO_LOGIN: {
       return {
         ...state,
-        isLoggedIn: true
+        loggingIn: true,
+        loginError: false
+      }
+    }
+    case AUTO_LOGIN_SUCCESS: {
+      return {
+        ...state, 
+        loggingIn: false,
+        isLoggedIn: true,
+        user: {
+          ...state.user,
+          email: action.payload.email,
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName,
+          user_id: action.payload._id
+        }
+      }
+    }
+    case AUTO_LOGIN_FAIL: {
+      return {
+        ...state,
+        loggingIn: false,
+        loginError: action.payload
       }
     }
 
