@@ -13,11 +13,9 @@ import {
 } from "../actions/joinTeamRequestActions";
 
 const initialState = {
-  team: [],
   name: "",
   slug: "",
   members: [],
-  existingSlug: "",
 
   isJoiningExistingTeam: false,
   joiningExistingTeamError: null,
@@ -75,27 +73,19 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
     case FETCH_ALL_MEMBERS_START:
       return {
         ...state,
-        team: [],
-        name: "",
-        slug: "",
-        members: [],
         loading: true,
         error: ""
       };
     case FETCH_ALL_MEMBERS_SUCCESS:
       return {
         ...state,
-        teams: action.payload,
+        members: action.payload,
         loading: false,
         error: ""
       };
     case FETCH_ALL_MEMBERS_FAILURE:
       return {
         ...state,
-        team: [],
-        name: "",
-        slug: "",
-        members: [],
         loading: false,
         error: action.payload
       };
