@@ -2,6 +2,37 @@ import styled from "styled-components";
 
 //--- Styled Components ---//
 
+export const MainListContainer = styled.div`
+  width: 100%;
+  flex-direction: column;
+  background-color: #32323e;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  background: #32323e;
+  padding: 3%;
+  border: none;
+`;
+
+export const SubListContainer = styled.div`
+  width: 80%;
+  flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #393945;
+  margin: 0 auto;
+  background: #393945;
+  padding: 3%;
+`;
+
+export const H2 = styled.h2`
+  text-align: left;
+  color: white;
+  background: #393945;
+  margin-top:50px !important;
+  padding: 7px;
+`;
+
 // PageDiv Styling//
 export const PageDiv = styled.div`
   background: #32323e;
@@ -15,10 +46,23 @@ export const FormGroup = styled.form`
   margin: 1em auto;
 `;
 
-// RegisterContainer Styling//
-export const RegisterContainer = styled.div`
+// Create Team Landing Page Styling//
+export const CreateTeamLandingPage = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin: 15%;
+  background: #32323e;
+  // padding-bottom: 200px;
+`;
+
+
+// RegisterContainer Styling//
+export const TeamCreationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   margin: 0 15%;
   background: #32323e;
   padding-bottom: 200px;
@@ -80,13 +124,11 @@ export const Button = styled.button`
 
 // H1 styling//
 export const H1 = styled.h1`
-  text-align: left;
+  text-align: center;
   color: white;
-  margin: 0 50% 0 15%;
-  padding-top: 25px;
-
+  padding-bottom: 25px;
+  
   @media (max-width: 700px) {
-    margin: 0 15% 0 15%;
   }
 `;
 
@@ -94,10 +136,8 @@ export const H1 = styled.h1`
 export const P = styled.p`
   text-align: left;
   color: white;
-  margin: 0 50% 0 15%;
   padding-bottom: 25px;
 
   @media (max-width: 700px) {
-    margin: 0 15% 0 15%;
   }
 `;
