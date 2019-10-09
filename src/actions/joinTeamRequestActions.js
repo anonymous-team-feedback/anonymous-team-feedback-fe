@@ -65,10 +65,14 @@ export const fetchAllTeamMembers = () => async dispatch => {
   return axios
     .get(`${host}teams/:slug`, { headers: { ["x-auth-token"]: authInfo.token } })
     .then(res => {
-      dispatch({
-        type: FETCH_ALL_MEMBERS_SUCCESS,
-        payload: res.data
-      });
+      if (res.status === 400){
+        dispatch({type: FETCH_ALL_MEMBERS_FAILURE, payload: ({message: 'No team found with that slug'})})
+      } else{
+        dispatch({
+          type: FETCH_ALL_MEMBERS_SUCCESS,
+          payload: res.data
+        });
+      }
     })
     .catch(err => {
       if (err.response.status === 401) {
