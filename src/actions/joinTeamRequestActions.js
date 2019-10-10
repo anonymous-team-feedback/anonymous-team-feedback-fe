@@ -12,11 +12,9 @@ export const SUBMIT_JOIN_EXISTING_TEAM_FAILURE = "SUBMIT_JOIN_EXISTING_TEAM_FAIL
 export const submitJoinExistingTeam = teamSlug => async dispatch => {
   const authInfo = await getAuthInfo();
   dispatch({ type: SUBMIT_JOIN_EXISTING_TEAM_START });
-  const { slug } = teamSlug;
-  const newTeamSlug = { slug };
 
   return axios
-    .post(`${host}joinTeam`, newTeamSlug, {
+    .post(`${host}joinTeam`, teamSlug, {
       headers: { ["x-auth-token"]: authInfo.token }
     })
     .then(res => {
