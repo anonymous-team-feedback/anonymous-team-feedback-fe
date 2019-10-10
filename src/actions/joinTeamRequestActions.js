@@ -59,16 +59,20 @@ export const FETCH_ALL_MEMBERS_START = "FETCH_ALL_MEMBERS_START";
 export const FETCH_ALL_MEMBERS_SUCCESS = "FETCH_ALL_MEMBERS_SUCCESS";
 export const FETCH_ALL_MEMBERS_FAILURE = "FETCH_ALL_MEMBERS_FAILURE";
 
-export const fetchAllTeamMembers = () => async dispatch => {
+export const fetchAllTeamMembers = (slug) => async dispatch => {
   const authInfo = await getAuthInfo();
   dispatch({ type: FETCH_ALL_MEMBERS_START });
   return axios
-    .get(`${host}teams/:slug`, { headers: { ["x-auth-token"]: authInfo.token } })
+    .get(`${host}teams/${slug}`, { headers: { ["x-auth-token"]: authInfo.token } })
     .then(res => {
-      dispatch({
-        type: FETCH_ALL_MEMBERS_SUCCESS,
-        payload: res.data
-      });
+      if (res.status === 400){
+        dispatch({type: FETCH_ALL_MEMBERS_FAILURE, payload: ({message: 'No team found with that slug'})})
+      } else{
+        dispatch({
+          type: FETCH_ALL_MEMBERS_SUCCESS,
+          payload: res.data
+        });
+      }
     })
     .catch(err => {
       if (err.response.status === 401) {
@@ -77,4 +81,18 @@ export const fetchAllTeamMembers = () => async dispatch => {
       dispatch({ type: FETCH_ALL_MEMBERS_FAILURE, payload: err });
     });
 };
+
+export const GET_TEAM_DATA_START = 'GET_TEAM_DATA_START';
+export const GET_TEAM_DATA_SUCCESS = 'GET_TEAM_DATA_SUCCESS';
+export const GET_TEAM_DATA_FAIL = 'GET_TEAM_DATA_FAIL';
+
+export const getTeamData = id => async dispatch => {
+  const authInfo = await getAuthInfo()
+  dispatch({type: GET_TEAM_DATA_START})
+  return axios
+  .get(`${host}teams/u/${id}`, { headers: { "x-auth-token":authInfo.token }})
+  .then(res => {
+    dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data})})
+  .catch(err => dispatch({type: GET_TEAM_DATA_FAIL, payload: {error: err}}))
+}
 

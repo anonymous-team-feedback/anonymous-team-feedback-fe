@@ -4,24 +4,33 @@ import { withRouter } from "react-router-dom";
 
 import ListFeedback from "../ListFeedback/ListFeedback.js";
 import PostFeedback from "../PostFeedback/PostFeedback.js";
+import { Header } from "semantic-ui-react";
+
+import {fetchAllTeamMembers} from '../../actions/joinTeamRequestActions'
 
 
-const Dashboard = props => {
-  return (
-    <div className="Dashboard">
-      <ListFeedback />
-      <PostFeedback />
-    </div>
-  );
+class Dashboard extends React.Component {
+
+  render() {
+    return (
+      <div className="Dashboard">
+        <ListFeedback />
+        <PostFeedback />
+      </div>
+
+    );
+  }
 };
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    slug: state.joinTeamRequestReducer.slug
+  };
 };
 
 export default withRouter(
   connect(
     mapStateToProps,
-    {}
+    { fetchAllTeamMembers }
   )(Dashboard)
 );

@@ -31,7 +31,6 @@ class Login extends React.Component {
 
   render() {
     if (this.props.isLoggedIn) {
-      console.log("pushing to dashboard bc " + this.props.isLoggedIn);
       this.props.history.push("/dashboard");
     }
     return (
