@@ -43,10 +43,10 @@ class Register extends React.Component {
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = e => { // Submit state.newUser to the register action
     e.preventDefault();
-    const {user} = this.state.newUser
-    this.props.register(user);
+    const {newUser} = this.state
+    this.props.register(newUser);
     this.handleModalOpen();
   };
 
@@ -55,7 +55,7 @@ class Register extends React.Component {
     this.state.newUser.lastName.length > 2 &&
     this.state.newUser.email.length > 5 &&
     this.state.newUser.password.length > 5 &&
-    this.state.newUser.jobTitle.length > 5 ;
+    this.state.newUser.jobTitle.length > 1 ;
 
   render() {
     return (
