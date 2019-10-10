@@ -2,8 +2,8 @@ import axios from "axios";
 import { saveAuthInfo, removeAuthInfo, getAuthInfo } from "../util/login.js";
 import {getTeamData} from './joinTeamRequestActions'
 
-const host = "https://anonymous-team-feedback.herokuapp.com/api/";
-// const host = "http://localhost:5050/api/";
+// const host = "https://anonymous-team-feedback.herokuapp.com/api/";
+const host = "http://localhost:5050/api/";
 
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
