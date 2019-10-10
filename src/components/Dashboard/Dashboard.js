@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 
 import ListFeedback from "../ListFeedback/ListFeedback.js";
 import PostFeedback from "../PostFeedback/PostFeedback.js";
-import { Header } from "semantic-ui-react";
 
 import {fetchAllTeamMembers} from '../../actions/joinTeamRequestActions'
 

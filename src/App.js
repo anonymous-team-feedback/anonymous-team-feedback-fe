@@ -11,12 +11,11 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute.js";
 import Dashboard from "./components/Dashboard/Dashboard.js";
 import Register from "./components/Register/Register.js";
 import JoinTeamRequest from "./components/JoinTeamRequest/JoinTeamRequest.js";
-import {Redirect} from 'react-router-dom';
 import "semantic-ui-css/semantic.min.css";
 
 class App extends React.Component {
 
-  componentWillMount(){
+  componentDidMount(){
     if(localStorage.getItem('token')){
       this.props.autoLogin()
       /*placing the auto login in the app component sort of future proofs the auto login
