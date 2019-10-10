@@ -19,9 +19,7 @@ class Register extends React.Component {
       lastName: "",
       email: "",
       password: "",
-      jobTitle: "",
-      team: "",
-      slug:""
+      jobTitle: ""
     },
     modalOpen: false
   };
@@ -46,15 +44,8 @@ class Register extends React.Component {
   };
 
   handleSubmit = e => {
-    const {firstName, lastName, email, password, jobTitle} = this.state.newUser
-    const user = {
-      firstName,
-      lastName, 
-      email,
-      password, 
-      jobTitle
-    }
     e.preventDefault();
+    const {user} = this.state.newUser
     this.props.register(user);
     this.handleModalOpen();
   };
