@@ -15,6 +15,7 @@ import {
   SEARCH_EMAIL_FAILURE,
   TRANSFORM_EMAILS_FOR_DROPDOWN
 } from "../actions/usersActions";
+import { statement } from "@babel/template";
 
 const initialState = {
   user: {
@@ -22,7 +23,9 @@ const initialState = {
     firstName: "",
     lastName: "",
     email: "",
-    user_id: ""
+    user_id: "",
+    jobTitle: "",
+    approved: false
   },
   searchedEmails: [],
   transformedSearchedEmails: [],
@@ -41,13 +44,6 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         loginStart: true,
-        user: {
-          token: "",
-          firstName: "",
-          lastName: "",
-          email: "",
-          user_id: ""
-        },
         isLoggedIn: false,
         loginError: false
       };
@@ -55,7 +51,15 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         loginStart: false,
-        user: action.payload,
+        user: {
+          ...state.user,
+          email: action.payload.email,
+          firstName: action.payload.firstName,
+          jobTitle: action.payload.jobTitle,
+          lastName: action.payload.lastName,
+          user_id: action.payload._id,
+          approved: action.payload.approved
+        },
         isLoggedIn: true,
         loginError: false
       };
@@ -63,13 +67,6 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         loginStart: false,
-        user: {
-          token: "",
-          firstName: "",
-          lastName: "",
-          email: "",
-          user_id: ""
-        },
         isLoggedIn: false,
         loginError: action.payload
       };
@@ -149,10 +146,12 @@ export const usersReducer = (state = initialState, action) => {
         isLoggedIn: true,
         user: {
           ...state.user,
-          email: action.payload.email,
-          firstName: action.payload.firstName,
-          lastName: action.payload.lastName,
-          user_id: action.payload._id
+          email: action.payload.user.email,
+          firstName: action.payload.user.firstName,
+          jobTitle: action.payload.user.jobTitle,
+          lastName: action.payload.user.lastName,
+          user_id: action.payload.user._id,
+          approved: action.payload.approved
         }
       }
     }
