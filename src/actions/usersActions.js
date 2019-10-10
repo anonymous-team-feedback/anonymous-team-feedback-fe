@@ -88,7 +88,18 @@ export const searchEmails = email => async dispatch => {
 };
 
 export const AUTO_LOGIN= "AUTO_LOGIN";
+export const AUTO_LOGIN_SUCCESS= "AUTO_LOGIN_SUCCESS";
+export const AUTO_LOGIN_FAIL= "AUTO_LOGIN_FAIL";
 
-export const autoLogin = () => dispatch => {
+export const autoLogin = () => async dispatch => {
+  const authInfo = await getAuthInfo();
   dispatch({type: AUTO_LOGIN});
+
+  return axios
+  .get(`${host}user/${localStorage.getItem('_id')}`, 
+  {headers: {
+    "x-auth-token": authInfo.token
+  }})
+  .then(res => dispatch({type: AUTO_LOGIN_SUCCESS, payload: res.data}))
+  .catch(err => dispatch({type: AUTO_LOGIN_FAIL, payload: err.message}))
 }
