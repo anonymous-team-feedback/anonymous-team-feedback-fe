@@ -17,7 +17,7 @@ export const submitJoinExistingTeam = teamSlug => async dispatch => {
 
   return axios
     .post(`${host}joinTeam`, newTeamSlug, {
-      headers: { ["x-auth-token"]: authInfo.token }
+      headers: { "x-auth-token": authInfo.token }
     })
     .then(res => {
       dispatch({ type: SUBMIT_JOIN_EXISTING_TEAM_SUCCESS, payload: res.data });
@@ -42,7 +42,7 @@ export const submitCreateNewTeam = newTeamInfo => async dispatch => {
 
   return axios
     .post(`${host}teams`, newNewTeamInfo, {
-      headers: { ["x-auth-token"]: authInfo.token }
+      headers: { "x-auth-token": authInfo.token }
     })
     .then(res => {
       dispatch({ type: SUBMIT_CREATE_NEW_TEAM_SUCCESS, payload: res.data });
@@ -63,7 +63,7 @@ export const fetchAllTeamMembers = (slug) => async dispatch => {
   const authInfo = await getAuthInfo();
   dispatch({ type: FETCH_ALL_MEMBERS_START });
   return axios
-    .get(`${host}teams/${slug}`, { headers: { ["x-auth-token"]: authInfo.token } })
+    .get(`${host}teams/${slug}`, { headers: { "x-auth-token": authInfo.token } })
     .then(res => {
       if (res.status === 400){
         dispatch({type: FETCH_ALL_MEMBERS_FAILURE, payload: ({message: 'No team found with that slug'})})
