@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {NavBar, Field, FormGroup, NavBarLoginContainer, NavBarButtonsContainer} from "./navbar-style.js";
-import {Button} from "semantic-ui-react";
+import {Button, Header} from "semantic-ui-react";
 import {Link, withRouter} from "react-router-dom";
 import {login} from "../../actions/usersActions";
 import {removeAuthInfo} from "../../util/login.js";
@@ -43,55 +43,60 @@ class Navbar extends React.Component {
                     <Button as={Link} className="incogButton" name="home" to="/">
                         InCog
                     </Button>
+                    <Header as='span' size='medium' style={{color: '#51e3c2'}}>{this.props.teamName}</Header>
                 </div>
+
+                {/* if not logged in and at register, display login form */}
                 {!this.props.isLoggedIn && this.props.location.pathname === "/register" && (
                     <FormGroup className="navbarContainer">
                         <NavBarLoginContainer>
-                        <Field
-                            className="NavBarEmail"
-                            name="email"
-                            type="email"
-                            placeholder="email@email.com"
-                            onChange={this.handleChange}
-                            value={this.state.email}/>
-                        <Field
-                            className="NavBarPassword"
-                            name="password"
-                            type="password"
-                            placeholder="password"
-                            onChange={this.handleChange}
-                            value={this.state.password}/>
+                            <Field
+                                className="NavBarEmail"
+                                name="email"
+                                type="email"
+                                placeholder="email@email.com"
+                                onChange={this.handleChange}
+                                value={this.state.email}/>
+                            <Field
+                                className="NavBarPassword"
+                                name="password"
+                                type="password"
+                                placeholder="password"
+                                onChange={this.handleChange}
+                                value={this.state.password}/>
                         </NavBarLoginContainer>
 
                         <NavBarButtonsContainer>
-                        <Button
-                            className="signinButton"
-                            type="submit"
-                            onClick={this.handleSubmit}
-                            disabled={!this.validateForm()}>
-                            Sign in
+                            <Button
+                                className="signinButton"
+                                type="submit"
+                                onClick={this.handleSubmit}
+                                disabled={!this.validateForm()}>
+                                Sign in
                         </Button>
 
-                        <Button as={Link} className="registerButton" name="register" to="/register">
-                            Register
+                            <Button as={Link} className="registerButton" name="register" to="/register">
+                                Register
                         </Button>
                         </NavBarButtonsContainer>
 
                     </FormGroup>
                 )}
-                {(this.props.location.pathname === "/login") && 
-                !this.props.isLoggedIn && (
-                    <Button as={Link} className="registerButton" name="register" to="/register">
-                        Register
-                    </Button>
-                )}
 
+                {/* if not logged in and at login, display register button */}
+                {(this.props.location.pathname === "/login") &&
+                    !this.props.isLoggedIn && (
+                        <Button as={Link} className="registerButton" name="register" to="/register">
+                            Register
+                    </Button>
+                    )}
+
+                {/* Display name and team in navbar if logged in */}
                 {this.props.isLoggedIn && (
                     <div>
-                      {/* need to update route with user page */}
-
+                        {/* need to update route with user page */}
                         <Button as={Link} className="usernameButton" name="home" to="/">
-                         Hi, {this.props.username}
+                            {this.props.username}
                         </Button>
 
                         <Button onClick={this.handleLogout} className="logoutButton">
@@ -104,8 +109,15 @@ class Navbar extends React.Component {
     }
 }
 
-const mapStateToProps = ({usersReducer: state}) => {
-    return {isLoggedIn: state.isLoggedIn, loginError: state.loginError, loginLoading: state.loginLoading, username: state.user.firstName};
+const mapStateToProps = (state) => {
+    const {usersReducer, joinTeamRequestReducer} = state
+    return {
+        isLoggedIn: usersReducer.isLoggedIn,
+        loginError: usersReducer.loginError,
+        loginLoading: usersReducer.loginLoading,
+        username: usersReducer.user.firstName,
+        teamName: joinTeamRequestReducer.name
+    };
 };
 
 export default connect(mapStateToProps, {login})(withRouter(Navbar));
