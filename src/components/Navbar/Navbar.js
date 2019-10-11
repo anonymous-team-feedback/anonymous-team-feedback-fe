@@ -36,8 +36,6 @@ class Navbar extends React.Component {
     };
 
     render() {
-        console.log(this.props.location.pathname);
-        console.log(this.props.username);
         return (
             <NavBar className="Navbar">
                 <div>
@@ -45,7 +43,7 @@ class Navbar extends React.Component {
                         InCog
                     </Button>
                 </div>
-                {!this.props.isLoggedIn && this.props.location.pathname != "/login" && (
+                {!this.props.isLoggedIn && this.props.location.pathname !== "/login" && (
                     <FormGroup className="navbarContainer">
                         <NavBarLoginContainer>
                         <Field
@@ -80,7 +78,7 @@ class Navbar extends React.Component {
 
                     </FormGroup>
                 )}
-                {this.props.location.pathname == "/" || (this.props.location.pathname == "/login" && (
+                {this.props.location.pathname === "/" || (this.props.location.pathname === "/login" && (
                     <Button as={Link} className="registerButton" name="register" to="/register">
                         Register
                     </Button>
