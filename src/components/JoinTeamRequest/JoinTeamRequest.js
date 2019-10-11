@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import {withRouter} from 'react-router-dom'
 
 import {
   PageDiv,
@@ -122,6 +123,7 @@ class JoinTeamRequest extends React.Component {
     this.state.newUser.jobTitle.length > 5;
 
   render() {
+    if (!this.props.isLoggedIn) this.props.history.push('/login')
     const { itemsPerPage } = this.state;
     const { page } = this.state;
     const totalPages = Math.floor(this.state.members.length / itemsPerPage);
@@ -377,17 +379,19 @@ class JoinTeamRequest extends React.Component {
 }
 
 const mapStateToProps = state => {
+  const {usersReducer, postsReducer, joinTeamRequestReducer} = state
   return {
-    createTeamError: state.createTeamError,
-    createTeamNameError: state.createTeamNameError,
-    team: state.team,
-    members: state.members,
-    slug: state.slug,
-    existingSlug: state.existingSlug,
+    createTeamError: joinTeamRequestReducer.createTeamError,
+    createTeamNameError: joinTeamRequestReducer.createTeamNameError,
+    team: joinTeamRequestReducer.team,
+    members: joinTeamRequestReducer.members,
+    slug: joinTeamRequestReducer.slug,
+    existingSlug: joinTeamRequestReducer.existingSlug,
+    isLoggedIn: usersReducer.isLoggedIn
   };
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   { submitJoinExistingTeam, submitCreateNewTeam, fetchAllTeamMembers }
-)(JoinTeamRequest);
+)(JoinTeamRequest));
