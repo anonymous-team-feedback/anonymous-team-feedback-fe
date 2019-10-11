@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import {withRouter} from 'react-router-dom'
 import {
   PageDiv,
   RegisterContainer,
@@ -58,6 +59,8 @@ class Register extends React.Component {
     this.state.newUser.jobTitle.length > 1 ;
 
   render() {
+    console.log(this.props.isLoggedIn)
+    if(this.props.isLoggedIn) this.props.history.push('/dashboard')
     return (
       <PageDiv className="Register">
         <H1>Sign up for InCog</H1>
@@ -171,11 +174,12 @@ class Register extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    registerError: state.registerError
+    registerError: state.usersReducer.registerError,
+    isLoggedIn: state.usersReducer.isLoggedIn
   };
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   { register }
-)(Register);
+)(Register));
