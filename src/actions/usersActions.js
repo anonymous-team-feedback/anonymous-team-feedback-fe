@@ -1,6 +1,9 @@
 import axios from "axios";
 import { saveAuthInfo, removeAuthInfo, getAuthInfo } from "../util/login.js";
 import {getTeamData} from './joinTeamRequestActions'
+import {
+  GET_TEAM_DATA_SUCCESS
+} from '../actions/joinTeamRequestActions'
 
 // const host = "https://anonymous-team-feedback.herokuapp.com/api/";
 const host = "http://localhost:5050/api/";
@@ -12,7 +15,6 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export function login(email, password, history) {
   return dispatch => {
     dispatch({ type: LOGIN_START });
-
     const user = {
       email,
       password
@@ -23,7 +25,7 @@ export function login(email, password, history) {
       .then(res => {
         saveAuthInfo(res.data.token, res.data._id);
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
-        dispatch(getTeamData(res.data._id))
+        if(res.data.approved) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
       })
       .catch(err => {
         dispatch({ type: LOGIN_FAILURE, payload: err });
@@ -104,7 +106,9 @@ export const autoLogin = () => async dispatch => {
   }})
   .then(res => {
     dispatch({type: AUTO_LOGIN_SUCCESS, payload: res.data})
-    dispatch(getTeamData(res.data._id))
+    if(res.data.approved) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
   })
-  .catch(err => dispatch({type: AUTO_LOGIN_FAIL, payload: err.message}))
+  .catch(err => {
+    dispatch({type: AUTO_LOGIN_FAIL, payload: err.message})
+  })
 }

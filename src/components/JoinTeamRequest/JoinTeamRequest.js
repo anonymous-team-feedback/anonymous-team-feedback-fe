@@ -29,20 +29,7 @@ class JoinTeamRequest extends React.Component {
     team: "",
     slug: "",
     existingSlug: "",
-    members: [
-      {
-        firstName: "John",
-        lastName: "Doe",
-        email: "johndoe@email.com",
-        jobTitle: "Front End Developer"
-      },
-      {
-        firstName: "Jane",
-        lastName: "Doe",
-        email: "janedoe@gmail.com",
-        jobTitle: "Back End Developer"
-      }
-    ],
+    members: [],
     modalOpen: false,
     showLanding: true, //toggles show Landing Page
     showCreateTeam: false, //toggles show Create Team Form
@@ -111,11 +98,10 @@ class JoinTeamRequest extends React.Component {
 
   // Handle Submit for Joining a Team
   handleSubmitJoinTeam = e => {
-    let teamSlug = {
+    const newSlug = {
       slug: this.state.existingSlug
-    };
-    console.log(teamSlug);
-    this.props.submitJoinExistingTeam(teamSlug);
+    }
+    this.props.submitJoinExistingTeam(newSlug);
   };
 
   // Handle Submit for Create a Team Name
@@ -165,7 +151,7 @@ class JoinTeamRequest extends React.Component {
 
         {/* Join/ Create Team Form */}
         {this.state.showCreateTeam ? (
-          <Form onSubmit={this.handleSubmit}>
+          <Form >
             {this.props.createTeamNameError && (
               <p>
                 Please choose another team name. The one you want is already
@@ -194,12 +180,10 @@ class JoinTeamRequest extends React.Component {
               <Button
                 className="ExistingTeamNextButton"
                 type="submit"
-                //   disabled={!this.validateForm()}
                 onClick={() => {
                   this.handleSubmitJoinTeam();
-                  this.showDashboardJoined();
-                }}
-              >
+                  {/*this.showDashboardJoined()*/}}}
+                  >
                 Next
               </Button>
 
@@ -340,7 +324,6 @@ class JoinTeamRequest extends React.Component {
 
                     <Button
                       className="ToDashboardButton"
-                      type="submit"
                       onClick={this.handleDashboard}
                     >
                       Take me to my dashboard
@@ -356,7 +339,6 @@ class JoinTeamRequest extends React.Component {
                     <p>Go tell them to sign up!</p>
                     <Button
                       className="ToDashboardButton"
-                      type="submit"
                       onClick={this.handleDashboard}
                     >
                       Take me to my dashboard
@@ -381,7 +363,6 @@ class JoinTeamRequest extends React.Component {
 
                 <Button
                   className="ToDashboardButton"
-                  type="submit"
                   onClick={this.handleDashboard}
                 >
                   Take me to my dashboard
