@@ -77,7 +77,7 @@ export const searchEmails = email => async dispatch => {
     .post(
       `${host}posts/users`,
       { email },
-      { headers: { ["x-auth-token"]: authInfo.token } }
+      { headers: { "x-auth-token": authInfo.token } }
     )
     .then(res => {
       dispatch({ type: SEARCH_EMAIL_SUCCESS, payload: res.data });

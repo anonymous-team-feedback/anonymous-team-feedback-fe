@@ -11,7 +11,6 @@ import {
   H2,
   H1,
   P,
-  Label
 } from "./joinTeamRequest-style.js";
 import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 

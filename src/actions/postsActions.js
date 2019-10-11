@@ -12,7 +12,7 @@ export const fetchAllPosts = () => async dispatch => {
   const authInfo = await getAuthInfo();
   dispatch({ type: FETCH_ALL_POSTS_START });
   return axios
-    .get(`${host}posts/`, { headers: { ["x-auth-token"]: authInfo.token } })
+    .get(`${host}posts/`, { headers: { "x-auth-token": authInfo.token } })
     .then(res => {
       dispatch({
         type: FETCH_ALL_POSTS_SUCCESS,
@@ -39,7 +39,7 @@ export const submitFeedback = feedback => async dispatch => {
 
   return axios
     .post(`${host}posts`, newFeedback, {
-      headers: { ["x-auth-token"]: authInfo.token }
+      headers: { "x-auth-token": authInfo.token }
     })
     .then(res => {
       dispatch({ type: SUBMIT_FEEDBACK_SUCCESS, payload: res.data });
