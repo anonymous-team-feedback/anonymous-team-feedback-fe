@@ -105,7 +105,6 @@ export const autoLogin = () => async dispatch => {
     "x-auth-token": authInfo.token
   }})
   .then(res => {
-    console.log('data: ', res.data[0])
     dispatch({type: AUTO_LOGIN_SUCCESS, payload: res.data[0]})
     if(res.data[0].approved) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data[0].team})
   })
