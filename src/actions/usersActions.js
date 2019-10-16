@@ -108,6 +108,7 @@ export const autoLogin = () => async dispatch => {
   .then(res => {
     dispatch({type: AUTO_LOGIN_SUCCESS, payload: res.data})
     if(res.data.team) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
+
   })
   .catch(err => {
     dispatch({type: AUTO_LOGIN_FAIL, payload: err.message})
