@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Header, CardGroup, Card, Image, Button } from 'semantic-ui-react'
+import { Header, CardGroup, Card, Image, Button, Divider } from 'semantic-ui-react'
 import { MainListContainer, SubListContainer } from '../ListFeedback/listFeedback-style'
 import {getPending} from '../../actions/joinTeamRequestActions'
-import User from './user'
+import User from './User'
 
 class Pending extends React.Component {
 
@@ -16,8 +16,8 @@ class Pending extends React.Component {
             <MainListContainer>
                 <SubListContainer>
                     <Header as='h1' inverted>Pending team requests</Header>
-                    <Card.Group centered>
-                        {this.props.pending.map(user => {
+                    <Card.Group centered >
+                        {this.props.pendingUsers && this.props.pendingUsers.map(user => {
                             if(!user.approved){
                                 return (
                                     <User
@@ -31,6 +31,13 @@ class Pending extends React.Component {
                                 )
                             }
                         })}
+
+                        {!this.props.pendingUsers && 
+                        <>
+                        <Divider/>
+                        <Header  inverted as='h1'>There are no pending users</Header>
+                        </>
+                        }
                     </Card.Group>
                 </SubListContainer>
             </MainListContainer>
@@ -41,7 +48,8 @@ class Pending extends React.Component {
 const mapStateToProps = state => {
     return {
         slug: state.joinTeamRequestReducer.slug,
-        pending: state.joinTeamRequestReducer.pending
+        pendingUsers: state.joinTeamRequestReducer.pendingUsers,
+        user: state.usersReducer.user
     }
 }
 
