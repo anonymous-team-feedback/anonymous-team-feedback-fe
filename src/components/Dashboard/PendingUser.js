@@ -1,17 +1,18 @@
 import React from 'react'
 import { Card, Image, Button } from 'semantic-ui-react'
-// import {approvePending} from '../../actions/joinTeamRequestActions'
+import {approvePending} from '../../actions/joinTeamRequestActions'
 import {connect} from 'react-redux'
 class PendingUser extends React.Component {
 
 
     approveUser =(e) => {
         e.preventDefault()
-        // this.props.approvePending(this.props.id, {
-        //     slug: this.props.slug,
-        //     approved: this.props.approved,
-        //     user: this.props
-        // })
+        this.props.approvePending({
+            slug: this.props.slug,
+            approved: this.props.approved,
+            user: this.props.id
+        },
+       this.props.userId )
     }
 
     render() {
@@ -45,4 +46,10 @@ class PendingUser extends React.Component {
     }
 }
 
-export default connect(null, {})(PendingUser)
+const mapStateToProps = (state) => {
+    return {
+        userId: state.usersReducer.user.user_id
+    }
+}
+
+export default connect(mapStateToProps, {approvePending})(PendingUser)
