@@ -26,7 +26,7 @@ export function login(email, password, history) {
         console.log(res.data)
         saveAuthInfo(res.data.token, res.data._id);
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
-        if(res.data.team) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
+        if(Object.keys(res.data.team).length>0) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
       })
       .catch(err => {
         dispatch({ type: LOGIN_FAILURE, payload: err });
@@ -106,10 +106,11 @@ export const autoLogin = () => async dispatch => {
     "x-auth-token": authInfo.token
   }})
   .then(res => {
+    console.log(res.data)
     dispatch({type: AUTO_LOGIN_SUCCESS, payload: res.data})
-    if(res.data.team) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
+    if(Object.keys(res.data.team).length>0) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
   })
   .catch(err => {
-    dispatch({type: AUTO_LOGIN_FAIL, payload: err.message})
+    dispatch({type: AUTO_LOGIN_FAIL, payload: err})
   })
 }
