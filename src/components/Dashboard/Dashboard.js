@@ -8,40 +8,19 @@ import { Header, Message, Divider, Button } from "semantic-ui-react";
 
 import { fetchAllTeamMembers } from '../../actions/joinTeamRequestActions'
 import { MainListContainer, SubListContainer, H2 } from "../ListFeedback/listFeedback-style.js";
+import NotApproved from "./NotApproved.js";
+import Pending from "./Pending.js";
 
 
 class Dashboard extends React.Component {
 
   render() {
     if (!this.props.slug) {
-      return (
-        <MainListContainer>
-          <SubListContainer className="Listfeedback">
-            <Header as='h1' inverted>You don't appear to be in a team yet!</Header>
-            <Divider hidden/>
-            <Message negative>
-              <Message.Header>
-                Please wait for you team manager to approve your team request.
-              </Message.Header>
-              <p>Best Wishes - SpeakIncog Team</p>
-            </Message>
-            <Divider />
-            <Message negative>
-              <Message.Header>
-                Tap the button below if you havent requested to join a team, yet.
-              </Message.Header>
-              <Divider hidden/>
-              <Button
-              content="Join/Create"
-              onClick={() => this.props.history.push('/jointeam')}
-              />
-            </Message>
-          </SubListContainer>
-        </MainListContainer>
-      )
+      return <NotApproved/>
     } else {
       return (
         <div className="Dashboard">
+          {this.props.managerId === this.props.userId && <Pending/>}
           <ListFeedback />
           <PostFeedback />
         </div>
@@ -53,6 +32,8 @@ class Dashboard extends React.Component {
 const mapStateToProps = state => {
   return {
     slug: state.joinTeamRequestReducer.slug,
+    managerId: state.joinTeamRequestReducer.manager,
+    userId: state.usersReducer.user.user_id,
   };
 };
 
