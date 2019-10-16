@@ -106,3 +106,20 @@ export const getPending = slug => async dispatch => {
   .then(res => dispatch({type: GET_PENDING_SUCCESS, payload: res.data}))
   .catch(err => dispatch({type: GET_PENDING_FAIL, payload: err}))
 }
+
+export const APPROVE_PENDING_START = 'APPROVE_PENDING_START'
+export const APPROVE_PENDING_SUCCESS = 'APPROVE_PENDING_SUCCESS'
+export const APPROVE_PENDING_FAIL = 'APPROVE_PENDING_FAIL'
+
+export const approvePending = (user, user_id) => async dispatch => {
+  console.log(user)
+  const authInfo = await getAuthInfo()
+  dispatch({type: APPROVE_PENDING_START})
+  return axios
+  .put(`${host}jointeam/`, ({user: user, user_id: user_id}), {headers: {'x-auth-token':authInfo.token}})
+  .then(res => {
+    dispatch({type: APPROVE_PENDING_SUCCESS, payload: res.data})
+    dispatch(getPending(res.data.slug))
+  })
+  .catch(err => dispatch({type: APPROVE_PENDING_FAIL, payload: err}))
+}
