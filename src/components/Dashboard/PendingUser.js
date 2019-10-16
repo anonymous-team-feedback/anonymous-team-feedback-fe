@@ -12,7 +12,8 @@ class PendingUser extends React.Component {
             approved: this.props.approved,
             user: this.props.id
         },
-       this.props.userId )
+       this.props.userId ,
+       this.props.requestId)
     }
 
     render() {

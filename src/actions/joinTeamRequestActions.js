@@ -111,14 +111,14 @@ export const APPROVE_PENDING_START = 'APPROVE_PENDING_START'
 export const APPROVE_PENDING_SUCCESS = 'APPROVE_PENDING_SUCCESS'
 export const APPROVE_PENDING_FAIL = 'APPROVE_PENDING_FAIL'
 
-export const approvePending = (user, user_id) => async dispatch => {
-  console.log(user)
+export const approvePending = (user, user_id, request_id) => async dispatch => {
   const authInfo = await getAuthInfo()
   dispatch({type: APPROVE_PENDING_START})
   return axios
-  .put(`${host}jointeam/`, ({user: user, user_id: user_id}), {headers: {'x-auth-token':authInfo.token}})
+  .put(`${host}jointeam/`, ({user: user, user_id: user_id, request_id: request_id}), {headers: {'x-auth-token':authInfo.token}})
   .then(res => {
     dispatch({type: APPROVE_PENDING_SUCCESS, payload: res.data})
+    console.log('data: ', res.data)
     dispatch(getPending(res.data.slug))
   })
   .catch(err => dispatch({type: APPROVE_PENDING_FAIL, payload: err}))

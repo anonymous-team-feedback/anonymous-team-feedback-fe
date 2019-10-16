@@ -23,10 +23,11 @@ class Pending extends React.Component {
                                     <PendingUser
                                     user={user.user}
                                     approved={user.approved}
-                                    id={user._id}
-                                    key={user._id}
+                                    id={user.user._id}
+                                    key={user.user._id}
                                     team={user.team}
                                     slug={this.props.slug}
+                                    requestId={user._id}
                                     />
                                 )
                             }
