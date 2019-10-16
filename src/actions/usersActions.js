@@ -23,9 +23,10 @@ export function login(email, password, history) {
     axios
       .post(`${host}auth/login`, user)
       .then(res => {
-        saveAuthInfo(res.data.token, res.data.user._id);
+        console.log(res.data)
+        saveAuthInfo(res.data.token, res.data._id);
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
-        if(res.data.approved) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
+        if(res.data.team) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
       })
       .catch(err => {
         dispatch({ type: LOGIN_FAILURE, payload: err });
@@ -106,7 +107,7 @@ export const autoLogin = () => async dispatch => {
   }})
   .then(res => {
     dispatch({type: AUTO_LOGIN_SUCCESS, payload: res.data})
-    if(res.data.approved) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
+    if(res.data.team) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
   })
   .catch(err => {
     dispatch({type: AUTO_LOGIN_FAIL, payload: err.message})

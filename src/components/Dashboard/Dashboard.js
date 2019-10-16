@@ -13,7 +13,7 @@ import { MainListContainer, SubListContainer, H2 } from "../ListFeedback/listFee
 class Dashboard extends React.Component {
 
   render() {
-    if (!this.props.approved) {
+    if (!this.props.slug) {
       return (
         <MainListContainer>
           <SubListContainer className="Listfeedback">
@@ -53,7 +53,6 @@ class Dashboard extends React.Component {
 const mapStateToProps = state => {
   return {
     slug: state.joinTeamRequestReducer.slug,
-    approved: state.usersReducer.user.approved
   };
 };
 

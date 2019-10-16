@@ -102,9 +102,9 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
     case GET_TEAM_DATA_SUCCESS:
       return {
         ...state,
-        members: action.payload.members,
-        slug: action.payload.slug,
-        name: action.payload.name,
+        members: action.payload.team.members,
+        slug: action.payload.team.slug,
+        name: action.payload.team.name,
         loading: false,
         error: ""
       };
