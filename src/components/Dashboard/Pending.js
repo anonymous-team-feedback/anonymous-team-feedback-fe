@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Header, CardGroup, Card, Image, Button, Divider } from 'semantic-ui-react'
 import { MainListContainer, SubListContainer } from '../ListFeedback/listFeedback-style'
 import {getPending} from '../../actions/joinTeamRequestActions'
-import User from './User'
+import PendingUser from './PendingUser'
 
 class Pending extends React.Component {
 
@@ -20,7 +20,7 @@ class Pending extends React.Component {
                         {this.props.pendingUsers && this.props.pendingUsers.map(user => {
                             if(!user.approved){
                                 return (
-                                    <User
+                                    <PendingUser
                                     user={user.user}
                                     approved={user.approved}
                                     id={user._id}
