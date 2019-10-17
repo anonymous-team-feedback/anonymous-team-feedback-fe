@@ -12,7 +12,8 @@ import {
   Menu,
   Table,
   Message,
-  Pagination
+  Pagination,
+  Placeholder
 } from "semantic-ui-react";
 import moment from "moment";
 
@@ -32,16 +33,16 @@ class ListFeedback extends React.Component {
   render() {
     const { itemsPerPage } = this.state;
     const { page } = this.state;
-    const totalPages = Math.floor(this.props.posts.length / itemsPerPage);
-    const items = this.props.posts.slice(
+    const totalPages = this.props.posts ? Math.floor(this.props.posts.length / itemsPerPage) : 0;
+    const items = this.props.posts ? this.props.posts.slice(
       (page - 1) * itemsPerPage,
       (page - 1) * itemsPerPage + itemsPerPage
-    );
+    ) : 0;
     return (
       <MainListContainer>
         <SubListContainer className="Listfeedback">
           <H2>My Feedback</H2>
-          {this.props.posts.length > 0 ? (
+          {(this.props.posts && !this.props.loading && this.props.posts.length > 0) && (
             <div>
               <Table celled>
                 <Table.Header>
@@ -86,24 +87,58 @@ class ListFeedback extends React.Component {
                 </Table.Footer>
               </Table>
             </div>
-          ) : (
-            <Message negative>
-              <Message.Header>
-                It doesn't look like you have any feedback
-              </Message.Header>
-              <p>Maybe ask a coworker to give you some?</p>
-            </Message>
           )}
+          {(this.props.posts && this.props.posts.length < 1 && !this.props.loading) && (
+              <Message negative>
+                <Message.Header>
+                  It doesn't look like you have any feedback
+              </Message.Header>
+                <p>Maybe ask a coworker to give you some?</p>
+              </Message>
+            )}
+
+            {/* loading feedback */}
+          {this.props.loading &&
+            <div>
+              <Table celled>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell className="date-tab" width={2}>
+                      Date
+                 </Table.HeaderCell>
+                    <Table.HeaderCell className="feedback-tab" width={8}>
+                      Feedback
+                 </Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
+
+                <Table.Body className="submittedFeedback">
+                  <Table.Row>
+                    <Table.Cell width={2}>
+                      <Placeholder>
+                        <Placeholder.Line length='very short' />
+                      </Placeholder>
+                    </Table.Cell>
+                    <Table.Cell width={8} >
+                      <Placeholder>
+                        <Placeholder.Line length='very short' />
+                      </Placeholder>
+                    </Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              </Table>
+            </div>
+          }
         </SubListContainer>
       </MainListContainer>
     );
   }
 }
 
-const MapStateToProps = ({ postsReducer: state }) => {
+const MapStateToProps = (state) => {
   return {
-    posts: state.posts,
-    loading: state.loading,
+    posts: state.postsReducer.posts,
+    loading: state.postsReducer.loading,
   };
 };
 

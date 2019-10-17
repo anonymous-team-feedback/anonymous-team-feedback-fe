@@ -21,7 +21,7 @@ class Pending extends React.Component {
                             if (!user.approved) {
                                 return (
                                     <PendingUser
-                                    loading={false}
+                                        loading={false}
                                         user={user.user}
                                         approved={user.approved}
                                         id={user.user._id}
