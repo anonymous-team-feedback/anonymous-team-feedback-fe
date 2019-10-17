@@ -94,3 +94,32 @@ export const getTeamData = id => async dispatch => {
   .catch(err => dispatch({type: GET_TEAM_DATA_FAIL, payload: {error: err}}))
 }
 
+export const GET_PENDING_START = 'GET_PENDING_START'
+export const GET_PENDING_SUCCESS = 'GET_PENDING_SUCCESS'
+export const GET_PENDING_FAIL = 'GET_PENDING_FAIL'
+
+export const getPending = slug => async dispatch => {
+  const authInfo = await getAuthInfo()
+  dispatch({type: GET_PENDING_START})
+  return axios
+  .get(`${host}jointeam/${slug}`, {headers: {'x-auth-token':authInfo.token}})
+  .then(res => dispatch({type: GET_PENDING_SUCCESS, payload: res.data}))
+  .catch(err => dispatch({type: GET_PENDING_FAIL, payload: err}))
+}
+
+export const APPROVE_PENDING_START = 'APPROVE_PENDING_START'
+export const APPROVE_PENDING_SUCCESS = 'APPROVE_PENDING_SUCCESS'
+export const APPROVE_PENDING_FAIL = 'APPROVE_PENDING_FAIL'
+
+export const approvePending = (user, user_id, request_id) => async dispatch => {
+  const authInfo = await getAuthInfo()
+  dispatch({type: APPROVE_PENDING_START})
+  return axios
+  .put(`${host}jointeam/`, ({user: user, user_id: user_id, request_id: request_id}), {headers: {'x-auth-token':authInfo.token}})
+  .then(res => {
+    dispatch({type: APPROVE_PENDING_SUCCESS, payload: res.data})
+    console.log('data: ', res.data)
+    dispatch(getPending(res.data.slug))
+  })
+  .catch(err => dispatch({type: APPROVE_PENDING_FAIL, payload: err}))
+}

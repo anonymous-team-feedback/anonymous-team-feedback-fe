@@ -145,11 +145,11 @@ export const usersReducer = (state = initialState, action) => {
         isLoggedIn: true,
         user: {
           ...state.user,
-          email: action.payload.email,
-          firstName: action.payload.firstName,
-          jobTitle: action.payload.jobTitle,
-          lastName: action.payload.lastName,
-          user_id: action.payload._id,
+          email: action.payload.user.email,
+          firstName: action.payload.user.firstName,
+          jobTitle: action.payload.user.jobTitle,
+          lastName: action.payload.user.lastName,
+          user_id: action.payload.user._id,
           approved: action.payload.approved
         }
       }
