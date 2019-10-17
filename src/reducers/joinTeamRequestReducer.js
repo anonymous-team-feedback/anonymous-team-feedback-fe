@@ -132,7 +132,7 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
     case GET_PENDING_START:
       return {
         ...state,
-        pendingUsersloading: true,
+        pendingUsersLoading: true,
       }
     case GET_PENDING_SUCCESS:
       return {
@@ -143,7 +143,7 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
     case GET_PENDING_FAIL:
       return {
         ...state,
-        loading: false,
+        pendingUsersLoading: false,
         pendingUsersError: action.payload
       }
       case APPROVE_PENDING_START:
