@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import {
   PageDiv,
@@ -13,7 +13,7 @@ import {
   H1,
   P,
 } from "./joinTeamRequest-style.js";
-import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
+import { Button, Header, Icon, Modal, Form, Grid, Divider, Segment } from "semantic-ui-react";
 
 import { Menu, Table, Message, Pagination } from "semantic-ui-react";
 
@@ -32,8 +32,7 @@ class JoinTeamRequest extends React.Component {
     existingSlug: "",
     members: [],
     modalOpen: false,
-    showLanding: true, //toggles show Landing Page
-    showCreateTeam: false, //toggles show Create Team Form
+    showCreateTeam: true, //toggles show Create Team Form
     showDashboardJoined: false, //toggles if you joined a team
     showDashboardCreated: false // toggles if you created a team
   };
@@ -58,15 +57,6 @@ class JoinTeamRequest extends React.Component {
       [e.target.name]: e.target.value
       // showSuccessMessage: false
     });
-  };
-
-  // onClick hides landing page and shows create team form
-  showLanding = () => {
-    const { showLanding } = this.state;
-    const { showCreateTeam } = this.state;
-
-    this.setState({ showLanding: !showLanding });
-    this.setState({ showCreateTeam: !showCreateTeam });
   };
 
   // onClick hides team forms and display team members list to dashboard
@@ -102,7 +92,7 @@ class JoinTeamRequest extends React.Component {
     const newSlug = {
       slug: this.state.existingSlug
     }
-    this.props.submitJoinExistingTeam(newSlug);
+    this.props.submitJoinExistingTeam(newSlug, this.props.history);
   };
 
   // Handle Submit for Create a Team Name
@@ -112,7 +102,7 @@ class JoinTeamRequest extends React.Component {
       slug: this.state.slug
     };
     console.log(newTeamInfo);
-    this.props.submitCreateNewTeam(newTeamInfo);
+    this.props.submitCreateNewTeam(newTeamInfo, this.props.history);
   };
 
   validateForm = () =>
@@ -134,128 +124,133 @@ class JoinTeamRequest extends React.Component {
 
     return (
       <PageDiv className="JoinTeamRequest">
-        {/* Landing Component */}
-        {this.state.showLanding ? (
-          <CreateTeamLandingPage id="landingpage">
-            <H1>
-              It looks like you're not a member of a team. You'll need to either
-              join or create a team to use InCog.
-            </H1>
-
-            <Button
-              className="Join or Create a TeamButton"
-              onClick={this.showLanding}
-            >
-              Join or Create a Team
-            </Button>
-          </CreateTeamLandingPage>
-        ) : null}
-
         {/* Join/ Create Team Form */}
         {this.state.showCreateTeam ? (
           <Form >
-            {this.props.createTeamNameError && (
-              <p>
-                Please choose another team name. The one you want is already
-                taken.
-              </p>
-            )}
+            <Segment basic padded='very'>
 
-            {/* Join Existing Team Form */}
-            <TeamCreationContainer>
-              <Form.Field id="jointeamfield">
-                <H2 color="white">Join an existing team</H2>
-                <P>
-                  Type the exact name of your team nick name here (should be all
-                  lower case with no spaces).
+              <Grid columns={2} relaxed='very' stackable>
+
+                {/* Join Existing Team Form */}
+                {/* <TeamCreationContainer> */}
+                <Grid.Column >
+                  <Form.Field id="jointeamfield">
+                    <H2 color="white">Join an existing team</H2>
+                    <P>
+                      Type the exact name of your team nick name here (should be all
+                      lower case with no spaces).
                 </P>
-                <Input
-                  type="text"
-                  name="existingSlug"
-                  id="JoinExistingTeamFormSlug"
-                  value={this.state.existingSlug}
-                  onChange={this.handleChange}
-                  placeholder="Existing Team Nick Name"
-                />
-              </Form.Field>
+                    <Input
+                      type="text"
+                      name="existingSlug"
+                      id="JoinExistingTeamFormSlug"
+                      value={this.state.existingSlug}
+                      onChange={this.handleChange}
+                      placeholder="Existing Team Nick Name"
+                    />
+                  </Form.Field>
 
-              <Button
-                className="ExistingTeamNextButton"
-                type="submit"
-                onClick={() => {
-                  this.handleSubmitJoinTeam();
-                  {/*this.showDashboardJoined()*/}}}
-                  >
-                Next
-              </Button>
-
-              {/* Create New Team Form  */}
-              <Form.Field id="jointeamfield">
-                <H2 color="white">Create a new team</H2>
-                <P>
-                  An InCog team is a group of colleagues who can give, receive,
-                  and request anonymous feedback. When you create a team, you'll
-                  be added to the team as an administrator.
-                </P>
-
-                <P>Please enter a team name below:</P>
-
-                <Input
-                  type="text"
-                  name="name"
-                  id="CreateNewTeamFormName"
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                  placeholder="Team Name"
-                />
-              </Form.Field>
-
-              <Form.Field id="jointeamfield">
-                <P>Please enter a team "nick name" (slug) below:</P>
-                <Input
-                  type="text"
-                  name="slug"
-                  id="CreateNewTeamFormSlug"
-                  value={this.state.slug}
-                  onChange={this.handleChange}
-                  placeholder="Team Nick Name"
-                />
-              </Form.Field>
-
-              <Modal
-                trigger={
                   <Button
-                    className="CreateTeamNextButton"
+                    className="ExistingTeamNextButton"
                     type="submit"
                     onClick={() => {
-                      this.handleSubmitCreateTeam();
-                      this.showDashboardCreated();
+                      this.handleSubmitJoinTeam();
                     }}
                   >
                     Next
+              </Button>
+                  {this.props.joiningExistingTeamError &&
+                    <Message
+                      color='red'
+                      header='You have already sent a request to join this team'
+                      content='Please be patient for the manager to approve or deny your request'
+                    />
+                  }
+                </Grid.Column>
+
+                <Grid.Column verticalAlign='middle'>
+                  {/* Create New Team Form  */}
+                  <Form.Field id="jointeamfield">
+                    <H2 color="white">Create a new team</H2>
+                    <P>
+                      An InCog team is a group of colleagues who can give, receive,
+                      and request anonymous feedback. When you create a team, you'll
+                      be added to the team as an administrator.
+                </P>
+
+                    <P>Please enter a team name below:</P>
+
+                    <Input
+                      type="text"
+                      name="name"
+                      id="CreateNewTeamFormName"
+                      value={this.state.name}
+                      onChange={this.handleChange}
+                      placeholder="Team Name"
+                    />
+                  </Form.Field>
+
+                  <Form.Field id="jointeamfield">
+                    <P>Please enter a team "nick name" (slug) below:</P>
+                    <Input
+                      type="text"
+                      name="slug"
+                      id="CreateNewTeamFormSlug"
+                      value={this.state.slug}
+                      onChange={this.handleChange}
+                      placeholder="Team Nick Name"
+                    />
+                  </Form.Field>
+
+                  <Modal
+                    trigger={
+                      <Button
+                        className="CreateTeamNextButton"
+                        type="submit"
+                        onClick={() => {
+                          this.handleSubmitCreateTeam();
+                        }}
+                      >
+                        Next
                   </Button>
-                }
-                open={this.state.modalOpen}
-                onClose={this.handleModalClose}
-                basic
-                size="small"
-              >
-                <Header icon="browser" content="Create Team"></Header>
-                <Modal.Content>
-                  <h3>You have successfully joined a team.</h3>
-                </Modal.Content>
-                <Modal.Actions>
-                  <Button
-                    className="VerifyTeamButton"
-                    color="teal"
-                    onClick={this.handleModalClose}
-                    inverted
+                    }
+                    open={this.state.modalOpen}
+                    onClose={this.handleModalClose}
+                    basic
+                    size="small"
                   >
-                    <Icon name="checkmark"></Icon> Got it
+                    
+                    <Header icon="browser" content="Create Team"></Header>
+                    <Modal.Content>
+                      <h3>You have successfully joined a team.</h3>
+                    </Modal.Content>
+                    <Modal.Actions>
+                      <Button
+                        className="VerifyTeamButton"
+                        color="teal"
+                        onClick={this.handleModalClose}
+                        inverted
+                      >
+                        <Icon name="checkmark"></Icon> Got it
                   </Button>
-                </Modal.Actions>
-              </Modal>
-            </TeamCreationContainer>
+                    </Modal.Actions>
+                  </Modal>
+                  {this.props.submitNewTeamError && (
+                      // error message
+                     <Message
+                     color='red'
+                       header='Error'
+                       content='Please choose another team name. The one you want is already
+                                taken'
+                      />
+                       )}
+                </Grid.Column>
+                
+                {/* </TeamCreationContainer> */}
+              </Grid>
+
+              <Divider vertical>or</Divider>
+            </Segment>
           </Form>
         ) : null}
 
@@ -332,21 +327,21 @@ class JoinTeamRequest extends React.Component {
                     </Button>
                   </div>
                 ) : (
-                  // shows message if no team members in existing team currently
-                  <Message negative>
-                    <Message.Header>
-                      It doesn't look like any members of your team have joined
-                      InCog yet.
+                    // shows message if no team members in existing team currently
+                    <Message negative>
+                      <Message.Header>
+                        It doesn't look like any members of your team have joined
+                        InCog yet.
                     </Message.Header>
-                    <p>Go tell them to sign up!</p>
-                    <Button
-                      className="ToDashboardButton"
-                      onClick={this.handleDashboard}
-                    >
-                      Take me to my dashboard
+                      <p>Go tell them to sign up!</p>
+                      <Button
+                        className="ToDashboardButton"
+                        onClick={this.handleDashboard}
+                      >
+                        Take me to my dashboard
                     </Button>
-                  </Message>
-                )}
+                    </Message>
+                  )}
               </div>
             </SubListContainer>
           </MainListContainer>
@@ -379,15 +374,16 @@ class JoinTeamRequest extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const {usersReducer, postsReducer, joinTeamRequestReducer} = state
+  const { usersReducer, postsReducer, joinTeamRequestReducer } = state
   return {
-    createTeamError: joinTeamRequestReducer.createTeamError,
+    submitNewTeamError: joinTeamRequestReducer.submitNewTeamError,
     createTeamNameError: joinTeamRequestReducer.createTeamNameError,
     team: joinTeamRequestReducer.team,
     members: joinTeamRequestReducer.members,
     slug: joinTeamRequestReducer.slug,
     existingSlug: joinTeamRequestReducer.existingSlug,
-    isLoggedIn: usersReducer.isLoggedIn
+    isLoggedIn: usersReducer.isLoggedIn,
+    joiningExistingTeamError: joinTeamRequestReducer.joiningExistingTeamError
   };
 };
 

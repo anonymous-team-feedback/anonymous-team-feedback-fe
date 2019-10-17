@@ -9,8 +9,8 @@ import {
   P,
   Label
 } from "./register-style.js";
-import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
-import { register } from "../../actions/usersActions.js";
+import { Button, Header, Icon, Modal, Form, Message } from "semantic-ui-react";
+import { register, login } from "../../actions/usersActions.js";
 
 
 class Register extends React.Component {
@@ -31,7 +31,7 @@ class Register extends React.Component {
 
   handleModalClose = () => {
     this.setState({ modalOpen: false });
-    this.props.history.push("/dashboard");
+    this.props.login(this.state.newUser.email, this.state.newUser.password, this.props.history);
   };
 
   handleChange = e => {
@@ -165,6 +165,13 @@ class Register extends React.Component {
                 </Button>
               </Modal.Actions>
             </Modal>
+            {
+              this.props.registerError && 
+              <Message 
+              color='red'
+              header='Error registering, please try again'
+              />
+            }
           </RegisterContainer>
         </Form>
       </PageDiv>
@@ -181,5 +188,5 @@ const mapStateToProps = state => {
 
 export default withRouter(connect(
   mapStateToProps,
-  { register }
+  { register, login}
 )(Register));
