@@ -27,13 +27,18 @@ const initialState = {
     jobTitle: "",
     approved: false
   },
+
   searchedEmails: [],
   transformedSearchedEmails: [],
+
   loggingIn: false,
   isLoggedIn: false,
   loginError: null,
+  autoLoginError: null,
+
   isRegistering: false,
   registerError: null,
+
   isSearchingEmails: false,
   searchEmailsError: null
 };
@@ -51,6 +56,9 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         loginStart: false,
+        isLoggedIn: true,
+        loginError: false,
+        autoLoginError: null,
         user: {
           ...state.user,
           email: action.payload.email,
@@ -59,8 +67,6 @@ export const usersReducer = (state = initialState, action) => {
           lastName: action.payload.lastName,
           user_id: action.payload._id,
         },
-        isLoggedIn: true,
-        loginError: false
       };
     case LOGIN_FAILURE:
       return {
@@ -134,15 +140,16 @@ export const usersReducer = (state = initialState, action) => {
     case AUTO_LOGIN: {
       return {
         ...state,
-        loggingIn: true,
+        loginStart: true,
         loginError: false
       }
     }
     case AUTO_LOGIN_SUCCESS: {
       return {
         ...state, 
-        loggingIn: false,
+        loginStart: false,
         isLoggedIn: true,
+        autoLoginError: null,
         user: {
           ...state.user,
           email: action.payload.user.email,
@@ -157,8 +164,8 @@ export const usersReducer = (state = initialState, action) => {
     case AUTO_LOGIN_FAIL: {
       return {
         ...state,
-        loggingIn: false,
-        loginError: action.payload
+        loginStart: false,
+        autoLoginError: action.payload
       }
     }
 
