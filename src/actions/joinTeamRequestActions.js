@@ -9,7 +9,7 @@ export const SUBMIT_JOIN_EXISTING_TEAM_START = "SUBMIT_JOIN_EXISTING_TEAM_START"
 export const SUBMIT_JOIN_EXISTING_TEAM_SUCCESS = "SUBMIT_JOIN_EXISTING_TEAM_SUCCESS";
 export const SUBMIT_JOIN_EXISTING_TEAM_FAILURE = "SUBMIT_JOIN_EXISTING_TEAM_FAILURE";
 
-export const submitJoinExistingTeam = (teamSlug, history) => async dispatch => {
+export const submitJoinExistingTeam = (teamSlug) => async dispatch => {
   const authInfo = await getAuthInfo();
   dispatch({ type: SUBMIT_JOIN_EXISTING_TEAM_START });
 
@@ -19,7 +19,6 @@ export const submitJoinExistingTeam = (teamSlug, history) => async dispatch => {
     })
     .then(res => {
       dispatch({ type: SUBMIT_JOIN_EXISTING_TEAM_SUCCESS, payload: res.data });
-      dispatch(history.push('/dashboard'))
     })
     .catch(err => {
       if (err.response.status && err.response.status === 401) {
@@ -33,7 +32,7 @@ export const SUBMIT_CREATE_NEW_TEAM_START = "SUBMIT_CREATE_NEW_TEAM_START";
 export const SUBMIT_CREATE_NEW_TEAM_SUCCESS = "SUBMIT_CREATE_NEW_TEAM_SUCCESS";
 export const SUBMIT_CREATE_NEW_TEAM_FAILURE = "SUBMIT_CREATE_NEW_TEAM_FAILURE";
 
-export const submitCreateNewTeam = (newTeamInfo, history) => async dispatch => {
+export const submitCreateNewTeam = (newTeamInfo) => async dispatch => {
   const authInfo = await getAuthInfo();
   dispatch({ type: SUBMIT_CREATE_NEW_TEAM_START });
   const { name, slug } = newTeamInfo;
@@ -45,14 +44,10 @@ export const submitCreateNewTeam = (newTeamInfo, history) => async dispatch => {
     })
     .then(res => {
       dispatch({ type: SUBMIT_CREATE_NEW_TEAM_SUCCESS, payload: res.data });
-      dispatch(history.push('/dashboard'))
     })
     .catch(err => {
-      if (err.response.status === 401) {
-        removeAuthInfo();
-      }
-      dispatch({ type: SUBMIT_CREATE_NEW_TEAM_FAILURE, payload: err });
-    });
+      dispatch({type: SUBMIT_CREATE_NEW_TEAM_FAILURE, payload:err})
+    })
 };
 
 export const FETCH_ALL_MEMBERS_START = "FETCH_ALL_MEMBERS_START";

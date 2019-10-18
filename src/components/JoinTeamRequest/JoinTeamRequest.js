@@ -92,7 +92,7 @@ class JoinTeamRequest extends React.Component {
     const newSlug = {
       slug: this.state.existingSlug
     }
-    this.props.submitJoinExistingTeam(newSlug, this.props.history);
+    this.props.submitJoinExistingTeam(newSlug);
   };
 
   // Handle Submit for Create a Team Name
@@ -102,7 +102,7 @@ class JoinTeamRequest extends React.Component {
       slug: this.state.slug
     };
     console.log(newTeamInfo);
-    this.props.submitCreateNewTeam(newTeamInfo, this.props.history);
+    this.props.submitCreateNewTeam(newTeamInfo);
   };
 
   validateForm = () =>
@@ -114,6 +114,7 @@ class JoinTeamRequest extends React.Component {
 
   render() {
     if (!this.props.isLoggedIn) this.props.history.push('/login')
+    if (this.props.teamJoined || this.props.teamSubmitted) this.props.history.push('/dashboard')
     const { itemsPerPage } = this.state;
     const { page } = this.state;
     const totalPages = Math.floor(this.state.members.length / itemsPerPage);
@@ -383,7 +384,9 @@ const mapStateToProps = state => {
     slug: joinTeamRequestReducer.slug,
     existingSlug: joinTeamRequestReducer.existingSlug,
     isLoggedIn: usersReducer.isLoggedIn,
-    joiningExistingTeamError: joinTeamRequestReducer.joiningExistingTeamError
+    joiningExistingTeamError: joinTeamRequestReducer.joiningExistingTeamError,
+    teamJoined: joinTeamRequestReducer.teamJoined,
+    teamSubmitted: joinTeamRequestReducer.teamSubmitted
   };
 };
 

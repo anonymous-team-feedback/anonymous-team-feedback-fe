@@ -36,9 +36,11 @@ const initialState = {
 
   isJoiningExistingTeam: false,
   joiningExistingTeamError: null,
+  teamJoined: false,
 
   isSubmittingNewTeam: false,
   submitNewTeamError: null,
+  teamSubmitted: false,
 
   fetchAllMembersLoading: false,
   fetchAllMembersError: null
@@ -56,7 +58,8 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
     case SUBMIT_JOIN_EXISTING_TEAM_SUCCESS: {
       return {
         ...state,
-        isJoiningExistingTeam: false
+        isJoiningExistingTeam: false,
+        teamJoined: true
       };
     }
     case SUBMIT_JOIN_EXISTING_TEAM_FAILURE: {
@@ -76,7 +79,8 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
     case SUBMIT_CREATE_NEW_TEAM_SUCCESS: {
       return {
         ...state,
-        isSubmittingNewTeam: false
+        isSubmittingNewTeam: false,
+        teamSubmitted: true
       };
     }
     case SUBMIT_CREATE_NEW_TEAM_FAILURE: {
