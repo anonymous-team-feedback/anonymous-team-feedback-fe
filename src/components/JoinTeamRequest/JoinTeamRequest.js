@@ -128,12 +128,8 @@ class JoinTeamRequest extends React.Component {
         {/* Join/ Create Team Form */}
         {this.state.showCreateTeam ? (
           <Form >
-            <Segment basic padded='very'>
-
-              <Grid columns={2} relaxed='very' stackable>
-
-                {/* Join Existing Team Form */}
-                {/* <TeamCreationContainer> */}
+            <Segment basic padded='very' >
+              <Grid columns={2} relaxed stackable>
                 <Grid.Column >
                   <Form.Field id="jointeamfield">
                     <H2 color="white">Join an existing team</H2>
@@ -245,12 +241,9 @@ class JoinTeamRequest extends React.Component {
                                 taken'
                       />
                        )}
-                </Grid.Column>
-                
-                {/* </TeamCreationContainer> */}
+                </Grid.Column>     
               </Grid>
-
-              <Divider vertical>or</Divider>
+                    <Divider vertical inverted>OR</Divider>
             </Segment>
           </Form>
         ) : null}
