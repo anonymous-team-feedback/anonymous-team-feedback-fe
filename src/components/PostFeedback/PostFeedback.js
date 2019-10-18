@@ -146,9 +146,12 @@ class PostFeedback extends React.Component {
               {this.state.showSuccessMessage && (
                 <Message positive>
                   <Message.Header>
-                    You have successfully submitted feedback.
+                    Thank you for speaking incognito!
+                    <div>
+                      You have successfully submitted feedback.
+                    </div>
                   </Message.Header>
-                  <p>You are a true hero.</p>
+                  <p>You're voice is safe with us.</p>
                 </Message>
               )}
             </div>

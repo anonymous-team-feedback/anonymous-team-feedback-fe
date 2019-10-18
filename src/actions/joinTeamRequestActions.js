@@ -125,3 +125,19 @@ export const approvePending = (user, user_id, request_id) => async dispatch => {
     })
     .catch(err => dispatch({ type: APPROVE_PENDING_FAIL, payload: err }))
 }
+
+export const RESET_PENDING_START = 'RESET_PENDING_START'
+export const RESET_PENDING_SUCCESS = 'RESET_PENDING_SUCCESS'
+export const RESET_PENDING_FAIL = 'RESET_PENDING_FAIL'
+
+export const resetPending = () => async dispatch => {
+  const authInfo = await getAuthInfo()
+  dispatch({ type: RESET_PENDING_START })
+  return axios
+    (res => {
+      setTimeout(() => {
+        dispatch({ type: RESET_PENDING_SUCCESS, payload: res.data })
+      }, 0);
+    })
+    .catch(err => dispatch({ type: RESET_PENDING_FAIL, payload: err }))
+}
