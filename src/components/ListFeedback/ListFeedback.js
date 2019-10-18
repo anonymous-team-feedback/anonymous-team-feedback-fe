@@ -22,6 +22,7 @@ class ListFeedback extends React.Component {
     page: 1,
     itemsPerPage: 10
   };
+  
   componentDidMount() {
     this.props.fetchAllPosts();
   }

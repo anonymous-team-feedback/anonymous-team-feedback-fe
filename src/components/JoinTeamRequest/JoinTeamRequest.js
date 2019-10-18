@@ -113,15 +113,15 @@ class JoinTeamRequest extends React.Component {
     this.state.newUser.jobTitle.length > 5;
 
   render() {
-    if (!this.props.isLoggedIn) this.props.history.push('/login')
-    if (this.props.teamJoined || this.props.teamSubmitted) this.props.history.push('/dashboard')
+    if (!this.props.isLoggedIn) this.props.history.push('/login');
+    if (this.props.teamJoined || this.props.teamSubmitted) this.props.history.push('/dashboard');
     const { itemsPerPage } = this.state;
     const { page } = this.state;
-    const totalPages = Math.floor(this.state.members.length / itemsPerPage);
-    const items = this.state.members.slice(
+    const totalPages = this.props.members ? Math.floor(this.props.members.length / itemsPerPage) : 0;
+    const items = this.props.members ? this.props.members.slice(
       (page - 1) * itemsPerPage,
       (page - 1) * itemsPerPage + itemsPerPage
-    );
+    ) : 0;
 
     return (
       <PageDiv className="JoinTeamRequest">
@@ -188,7 +188,8 @@ class JoinTeamRequest extends React.Component {
                   </Form.Field>
 
                   <Form.Field id="jointeamfield">
-                    <P>Please enter a team "nick name" (slug) below:</P>
+                    <P>Please enter a team nick name here (should be all
+                      lower case with no spaces):</P>
                     <Input
                       type="text"
                       name="slug"
