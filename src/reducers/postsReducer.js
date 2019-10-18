@@ -8,7 +8,7 @@ import {
 } from "../actions/postsActions";
 
 const initialState = {
-  posts: [],
+  posts: null,
   fetchAllPostsLoading: false,
   fetchAllPostsError: null,
   isSubmittingFeedback: false,

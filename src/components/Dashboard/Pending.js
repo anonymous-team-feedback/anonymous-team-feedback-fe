@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Header, CardGroup, Card, Image, Button, Divider } from 'semantic-ui-react'
+import { Header, CardGroup, Card, Image, Button, Divider, Segment, Placeholder, Message } from 'semantic-ui-react'
 import { MainListContainer, SubListContainer } from '../ListFeedback/listFeedback-style'
-import {getPending} from '../../actions/joinTeamRequestActions'
+import { getPending } from '../../actions/joinTeamRequestActions'
 import PendingUser from './PendingUser'
 
 class Pending extends React.Component {
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.getPending(this.props.slug)
     }
 
@@ -18,26 +18,40 @@ class Pending extends React.Component {
                     <Header as='h1' inverted>Pending team requests</Header>
                     <Card.Group centered >
                         {this.props.pendingUsers && this.props.pendingUsers.map(user => {
-                            if(!user.approved){
+                            if (!user.approved) {
                                 return (
                                     <PendingUser
-                                    user={user.user}
-                                    approved={user.approved}
-                                    id={user.user._id}
-                                    key={user.user._id}
-                                    team={user.team}
-                                    slug={this.props.slug}
-                                    requestId={user._id}
+                                        loading={false}
+                                        user={user.user}
+                                        approved={user.approved}
+                                        id={user.user._id}
+                                        key={user.user._id}
+                                        team={user.team}
+                                        slug={this.props.slug}
+                                        requestId={user._id}
                                     />
                                 )
                             }
                         })}
 
-                        {!this.props.pendingUsers && 
-                        <>
-                        <Divider/>
-                        <Header  inverted as='h1'>There are no pending users</Header>
-                        </>
+                        {this.props.pendingUsersLoading &&
+                            <PendingUser loading/>
+                        }
+
+                        {this.props.pendingUsersError &&
+                            <Message
+
+                                color='red'
+                                header='Theres was an error fetching requests'
+                            />
+                        }
+
+                        {(this.props.pendingUsers && this.props.pendingUsers.length < 1) &&
+                            <Message
+                                compact
+                                size='mini'
+                                header='Looks like you have no pending requests!'
+                            />
                         }
                     </Card.Group>
                 </SubListContainer>
@@ -49,9 +63,12 @@ class Pending extends React.Component {
 const mapStateToProps = state => {
     return {
         slug: state.joinTeamRequestReducer.slug,
+        user: state.usersReducer.user,
+
         pendingUsers: state.joinTeamRequestReducer.pendingUsers,
-        user: state.usersReducer.user
+        pendingUsersLoading: state.joinTeamRequestReducer.pendingUsersLoading,
+        pendingUsersError: state.joinTeamRequestReducer.pendingUsersError
     }
 }
 
-export default connect(mapStateToProps, {getPending})(Pending)
+export default connect(mapStateToProps, { getPending })(Pending)

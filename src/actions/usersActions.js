@@ -23,10 +23,9 @@ export function login(email, password, history) {
     axios
       .post(`${host}auth/login`, user)
       .then(res => {
-        console.log(res.data)
         saveAuthInfo(res.data.token, res.data._id);
-        dispatch({ type: LOGIN_SUCCESS, payload: res.data });
         if(res.data.team) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
+        dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       })
       .catch(err => {
         dispatch({ type: LOGIN_FAILURE, payload: err });
@@ -60,7 +59,6 @@ export const register = newUser => dispatch => {
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      alert(JSON.stringify(err));
       dispatch({ type: REGISTER_FAILURE, payload: err });
     });
 };
@@ -106,9 +104,8 @@ export const autoLogin = () => async dispatch => {
     "x-auth-token": authInfo.token
   }})
   .then(res => {
-    console.log(res.data)
-    dispatch({type: AUTO_LOGIN_SUCCESS, payload: res.data})
     if(res.data.team) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
+    dispatch({type: AUTO_LOGIN_SUCCESS, payload: res.data})
 
   })
   .catch(err => {
