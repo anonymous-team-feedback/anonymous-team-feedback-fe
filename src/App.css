@@ -247,6 +247,13 @@ form .navbarContainer {
   transition: color 0.1s ease-in-out !important;
 }
 
+/* Team Name in Nav Bar */
+
+.ui.medium.header {
+  padding: auto !important;
+  margin: none !important;
+}
+
 /* Username */
 
 .ui.button.usernameButton {
@@ -256,6 +263,8 @@ form .navbarContainer {
   font-size: .9rem !important;
   font-weight: bold !important;
   transition: color 0.1s ease-in-out !important;
+  margin: auto;
+  vertical-align: middle;
 }
 
 /* NavBar Sign In Button Styling */
@@ -293,8 +302,7 @@ form .navbarContainer {
   font-weight: bold !important;
   padding: 0.6rem 0.6rem !important;
   font-size: 0.9rem !important;
-  margin-left: 0.5rem !important;
-  margin-right: 2rem !important;
+  margin: auto;
 }
 
 /* NavBar Buttons (Hover Effect) Styling */
@@ -316,6 +324,13 @@ form .navbarContainer {
 .ui.button.logoutButton:hover {
   color: white !important;
   border: 1px solid white !important;
+}
+
+/* At 400px and below do the following for PostFeedback: */
+@media screen and (max-width: 400px){
+  .ui.medium.header {
+    margin: auto;
+  }
 }
 
 /* At 700px and below do the following for Login and Register: */

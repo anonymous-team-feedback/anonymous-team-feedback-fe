@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {NavBar, Field, FormGroup, NavBarLoginContainer, NavBarButtonsContainer} from "./navbar-style.js";
+import {NavBar, Field, FormGroup, NavBarLogoContainer, NavBarLoginContainer, NavBarButtonsContainer} from "./navbar-style.js";
 import {Button, Header} from "semantic-ui-react";
 import {Link, withRouter} from "react-router-dom";
 import {login} from "../../actions/usersActions";
@@ -47,12 +47,12 @@ class Navbar extends React.Component {
         if(this.props.location.pathname === '/') this.props.history.push('/login')
         return (
             <NavBar className="Navbar">
-                <div>
+                <NavBarLogoContainer>
                     <Button as={Link} className="incogButton" name="home" to="/">
                         InCog
                     </Button>
-                    <Header as='span' size='medium' style={{color: '#51e3c2'}}>{this.props.teamName}</Header>
-                </div>
+                    <Header as='span' size='medium' style={{color: '#51e3c2'}} textAlign='center'>{this.props.teamName}</Header>
+                </NavBarLogoContainer>
 
                 {/* if not logged in and at register, display login form */}
                 {!this.props.isLoggedIn && this.props.location.pathname === "/register" && (
@@ -108,7 +108,7 @@ class Navbar extends React.Component {
                             {this.props.lastName}
                         </Button>
 
-                        <Button onClick={this.handleLogout} className="logoutButton" >
+                        <Button onClick={this.handleLogout} className="logoutButton" textAlign="center" >
                             Logout
                         </Button>
                     </div>

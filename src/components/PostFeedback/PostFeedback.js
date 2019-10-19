@@ -151,7 +151,7 @@ class PostFeedback extends React.Component {
                       You have successfully submitted feedback.
                     </div>
                   </Message.Header>
-                  <p>You're voice is safe with us.</p>
+                  <p>Your voice is safe with us.</p>
                 </Message>
               )}
             </div>
