@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 
 import ListFeedback from "../ListFeedback/ListFeedback.js";
 import PostFeedback from "../PostFeedback/PostFeedback.js";
+import TeamMembersList from "../TeamMembersList/TeamMembersList.js";
 import { Header, Message, Divider, Button } from "semantic-ui-react";
 
 import { fetchAllTeamMembers } from '../../actions/joinTeamRequestActions'
@@ -15,19 +16,19 @@ import Pending from "./Pending.js";
 class Dashboard extends React.Component {
 
   render() {
-    if (!this.props.slug) {
-      return <NotApproved/>
-    } else {
+    // if (!this.props.slug) {
+    //   return <NotApproved/>
+    // } else {
       return (
         <div className="Dashboard">
-          {this.props.managerId === this.props.userId && <Pending/>}
+          {/* {this.props.managerId === this.props.userId && <Pending/>} */}
+          <TeamMembersList />
           <ListFeedback />
           <PostFeedback />
         </div>
       );
     }
   }
-};
 
 const mapStateToProps = state => {
   return {

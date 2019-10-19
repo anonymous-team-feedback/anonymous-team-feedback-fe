@@ -20,7 +20,7 @@ class NotApproved extends React.Component {
               <Divider />
               <Message negative>
                 <Message.Header>
-                  Tap the button below if you havent requested to join a team, yet.
+                  Tap the button below if you haven't requested to join a team, yet.
                 </Message.Header>
                 <Divider hidden/>
                 <Button
