@@ -4,16 +4,12 @@ import {
   Header,
   CardGroup,
   Card,
-  Image,
-  Button,
-  Divider,
-  Segment,
-  Placeholder,
   Message
 } from "semantic-ui-react";
 import {
   MainListContainer,
-  SubListContainer
+  SubListContainer,
+  CardContainer
 } from "../ListFeedback/listFeedback-style";
 import { getPending } from "../../actions/joinTeamRequestActions";
 import PendingUser from "./PendingUser";
@@ -30,6 +26,7 @@ class Pending extends React.Component {
           <Header as="h1" inverted>
             Pending team requests
           </Header>
+          <CardContainer>
           <Card.Group centered>
             {this.props.pendingUsers &&
               this.props.pendingUsers.map(user => {
@@ -76,6 +73,7 @@ class Pending extends React.Component {
             
 
           </Card.Group>
+          </CardContainer>
         </SubListContainer>
       </MainListContainer>
     );

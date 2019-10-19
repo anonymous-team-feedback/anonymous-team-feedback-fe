@@ -15,7 +15,7 @@ import Pending from "./Pending.js";
 class Dashboard extends React.Component {
 
   render() {
-    if (this.props.managerId === this.props.userId) {
+    if (this.props.members.includes(this.props.userId)) {
       return (
         <div className="Dashboard"> 
 
@@ -36,7 +36,8 @@ const mapStateToProps = state => {
     managerId: state.joinTeamRequestReducer.manager,
     userId: state.usersReducer.user.user_id,
     teamJoined: state.joinTeamRequestReducer.teamJoined,
-    teamSubmitted: state.joinTeamRequestReducer.teamSubmitted
+    teamSubmitted: state.joinTeamRequestReducer.teamSubmitted,
+    members: state.joinTeamRequestReducer.members
   };
 };
 

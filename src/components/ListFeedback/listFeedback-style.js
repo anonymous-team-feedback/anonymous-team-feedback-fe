@@ -29,6 +29,10 @@ export const H2 = styled.h2`
   background: #393945;
 `;
 
+export const CardContainer = styled.div`
+  padding: 1.5% 0;
+`;
+
 export const HeaderDiv = styled.div`
   display: flex;
   padding: 2% 0;
