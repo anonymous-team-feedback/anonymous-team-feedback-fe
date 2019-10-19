@@ -127,10 +127,10 @@ class JoinTeamRequest extends React.Component {
       <PageDiv className="JoinTeamRequest">
         {/* Join/ Create Team Form */}
         {this.state.showCreateTeam ? (
-          <Form >
-            <Segment basic padded='very' >
-              <Grid columns={2} relaxed stackable>
-                <Grid.Column >
+            <Segment basic padded='very'>
+              <Form >
+              <Grid columns={2} relaxed stackable placeholder>
+                <Grid.Column id="joinContainer">
                   <Form.Field id="jointeamfield">
                     <H2 color="white">Join an existing team</H2>
                     <P>
@@ -244,124 +244,9 @@ class JoinTeamRequest extends React.Component {
                        )}
                 </Grid.Column>     
               </Grid>
-                    <Divider vertical inverted>OR</Divider>
+                    <Divider vertical inverted id="vertical">OR</Divider>
+              </Form>
             </Segment>
-          </Form>
-        ) : null}
-
-        {/* Next page after joining existing team or creating a new team */}
-
-        {/* shows list of team members, if joining an existing team */}
-        {this.state.showDashboardJoined ? (
-          <MainListContainer>
-            <SubListContainer>
-              <div>
-                <H2>
-                  Here's a list of your colleagues who have joined your InCog
-                  team to date:
-                </H2>
-
-                {this.state.members.length > 0 ? (
-                  <div>
-                    <Table celled>
-                      <Table.Header>
-                        <Table.Row>
-                          <Table.HeaderCell className="name-tab" width={2}>
-                            Name
-                          </Table.HeaderCell>
-                          <Table.HeaderCell className="email-tab" width={4}>
-                            Email
-                          </Table.HeaderCell>
-                          <Table.HeaderCell className="title-tab" width={4}>
-                            Title
-                          </Table.HeaderCell>
-                        </Table.Row>
-                      </Table.Header>
-
-                      {/* Mapping out members */}
-
-                      <Table.Body className="TeamMembersList">
-                        {items.map((members, index) => (
-                          <Table.Row>
-                            <Table.Cell width={2}>
-                              {members.firstName} {members.lastName}
-                            </Table.Cell>
-                            <Table.Cell width={4}>{members.email}</Table.Cell>
-                            <Table.Cell width={4} key={index}>
-                              {members.jobTitle}
-                            </Table.Cell>
-                          </Table.Row>
-                        ))}
-                      </Table.Body>
-
-                      {/* Pagination for Members List */}
-
-                      <Table.Footer className="TeamMembersPageNav">
-                        <Table.Row>
-                          <Table.HeaderCell colSpan="3">
-                            <Menu pagination>
-                              <Menu.Item as="a" icon>
-                                <Pagination
-                                  activePage={page}
-                                  totalPages={totalPages}
-                                  siblingRange={1}
-                                  onPageChange={this.setPageNumber}
-                                />
-                              </Menu.Item>
-                            </Menu>
-                          </Table.HeaderCell>
-                        </Table.Row>
-                      </Table.Footer>
-                    </Table>
-
-                    <Button
-                      className="ToDashboardButton"
-                      onClick={this.handleDashboard}
-                    >
-                      Take me to my dashboard
-                    </Button>
-                  </div>
-                ) : (
-                    // shows message if no team members in existing team currently
-                    <Message negative>
-                      <Message.Header>
-                        It doesn't look like any members of your team have joined
-                        InCog yet.
-                    </Message.Header>
-                      <p>Go tell them to sign up!</p>
-                      <Button
-                        className="ToDashboardButton"
-                        onClick={this.handleDashboard}
-                      >
-                        Take me to my dashboard
-                    </Button>
-                    </Message>
-                  )}
-              </div>
-            </SubListContainer>
-          </MainListContainer>
-        ) : null}
-
-        {/* shows dashboard option after a new team is created */}
-        {this.state.showDashboardCreated ? (
-          <MainListContainer>
-            <SubListContainer>
-              <Message>
-                <Message.Header>
-                  You have successfully created a new team, but will need other
-                  members to join.
-                </Message.Header>
-                <p>Go ahead and tell them to sign up!</p>
-
-                <Button
-                  className="ToDashboardButton"
-                  onClick={this.handleDashboard}
-                >
-                  Take me to my dashboard
-                </Button>
-              </Message>
-            </SubListContainer>
-          </MainListContainer>
         ) : null}
       </PageDiv>
     );
