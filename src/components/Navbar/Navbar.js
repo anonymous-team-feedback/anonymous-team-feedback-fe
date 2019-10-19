@@ -103,11 +103,12 @@ class Navbar extends React.Component {
                 {this.props.isLoggedIn && (
                     <div>
                         {/* need to update route with user page */}
-                        <Button onClick={this.handleReset} as={Link} className="usernameButton" name="home" to="/">
-                            {this.props.username}
+                        <Button onClick={this.handleReset} as={Link} className="usernameButton" name="home" to="/" compact>
+                            {this.props.firstName} <br></br>
+                            {this.props.lastName}
                         </Button>
 
-                        <Button onClick={this.handleLogout} className="logoutButton">
+                        <Button onClick={this.handleLogout} className="logoutButton" >
                             Logout
                         </Button>
                     </div>
@@ -123,7 +124,8 @@ const mapStateToProps = (state) => {
         isLoggedIn: usersReducer.isLoggedIn,
         loginError: usersReducer.loginError,
         loginLoading: usersReducer.loginLoading,
-        username: usersReducer.user.firstName,
+        firstName: usersReducer.user.firstName,
+        lastName: usersReducer.user.lastName,
         teamName: joinTeamRequestReducer.name,
         pendingUsersFinished: state.joinTeamRequestReducer.pendingUsersFinished
     };

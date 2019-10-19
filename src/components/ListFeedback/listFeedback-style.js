@@ -30,7 +30,7 @@ export const H2 = styled.h2`
 `;
 
 export const CardContainer = styled.div`
-  padding: 1.5% 0;
+  padding: 2% 0;
 `;
 
 export const HeaderDiv = styled.div`

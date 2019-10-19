@@ -24,7 +24,7 @@ class Pending extends React.Component {
       <MainListContainer>
         <SubListContainer>
           <Header as="h1" inverted>
-            Pending team requests
+            Pending Team Requests
           </Header>
           <CardContainer>
           <Card.Group centered>
@@ -64,14 +64,22 @@ class Pending extends React.Component {
             )}
             
             {(this.props.pendingUsersFinished === true && this.props.pendingUsers.length < 1) && (
-                <Message
+                <div>
+                    <Message
                     compact
-                    size="mini"
+                    size="large"
                     header="Looks like you have no pending requests!"
-                />)
-            }
-            
-
+                />
+                <Message 
+                color="teal"
+                size="small"
+                >
+                    <Message.Header textAlign="left">Useful tip:</Message.Header>
+                    Tell a team member to join! <br></br>
+                    Your team nick name is: {this.props.slug}
+                    </Message>
+                </div>
+                )}
           </Card.Group>
           </CardContainer>
         </SubListContainer>
