@@ -14,7 +14,13 @@ class SideBar extends React.Component {
         showPending: true,
         showTeam: false,
         showFeedback: false,
-        showSend: false
+        showSend: false,
+
+        animation: 'overlay',
+        direction: 'left',
+        dimmed: false,
+        visible: false
+        
     }
 
       // onClick hides team forms and display team members list to dashboard
@@ -46,21 +52,32 @@ class SideBar extends React.Component {
     this.setState({ showSend: true });
   };
 
+  handleAnimationChange = (animation) => () =>
+  this.setState((prevState) => ({ animation, visible: !prevState.visible }))
 
 
   render() {
+    const { animation, dimmed, direction, visible } = this.state
+    const vertical = direction === 'bottom' || direction === 'top'
+
       return(
+
         <Sidebar.Pushable as={Segment}>
         <Sidebar
           as={Menu}
           animation="slideout"
+        //   direction={direction}
+          visible
           icon="labeled"
           inverted
           vertical
-          visible
           width="thin"
         >
-          <Menu.Item as="a" to="/pending" onClick={this.showPending}>
+          <Menu.Item as="a"
+          onClick={ () => {
+              this.showPending(); 
+            //   this.handleAnimationChange('slide out');
+            }}>
             <Icon name="home" />
             Pending Team Request
           </Menu.Item>
@@ -95,10 +112,6 @@ class SideBar extends React.Component {
             { this.state.showSend ? (
             <PostFeedback />
           ) : null }
-            
-            
-
-
             </Segment>
         </Sidebar.Pusher>
       </Sidebar.Pushable>
