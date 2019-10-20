@@ -23,10 +23,9 @@ export function login(email, password, history) {
     axios
       .post(`${host}auth/login`, user)
       .then(res => {
-        console.log(res.data)
         saveAuthInfo(res.data.token, res.data._id);
-        dispatch({ type: LOGIN_SUCCESS, payload: res.data });
         if(res.data.team) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
+        dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       })
       .catch(err => {
         dispatch({ type: LOGIN_FAILURE, payload: err });
@@ -60,7 +59,6 @@ export const register = newUser => dispatch => {
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      alert(JSON.stringify(err));
       dispatch({ type: REGISTER_FAILURE, payload: err });
     });
 };
@@ -106,12 +104,27 @@ export const autoLogin = () => async dispatch => {
     "x-auth-token": authInfo.token
   }})
   .then(res => {
-    console.log(res.data)
-    dispatch({type: AUTO_LOGIN_SUCCESS, payload: res.data})
     if(res.data.team) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
+    dispatch({type: AUTO_LOGIN_SUCCESS, payload: res.data})
 
   })
   .catch(err => {
     dispatch({type: AUTO_LOGIN_FAIL, payload: err})
   })
+}
+
+export const GET_MEMBERS_INFO_START = "GET_MEMBERS_INFO_START";
+export const GET_MEMBERS_INFO_SUCCESS = "GET_MEMBERS_INFO_SUCCESS";
+export const GET_MEMBERS_INFO_FAIL = "GET_MEMBERS_INFO_FAIL";
+
+export const getMembersInfo = id => async dispatch => {
+  const authInfo = await getAuthInfo()
+  dispatch({ type: GET_MEMBERS_INFO_START })
+  return axios
+    .get(`${host}user/${id}` , { headers: { 'x-auth-token': authInfo.token } })
+    .then(res => {
+      dispatch({ type: GET_MEMBERS_INFO_SUCCESS, payload: res.data })
+      console.log('memberInfo: ', res.data)
+    })
+    .catch(err => dispatch({ type: GET_MEMBERS_INFO_FAIL, payload: err }))
 }

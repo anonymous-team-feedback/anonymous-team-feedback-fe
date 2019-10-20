@@ -18,9 +18,8 @@ import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 import { Menu, Table, Message, Pagination } from "semantic-ui-react";
 
 import {
-  fetchAllTeamMembers,
-  getMembers
-} from "../../actions/joinTeamRequestActions";
+  getMembersInfo
+} from "../../actions/usersActions";
 
 class TeamMembersList extends React.Component {
   state = {
@@ -29,20 +28,35 @@ class TeamMembersList extends React.Component {
     team: "",
     slug: "",
     existingSlug: "",
-    members: [
-
-    ],
+    members: [],
+    membersInfo: []
   };
 
   componentDidMount() {
-    this.props.getMembers(this.props.slug);
-    // this.props.fetchAllTeamMembers(this.props.slug);
-    console.log("Members:" + this.props.members)
-  }
+    console.log(this.props.members);
+    const getMembersInfo = [];
+    const getInfo = this.props.getMembersInfo(this.props.members[0]);
+
+    getMembersInfo.push(getInfo);
+
+    // .map(member => {
+    //   getMembersInfo.push(this.props.getMembersInfo(member))
+    // });
+
+    console.log("this is getMembersInfo:",getMembersInfo);
+    console.log("this is props.memberInfo:", this.props.memberInfo);
+
+
+    this.setState({
+      membersInfo: getMembersInfo
+    });
+    console.log("this is members:", this.state.membersInfo);
+  };
+
 
   // fetches all team members
   fetchAllTeamMembersInfo = () => {
-    this.props.fetchAllTeamMembersInfo();
+    this.props.getMembersInfo()
   };
 
   handleChange = e => {
@@ -55,13 +69,11 @@ class TeamMembersList extends React.Component {
   render() {
     const { itemsPerPage } = this.state;
     const { page } = this.state;
-    // const totalPages = Math.floor(this.props.members.length / itemsPerPage);
-    const totalPages = 3;
-    const items = this.state.members.slice(
+    const totalPages = Math.floor(this.state.membersInfo.length / itemsPerPage);
+    const items = this.state.membersInfo.slice(
       (page - 1) * itemsPerPage,
       (page - 1) * itemsPerPage + itemsPerPage
     );
-
     return (
       <PageDiv className="JoinTeamRequest">
         {/* shows list of team members, if joining an existing team */}
@@ -72,7 +84,7 @@ class TeamMembersList extends React.Component {
                 to date:
               </H2>
               <div>
-                <Table celled>
+                <Table unstackable>
                   <Table.Header>
                     <Table.Row>
                       <Table.HeaderCell className="name-tab" width={2}>
@@ -123,6 +135,7 @@ class TeamMembersList extends React.Component {
                   </Table.Footer>
                 </Table>
               </div>
+
           </SubListContainer>
         </MainListContainer>
       </PageDiv>
@@ -131,17 +144,18 @@ class TeamMembersList extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { usersReducer, postsReducer, joinTeamRequestReducer } = state;
+  const { usersReducer, joinTeamRequestReducer } = state;
   return {
     team: joinTeamRequestReducer.team,
     members: joinTeamRequestReducer.members,
     slug: joinTeamRequestReducer.slug,
+    memberInfo: usersReducer.member
   };
 };
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { getMembers , fetchAllTeamMembers }
+    { getMembersInfo }
   )(TeamMembersList)
 );

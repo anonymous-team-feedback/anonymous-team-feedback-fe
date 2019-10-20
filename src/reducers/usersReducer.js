@@ -13,7 +13,10 @@ import {
   SEARCH_EMAIL_START,
   SEARCH_EMAIL_SUCCESS,
   SEARCH_EMAIL_FAILURE,
-  TRANSFORM_EMAILS_FOR_DROPDOWN
+  TRANSFORM_EMAILS_FOR_DROPDOWN,
+  GET_MEMBERS_INFO_START,
+  GET_MEMBERS_INFO_SUCCESS,
+  GET_MEMBERS_INFO_FAIL
 } from "../actions/usersActions";
 import { statement } from "@babel/template";
 
@@ -27,15 +30,35 @@ const initialState = {
     jobTitle: "",
     approved: false
   },
+
+  member: {
+    token: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    user_id: "",
+    jobTitle: "",
+    approved: false
+  },
+
   searchedEmails: [],
   transformedSearchedEmails: [],
+
   loggingIn: false,
   isLoggedIn: false,
   loginError: null,
+  autoLoginError: null,
+
   isRegistering: false,
   registerError: null,
+
   isSearchingEmails: false,
-  searchEmailsError: null
+  searchEmailsError: null,
+
+  getInfoStart: false,
+  isGettingInfo: false,
+  getInfoError: null
+
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -51,6 +74,9 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         loginStart: false,
+        isLoggedIn: true,
+        loginError: false,
+        autoLoginError: null,
         user: {
           ...state.user,
           email: action.payload.email,
@@ -59,8 +85,6 @@ export const usersReducer = (state = initialState, action) => {
           lastName: action.payload.lastName,
           user_id: action.payload._id,
         },
-        isLoggedIn: true,
-        loginError: false
       };
     case LOGIN_FAILURE:
       return {
@@ -134,15 +158,16 @@ export const usersReducer = (state = initialState, action) => {
     case AUTO_LOGIN: {
       return {
         ...state,
-        loggingIn: true,
+        loginStart: true,
         loginError: false
       }
     }
     case AUTO_LOGIN_SUCCESS: {
       return {
         ...state, 
-        loggingIn: false,
+        loginStart: false,
         isLoggedIn: true,
+        autoLoginError: null,
         user: {
           ...state.user,
           email: action.payload.user.email,
@@ -157,8 +182,38 @@ export const usersReducer = (state = initialState, action) => {
     case AUTO_LOGIN_FAIL: {
       return {
         ...state,
-        loggingIn: false,
-        loginError: action.payload
+        loginStart: false,
+        autoLoginError: action.payload
+      }
+    }
+
+    case GET_MEMBERS_INFO_START: {
+      return {
+        ...state,
+        getInfoStart: true,
+      }
+    }
+    case GET_MEMBERS_INFO_SUCCESS: {
+      return {
+        ...state, 
+        getInfoStart: false,
+        isGettingInfo: true,
+        member: {
+          ...state.member,
+          email: action.payload.user.email,
+          firstName: action.payload.user.firstName,
+          jobTitle: action.payload.user.jobTitle,
+          lastName: action.payload.user.lastName,
+          user_id: action.payload.user._id,
+          approved: action.payload.approved
+        }
+      }
+    }
+    case GET_MEMBERS_INFO_FAIL: {
+      return {
+        ...state,
+        getInfoStart: false,
+        getInfoError: action.payload
       }
     }
 

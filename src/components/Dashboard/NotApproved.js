@@ -13,14 +13,14 @@ class NotApproved extends React.Component {
               <Divider hidden/>
               <Message negative>
                 <Message.Header>
-                  Please wait for you team manager to approve your team request.
+                  Please wait for your team manager to approve your team request.
                 </Message.Header>
                 <p>Best Wishes - SpeakIncog Team</p>
               </Message>
               <Divider />
               <Message negative>
                 <Message.Header>
-                  Tap the button below if you haven't requested to join a team, yet.
+                  Tap the button below if you haven't requested to join a team yet.
                 </Message.Header>
                 <Divider hidden/>
                 <Button

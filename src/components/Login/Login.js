@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { login } from "../../actions/usersActions";
 import { PageDiv, LoginContainer, LoginInputsContainer, Input, Label, H1 } from "./login-style.js";
-import { Button, Form } from "semantic-ui-react";
+import { Button, Form, Message } from "semantic-ui-react";
 
 class Login extends React.Component {
   constructor(props) {
@@ -33,6 +33,7 @@ class Login extends React.Component {
     if (this.props.isLoggedIn) {
       this.props.history.push("/dashboard");
     }
+    console.log(this.props.autoLoginError, this.props.loginError)
     return (
       <PageDiv className="Login">
         <H1>Sign in</H1>
@@ -62,7 +63,11 @@ class Login extends React.Component {
                   placeholder="password"
                   onChange={this.handleChange}
                 />
-                {this.props.loginError && <p>Incorrect username or password</p>}
+                {this.props.loginError && 
+                <Message
+                color='red'
+                header="Incorrect email or password"
+                />}
               </Form.Field>
             </LoginInputsContainer>
 
@@ -77,11 +82,12 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = ({ usersReducer: state }) => {
+const mapStateToProps = (state) => {
   return {
-    email: state.user.email,
-    isLoggedIn: state.isLoggedIn,
-    loginError: state.loginError
+    email: state.usersReducer.user.email,
+    isLoggedIn: state.usersReducer.isLoggedIn,
+    loginError: state.usersReducer.loginError,
+    autoLoginError: state.usersReducer.autoLoginError
   };
 };
 

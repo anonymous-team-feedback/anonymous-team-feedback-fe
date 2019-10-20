@@ -2,8 +2,8 @@ import React from "react";
 import "./App.css";
 
 import { Route } from "react-router-dom";
-import {autoLogin} from './actions/usersActions';
-import {connect} from 'react-redux';
+import { autoLogin } from './actions/usersActions';
+import { connect } from 'react-redux';
 
 import Login from "./components/Login/Login.js";
 import Navbar from "./components/Navbar/Navbar.js";
@@ -11,12 +11,19 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute.js";
 import Dashboard from "./components/Dashboard/Dashboard.js";
 import Register from "./components/Register/Register.js";
 import JoinTeamRequest from "./components/JoinTeamRequest/JoinTeamRequest.js";
+
+import Pending from "./components/Dashboard/Pending.js";
+import TeamMembersList from "./components/TeamMembersList/TeamMembersList.js";
+import ListFeedback from "./components/ListFeedback/ListFeedback.js";
+import PostFeedback from "./components/PostFeedback/PostFeedback.js";
+
 import "semantic-ui-css/semantic.min.css";
+import { Message, Dimmer, Loader } from "semantic-ui-react";
 
 class App extends React.Component {
 
-  componentDidMount(){
-    if(localStorage.getItem('token')){
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
       this.props.autoLogin()
       /*placing the auto login in the app component sort of future proofs the auto login
       functionality. Im sure there is a better way, but this way ensures, atleast, that 
@@ -45,16 +52,54 @@ class App extends React.Component {
               <Route path="/jointeam" component={JoinTeamRequest} />
             </div>
             <div>
+              <Route exact path="/teamlist" component={TeamMembersList} />
+            </div>
+            <div>
+              <Route exact path="/listfeedback" component={ListFeedback} />
+            </div>
+            <div>
+              <Route exact path="/postfeedback" component={PostFeedback} />
+            </div>
+            <div>
+              <Route exact path="/pending" component={Pending} />
+            </div>
+            <div>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </div>
           </div>
         </div>
+
+        {this.props.autoLoginError &&
+          <Message
+            color='red'
+            header="There was an error with AUTO LOGIN"
+            content='Please try again!'
+            style={
+              {
+                position: 'fixed',
+                right: '10px',
+                bottom: '10px'
+              }}
+          />}
+
+        {this.props.loginStart &&
+        <Dimmer active>
+          <Loader size='massive'>
+            Gathering data
+          </Loader>
+        </Dimmer>}
       </div>
     );
   }
 };
 
+const mapStateToProps = state => {
+  return {
+    autoLoginError: state.usersReducer.autoLoginError,
+    loginStart: state.usersReducer.loginStart
+  }
+}
 export default connect(
-    null,
-    { autoLogin }
-  )(App);
+  mapStateToProps,
+  { autoLogin }
+)(App);
