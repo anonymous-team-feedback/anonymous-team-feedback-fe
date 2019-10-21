@@ -23,6 +23,16 @@ class SideBar extends React.Component {
         
     }
 
+    componentDidMount() {
+      if(this.props.userId !== this.props.managerId) {
+        this.showFeedback();
+      }
+
+      if(this.props.userId === this.props.managerId) {
+        this.showFeedback();
+      }
+    }
+
       // onClick hides team forms and display team members list to dashboard
   showPending = () => {
     this.setState({ showPending: true });
@@ -62,7 +72,7 @@ class SideBar extends React.Component {
 
       return(
 
-        <Sidebar.Pushable as={Segment}>
+        <Sidebar.Pushable as={Segment} id="sidebar">
         <Sidebar
           as={Menu}
           animation="slideout"
@@ -73,7 +83,9 @@ class SideBar extends React.Component {
           vertical
           width="thin"
         >
-          <Menu.Item as="a"
+
+          {(this.props.userId === this.props.managerId) && (
+            <Menu.Item as="a"
           onClick={ () => {
               this.showPending(); 
             //   this.handleAnimationChange('slide out');
@@ -81,6 +93,9 @@ class SideBar extends React.Component {
             <Icon name="home" />
             Pending Team Request
           </Menu.Item>
+          )}
+          
+
           <Menu.Item as="a" to="/teamlist" onClick={this.showTeam}>
             <Icon name="address book" />
             Team Members List
@@ -95,8 +110,8 @@ class SideBar extends React.Component {
           </Menu.Item>
         </Sidebar>
   
-        <Sidebar.Pusher>
-          <Segment  basic textAlign="center">
+        <Sidebar.Pusher id="main-content">
+          <Segment  basic textAlign="center" id="showing-content">
           { this.state.showPending && this.props.managerId === this.props.userId ? (
             <Pending/>
           ) : null }

@@ -32,13 +32,6 @@ const initialState = {
   },
 
   member: {
-    token: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    user_id: "",
-    jobTitle: "",
-    approved: false
   },
 
   searchedEmails: [],
@@ -199,13 +192,7 @@ export const usersReducer = (state = initialState, action) => {
         getInfoStart: false,
         isGettingInfo: true,
         member: {
-          ...state.member,
-          email: action.payload.user.email,
-          firstName: action.payload.user.firstName,
-          jobTitle: action.payload.user.jobTitle,
-          lastName: action.payload.user.lastName,
-          user_id: action.payload.user._id,
-          approved: action.payload.approved
+          ...action.payload
         }
       }
     }

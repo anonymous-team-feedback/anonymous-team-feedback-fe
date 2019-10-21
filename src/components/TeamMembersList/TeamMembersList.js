@@ -18,7 +18,7 @@ import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 import { Menu, Table, Message, Pagination } from "semantic-ui-react";
 
 import {
-  getMembersInfo
+  findTeamBySlug 
 } from "../../actions/usersActions";
 
 class TeamMembersList extends React.Component {
@@ -33,24 +33,8 @@ class TeamMembersList extends React.Component {
   };
 
   componentDidMount() {
-    console.log(this.props.members);
-    const getMembersInfo = [];
-    const getInfo = this.props.getMembersInfo(this.props.members[0]);
-
-    getMembersInfo.push(getInfo);
-
-    // .map(member => {
-    //   getMembersInfo.push(this.props.getMembersInfo(member))
-    // });
-
-    console.log("this is getMembersInfo:",getMembersInfo);
-    console.log("this is props.memberInfo:", this.props.memberInfo);
-
-
-    this.setState({
-      membersInfo: getMembersInfo
-    });
-    console.log("this is members:", this.state.membersInfo);
+    this.props.findTeamBySlug(this.props.slug);
+    console.log("this is members:", this.props.members);
   };
 
 
@@ -69,8 +53,8 @@ class TeamMembersList extends React.Component {
   render() {
     const { itemsPerPage } = this.state;
     const { page } = this.state;
-    const totalPages = Math.floor(this.state.membersInfo.length / itemsPerPage);
-    const items = this.state.membersInfo.slice(
+    const totalPages = Math.floor(this.state.members.length / itemsPerPage);
+    const items = this.state.members.slice(
       (page - 1) * itemsPerPage,
       (page - 1) * itemsPerPage + itemsPerPage
     );
@@ -147,7 +131,7 @@ const mapStateToProps = state => {
   const { usersReducer, joinTeamRequestReducer } = state;
   return {
     team: joinTeamRequestReducer.team,
-    members: joinTeamRequestReducer.members,
+    members: joinTeamRequestReducer.member,
     slug: joinTeamRequestReducer.slug,
     memberInfo: usersReducer.member
   };
@@ -156,6 +140,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { getMembersInfo }
+    { findTeamBySlug }
   )(TeamMembersList)
 );
