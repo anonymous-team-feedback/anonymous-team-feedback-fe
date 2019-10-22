@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {NavBar, Field, FormGroup, NavBarLogoContainer, NavBarLoginContainer, NavBarButtonsContainer} from "./navbar-style.js";
-import {Button, Header, Icon} from "semantic-ui-react";
+import {Button, Header} from "semantic-ui-react";
 import {Link, withRouter} from "react-router-dom";
 import {login} from "../../actions/usersActions";
 import {removeAuthInfo} from "../../util/login.js";
@@ -13,11 +13,7 @@ import {
 class Navbar extends React.Component {
     state = {
         email: "",
-        password: "",
-        animation: 'overlay',
-        direction: 'left',
-        dimmed: false,
-        visible: false,
+        password: ""
     };
 
     handleSubmit = e => {
@@ -47,23 +43,14 @@ class Navbar extends React.Component {
             .reload();
     };
 
-    handleAnimationChange = (animation) => () =>
-    this.setState((prevState) => ({ animation, visible: !prevState.visible }))
-
     render() {
         if(this.props.location.pathname === '/') this.props.history.push('/login')
         return (
             <NavBar className="Navbar">
                 <NavBarLogoContainer>
-                    {/* <Button
-                    onClick={this.handleAnimationChange('slide along')}>
-                        <Icon name="bars" />
-                    </Button> */}
-
                     <Button as={Link} className="incogButton" name="home" to="/">
                         InCog
                     </Button>
-
                     <Header as='span' size='medium' style={{color: '#51e3c2'}} textAlign='center'>{this.props.teamName}</Header>
                 </NavBarLogoContainer>
 
