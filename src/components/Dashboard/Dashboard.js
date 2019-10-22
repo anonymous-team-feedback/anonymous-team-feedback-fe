@@ -15,17 +15,16 @@ import Pending from "./Pending.js";
 class Dashboard extends React.Component {
 
   render() {
-    if (this.props.members.includes(this.props.userId)) {
+    if (!this.props.slug) {
+      return <NotApproved/>
+    } else {
       return (
-        <div className="Dashboard"> 
-
+        <div className="Dashboard">
           {this.props.managerId === this.props.userId && <Pending/>}
           <ListFeedback />
           <PostFeedback />
         </div>
       );
-    } else {
-      return <NotApproved/>
     }
   }
 };
@@ -35,9 +34,6 @@ const mapStateToProps = state => {
     slug: state.joinTeamRequestReducer.slug,
     managerId: state.joinTeamRequestReducer.manager,
     userId: state.usersReducer.user.user_id,
-    teamJoined: state.joinTeamRequestReducer.teamJoined,
-    teamSubmitted: state.joinTeamRequestReducer.teamSubmitted,
-    members: state.joinTeamRequestReducer.members
   };
 };
 
