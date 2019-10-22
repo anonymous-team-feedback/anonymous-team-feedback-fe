@@ -23,6 +23,10 @@ import {
   APPROVE_PENDING_SUCCESS,
   APPROVE_PENDING_FAIL,
 
+
+  DECLINE_PENDING_START,
+  DECLINE_PENDING_SUCCESS,
+  DECLINE_PENDING_FAIL,
 } from "../actions/joinTeamRequestActions";
 
 import {
@@ -158,18 +162,18 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
         pendingUsersLoading: false,
         pendingUsersError: action.payload
       }
-      case APPROVE_PENDING_START:
+    case APPROVE_PENDING_START:
       return {
         ...state,
         approving: true
       }
-      case APPROVE_PENDING_SUCCESS:
+    case APPROVE_PENDING_SUCCESS:
       return {
         ...state,
         approving: false,
         members: action.payload.members
       }
-      case APPROVE_PENDING_FAIL:
+    case APPROVE_PENDING_FAIL:
       return {
         ...state,
         approving: false,
@@ -192,6 +196,23 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
           getInfoStart: false,
           getInfoError: action.payload
         }
+    case DECLINE_PENDING_START:
+      return {
+        ...state,
+        declining: true,
+      }
+    case DECLINE_PENDING_SUCCESS:
+      return {
+        ...state,
+        declining:false,
+        pendingUsers: null
+      }
+    case DECLINE_PENDING_FAIL:
+      return {
+        ...state,
+        declining: false,
+        decliningError: action.payload
+      }
 
     default:
       return state;
