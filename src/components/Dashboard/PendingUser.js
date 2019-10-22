@@ -4,7 +4,6 @@ import { approvePending, declinePending } from '../../actions/joinTeamRequestAct
 import { connect } from 'react-redux'
 class PendingUser extends React.Component {
 
-
     approveUser = (e) => {
         e.preventDefault()
         this.props.approvePending({
@@ -47,7 +46,7 @@ class PendingUser extends React.Component {
                                     color='green'
                                     onClick={this.approveUser}
                                 >Approve</Button>
-                                <Button 
+                                <Button
                                 color='red'
                                 onClick={this.declineUser}
                                 >Decline</Button>
