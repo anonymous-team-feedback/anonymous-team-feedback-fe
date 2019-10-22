@@ -1,10 +1,14 @@
 import React from "react";
 import {connect} from "react-redux";
-import {NavBar, Field, FormGroup, NavBarLoginContainer, NavBarButtonsContainer} from "./navbar-style.js";
+import {NavBar, Field, FormGroup, NavBarLogoContainer, NavBarLoginContainer, NavBarButtonsContainer} from "./navbar-style.js";
 import {Button, Header} from "semantic-ui-react";
 import {Link, withRouter} from "react-router-dom";
 import {login} from "../../actions/usersActions";
 import {removeAuthInfo} from "../../util/login.js";
+import {
+    resetPending
+  } from "../../actions/joinTeamRequestActions";
+  
 
 class Navbar extends React.Component {
     state = {
@@ -28,6 +32,10 @@ class Navbar extends React.Component {
 
     validateForm = () => this.state.email.length >= 5 && this.state.password.length >= 5;
 
+    handleReset = () => {
+        this.props.resetPending();
+    };
+
     handleLogout = () => {
         removeAuthInfo();
         window
@@ -39,12 +47,12 @@ class Navbar extends React.Component {
         if(this.props.location.pathname === '/') this.props.history.push('/login')
         return (
             <NavBar className="Navbar">
-                <div>
+                <NavBarLogoContainer>
                     <Button as={Link} className="incogButton" name="home" to="/">
                         InCog
                     </Button>
-                    <Header as='span' size='medium' style={{color: '#51e3c2'}}>{this.props.teamName}</Header>
-                </div>
+                    <Header as='span' size='medium' style={{color: '#51e3c2'}} textAlign='center'>{this.props.teamName}</Header>
+                </NavBarLogoContainer>
 
                 {/* if not logged in and at register, display login form */}
                 {!this.props.isLoggedIn && this.props.location.pathname === "/register" && (
@@ -95,11 +103,12 @@ class Navbar extends React.Component {
                 {this.props.isLoggedIn && (
                     <div>
                         {/* need to update route with user page */}
-                        <Button as={Link} className="usernameButton" name="home" to="/">
-                            {this.props.username}
+                        <Button onClick={this.handleReset} as={Link} className="usernameButton" name="home" to="/" compact>
+                            {this.props.firstName} <br></br>
+                            {this.props.lastName}
                         </Button>
 
-                        <Button onClick={this.handleLogout} className="logoutButton">
+                        <Button onClick={this.handleLogout} className="logoutButton" textAlign="center" >
                             Logout
                         </Button>
                     </div>
@@ -115,9 +124,11 @@ const mapStateToProps = (state) => {
         isLoggedIn: usersReducer.isLoggedIn,
         loginError: usersReducer.loginError,
         loginLoading: usersReducer.loginLoading,
-        username: usersReducer.user.firstName,
-        teamName: joinTeamRequestReducer.name
+        firstName: usersReducer.user.firstName,
+        lastName: usersReducer.user.lastName,
+        teamName: joinTeamRequestReducer.name,
+        pendingUsersFinished: state.joinTeamRequestReducer.pendingUsersFinished
     };
 };
 
-export default connect(mapStateToProps, {login})(withRouter(Navbar));
+export default connect(mapStateToProps, {resetPending , login})(withRouter(Navbar));

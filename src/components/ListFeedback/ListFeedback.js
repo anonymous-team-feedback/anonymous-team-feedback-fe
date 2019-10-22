@@ -22,6 +22,7 @@ class ListFeedback extends React.Component {
     page: 1,
     itemsPerPage: 10
   };
+  
   componentDidMount() {
     this.props.fetchAllPosts();
   }
@@ -44,7 +45,7 @@ class ListFeedback extends React.Component {
           <H2>My Feedback</H2>
           {(this.props.posts && !this.props.loading && this.props.posts.length > 0) && (
             <div>
-              <Table celled>
+              <Table unstackable>
                 <Table.Header>
                   <Table.Row>
                     <Table.HeaderCell className="date-tab" width={2}>

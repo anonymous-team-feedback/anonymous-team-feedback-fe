@@ -29,6 +29,23 @@ export const FormGroup = styled.form`
 
 // NavBar Login Input Container styling//
 
+export const NavBarLogoContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  // border: 1px solid yellow;
+
+  @media (max-width: 460px) {  
+    display: flex;
+    flex-direction: column;
+    // align-items: flex-start;
+    // margin: 1rem;
+  }
+`;
+
+// NavBar Login Input Container styling//
+
 export const NavBarLoginContainer = styled.div`
   display: flex;
   justify-content: flex-end;

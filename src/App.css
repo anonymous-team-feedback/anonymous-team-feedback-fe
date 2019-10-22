@@ -247,6 +247,13 @@ form .navbarContainer {
   transition: color 0.1s ease-in-out !important;
 }
 
+/* Team Name in Nav Bar */
+
+.ui.medium.header {
+  padding: auto !important;
+  margin: none !important;
+}
+
 /* Username */
 
 .ui.button.usernameButton {
@@ -256,6 +263,8 @@ form .navbarContainer {
   font-size: .9rem !important;
   font-weight: bold !important;
   transition: color 0.1s ease-in-out !important;
+  margin: auto;
+  vertical-align: middle;
 }
 
 /* NavBar Sign In Button Styling */
@@ -293,8 +302,7 @@ form .navbarContainer {
   font-weight: bold !important;
   padding: 0.6rem 0.6rem !important;
   font-size: 0.9rem !important;
-  margin-left: 0.5rem !important;
-  margin-right: 2rem !important;
+  margin: auto;
 }
 
 /* NavBar Buttons (Hover Effect) Styling */
@@ -316,6 +324,19 @@ form .navbarContainer {
 .ui.button.logoutButton:hover {
   color: white !important;
   border: 1px solid white !important;
+}
+
+/* OR horizontal divider */
+
+.ui.horizontal.inverted.divider {
+  display: none;
+}
+
+/* At 400px and below do the following for PostFeedback: */
+@media screen and (max-width: 400px){
+  .ui.medium.header {
+    margin: auto;
+  }
 }
 
 /* At 700px and below do the following for Login and Register: */
@@ -382,6 +403,63 @@ input[type="password"].NavBarPassword {
   margin: 0.2rem;
   background-color: #4d505f !important;
   color: white !important;
+  }
+}
+
+/* At 770px and below do the following for PostFeedback: */
+
+@media screen and (max-width: 770px){
+  .ui.form .column#joinContainer{
+    padding-bottom: 45px !important;
+    border-bottom: 0.1px solid #44444F;
+  }
+
+  /* .ui.horizontal.inverted.divider:before{
+    display: block;
+    position: absolute;
+    left: 0%;
+    content: '';
+    z-index: 3;
+    border-left: 1px solid rgba(34,36,38,.15);
+    border-right: 1px solid rgba(255,255,255,.1);
+    height: 0%;
+    width: calc(100% - 1rem);
+
+    top: -100%;
+  }
+
+  .ui.horizontal.inverted.divider:after {
+    display: block;
+    position: absolute;
+    left: 0%;
+    content: '';
+    z-index: 3;
+    border-left: 1px solid rgba(34,36,38,.15);
+    border-right: 1px solid rgba(255,255,255,.1);
+    height: 0%;
+    width: calc(100% - 1rem);
+
+    top: auto;
+    bottom: 0;
+}
+
+  .ui.horizontal.inverted.divider{
+    position: absolute;
+    display: block;
+    z-index: 2;
+    top: 50%;
+    right: 50%;
+    margin: 0;
+    padding: 0;
+    width: 50%;
+    height: auto;
+    line-height: 0;
+    text-align: center;
+    transform: translateY(-50%);
+  } */
+
+  .ui.vertical.inverted.divider{
+    display: none;
   }
 }
 
