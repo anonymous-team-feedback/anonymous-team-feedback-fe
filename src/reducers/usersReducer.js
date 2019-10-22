@@ -2,26 +2,24 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+
   AUTO_LOGIN,
   AUTO_LOGIN_FAIL,
   AUTO_LOGIN_SUCCESS,
+
   REGISTER_START,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
+
   CHECK_AUTH_STATUS_SUCCESS,
   CHECK_AUTH_STATUS_FAILURE,
+
   SEARCH_EMAIL_START,
   SEARCH_EMAIL_SUCCESS,
   SEARCH_EMAIL_FAILURE,
+
   TRANSFORM_EMAILS_FOR_DROPDOWN,
-  GET_MEMBERS_INFO_START,
-  GET_MEMBERS_INFO_SUCCESS,
-  GET_MEMBERS_INFO_FAIL,
-  GET_ALL_USER_INFO_START,
-  GET_ALL_USER_INFO_SUCCESS,
-  GET_ALL_USER_INFO_FAIL
 } from "../actions/usersActions";
-import { statement } from "@babel/template";
 
 const initialState = {
   user: {
@@ -32,16 +30,6 @@ const initialState = {
     user_id: "",
     jobTitle: "",
     approved: false
-  },
-
-  member: {
-  },
-
-  userInfo: {
-    email: "",
-    firstName: "",
-    jobTitle: "",
-    lastName: ""
   },
 
   searchedEmails: [],
@@ -193,59 +181,6 @@ export const usersReducer = (state = initialState, action) => {
         autoLoginError: action.payload
       }
     }
-
-    case GET_MEMBERS_INFO_START: {
-      return {
-        ...state,
-        getInfoStart: true,
-      }
-    }
-    case GET_MEMBERS_INFO_SUCCESS: {
-      return {
-        ...state, 
-        getInfoStart: false,
-        isGettingInfo: true,
-        member: {
-          ...action.payload
-        }
-      }
-    }
-    case GET_MEMBERS_INFO_FAIL: {
-      return {
-        ...state,
-        getInfoStart: false,
-        getInfoError: action.payload
-      }
-    }
-
-    case GET_ALL_USER_INFO_START: {
-      return {
-        ...state,
-        // getUserInfoStart: true,
-      }
-    }
-    case GET_ALL_USER_INFO_SUCCESS: {
-      return {
-        ...state, 
-        // getUserInfoStart: false,
-        // isGettingUserInfo: true,
-        userInfo: {
-          ...state.userInfo,
-          email: action.payload.user.email,
-          firstName: action.payload.user.firstName,
-          jobTitle: action.payload.user.jobTitle,
-          lastName: action.payload.user.lastName,
-        }
-      }
-    }
-    case GET_ALL_USER_INFO_FAIL: {
-      return {
-        ...state,
-        getUserInfoStart: false,
-        getUserInfoError: action.payload
-      }
-    }
-
     default:
       return state;
   }
