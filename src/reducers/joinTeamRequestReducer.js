@@ -149,6 +149,7 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
       return {
         ...state,
         pendingUsersLoading: true,
+        pendingUsers: null
       }
     case GET_PENDING_SUCCESS:
       return {
