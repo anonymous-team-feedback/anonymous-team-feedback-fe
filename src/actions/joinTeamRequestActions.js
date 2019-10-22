@@ -120,8 +120,24 @@ export const approvePending = (user, user_id, request_id) => async dispatch => {
     .put(`${host}jointeam/`, ({ user: user, user_id: user_id, request_id: request_id }), { headers: { 'x-auth-token': authInfo.token } })
     .then(res => {
       dispatch({ type: APPROVE_PENDING_SUCCESS, payload: res.data })
-      console.log('data: ', res.data)
       dispatch(getPending(res.data.slug))
     })
     .catch(err => dispatch({ type: APPROVE_PENDING_FAIL, payload: err }))
+}
+
+
+export const DECLINE_PENDING_START = 'DECLINE_PENDING_START'
+export const DECLINE_PENDING_SUCCESS = 'DECLINE_PENDING_SUCCESS'
+export const DECLINE_PENDING_FAIL = 'DECLINE_PENDING_FAIL'
+
+export const declinePending = (request_id, slug) => async dispatch => {
+  const authInfo = await getAuthInfo()
+  dispatch({ type: DECLINE_PENDING_START })
+  return axios
+    .delete(`${host}jointeam/removeuser/${request_id}`, { headers: { 'x-auth-token': authInfo.token } })
+    .then(res => {
+      dispatch({ type: DECLINE_PENDING_SUCCESS})
+      dispatch(getPending(slug))
+    })
+    .catch(err => dispatch({ type: DECLINE_PENDING_FAIL, payload: err }))
 }
