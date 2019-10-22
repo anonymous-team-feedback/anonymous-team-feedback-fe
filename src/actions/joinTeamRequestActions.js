@@ -129,3 +129,4 @@ export const approvePending = (user, user_id, request_id) => async dispatch => {
     })
     .catch(err => dispatch({ type: APPROVE_PENDING_FAIL, payload: err }))
 }
+
