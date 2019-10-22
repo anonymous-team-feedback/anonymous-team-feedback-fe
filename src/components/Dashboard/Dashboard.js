@@ -2,29 +2,24 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import ListFeedback from "../ListFeedback/ListFeedback.js";
-import PostFeedback from "../PostFeedback/PostFeedback.js";
-import { Header, Message, Divider, Button } from "semantic-ui-react";
-
-import { fetchAllTeamMembers } from '../../actions/joinTeamRequestActions'
-import { MainListContainer, SubListContainer, H2 } from "../ListFeedback/listFeedback-style.js";
+import SideBar from "../SideBar/SideBar.js";
 import NotApproved from "./NotApproved.js";
-import Pending from "./Pending.js";
 
 
 class Dashboard extends React.Component {
 
   render() {
-    if (!this.props.slug) {
-      return <NotApproved/>
-    } else {
+
+    if (this.props.members && this.props.members.includes(this.props.userId)) {
       return (
-        <div className="Dashboard">
-          {this.props.managerId === this.props.userId && <Pending/>}
-          <ListFeedback />
-          <PostFeedback />
+        <div className="Dashboard"> 
+        <SideBar />
         </div>
       );
+    }else{
+      return (
+        <NotApproved/>
+      )
     }
   }
 };
@@ -34,12 +29,13 @@ const mapStateToProps = state => {
     slug: state.joinTeamRequestReducer.slug,
     managerId: state.joinTeamRequestReducer.manager,
     userId: state.usersReducer.user.user_id,
+    members: state.joinTeamRequestReducer.members
   };
 };
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { fetchAllTeamMembers }
+    {  }
   )(Dashboard)
 );

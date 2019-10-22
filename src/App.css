@@ -32,6 +32,48 @@
   }
 }
 
+.ui.placeholder.segment {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.ui.thin.left.sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  /* width: 15% !important; */
+}
+
+.ui.segment {
+  min-height: 450px;
+  background: #32323E !important;
+  /* margin: 0 auto !important;
+  width: 100% !important; */
+
+}
+
+.ui.segment #sidebar{
+  min-height: 450px;
+  margin: 0 auto !important;
+  width: 100% !important;
+  background: #32323E !important;
+  border: none !important;
+}
+
+.ui.segment #main-content{
+  background: #32323E !important;
+  border: none !important;
+}
+
+.ui.segment #showing-content{
+  background: #32323E !important;
+  width: 80% !important;
+  border: none !important;
+}
+
+.ui.inverted.menu {
+  background: #2c2c31 !important;
+}
+
 /* Login Input Email and Password Styling */
 
 input[type="email"]#LoginFormEmail,
@@ -94,6 +136,10 @@ input[type="password"]#LoginFormPassword {
 }
 
 /* Feedback Input PostFeedback Component Styling */
+
+.ui.placeholder.segment textarea {
+  max-width: none !important;
+}
 
 textarea.FeedbackInput {
   background-color: #32323f !important;

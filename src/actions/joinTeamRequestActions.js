@@ -1,13 +1,15 @@
 import axios from "axios";
 import { removeAuthInfo, getAuthInfo } from "../util/login.js";
 
-// const host = "https://anonymous-team-feedback.herokuapp.com/api/";
+// const host = "https://anonymous-team-feedback-stage.herokuapp.com/api/";
 const host = "http://localhost:5050/api/";
 
-
-export const SUBMIT_JOIN_EXISTING_TEAM_START = "SUBMIT_JOIN_EXISTING_TEAM_START";
-export const SUBMIT_JOIN_EXISTING_TEAM_SUCCESS = "SUBMIT_JOIN_EXISTING_TEAM_SUCCESS";
-export const SUBMIT_JOIN_EXISTING_TEAM_FAILURE = "SUBMIT_JOIN_EXISTING_TEAM_FAILURE";
+export const SUBMIT_JOIN_EXISTING_TEAM_START =
+  "SUBMIT_JOIN_EXISTING_TEAM_START";
+export const SUBMIT_JOIN_EXISTING_TEAM_SUCCESS =
+  "SUBMIT_JOIN_EXISTING_TEAM_SUCCESS";
+export const SUBMIT_JOIN_EXISTING_TEAM_FAILURE =
+  "SUBMIT_JOIN_EXISTING_TEAM_FAILURE";
 
 export const submitJoinExistingTeam = (teamSlug) => async dispatch => {
   const authInfo = await getAuthInfo();
@@ -54,11 +56,13 @@ export const FETCH_ALL_MEMBERS_START = "FETCH_ALL_MEMBERS_START";
 export const FETCH_ALL_MEMBERS_SUCCESS = "FETCH_ALL_MEMBERS_SUCCESS";
 export const FETCH_ALL_MEMBERS_FAILURE = "FETCH_ALL_MEMBERS_FAILURE";
 
-export const fetchAllTeamMembers = (slug) => async dispatch => {
+export const fetchAllTeamMembers = slug => async dispatch => {
   const authInfo = await getAuthInfo();
   dispatch({ type: FETCH_ALL_MEMBERS_START });
   return axios
-    .get(`${host}teams/${slug}`, { headers: { "x-auth-token": authInfo.token } })
+    .get(`${host}teams/${slug}`, {
+      headers: { "x-auth-token": authInfo.token }
+    })
     .then(res => {
       if (res.status === 400) {
         dispatch({ type: FETCH_ALL_MEMBERS_FAILURE, payload: ({ message: 'No team found with that slug' }) })
@@ -77,9 +81,9 @@ export const fetchAllTeamMembers = (slug) => async dispatch => {
     });
 };
 
-export const GET_TEAM_DATA_START = 'GET_TEAM_DATA_START';
-export const GET_TEAM_DATA_SUCCESS = 'GET_TEAM_DATA_SUCCESS';
-export const GET_TEAM_DATA_FAIL = 'GET_TEAM_DATA_FAIL';
+export const GET_TEAM_DATA_START = "GET_TEAM_DATA_START";
+export const GET_TEAM_DATA_SUCCESS = "GET_TEAM_DATA_SUCCESS";
+export const GET_TEAM_DATA_FAIL = "GET_TEAM_DATA_FAIL";
 
 export const getTeamData = id => async dispatch => {
   const authInfo = await getAuthInfo()
@@ -92,9 +96,9 @@ export const getTeamData = id => async dispatch => {
     .catch(err => dispatch({ type: GET_TEAM_DATA_FAIL, payload: { error: err } }))
 }
 
-export const GET_PENDING_START = 'GET_PENDING_START'
-export const GET_PENDING_SUCCESS = 'GET_PENDING_SUCCESS'
-export const GET_PENDING_FAIL = 'GET_PENDING_FAIL'
+export const GET_PENDING_START = "GET_PENDING_START";
+export const GET_PENDING_SUCCESS = "GET_PENDING_SUCCESS";
+export const GET_PENDING_FAIL = "GET_PENDING_FAIL";
 
 export const getPending = slug => async dispatch => {
   const authInfo = await getAuthInfo()
@@ -109,9 +113,9 @@ export const getPending = slug => async dispatch => {
     .catch(err => dispatch({ type: GET_PENDING_FAIL, payload: err }))
 }
 
-export const APPROVE_PENDING_START = 'APPROVE_PENDING_START'
-export const APPROVE_PENDING_SUCCESS = 'APPROVE_PENDING_SUCCESS'
-export const APPROVE_PENDING_FAIL = 'APPROVE_PENDING_FAIL'
+export const APPROVE_PENDING_START = "APPROVE_PENDING_START";
+export const APPROVE_PENDING_SUCCESS = "APPROVE_PENDING_SUCCESS";
+export const APPROVE_PENDING_FAIL = "APPROVE_PENDING_FAIL";
 
 export const approvePending = (user, user_id, request_id) => async dispatch => {
   const authInfo = await getAuthInfo()
@@ -125,3 +129,4 @@ export const approvePending = (user, user_id, request_id) => async dispatch => {
     })
     .catch(err => dispatch({ type: APPROVE_PENDING_FAIL, payload: err }))
 }
+

@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {NavBar, Field, FormGroup, NavBarLoginContainer, NavBarButtonsContainer} from "./navbar-style.js";
 import {Button, Header} from "semantic-ui-react";
+
 import {Link, withRouter} from "react-router-dom";
 import {login} from "../../actions/usersActions";
 import {removeAuthInfo} from "../../util/login.js";
@@ -9,7 +10,11 @@ import {removeAuthInfo} from "../../util/login.js";
 class Navbar extends React.Component {
     state = {
         email: "",
-        password: ""
+        password: "",
+        animation: 'overlay',
+        direction: 'left',
+        dimmed: false,
+        visible: false,
     };
 
     handleSubmit = e => {
@@ -35,6 +40,9 @@ class Navbar extends React.Component {
             .reload();
     };
 
+    handleAnimationChange = (animation) => () =>
+    this.setState((prevState) => ({ animation, visible: !prevState.visible }))
+
     render() {
         if(this.props.location.pathname === '/') this.props.history.push('/login')
         return (
@@ -45,6 +53,7 @@ class Navbar extends React.Component {
                     </Button>
                     <Header as='span' size='medium' style={{color: '#51e3c2'}}>{this.props.teamName}</Header>
                 </div>
+
 
                 {/* if not logged in and at register, display login form */}
                 {!this.props.isLoggedIn && this.props.location.pathname === "/register" && (

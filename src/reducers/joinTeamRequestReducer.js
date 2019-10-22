@@ -22,12 +22,20 @@ import {
   APPROVE_PENDING_START,
   APPROVE_PENDING_SUCCESS,
   APPROVE_PENDING_FAIL,
+
 } from "../actions/joinTeamRequestActions";
+
+import {
+  GET_MEMBERS_INFO_START,
+  GET_MEMBERS_INFO_SUCCESS,
+  GET_MEMBERS_INFO_FAIL,
+} from '../actions/usersActions'
 
 const initialState = {
   name: "",
   slug: null,
-  members: [],
+  members: null,
+  membersInfo: null,
   manager: null,
   pendingUsers: null,
 
@@ -42,8 +50,8 @@ const initialState = {
   submitNewTeamError: null,
   teamSubmitted: false,
 
-  fetchAllMembersLoading: false,
-  fetchAllMembersError: null
+  getInfoStart: false,
+  getInfoError: null
 };
 
 export const joinTeamRequestReducer = (state = initialState, action) => {
@@ -167,6 +175,24 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
         approving: false,
         approvingError: action.payload
       }
+      case GET_MEMBERS_INFO_START: 
+      return{
+        ...state,
+        getInfoStart: true
+      }
+      case GET_MEMBERS_INFO_SUCCESS: 
+      return {
+        ...state,
+        getInfoStart: false,
+        membersInfo: action.payload.members
+      }
+      case GET_MEMBERS_INFO_FAIL:
+        return {
+          ...state,
+          getInfoStart: false,
+          getInfoError: action.payload
+        }
+
     default:
       return state;
   }

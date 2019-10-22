@@ -2,20 +2,24 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+
   AUTO_LOGIN,
   AUTO_LOGIN_FAIL,
   AUTO_LOGIN_SUCCESS,
+
   REGISTER_START,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
+
   CHECK_AUTH_STATUS_SUCCESS,
   CHECK_AUTH_STATUS_FAILURE,
+
   SEARCH_EMAIL_START,
   SEARCH_EMAIL_SUCCESS,
   SEARCH_EMAIL_FAILURE,
-  TRANSFORM_EMAILS_FOR_DROPDOWN
+
+  TRANSFORM_EMAILS_FOR_DROPDOWN,
 } from "../actions/usersActions";
-import { statement } from "@babel/template";
 
 const initialState = {
   user: {
@@ -40,7 +44,16 @@ const initialState = {
   registerError: null,
 
   isSearchingEmails: false,
-  searchEmailsError: null
+  searchEmailsError: null,
+
+  getInfoStart: false,
+  isGettingInfo: false,
+  getInfoError: null,
+
+  getUserInfoStart: false,
+  isGettingUserInfo: false,
+  getUserInfoError: null,
+
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -168,7 +181,6 @@ export const usersReducer = (state = initialState, action) => {
         autoLoginError: action.payload
       }
     }
-
     default:
       return state;
   }
