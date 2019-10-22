@@ -9,13 +9,13 @@ export const PostContainer = styled.div`
   // justify-content: center;
   background: #32323e;
   padding: 3%;
-  // padding-bottom: 200px;
+  padding-bottom: 200px;
 `;
 
 // PageDiv Styling//
 export const PageDiv = styled.div`
   background: #393946;
-  margin: 0% 10%;
+  margin: 0% 20% 0% 20%;
 
   @media (max-width: 800px) {
     margin: 0 10% 0 10%;

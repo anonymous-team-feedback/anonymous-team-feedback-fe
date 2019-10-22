@@ -39,7 +39,6 @@ class ListFeedback extends React.Component {
       (page - 1) * itemsPerPage,
       (page - 1) * itemsPerPage + itemsPerPage
     ) : 0;
-    
     return (
       <MainListContainer>
         <SubListContainer className="Listfeedback">
