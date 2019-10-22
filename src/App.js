@@ -11,6 +11,12 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute.js";
 import Dashboard from "./components/Dashboard/Dashboard.js";
 import Register from "./components/Register/Register.js";
 import JoinTeamRequest from "./components/JoinTeamRequest/JoinTeamRequest.js";
+
+import Pending from "./components/Dashboard/Pending.js";
+import TeamMembersList from "./components/TeamMembersList/TeamMembersList.js";
+import ListFeedback from "./components/ListFeedback/ListFeedback.js";
+import PostFeedback from "./components/PostFeedback/PostFeedback.js";
+
 import "semantic-ui-css/semantic.min.css";
 import { Message, Dimmer, Loader } from "semantic-ui-react";
 
@@ -44,6 +50,18 @@ class App extends React.Component {
             </div>
             <div>
               <Route path="/jointeam" component={JoinTeamRequest} />
+            </div>
+            <div>
+              <Route exact path="/teamlist" component={TeamMembersList} />
+            </div>
+            <div>
+              <Route exact path="/listfeedback" component={ListFeedback} />
+            </div>
+            <div>
+              <Route exact path="/postfeedback" component={PostFeedback} />
+            </div>
+            <div>
+              <Route exact path="/pending" component={Pending} />
             </div>
             <div>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />

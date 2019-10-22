@@ -23,15 +23,19 @@ import {
   APPROVE_PENDING_SUCCESS,
   APPROVE_PENDING_FAIL,
 
-  DECLINE_PENDING_START,
-  DECLINE_PENDING_SUCCESS,
-  DECLINE_PENDING_FAIL,
 } from "../actions/joinTeamRequestActions";
+
+import {
+  GET_MEMBERS_INFO_START,
+  GET_MEMBERS_INFO_SUCCESS,
+  GET_MEMBERS_INFO_FAIL,
+} from '../actions/usersActions'
 
 const initialState = {
   name: "",
   slug: null,
-  members: [],
+  members: null,
+  membersInfo: null,
   manager: null,
   pendingUsers: null,
 
@@ -46,8 +50,8 @@ const initialState = {
   submitNewTeamError: null,
   teamSubmitted: false,
 
-  fetchAllMembersLoading: false,
-  fetchAllMembersError: null
+  getInfoStart: false,
+  getInfoError: null
 };
 
 export const joinTeamRequestReducer = (state = initialState, action) => {
@@ -154,40 +158,40 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
         pendingUsersLoading: false,
         pendingUsersError: action.payload
       }
-    case APPROVE_PENDING_START:
+      case APPROVE_PENDING_START:
       return {
         ...state,
         approving: true
       }
-    case APPROVE_PENDING_SUCCESS:
+      case APPROVE_PENDING_SUCCESS:
       return {
         ...state,
         approving: false,
         members: action.payload.members
       }
-    case APPROVE_PENDING_FAIL:
+      case APPROVE_PENDING_FAIL:
       return {
         ...state,
         approving: false,
         approvingError: action.payload
       }
-    case DECLINE_PENDING_START:
+      case GET_MEMBERS_INFO_START: 
+      return{
+        ...state,
+        getInfoStart: true
+      }
+      case GET_MEMBERS_INFO_SUCCESS: 
       return {
         ...state,
-        declining: true,
+        getInfoStart: false,
+        membersInfo: action.payload.members
       }
-    case DECLINE_PENDING_SUCCESS:
-      return {
-        ...state,
-        declining:false,
-        pendingUsers: null
-      }
-    case DECLINE_PENDING_FAIL:
-      return {
-        ...state,
-        declining: false,
-        decliningError: action.payload
-      }
+      case GET_MEMBERS_INFO_FAIL:
+        return {
+          ...state,
+          getInfoStart: false,
+          getInfoError: action.payload
+        }
 
     default:
       return state;

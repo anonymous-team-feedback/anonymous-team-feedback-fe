@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Image, Button, Placeholder, Segment } from 'semantic-ui-react'
-import { approvePending, declinePending } from '../../actions/joinTeamRequestActions'
+import { approvePending } from '../../actions/joinTeamRequestActions'
 import { connect } from 'react-redux'
 class PendingUser extends React.Component {
 
@@ -14,11 +14,6 @@ class PendingUser extends React.Component {
         },
             this.props.userId,
             this.props.requestId)
-    }
-
-    declineUser = (e) => {
-        e.preventDefault()
-        this.props.declinePending(this.props.requestId, this.props.slug)
     }
 
     render() {
@@ -47,10 +42,7 @@ class PendingUser extends React.Component {
                                     color='green'
                                     onClick={this.approveUser}
                                 >Approve</Button>
-                                <Button 
-                                color='red'
-                                onClick={this.declineUser}
-                                >Decline</Button>
+                                <Button disabled color='red'>Decline</Button>
                             </div>
                         </Card.Content>
                     </>
@@ -89,4 +81,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { approvePending, declinePending })(PendingUser)
+export default connect(mapStateToProps, { approvePending })(PendingUser)
