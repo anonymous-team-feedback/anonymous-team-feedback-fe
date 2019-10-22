@@ -27,16 +27,25 @@ import {
   DECLINE_PENDING_SUCCESS,
   DECLINE_PENDING_FAIL,
 
+
 } from "../actions/joinTeamRequestActions";
+
+import {
+  GET_MEMBERS_INFO_START,
+  GET_MEMBERS_INFO_SUCCESS,
+  GET_MEMBERS_INFO_FAIL,
+} from '../actions/usersActions'
 
 const initialState = {
   name: "",
   slug: null,
-  members: [],
+  members: null,
+  membersInfo: null,
   manager: null,
-  pendingUsers: null,
+  pendingUsers: [],
 
   pendingUsersLoading: false,
+  pendingUsersFinished: false,
   pendingUsersError: null,
 
   isJoiningExistingTeam: false,
@@ -47,8 +56,8 @@ const initialState = {
   submitNewTeamError: null,
   teamSubmitted: false,
 
-  fetchAllMembersLoading: false,
-  fetchAllMembersError: null
+  getInfoStart: false,
+  getInfoError: null
 };
 
 export const joinTeamRequestReducer = (state = initialState, action) => {
@@ -84,6 +93,10 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
     case SUBMIT_CREATE_NEW_TEAM_SUCCESS: {
       return {
         ...state,
+        members: action.payload.members,
+        slug: action.payload.slug,
+        name: action.payload.name,
+        manager: action.payload.manager,
         isSubmittingNewTeam: false,
         teamSubmitted: true
       };
@@ -147,12 +160,14 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
       return {
         ...state,
         pendingUsersLoading: false,
+        pendingUsersFinished: true,
         pendingUsers: action.payload
       }
     case GET_PENDING_FAIL:
       return {
         ...state,
         pendingUsersLoading: false,
+        pendingUsersFinished: true,
         pendingUsersError: action.payload
       }
     case APPROVE_PENDING_START:
@@ -189,6 +204,7 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
         declining: false,
         decliningError: action.payload
       }
+
     default:
       return state;
   }
