@@ -27,10 +27,10 @@ class PendingUser extends React.Component {
                                 circular
                                 floated='right'
                                 size='mini'
-                                src='https://i.ibb.co/LzcSng1/anonymous-avatar-icon-5.png'
+                                src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
                             />
                             <Card.Header >{`${this.props.user.firstName} ${this.props.user.lastName}`}</Card.Header>
-                            <Card.Meta>{this.props.user.jobTitle}</Card.Meta>
+                            <Card.Meta>Join Team Request</Card.Meta>
                             <Card.Description>
                                 {`${this.props.user.firstName} would like to join the team`}
                             </Card.Description>
