@@ -16,7 +16,10 @@ import {
   TRANSFORM_EMAILS_FOR_DROPDOWN,
   GET_MEMBERS_INFO_START,
   GET_MEMBERS_INFO_SUCCESS,
-  GET_MEMBERS_INFO_FAIL
+  GET_MEMBERS_INFO_FAIL,
+  GET_ALL_USER_INFO_START,
+  GET_ALL_USER_INFO_SUCCESS,
+  GET_ALL_USER_INFO_FAIL
 } from "../actions/usersActions";
 import { statement } from "@babel/template";
 
@@ -32,6 +35,13 @@ const initialState = {
   },
 
   member: {
+  },
+
+  userInfo: {
+    email: "",
+    firstName: "",
+    jobTitle: "",
+    lastName: ""
   },
 
   searchedEmails: [],
@@ -50,7 +60,11 @@ const initialState = {
 
   getInfoStart: false,
   isGettingInfo: false,
-  getInfoError: null
+  getInfoError: null,
+
+  getUserInfoStart: false,
+  isGettingUserInfo: false,
+  getUserInfoError: null,
 
 };
 
@@ -201,6 +215,34 @@ export const usersReducer = (state = initialState, action) => {
         ...state,
         getInfoStart: false,
         getInfoError: action.payload
+      }
+    }
+
+    case GET_ALL_USER_INFO_START: {
+      return {
+        ...state,
+        // getUserInfoStart: true,
+      }
+    }
+    case GET_ALL_USER_INFO_SUCCESS: {
+      return {
+        ...state, 
+        // getUserInfoStart: false,
+        // isGettingUserInfo: true,
+        userInfo: {
+          ...state.userInfo,
+          email: action.payload.user.email,
+          firstName: action.payload.user.firstName,
+          jobTitle: action.payload.user.jobTitle,
+          lastName: action.payload.user.lastName,
+        }
+      }
+    }
+    case GET_ALL_USER_INFO_FAIL: {
+      return {
+        ...state,
+        getUserInfoStart: false,
+        getUserInfoError: action.payload
       }
     }
 

@@ -128,3 +128,19 @@ export const findTeamBySlug = slug => async dispatch => {
     })
     .catch(err => dispatch({ type: GET_MEMBERS_INFO_FAIL, payload: err }))
 }
+
+export const GET_ALL_USER_INFO_START = "GET_ALL_USER_INFO_START";
+export const GET_ALL_USER_INFO_SUCCESS = "GET_ALL_USER_INFO_SUCCESS";
+export const GET_ALL_USER_INFO_FAIL = "GET_ALL_USER_INFO_FAIL";
+
+export const findUser = id => async dispatch => {
+  const authInfo = await getAuthInfo()
+  dispatch({ type: GET_ALL_USER_INFO_START })
+  return axios
+    .get(`${host}user/${id}` , { headers: { 'x-auth-token': authInfo.token } })
+    .then(res => {
+      dispatch({ type: GET_ALL_USER_INFO_SUCCESS, payload: res.data })
+      console.log('userInfo: ', res.data)
+    })
+    .catch(err => dispatch({ type: GET_ALL_USER_INFO_FAIL, payload: err }))
+}
