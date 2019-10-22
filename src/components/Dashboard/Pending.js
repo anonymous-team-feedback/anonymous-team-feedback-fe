@@ -46,16 +46,6 @@ class Pending extends React.Component {
                 }
               })}
 
-            {(this.props.pendingUsersLoading && this.props.pendingUsersFinished === false) && (
-              <div class="ui icon message">
-                <i class="notched circle loading icon"></i>
-                <div class="content">
-                  <div class="header">Just one second</div>
-                  <p>We're fetching that content for you.</p>
-                </div>
-              </div>
-            )}
-
             {this.props.pendingUsersError && (
               <Message
                 color="red"
@@ -82,6 +72,15 @@ class Pending extends React.Component {
                 )}
           </Card.Group>
           </CardContainer>
+          {(this.props.pendingUsersLoading && this.props.pendingUsersFinished === false) && (
+              <div class="ui icon message">
+                <i class="notched circle loading icon"></i>
+                <div class="content">
+                  <div class="header">Just one second</div>
+                  <p>We're fetching that content for you.</p>
+                </div>
+              </div>
+            )}
         </SubListContainer>
       </MainListContainer>
     );
@@ -92,7 +91,6 @@ const mapStateToProps = state => {
   return {
     slug: state.joinTeamRequestReducer.slug,
     user: state.usersReducer.user,
-
     pendingUsers: state.joinTeamRequestReducer.pendingUsers,
     pendingUsersLoading: state.joinTeamRequestReducer.pendingUsersLoading,
     pendingUsersFinished: state.joinTeamRequestReducer.pendingUsersFinished,

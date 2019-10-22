@@ -5,8 +5,8 @@ import {
   GET_TEAM_DATA_SUCCESS
 } from '../actions/joinTeamRequestActions'
 
-// const host = "https://anonymous-team-feedback.herokuapp.com/api/";
-const host = "http://localhost:5050/api/";
+const host = "https://anonymous-team-feedback-stage.herokuapp.com/api/";
+// const host = "http://localhost:5050/api/";
 
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -111,4 +111,20 @@ export const autoLogin = () => async dispatch => {
   .catch(err => {
     dispatch({type: AUTO_LOGIN_FAIL, payload: err})
   })
+}
+
+export const GET_MEMBERS_INFO_START = "GET_MEMBERS_INFO_START";
+export const GET_MEMBERS_INFO_SUCCESS = "GET_MEMBERS_INFO_SUCCESS";
+export const GET_MEMBERS_INFO_FAIL = "GET_MEMBERS_INFO_FAIL";
+
+export const findTeamBySlug = slug => async dispatch => {
+  const authInfo = await getAuthInfo()
+  dispatch({ type: GET_MEMBERS_INFO_START })
+  return axios
+    .get(`${host}teams/members/${slug}` , { headers: { 'x-auth-token': authInfo.token } })
+    .then(res => {
+      dispatch({ type: GET_MEMBERS_INFO_SUCCESS, payload: res.data })
+      console.log('membersInfo: ', res.data)
+    })
+    .catch(err => dispatch({ type: GET_MEMBERS_INFO_FAIL, payload: err }))
 }
