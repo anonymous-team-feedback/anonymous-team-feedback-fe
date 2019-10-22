@@ -106,9 +106,7 @@ export const getPending = slug => async dispatch => {
   return axios
     .get(`${host}jointeam/${slug}`, { headers: { 'x-auth-token': authInfo.token } })
     .then(res => {
-      setTimeout(() => {
         dispatch({ type: GET_PENDING_SUCCESS, payload: res.data })
-      }, 4000);
     })
     .catch(err => dispatch({ type: GET_PENDING_FAIL, payload: err }))
 }
