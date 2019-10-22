@@ -5,8 +5,8 @@ import {
   GET_TEAM_DATA_SUCCESS
 } from '../actions/joinTeamRequestActions'
 
-// const host = "https://anonymous-team-feedback.herokuapp.com/api/";
-const host = "http://localhost:5050/api/";
+const host = "https://anonymous-team-feedback-stage.herokuapp.com/api/";
+// const host = "http://localhost:5050/api/";
 
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
