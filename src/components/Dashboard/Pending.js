@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Header, CardGroup, Card, Image, Button, Divider, Segment, Placeholder, Message } from 'semantic-ui-react'
-import { MainListContainer, SubListContainer } from '../ListFeedback/listFeedback-style'
+import { MainListContainer, SubListContainer, CardContainer } from '../ListFeedback/listFeedback-style'
 import { getPending } from '../../actions/joinTeamRequestActions'
 import PendingUser from './PendingUser'
 
@@ -16,6 +16,7 @@ class Pending extends React.Component {
             <MainListContainer>
                 <SubListContainer>
                     <Header as='h1' inverted>Pending team requests</Header>
+                    <CardContainer>
                     <Card.Group centered >
                         {this.props.pendingUsers && this.props.pendingUsers.map(user => {
                             if (!user.approved) {
@@ -30,33 +31,49 @@ class Pending extends React.Component {
                                         slug={this.props.slug}
                                         requestId={user._id}
                                     />
-                                )
+                                );
                             }
                         })}
 
-                        {this.props.pendingUsersLoading &&
-                            <PendingUser loading/>
-                        }
+                        {(this.props.pendingUsersLoading && this.props.pendingUsersFinished === false) && (
+                            <div class="ui icon message">
+                                <i class="notched circle loading icon"></i>
+                                <div class="content">
+                                    <div class="header">Just one second</div>
+                                    <p>We're fetching that content for you.</p>
+                                </div>
+                            </div>
+                        )}
 
-                        {this.props.pendingUsersError &&
+                        {this.props.pendingUsersError && (
                             <Message
-
-                                color='red'
-                                header='Theres was an error fetching requests'
+                                color="red"
+                                header="Theres was an error fetching requests"
                             />
-                        }
-
-                        {(this.props.pendingUsers && this.props.pendingUsers.length < 1) &&
-                            <Message
+                        )}
+                                    
+                        {(this.props.pendingUsersFinished === true && this.props.pendingUsers.length < 1) && (
+                            <div>
+                                <Message
                                 compact
-                                size='mini'
-                                header='Looks like you have no pending requests!'
+                                size="large"
+                                header="Looks like you have no pending requests!"
                             />
-                        }
+                            <Message 
+                            color="teal"
+                            size="small"
+                            >
+                                <Message.Header textAlign="left">Useful tip:</Message.Header>
+                                Tell a team member to join! <br></br>
+                                Your team nick name is: {this.props.slug}
+                                </Message>
+                            </div>
+                            )}
                     </Card.Group>
+                    </CardContainer>
                 </SubListContainer>
             </MainListContainer>
-        )
+        );
     }
 }
 
@@ -67,6 +84,7 @@ const mapStateToProps = state => {
 
         pendingUsers: state.joinTeamRequestReducer.pendingUsers,
         pendingUsersLoading: state.joinTeamRequestReducer.pendingUsersLoading,
+        pendingUsersFinished: state.joinTeamRequestReducer.pendingUsersFinished,
         pendingUsersError: state.joinTeamRequestReducer.pendingUsersError
     }
 }

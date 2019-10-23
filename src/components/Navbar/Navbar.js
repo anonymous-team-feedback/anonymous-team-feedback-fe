@@ -6,6 +6,11 @@ import {Button, Header} from "semantic-ui-react";
 import {Link, withRouter} from "react-router-dom";
 import {login} from "../../actions/usersActions";
 import {removeAuthInfo} from "../../util/login.js";
+import {
+    resetPending
+  } from "../../actions/joinTeamRequestActions";
+  
+
 
 class Navbar extends React.Component {
     state = {
@@ -29,6 +34,10 @@ class Navbar extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         });
+    };
+
+    handleReset = () => {
+        this.props.resetPending();
     };
 
     validateForm = () => this.state.email.length >= 5 && this.state.password.length >= 5;
@@ -104,8 +113,9 @@ class Navbar extends React.Component {
                 {this.props.isLoggedIn && (
                     <div>
                         {/* need to update route with user page */}
-                        <Button as={Link} className="usernameButton" name="home" to="/">
-                            {this.props.username}
+                        <Button onClick={this.handleReset} as={Link} className="usernameButton" name="home" to="/">
+                            {this.props.firstName} <br></br>
+                            {this.props.lastName}
                         </Button>
 
                         <Button onClick={this.handleLogout} className="logoutButton">
@@ -124,9 +134,12 @@ const mapStateToProps = (state) => {
         isLoggedIn: usersReducer.isLoggedIn,
         loginError: usersReducer.loginError,
         loginLoading: usersReducer.loginLoading,
+        firstName: usersReducer.user.firstName,
+        lastName: usersReducer.user.lastName,
         username: usersReducer.user.firstName,
-        teamName: joinTeamRequestReducer.name
+        teamName: joinTeamRequestReducer.name,
+        pendingUsersFinished: state.joinTeamRequestReducer.pendingUsersFinished
     };
 };
 
-export default connect(mapStateToProps, {login})(withRouter(Navbar));
+export default connect(mapStateToProps, {resetPending , login})(withRouter(Navbar));
