@@ -56,7 +56,7 @@ class Register extends React.Component {
     this.state.newUser.lastName.length > 2 &&
     this.state.newUser.email.length > 5 &&
     this.state.newUser.password.length > 5 &&
-    this.state.newUser.jobTitle.length > 4 ;
+    this.state.newUser.jobTitle.length > 2 ;
 
   render() {
     console.log(this.props.isLoggedIn)

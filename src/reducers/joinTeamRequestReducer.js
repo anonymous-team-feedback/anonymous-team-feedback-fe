@@ -95,6 +95,10 @@ export const joinTeamRequestReducer = (state = initialState, action) => {
     case SUBMIT_CREATE_NEW_TEAM_SUCCESS: {
       return {
         ...state,
+        members: action.payload.members,
+        slug: action.payload.slug,
+        name: action.payload.name,
+        manager: action.payload.manager,
         isSubmittingNewTeam: false,
         teamSubmitted: true
       };
