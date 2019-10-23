@@ -106,7 +106,7 @@ export const getPending = slug => async dispatch => {
   return axios
     .get(`${host}jointeam/${slug}`, { headers: { 'x-auth-token': authInfo.token } })
     .then(res => {
-        dispatch({ type: GET_PENDING_SUCCESS, payload: res.data })
+        dispatch({ type: GET_PENDING_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: GET_PENDING_FAIL, payload: err }))
 }
@@ -127,7 +127,6 @@ export const approvePending = (user, user_id, request_id) => async dispatch => {
     .catch(err => dispatch({ type: APPROVE_PENDING_FAIL, payload: err }))
 }
 
-
 export const DECLINE_PENDING_START = 'DECLINE_PENDING_START'
 export const DECLINE_PENDING_SUCCESS = 'DECLINE_PENDING_SUCCESS'
 export const DECLINE_PENDING_FAIL = 'DECLINE_PENDING_FAIL'
@@ -142,4 +141,20 @@ export const declinePending = (request_id, slug) => async dispatch => {
       dispatch(getPending(slug))
     })
     .catch(err => dispatch({ type: DECLINE_PENDING_FAIL, payload: err }))
+}
+
+export const RESET_PENDING_START = 'RESET_PENDING_START'
+export const RESET_PENDING_SUCCESS = 'RESET_PENDING_SUCCESS'
+export const RESET_PENDING_FAIL = 'RESET_PENDING_FAIL'
+
+export const resetPending = () => async dispatch => {
+  const authInfo = await getAuthInfo()
+  dispatch({ type: RESET_PENDING_START })
+  return axios
+    (res => {
+      setTimeout(() => {
+        dispatch({ type: RESET_PENDING_SUCCESS, payload: res.data })
+      }, 0);
+    })
+    .catch(err => dispatch({ type: RESET_PENDING_FAIL, payload: err }))
 }
