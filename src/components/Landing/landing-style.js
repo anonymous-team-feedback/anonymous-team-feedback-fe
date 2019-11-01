@@ -26,7 +26,7 @@ export const LandingContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  padding: 25px 0 70px 0;
+  padding: 0px 0 50px 0;
   width: 100%;
   min-height: 80vh;
 
