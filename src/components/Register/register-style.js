@@ -5,7 +5,7 @@ import styled from "styled-components";
 // PageDiv Styling//
 export const PageDiv = styled.div`
   background: #32323e;
-  padding: ;
+  min-height: 80vh;
 `;
 
 // Form Styling//
@@ -21,7 +21,7 @@ export const RegisterContainer = styled.div`
   flex-direction: column;
   margin: 0 15%;
   background: #32323e;
-  padding-bottom: 200px;
+  padding-bottom: 100px;
 `;
 
 // Label Styling//

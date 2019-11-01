@@ -57,10 +57,6 @@ class Navbar extends React.Component {
         return (
             <NavBar className="Navbar">
                 <div>
-                    {/* <Button as={Link} className="incogButton" name="home" to="/landing">
-                        InCog
-                    </Button> */}
-                    
                     {/* if not logged in, inCog button goes to landing */}
                     {!this.props.isLoggedIn && (
                         <Button as={Link} Button as={Link} className="incogButton" name="home" to="/landing">
@@ -155,30 +151,9 @@ class Navbar extends React.Component {
 
                 {/* if not logged in and at about, display login form */}
                 {!this.props.isLoggedIn && this.props.location.pathname === "/about" && (
-                    <FormGroup className="navbarContainer">
-                        <NavBarLoginContainer>
-                            <Field
-                                className="NavBarEmail"
-                                name="email"
-                                type="email"
-                                placeholder="email@email.com"
-                                onChange={this.handleChange}
-                                value={this.state.email}/>
-                            <Field
-                                className="NavBarPassword"
-                                name="password"
-                                type="password"
-                                placeholder="password"
-                                onChange={this.handleChange}
-                                value={this.state.password}/>
-                        </NavBarLoginContainer>
-
+                    <FormGroup>
                         <NavBarButtonsContainer>
-                            <Button
-                                className="signinButton"
-                                type="submit"
-                                onClick={this.handleSubmit}
-                                disabled={!this.validateForm()}>
+                            <Button as={Link} className="registerButton" name="login" to="/login">
                                 Sign in
                         </Button>
 

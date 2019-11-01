@@ -14,8 +14,10 @@ class About extends React.Component {
 
   render() {
     const { visible } = this.state;
+    // if(this.props.isLoggedIn) this.props.history.push('/dashboard')
 
     return (
+
         <div>
         <H1>"Meet the Team"</H1>
             <AboutContainer>
@@ -119,7 +121,9 @@ class About extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    isLoggedIn: state.usersReducer.isLoggedIn
+  };
 };
 
 export default withRouter(

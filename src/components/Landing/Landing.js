@@ -20,6 +20,7 @@ class Landing extends React.Component {
 
   render() {
     const { visible } = this.state
+    if(this.props.isLoggedIn) this.props.history.push('/dashboard')
 
       return(
         // <Image src='https://www.imageupload.net/upload-image/2019/11/01/teal.jpg' fluid />
@@ -34,7 +35,7 @@ class Landing extends React.Component {
               onClick={this.toggleVisibility}
               src='https://www.imageupload.net/upload-image/2019/11/01/Landing15e8d76dc7d0abb58.png'
               as='a'
-              size='large'
+              size='big'
               href='/'
               id="landingImage"
             />
@@ -47,6 +48,7 @@ class Landing extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    isLoggedIn: state.usersReducer.isLoggedIn
   };
 };
 

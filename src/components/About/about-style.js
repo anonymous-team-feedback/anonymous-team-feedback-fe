@@ -51,6 +51,7 @@ export const AboutContainer = styled.div`
   justify-content: center;
   padding: 15px 0;
   width: 100%;
+  border-top: 1px solid #4D4D58; 
 //   border: 1px solid yellow;
   background: #393945;
   min-height: 70vh;
