@@ -5,11 +5,14 @@ import { Route } from "react-router-dom";
 import { autoLogin } from './actions/usersActions';
 import { connect } from 'react-redux';
 
+import Landing from "./components/Landing/Landing.js";
 import Login from "./components/Login/Login.js";
 import Navbar from "./components/Navbar/Navbar.js";
+import Footer from "./components/Footer/Footer.js";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.js";
 import Dashboard from "./components/Dashboard/Dashboard.js";
 import Register from "./components/Register/Register.js";
+import About from "./components/About/About.js";
 import JoinTeamRequest from "./components/JoinTeamRequest/JoinTeamRequest.js";
 
 import Pending from "./components/Dashboard/Pending.js";
@@ -40,7 +43,13 @@ class App extends React.Component {
               <Navbar />
             </div>
             <div>
-              <Route exact path="/" component={Login} />
+              <Route exact path="/" component={Landing} />
+            </div>
+            <div>
+              <Route path="/landing" component={Landing} />
+            </div>
+            <div>
+              <Route path="/about" component={About} />
             </div>
             <div>
               <Route path="/login" component={Login} />
@@ -65,6 +74,9 @@ class App extends React.Component {
             </div>
             <div>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            </div>
+            <div>
+              <Footer/>
             </div>
           </div>
         </div>

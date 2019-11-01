@@ -35,7 +35,7 @@ class TeamMembersList extends React.Component {
               </H2>
               {(this.props.membersInfo && this.props.membersInfo.length > 0) && (
               <div>
-                <Table unstackable>
+                <Table>
                   <Table.Header>
                     <Table.Row>
                       <Table.HeaderCell className="name-tab" width={2}>

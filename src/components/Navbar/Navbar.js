@@ -57,9 +57,23 @@ class Navbar extends React.Component {
         return (
             <NavBar className="Navbar">
                 <div>
-                    <Button as={Link} className="incogButton" name="home" to="/">
+                    {/* <Button as={Link} className="incogButton" name="home" to="/landing">
                         InCog
-                    </Button>
+                    </Button> */}
+                    
+                    {/* if not logged in, inCog button goes to landing */}
+                    {!this.props.isLoggedIn && (
+                        <Button as={Link} Button as={Link} className="incogButton" name="home" to="/landing">
+                            InCog
+                    </Button>)}
+
+                    {/* if logged in, inCog button goes to dashboard */}
+                    {this.props.isLoggedIn && (
+                        <Button as={Link} Button as={Link} className="incogButton" name="dashboard" to="/">
+                            InCog
+                            </Button>
+                    )}
+
                     <Header as='span' size='medium' style={{color: '#51e3c2'}}>{this.props.teamName}</Header>
                 </div>
 
@@ -101,7 +115,82 @@ class Navbar extends React.Component {
                     </FormGroup>
                 )}
 
-                {/* if not logged in and at login, display register button */}
+                {/* if not logged in and at about, display login form */}
+                {!this.props.isLoggedIn && this.props.location.pathname === "/landing" && (
+                    <FormGroup className="navbarContainer">
+                        <NavBarLoginContainer>
+                            <Field
+                                className="NavBarEmail"
+                                name="email"
+                                type="email"
+                                placeholder="email@email.com"
+                                onChange={this.handleChange}
+                                value={this.state.email}/>
+                            <Field
+                                className="NavBarPassword"
+                                name="password"
+                                type="password"
+                                placeholder="password"
+                                onChange={this.handleChange}
+                                value={this.state.password}/>
+                        </NavBarLoginContainer>
+
+                        <NavBarButtonsContainer>
+                            <Button
+                                className="signinButton"
+                                type="submit"
+                                onClick={this.handleSubmit}
+                                disabled={!this.validateForm()}>
+                                Sign in
+                        </Button>
+
+                            <Button as={Link} className="registerButton" name="register" to="/register">
+                                Register
+                        </Button>
+                        </NavBarButtonsContainer>
+
+                    </FormGroup>
+                )}
+
+
+                {/* if not logged in and at about, display login form */}
+                {!this.props.isLoggedIn && this.props.location.pathname === "/about" && (
+                    <FormGroup className="navbarContainer">
+                        <NavBarLoginContainer>
+                            <Field
+                                className="NavBarEmail"
+                                name="email"
+                                type="email"
+                                placeholder="email@email.com"
+                                onChange={this.handleChange}
+                                value={this.state.email}/>
+                            <Field
+                                className="NavBarPassword"
+                                name="password"
+                                type="password"
+                                placeholder="password"
+                                onChange={this.handleChange}
+                                value={this.state.password}/>
+                        </NavBarLoginContainer>
+
+                        <NavBarButtonsContainer>
+                            <Button
+                                className="signinButton"
+                                type="submit"
+                                onClick={this.handleSubmit}
+                                disabled={!this.validateForm()}>
+                                Sign in
+                        </Button>
+
+                            <Button as={Link} className="registerButton" name="register" to="/register">
+                                Register
+                        </Button>
+                        </NavBarButtonsContainer>
+
+                    </FormGroup>
+                )}
+
+
                 {(this.props.location.pathname === "/login") &&
                     !this.props.isLoggedIn && (
                         <Button as={Link} className="registerButton" name="register" to="/register">

@@ -7,8 +7,9 @@ export const NavBar = styled.nav`
   width: 100%
   display: flex;
   justify-content: space-between;
-  padding: 1.0rem 1.5rem 1rem 2rem;
+  padding: 1.0rem 1.5rem 1rem 1.0rem;
   align-items: center;
+  border-bottom: 1px solid #4D4D58; 
 `;
 
 // NavBar Form Component Container (contains Input & Buttons) styling//

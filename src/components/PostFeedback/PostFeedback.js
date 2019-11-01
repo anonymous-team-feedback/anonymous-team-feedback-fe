@@ -121,6 +121,7 @@ class PostFeedback extends React.Component {
                 placeholder="Date"
                 value={this.state.date}
                 iconPosition="left"
+                popupPosition="bottom right"
                 onChange={this.handleDateChange}
               />
             </NameDateContainer>
