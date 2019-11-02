@@ -18,14 +18,18 @@ class Landing extends React.Component {
 
     return (
       <LandingContainer>
-        <H1>"Building stronger teams -- when you speak incognito."</H1>
+        <div id="landingText" >
+        <H1>Build stronger teams --</H1>
+        <H1 id="incogText">communicate incognito.</H1>
+        </div>
+
         {/* Animation for image */}
         <Transition visible={visible} animation="tada" duration={300}>
           <Image
             onClick={this.toggleVisibility}
-            src="https://www.imageupload.net/upload-image/2019/11/01/Landing15e8d76dc7d0abb58.png"
+            src="https://www.imageupload.net/upload-image/2019/11/02/LandingTalk.png"
             as="a"
-            size="big"
+            size="large"
             href="/"
             id="landingImage"
           />

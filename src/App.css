@@ -398,10 +398,21 @@ form .navbarContainer {
   z-index: 100;
 }
 
+/* Landing Page Text  */
+
+div#landingText {
+  padding-top: 50px;
+}
+
+h1#incogText {
+  color: #51e3c2 !important;
+}
+
 /* Landing Page Image  */
 
-.ui.image {
+.ui.image#landingImage {
   padding-top: 7%;
+  size: "large";
 }
 
 /* Landing Page Image Hover Effect  */
