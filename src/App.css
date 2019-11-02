@@ -411,8 +411,13 @@ h1#incogText {
 /* Landing Page Image  */
 
 .ui.image#landingImage {
-  padding-top: 7%;
-  size: "large";
+  padding-top: 6%;
+}
+
+/* About page images */
+
+.ui.image{
+  padding-top: 6%;
 }
 
 /* Landing Page Image Hover Effect  */
