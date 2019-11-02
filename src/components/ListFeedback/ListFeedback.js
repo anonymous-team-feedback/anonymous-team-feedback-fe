@@ -43,7 +43,17 @@ class ListFeedback extends React.Component {
       <MainListContainer>
         <SubListContainer className="Listfeedback">
           <H2>My Feedback</H2>
-          {(this.props.posts && !this.props.loading && this.props.posts.length > 0) && (
+          {(this.props.loading === true) && (
+                            <div class="ui icon message">
+                                <i class="notched circle loading icon"></i>
+                                <div class="content">
+                                    <div class="header">Just one second</div>
+                                    <p>We're fetching that content for you.</p>
+                                </div>
+                            </div>
+                        )}
+
+          {(this.props.posts && this.props.loading === false && this.props.posts.length > 0) && (
             <div>
               <Table celled>
                 <Table.Header>
@@ -89,6 +99,7 @@ class ListFeedback extends React.Component {
               </Table>
             </div>
           )}
+
           {(this.props.posts && this.props.posts.length < 1 && !this.props.loading) && (
               <Message negative>
                 <Message.Header>
@@ -98,7 +109,7 @@ class ListFeedback extends React.Component {
               </Message>
             )}
 
-            {/* loading feedback */}
+            {/* loading feedback
           {this.props.loading &&
             <div>
               <Table celled>
@@ -129,7 +140,7 @@ class ListFeedback extends React.Component {
                 </Table.Body>
               </Table>
             </div>
-          }
+          } */}
         </SubListContainer>
       </MainListContainer>
     );
