@@ -391,6 +391,12 @@ form .navbarContainer {
   color: #51e3c2 !important;
 }
 
+/* Not Approved page */
+
+div#notApproved {
+  min-height: 72vh;
+}
+
 /* About page images hover effect */
 
 .ui.image img:hover {

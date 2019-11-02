@@ -8,7 +8,7 @@ class NotApproved extends React.Component {
     render(){
         return(
             <MainListContainer>
-            <SubListContainer className="Listfeedback">
+            <SubListContainer id="notApproved">
               <Header as='h1' inverted>You don't appear to be in a team yet!</Header>
               <Divider hidden/>
               <Message negative>
