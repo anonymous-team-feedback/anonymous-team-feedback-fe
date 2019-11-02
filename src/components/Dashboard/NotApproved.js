@@ -15,7 +15,7 @@ class NotApproved extends React.Component {
                 <Message.Header>
                   Please wait for your team manager to approve your team request.
                 </Message.Header>
-                <p>Best Wishes - SpeakIncog Team</p>
+                <p>Best Wishes - SpeakInCog Team</p>
               </Message>
               <Divider />
               <Message negative>

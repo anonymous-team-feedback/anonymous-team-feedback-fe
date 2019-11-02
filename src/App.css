@@ -33,6 +33,26 @@
   }
 }
 
+/* About page link color */
+
+a {
+  color: #51e3c2 !important;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #3aa189 !important;
+  text-decoration: none;
+}
+
+/* About page icon color */
+
+.ui.list>.item>i.icon {
+  filter: invert(1);
+}
+
+/* Dashboard Sidebar CSS */
+
 .ui.placeholder.segment {
   max-width: 100% !important;
   width: 100% !important;
@@ -400,7 +420,7 @@ div#notApproved {
 /* About page images hover effect */
 
 .ui.image img:hover {
-  opacity: 0.75;
+  opacity: 0.80;
   z-index: 100;
 }
 
@@ -423,7 +443,7 @@ h1#incogText {
 /* About page images */
 
 .ui.image{
-  padding-top: 6%;
+  padding-top: 8%;
 }
 
 /* Landing Page Image Hover Effect  */

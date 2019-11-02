@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 
 import { H1, H2, H3, Section, AboutContainer } from "./about-style.js";
 
-import { Image, Divider } from "semantic-ui-react";
+import { List, Image, Divider } from "semantic-ui-react";
 
 class About extends React.Component {
 
@@ -26,6 +26,23 @@ class About extends React.Component {
                 bordered
               />
             <H3>Full Stack Developer</H3>
+
+            <List>
+              <List.Item>
+                <List.Icon name='github' />
+                <List.Content>
+                  <a href="https://github.com/xCthaeh" target="_blank">GitHub</a>
+                </List.Content>
+                </List.Item>
+
+                <List.Item>
+                <List.Icon name='linkedin' />
+                <List.Content>
+                  <a href="https://www.linkedin.com/in/alyssasaez" target="_blank">LinkedIn</a>
+                </List.Content>
+              </List.Item>
+              </List>
+
           </Section>
 
           <Divider section />
@@ -43,6 +60,22 @@ class About extends React.Component {
                 bordered
               />
             <H3>Full Stack Developer</H3>
+
+            <List>
+              <List.Item>
+                <List.Icon name='github' />
+                <List.Content>
+                  <a href="https://github.com/Wsoukkachang" target="_blank">GitHub</a>
+                </List.Content>
+                </List.Item>
+
+                <List.Item>
+                <List.Icon name='linkedin' />
+                <List.Content>
+                  <a href="https://www.linkedin.com/in/wsoukkachang" target="_blank">LinkedIn</a>
+                </List.Content>
+              </List.Item>
+              </List>
           </Section>
 
           <Divider section />
@@ -60,6 +93,22 @@ class About extends React.Component {
                 bordered
               />
             <H3>Full Stack Developer</H3>
+
+            <List>
+              <List.Item>
+                <List.Icon name='github' />
+                <List.Content>
+                  <a href="https://github.com/Tarmstrong95" target="_blank">GitHub</a>
+                </List.Content>
+                </List.Item>
+
+                <List.Item>
+                <List.Icon name='linkedin' />
+                <List.Content>
+                  <a href="https://www.linkedin.com/in/triston95strong" target="_blank">LinkedIn</a>
+                </List.Content>
+              </List.Item>
+              </List>
           </Section>
 
           <Divider section />
@@ -77,6 +126,22 @@ class About extends React.Component {
                 bordered
               />
             <H3>Full Stack Developer</H3>
+
+            <List>
+              <List.Item>
+                <List.Icon name='github' />
+                <List.Content>
+                  <a href="https://github.com/kaiserawu" target="_blank">GitHub</a>
+                </List.Content>
+                </List.Item>
+
+                <List.Item>
+                <List.Icon name='linkedin' />
+                <List.Content>
+                  <a href="https://www.linkedin.com/in/kaiserwu" target="_blank">LinkedIn</a>
+                </List.Content>
+              </List.Item>
+              </List>
           </Section>
 
           <Divider section />
@@ -94,6 +159,22 @@ class About extends React.Component {
                 bordered
               />
             <H3>Full Stack Developer</H3>
+
+            <List>
+              <List.Item>
+                <List.Icon name='github' />
+                <List.Content>
+                  <a href="https://github.com/dxtrlws" target="_blank">GitHub</a>
+                </List.Content>
+                </List.Item>
+
+                <List.Item>
+                <List.Icon name='linkedin' />
+                <List.Content>
+                  <a href="https://www.linkedin.com/in/dexterlewis" target="_blank">LinkedIn</a>
+                </List.Content>
+              </List.Item>
+              </List>
           </Section>
         </AboutContainer>
       </div>

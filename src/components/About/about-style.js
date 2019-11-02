@@ -37,6 +37,7 @@ export const H3 = styled.h3`
   margin: 0% 10% 1% 10%;
   padding-top: 35px;
   padding-bottom: 15px;
+  font-size: 1.1rem;
 
   @media (max-width: 800px) {
     margin: 2% 5% 0 7%;
