@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const H1 = styled.h1`
   text-align: center;
   color: white;
-  font-size: 2.7em;
+  font-size: 3.5em;
   width: 100%;
 
   @media (max-width: 760px) {
