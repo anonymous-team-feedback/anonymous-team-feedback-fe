@@ -23,6 +23,11 @@ class TeamMembersList extends React.Component {
       <PageDiv className="JoinTeamRequest">
         <MainListContainer>
           <SubListContainer>
+          <H2>
+                    Here's a list of your colleagues who have joined your InCog
+                    team to date:
+                  </H2>
+
             {this.props.getInfoStart === true && (
               <div class="ui icon message">
                 <i class="notched circle loading icon"></i>
@@ -36,11 +41,6 @@ class TeamMembersList extends React.Component {
             {this.props.membersInfo &&
               this.props.getInfoStart === false &&
               this.props.membersInfo.length > 0 && (
-                <div>
-                  <H2>
-                    Here's a list of your colleagues who have joined your InCog
-                    team to date:
-                  </H2>
                   <div>
                     <Table>
                       <Table.Header>
@@ -74,7 +74,6 @@ class TeamMembersList extends React.Component {
                       </Table.Body>
                     </Table>
                   </div>
-                </div>
               )}
           </SubListContainer>
         </MainListContainer>

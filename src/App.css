@@ -1,4 +1,5 @@
 .App {
+  min-height: 100vh;
   text-align: center;
 }
 
@@ -38,13 +39,13 @@
 }
 
 .ui.thin.left.sidebar {
-  min-height: 80vh;
+  min-height: 82vh;
   overflow: auto;
 }
 
 .ui.segment {
   background: #32323E !important;
-  min-height: 80vh;
+  min-height: 82vh;
 }
 
 .ui.segment #sidebar{

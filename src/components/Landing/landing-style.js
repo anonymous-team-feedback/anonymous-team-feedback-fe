@@ -28,7 +28,7 @@ export const LandingContainer = styled.div`
   justify-content: space-around;
   padding: 0px 0 50px 0;
   width: 100%;
-  min-height: 80vh;
+  min-height: 82vh;
 
   // border: 1px solid yellow;
 

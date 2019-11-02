@@ -77,29 +77,8 @@ class Navbar extends React.Component {
                 {/* if not logged in and at register, display login form */}
                 {!this.props.isLoggedIn && this.props.location.pathname === "/register" && (
                     <FormGroup className="navbarContainer">
-                        <NavBarLoginContainer>
-                            <Field
-                                className="NavBarEmail"
-                                name="email"
-                                type="email"
-                                placeholder="email@email.com"
-                                onChange={this.handleChange}
-                                value={this.state.email}/>
-                            <Field
-                                className="NavBarPassword"
-                                name="password"
-                                type="password"
-                                placeholder="password"
-                                onChange={this.handleChange}
-                                value={this.state.password}/>
-                        </NavBarLoginContainer>
-
                         <NavBarButtonsContainer>
-                            <Button
-                                className="signinButton"
-                                type="submit"
-                                onClick={this.handleSubmit}
-                                disabled={!this.validateForm()}>
+                        <Button as={Link} className="registerButton" name="login" to="/login">
                                 Sign in
                         </Button>
 
@@ -114,31 +93,12 @@ class Navbar extends React.Component {
                 {/* if not logged in and at about, display login form */}
                 {!this.props.isLoggedIn && this.props.location.pathname === "/landing" && (
                     <FormGroup className="navbarContainer">
-                        <NavBarLoginContainer>
-                            <Field
-                                className="NavBarEmail"
-                                name="email"
-                                type="email"
-                                placeholder="email@email.com"
-                                onChange={this.handleChange}
-                                value={this.state.email}/>
-                            <Field
-                                className="NavBarPassword"
-                                name="password"
-                                type="password"
-                                placeholder="password"
-                                onChange={this.handleChange}
-                                value={this.state.password}/>
-                        </NavBarLoginContainer>
 
                         <NavBarButtonsContainer>
-                            <Button
-                                className="signinButton"
-                                type="submit"
-                                onClick={this.handleSubmit}
-                                disabled={!this.validateForm()}>
+                        <Button as={Link} className="registerButton" name="login" to="/login">
                                 Sign in
                         </Button>
+
 
                             <Button as={Link} className="registerButton" name="register" to="/register">
                                 Register

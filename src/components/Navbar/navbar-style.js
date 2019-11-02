@@ -10,6 +10,8 @@ export const NavBar = styled.nav`
   padding: 1.0rem 1.5rem 1rem 1.0rem;
   align-items: center;
   border-bottom: 1px solid #4D4D58; 
+  min-height: 93px;
+  max-height: 10vh;
 `;
 
 // NavBar Form Component Container (contains Input & Buttons) styling//

@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const PageDiv = styled.div`
   background: #32323e;
   flex-wrap: wrap;
-  min-height: 80vh;
+  min-height: 82vh;
   overflow: auto;
   padding-bottom: 100px;
 `;

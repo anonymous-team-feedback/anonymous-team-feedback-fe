@@ -10,7 +10,8 @@ export const H1 = styled.h1`
   margin: 0% 10% 0% 10%;
   padding-top: 15px;
   padding-bottom: 15px;
-
+  min-height: 5vh;
+  max-height: 5vh;
   @media (max-width: 800px) {
     margin: 2% 5% 0 7%;
   }
@@ -45,16 +46,14 @@ export const H3 = styled.h3`
 
 export const AboutContainer = styled.div`
   display: flex;
-  margin: auto;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 15px 0;
   width: 100%;
   border-top: 1px solid #4D4D58; 
 //   border: 1px solid yellow;
   background: #393945;
-  min-height: 70vh;
+  min-height: 77vh;
   overflow: auto;
 
   @media (max-width: 760px) {  

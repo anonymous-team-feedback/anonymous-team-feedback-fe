@@ -19,9 +19,12 @@ export const FooterContainer = styled.div`
   margin: auto;
   flex-direction: row;
   align-items: center;
+  align-content: center;
   justify-content: space-between;
   padding: 0 25px;
   width: 100%;
+  min-height: 93px;
+  max-height: 10vh;
   border-top: 1px solid #4D4D58; 
 //   border: 1px solid yellow;
 
