@@ -4,11 +4,10 @@ import { Link, withRouter } from "react-router-dom";
 
 import { H3, FooterContainer } from "./footer-style.js";
 
-import { Button} from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 
 class Footer extends React.Component {
   render() {
-
     return (
       <FooterContainer>
         <H3>© Copyright 2019. All Rights Reserved.</H3>

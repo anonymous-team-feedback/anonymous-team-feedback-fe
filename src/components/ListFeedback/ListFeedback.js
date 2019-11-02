@@ -108,39 +108,6 @@ class ListFeedback extends React.Component {
                 <p>Maybe ask a coworker to give you some?</p>
               </Message>
             )}
-
-            {/* loading feedback
-          {this.props.loading &&
-            <div>
-              <Table celled>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell className="date-tab" width={2}>
-                      Date
-                 </Table.HeaderCell>
-                    <Table.HeaderCell className="feedback-tab" width={8}>
-                      Feedback
-                 </Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
-
-                <Table.Body className="submittedFeedback">
-                  <Table.Row>
-                    <Table.Cell width={2}>
-                      <Placeholder>
-                        <Placeholder.Line length='very short' />
-                      </Placeholder>
-                    </Table.Cell>
-                    <Table.Cell width={8} >
-                      <Placeholder>
-                        <Placeholder.Line length='very short' />
-                      </Placeholder>
-                    </Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-              </Table>
-            </div>
-          } */}
         </SubListContainer>
       </MainListContainer>
     );
