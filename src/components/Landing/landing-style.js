@@ -17,11 +17,11 @@ export const H1 = styled.h1`
 
 export const LandingContainer = styled.div`
   display: flex;
-  // margin: 0px auto;
+  margin: 0px auto;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  padding: 0px 20px 70px 20px;
+  padding: 0px 85px 85px 85px;
   width: 100%;
   min-height: 82vh;
 
@@ -33,6 +33,6 @@ export const LandingContainer = styled.div`
     align-items: center;
     width: 100%;
     margin: auto;
-    padding: 25px 0 50px 5px;
+    padding: 25px 0 50px 5px !important;
   }
 `;
