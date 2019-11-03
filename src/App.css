@@ -196,8 +196,6 @@ input[type="password"]#LoginFormPassword {
 }
 
 .react-calendar {
-  width: 50%;
-  min-width: 170px;
   background-color: #4d505f !important;
   color: white;
 }
@@ -207,6 +205,11 @@ input[type="password"]#LoginFormPassword {
 }
 
 .react-calendar__tile--active {
+  background: #51e3c2 !important;
+  color: white !important;
+}
+
+.react-calendar__navigation button:enabled:hover {
   background: #51e3c2 !important;
   color: white !important;
 }
