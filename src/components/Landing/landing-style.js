@@ -9,7 +9,7 @@ export const H1 = styled.h1`
 
   @media (max-width: 760px) {
     width: 85%;
-    font-size: 3em;
+    font-size: 2.9em;
     margin: auto;
   }
 `;

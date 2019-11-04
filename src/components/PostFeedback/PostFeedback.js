@@ -6,16 +6,20 @@ import {
   NameDateContainer,
   H2,
   P,
-  FormGroup
+  FormGroup,
 } from "./postFeedback-style.js";
 import {
   Button,
   Dropdown,
   Message
 } from "semantic-ui-react";
+
 import {
-  DateInput,
-} from "semantic-ui-calendar-react";
+  DateInput
+} from 'semantic-ui-calendar-react';
+
+import DatePicker from 'react-date-picker';
+
 import Textarea from "react-textarea-autosize";
 import moment from "moment";
 import { searchEmails } from "../../actions/usersActions.js";
@@ -25,7 +29,7 @@ import { withRouter } from "react-router-dom";
 class PostFeedback extends React.Component {
   state = {
     email: "",
-    date: "",
+    date: new Date(),
     feedback: "",
     searchQuery: "",
     selected: "",
@@ -41,6 +45,8 @@ class PostFeedback extends React.Component {
       });
     }
   };
+
+  onChange = date => this.setState({ date })
 
   handleChange = e => {
     this.setState({
@@ -114,7 +120,7 @@ class PostFeedback extends React.Component {
                 value={this.state.email}
               />
 
-              <DateInput
+              <DatePicker
                 id="DateInput"
                 className="DateInput"
                 name="date"
@@ -122,7 +128,7 @@ class PostFeedback extends React.Component {
                 value={this.state.date}
                 iconPosition="left"
                 popupPosition="bottom right"
-                onChange={this.handleDateChange}
+                onChange={this.onChange}
               />
             </NameDateContainer>
 
