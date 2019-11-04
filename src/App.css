@@ -188,7 +188,8 @@ input[type="password"]#LoginFormPassword {
 }
 
 .react-calendar__month-view__days__day--weekend {
-  color: #51e3c2 !important;
+  /* color: #51e3c2 !important; */
+  color: white !important;
 }
 
 .react-date-picker__inputGroup__input:invalid {
@@ -197,11 +198,28 @@ input[type="password"]#LoginFormPassword {
 
 .react-calendar {
   background-color: #4d505f !important;
-  color: white;
+  color: #51e3c2 !important;
 }
 
 .react-calendar button {
-  color: white;
+  color: white !important;
+}
+.react-calendar button--active  {
+  background: #51e3c2 !important;
+  color: white !important;
+}
+
+.react-calendar__navigation button:enabled:focus {
+  background: #51e3c2 !important;
+  color: white !important;
+}
+
+.react-calendar__navigation button {
+  color: #51e3c2 !important;
+}
+
+.react-calendar__navigation__label button{
+  color: #51e3c2 !important;
 }
 
 .react-calendar__tile--active {
@@ -209,7 +227,17 @@ input[type="password"]#LoginFormPassword {
   color: white !important;
 }
 
+.react-calendar__tile--hasActive {
+  background: #51e3c2 !important;
+  color: white !important;
+}
+
 .react-calendar__navigation button:enabled:hover {
+  background: #51e3c2 !important;
+  color: white !important;
+}
+
+.react-calendar__tile:enabled:hover {
   background: #51e3c2 !important;
   color: white !important;
 }
