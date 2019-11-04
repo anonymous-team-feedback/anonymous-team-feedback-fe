@@ -1,4 +1,5 @@
 .App {
+  min-height: 100vh;
   text-align: center;
 }
 
@@ -32,27 +33,43 @@
   }
 }
 
+/* About page link color */
+
+a {
+  color: #51e3c2 !important;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #3aa189 !important;
+  text-decoration: none;
+}
+
+/* About page icon color */
+
+.ui.list>.item>i.icon {
+  filter: invert(1);
+}
+
+/* Dashboard Sidebar CSS */
+
 .ui.placeholder.segment {
   max-width: 100% !important;
   width: 100% !important;
 }
 
 .ui.thin.left.sidebar {
-  display: flex;
-  flex-wrap: wrap;
-  /* width: 15% !important; */
+  min-height: 82vh;
+  overflow: auto;
 }
 
 .ui.segment {
-  min-height: 450px;
   background: #32323E !important;
-  /* margin: 0 auto !important;
-  width: 100% !important; */
-
+  min-height: 82vh;
 }
 
 .ui.segment #sidebar{
-  min-height: 450px;
+  overflow: auto;
   margin: 0 auto !important;
   width: 100% !important;
   background: #32323E !important;
@@ -72,6 +89,12 @@
 
 .ui.inverted.menu {
   background: #2c2c31 !important;
+}
+
+.ui.sidebar.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Login Input Email and Password Styling */
@@ -293,6 +316,18 @@ form .navbarContainer {
   transition: color 0.1s ease-in-out !important;
 }
 
+/* About Us Buttons Styling */
+
+.ui.button.aboutButton {
+  color: white !important;
+  background-color: #393945 !important;
+  font-family: sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: bold !important;
+  transition: color 0.1s ease-in-out !important;
+}
+
+
 /* Team Name in Nav Bar */
 
 .ui.medium.header {
@@ -348,6 +383,7 @@ form .navbarContainer {
   font-size: 0.9rem !important;
   margin-left: 0.5rem !important;
   margin-right: 2rem !important;
+  margin-bottom: 0.5rem !important;
 }
 
 /* NavBar Buttons (Hover Effect) Styling */
@@ -369,6 +405,54 @@ form .navbarContainer {
 .ui.button.logoutButton:hover {
   color: white !important;
   border: 1px solid white !important;
+}
+
+.ui.button.aboutButton:hover {
+  color: #51e3c2 !important;
+}
+
+/* Not Approved page */
+
+div#notApproved {
+  min-height: 72vh;
+}
+
+/* About page images hover effect */
+
+.ui.image img:hover {
+  opacity: 0.80;
+  z-index: 100;
+}
+
+/* Landing Page Text  */
+
+div#landingText {
+  padding-top: 50px;
+}
+
+h1#incogText {
+  color: #51e3c2 !important;
+}
+
+/* Landing Page Image  */
+
+.ui.image#landingImage {
+  padding-top: 6%;
+}
+
+/* About page images */
+
+.ui.image{
+  padding-top: 8%;
+}
+
+/* Landing Page Image Hover Effect  */
+
+.ui.image#landingImage:hover {
+  filter: contrast(1.75);
+  /* filter: brightness(1.75);
+  opacity: 0.80; */
+  z-index: 100;
 }
 
 /* OR horizontal divider */

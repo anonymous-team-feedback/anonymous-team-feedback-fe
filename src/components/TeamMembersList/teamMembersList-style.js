@@ -29,7 +29,6 @@ export const H2 = styled.h2`
   text-align: left;
   color: white;
   background: #393945;
-  margin-top:50px !important;
   padding: 7px;
 `;
 

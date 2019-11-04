@@ -36,7 +36,7 @@ export const H2 = styled.h2`
 // PageDiv Styling//
 export const PageDiv = styled.div`
   background: #32323e;
-  padding: ;
+  min-height: 82vh;
 `;
 
 // Form Styling//

@@ -43,7 +43,17 @@ class ListFeedback extends React.Component {
       <MainListContainer>
         <SubListContainer className="Listfeedback">
           <H2>My Feedback</H2>
-          {(this.props.posts && !this.props.loading && this.props.posts.length > 0) && (
+          {(this.props.loading === true) && (
+                            <div class="ui icon message">
+                                <i class="notched circle loading icon"></i>
+                                <div class="content">
+                                    <div class="header">Just one second</div>
+                                    <p>We're fetching that content for you.</p>
+                                </div>
+                            </div>
+                        )}
+
+          {(this.props.posts && this.props.loading === false && this.props.posts.length > 0) && (
             <div>
               <Table celled>
                 <Table.Header>
@@ -89,6 +99,7 @@ class ListFeedback extends React.Component {
               </Table>
             </div>
           )}
+
           {(this.props.posts && this.props.posts.length < 1 && !this.props.loading) && (
               <Message negative>
                 <Message.Header>
@@ -97,39 +108,6 @@ class ListFeedback extends React.Component {
                 <p>Maybe ask a coworker to give you some?</p>
               </Message>
             )}
-
-            {/* loading feedback */}
-          {this.props.loading &&
-            <div>
-              <Table celled>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell className="date-tab" width={2}>
-                      Date
-                 </Table.HeaderCell>
-                    <Table.HeaderCell className="feedback-tab" width={8}>
-                      Feedback
-                 </Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
-
-                <Table.Body className="submittedFeedback">
-                  <Table.Row>
-                    <Table.Cell width={2}>
-                      <Placeholder>
-                        <Placeholder.Line length='very short' />
-                      </Placeholder>
-                    </Table.Cell>
-                    <Table.Cell width={8} >
-                      <Placeholder>
-                        <Placeholder.Line length='very short' />
-                      </Placeholder>
-                    </Table.Cell>
-                  </Table.Row>
-                </Table.Body>
-              </Table>
-            </div>
-          }
         </SubListContainer>
       </MainListContainer>
     );
