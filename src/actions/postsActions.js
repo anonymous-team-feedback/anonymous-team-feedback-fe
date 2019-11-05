@@ -2,7 +2,6 @@ import axios from "axios";
 import { removeAuthInfo, getAuthInfo } from "../util/login.js";
 
 const host = "https://anonymous-team-feedback.herokuapp.com/api/";
-// const host = "http://localhost:5050/api/";
 
 export const FETCH_ALL_POSTS_START = "FETCH_ALL_POSTS_START";
 export const FETCH_ALL_POSTS_SUCCESS = "FETCH_ALL_POSTS_SUCCESS";
