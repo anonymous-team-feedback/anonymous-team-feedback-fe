@@ -53,7 +53,7 @@ class Navbar extends React.Component {
     this.setState((prevState) => ({ animation, visible: !prevState.visible }))
 
     render() {
-        if(this.props.location.pathname === '/') this.props.history.push('/login')
+        if(this.props.location.pathname === '/') this.props.history.push('/landing')
         return (
             <NavBar className="Navbar">
                 <div>

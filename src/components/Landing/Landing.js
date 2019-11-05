@@ -30,7 +30,7 @@ class Landing extends React.Component {
             src="https://www.imageupload.net/upload-image/2019/11/02/Talk6eefbe2af5605ec6.png"
             as="a"
             size="large"
-            href="/"
+            href="/login"
             id="landingImage"
           />
         </Transition>

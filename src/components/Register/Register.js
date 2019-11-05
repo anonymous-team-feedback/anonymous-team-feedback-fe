@@ -52,11 +52,11 @@ class Register extends React.Component {
   };
 
   validateForm = () =>
-    this.state.newUser.firstName.length > 2 &&
-    this.state.newUser.lastName.length > 2 &&
-    this.state.newUser.email.length > 5 &&
+    this.state.newUser.firstName.length > 1 &&
+    this.state.newUser.lastName.length > 1 &&
+    this.state.newUser.email.length > 4 &&
     this.state.newUser.password.length > 5 &&
-    this.state.newUser.jobTitle.length > 2 ;
+    this.state.newUser.jobTitle.length > 1 ;
 
   render() {
     console.log(this.props.isLoggedIn)
