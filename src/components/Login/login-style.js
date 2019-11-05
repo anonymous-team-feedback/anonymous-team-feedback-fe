@@ -3,6 +3,9 @@ import styled from "styled-components";
 // PageDiv Styling//
 export const PageDiv = styled.div`
   background: #32323e;
+  flex-wrap: wrap;
+  min-height: 82vh;
+  overflow: auto;
   padding-bottom: 100px;
 `;
 
@@ -21,6 +24,21 @@ export const LoginContainer = styled.div`
   align-items: center;
   margin: 0 auto;
   padding: 2rem;
+  // border: 1px solid red;
+
+  @media (max-width: 700px) {  
+    width: 100%;
+  }
+`;
+
+// Login Inputs container styling//
+export const LoginInputsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  // border: 1px solid red;
+  width: 100%;
 `;
 
 // Input label styling//
@@ -28,8 +46,10 @@ export const Label = styled.label`
   display: flex;
   font-weight: bold;
   text-align: left !important;
+  margin: 0 auto;
   color: #51e3c2 !important;
   padding: 0.25em;
+  max-width: 250px;
 `;
 
 // Input Styling//
@@ -40,6 +60,7 @@ export const Input = styled.input`
   border: none;
   border-radius: 3px;
   width: 100% !important;
+  height: 35px !important;
   margin: 0.5rem, 0.5rem;
 `;
 

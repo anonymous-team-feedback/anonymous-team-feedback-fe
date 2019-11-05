@@ -23,6 +23,10 @@ export const SubListContainer = styled.div`
   padding: 3%;
 `;
 
+export const CardContainer = styled.div`
+  padding: 2% 0;
+`;
+
 export const H2 = styled.h2`
   text-align: left;
   color: white;

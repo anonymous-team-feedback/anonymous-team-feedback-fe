@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { login } from "../../actions/usersActions";
-import { PageDiv, LoginContainer, Input, Label, H1 } from "./login-style.js";
-import { Button, Form } from "semantic-ui-react";
+import { PageDiv, LoginContainer, LoginInputsContainer, Input, Label, H1 } from "./login-style.js";
+import { Button, Form, Message } from "semantic-ui-react";
 
 class Login extends React.Component {
   constructor(props) {
@@ -31,37 +31,46 @@ class Login extends React.Component {
 
   render() {
     if (this.props.isLoggedIn) {
-      console.log("pushing to dashboard bc " + this.props.isLoggedIn);
       this.props.history.push("/dashboard");
     }
+    console.log(this.props.autoLoginError, this.props.loginError)
     return (
       <PageDiv className="Login">
         <H1>Sign in</H1>
 
         <Form onSubmit={this.handleSubmit}>
           <LoginContainer>
-            <Form.Field>
-              <Label>Email</Label>
-              <Input
-                type="email"
-                name="email"
-                value={this.state.email}
-                placeholder="email@email.com"
-                onChange={this.handleChange}
-              />
-            </Form.Field>
+            <LoginInputsContainer>
+              <Form.Field>
+                <Label>Email</Label>
+                <Input
+                  id="LoginFormEmail"
+                  type="email"
+                  name="email"
+                  value={this.state.email}
+                  placeholder="email@email.com"
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
 
-            <Form.Field>
-              <Label>Password</Label>
-              <Input
-                type="password"
-                name="password"
-                value={this.state.password}
-                placeholder="password"
-                onChange={this.handleChange}
-              />
-              {this.props.loginError && <p>Incorrect username or password</p>}
-            </Form.Field>
+              <Form.Field>
+                <Label>Password</Label>
+                <Input
+                  id="LoginFormPassword"
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  placeholder="password"
+                  onChange={this.handleChange}
+                />
+                {this.props.loginError && 
+                <Message
+                color='red'
+                header="Incorrect email or password"
+                />}
+              </Form.Field>
+            </LoginInputsContainer>
+
 
             <Button className="LoginSubmitButton" type="submit">
               Submit
@@ -73,11 +82,12 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = ({ usersReducer: state }) => {
+const mapStateToProps = (state) => {
   return {
-    email: state.user.email,
-    isLoggedIn: state.isLoggedIn,
-    loginError: state.loginError
+    email: state.usersReducer.user.email,
+    isLoggedIn: state.usersReducer.isLoggedIn,
+    loginError: state.usersReducer.loginError,
+    autoLoginError: state.usersReducer.autoLoginError
   };
 };
 

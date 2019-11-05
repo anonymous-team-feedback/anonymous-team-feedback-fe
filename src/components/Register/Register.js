@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import {withRouter} from 'react-router-dom'
 import {
   PageDiv,
   RegisterContainer,
@@ -8,8 +9,9 @@ import {
   P,
   Label
 } from "./register-style.js";
-import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
-import { register } from "../../actions/usersActions.js";
+import { Button, Header, Icon, Modal, Form, Message } from "semantic-ui-react";
+import { register, login } from "../../actions/usersActions.js";
+
 
 class Register extends React.Component {
   state = {
@@ -17,7 +19,8 @@ class Register extends React.Component {
       firstName: "",
       lastName: "",
       email: "",
-      password: ""
+      password: "",
+      jobTitle: ""
     },
     modalOpen: false
   };
@@ -28,7 +31,7 @@ class Register extends React.Component {
 
   handleModalClose = () => {
     this.setState({ modalOpen: false });
-    this.props.history.push("/dashboard");
+    this.props.login(this.state.newUser.email, this.state.newUser.password, this.props.history);
   };
 
   handleChange = e => {
@@ -41,19 +44,23 @@ class Register extends React.Component {
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = e => { // Submit state.newUser to the register action
     e.preventDefault();
-    this.props.register(this.state.newUser);
+    const {newUser} = this.state
+    this.props.register(newUser);
     this.handleModalOpen();
   };
 
   validateForm = () =>
-    this.state.newUser.firstName.length > 2 &&
-    this.state.newUser.lastName.length > 2 &&
-    this.state.newUser.email.length > 5 &&
-    this.state.newUser.password.length > 5;
+    this.state.newUser.firstName.length > 1 &&
+    this.state.newUser.lastName.length > 1 &&
+    this.state.newUser.email.length > 4 &&
+    this.state.newUser.password.length > 5 &&
+    this.state.newUser.jobTitle.length > 1 ;
 
   render() {
+    console.log(this.props.isLoggedIn)
+    if(this.props.isLoggedIn) this.props.history.push('/dashboard')
     return (
       <PageDiv className="Register">
         <H1>Sign up for InCog</H1>
@@ -92,6 +99,18 @@ class Register extends React.Component {
             </Form.Field>
 
             <Form.Field>
+              <Label>Job Title</Label>
+              <Input
+                type="text"
+                name="jobTitle"
+                id="RegisterFormJobTitle"
+                value={this.state.newUser.jobTitle}
+                onChange={this.handleChange}
+                placeholder="Job Title"
+              />
+            </Form.Field>
+
+            <Form.Field>
               <Label>Email</Label>
               <Input
                 type="email"
@@ -114,6 +133,7 @@ class Register extends React.Component {
                 placeholder="Password"
               />
             </Form.Field>
+
             <Modal
               trigger={
                 <Button
@@ -145,6 +165,13 @@ class Register extends React.Component {
                 </Button>
               </Modal.Actions>
             </Modal>
+            {
+              this.props.registerError && 
+              <Message 
+              color='red'
+              header='Error registering, please try again'
+              />
+            }
           </RegisterContainer>
         </Form>
       </PageDiv>
@@ -154,11 +181,12 @@ class Register extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    registerError: state.registerError
+    registerError: state.usersReducer.registerError,
+    isLoggedIn: state.usersReducer.isLoggedIn
   };
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
-  { register }
-)(Register);
+  { register, login}
+)(Register));

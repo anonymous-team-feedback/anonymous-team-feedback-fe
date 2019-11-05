@@ -2,15 +2,23 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+
+  AUTO_LOGIN,
+  AUTO_LOGIN_FAIL,
+  AUTO_LOGIN_SUCCESS,
+
   REGISTER_START,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
+
   CHECK_AUTH_STATUS_SUCCESS,
   CHECK_AUTH_STATUS_FAILURE,
+
   SEARCH_EMAIL_START,
   SEARCH_EMAIL_SUCCESS,
   SEARCH_EMAIL_FAILURE,
-  TRANSFORM_EMAILS_FOR_DROPDOWN
+
+  TRANSFORM_EMAILS_FOR_DROPDOWN,
 } from "../actions/usersActions";
 
 const initialState = {
@@ -19,16 +27,33 @@ const initialState = {
     firstName: "",
     lastName: "",
     email: "",
-    user_id: ""
+    user_id: "",
+    jobTitle: "",
+    approved: false
   },
+
   searchedEmails: [],
   transformedSearchedEmails: [],
+
+  loggingIn: false,
   isLoggedIn: false,
   loginError: null,
+  autoLoginError: null,
+
   isRegistering: false,
   registerError: null,
+
   isSearchingEmails: false,
-  searchEmailsError: null
+  searchEmailsError: null,
+
+  getInfoStart: false,
+  isGettingInfo: false,
+  getInfoError: null,
+
+  getUserInfoStart: false,
+  isGettingUserInfo: false,
+  getUserInfoError: null,
+
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -37,13 +62,6 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         loginStart: true,
-        user: {
-          token: "",
-          firstName: "",
-          lastName: "",
-          email: "",
-          user_id: ""
-        },
         isLoggedIn: false,
         loginError: false
       };
@@ -51,21 +69,22 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         loginStart: false,
-        user: action.payload,
         isLoggedIn: true,
-        loginError: false
+        loginError: false,
+        autoLoginError: null,
+        user: {
+          ...state.user,
+          email: action.payload.email,
+          firstName: action.payload.firstName,
+          jobTitle: action.payload.jobTitle,
+          lastName: action.payload.lastName,
+          user_id: action.payload._id,
+        },
       };
     case LOGIN_FAILURE:
       return {
         ...state,
         loginStart: false,
-        user: {
-          token: "",
-          firstName: "",
-          lastName: "",
-          email: "",
-          user_id: ""
-        },
         isLoggedIn: false,
         loginError: action.payload
       };
@@ -131,7 +150,37 @@ export const usersReducer = (state = initialState, action) => {
         }))
       };
     }
-
+    case AUTO_LOGIN: {
+      return {
+        ...state,
+        loginStart: true,
+        loginError: false
+      }
+    }
+    case AUTO_LOGIN_SUCCESS: {
+      return {
+        ...state, 
+        loginStart: false,
+        isLoggedIn: true,
+        autoLoginError: null,
+        user: {
+          ...state.user,
+          email: action.payload.user.email,
+          firstName: action.payload.user.firstName,
+          jobTitle: action.payload.user.jobTitle,
+          lastName: action.payload.user.lastName,
+          user_id: action.payload.user._id,
+          approved: action.payload.approved
+        }
+      }
+    }
+    case AUTO_LOGIN_FAIL: {
+      return {
+        ...state,
+        loginStart: false,
+        autoLoginError: action.payload
+      }
+    }
     default:
       return state;
   }

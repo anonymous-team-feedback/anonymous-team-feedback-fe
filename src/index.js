@@ -4,6 +4,7 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import usersReducer from "./reducers/usersReducer";
 import postsReducer from "./reducers/postsReducer";
+import joinTeamRequestReducer from "./reducers/joinTeamRequestReducer";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -13,7 +14,7 @@ import "./index.css";
 import App from "./App";
 
 const store = createStore(
-  combineReducers({ usersReducer, postsReducer }),
+  combineReducers({ usersReducer, postsReducer, joinTeamRequestReducer}),
   composeWithDevTools(applyMiddleware(thunk, logger))
 );
 

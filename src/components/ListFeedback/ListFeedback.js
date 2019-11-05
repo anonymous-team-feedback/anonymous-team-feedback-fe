@@ -12,7 +12,8 @@ import {
   Menu,
   Table,
   Message,
-  Pagination
+  Pagination,
+  Placeholder
 } from "semantic-ui-react";
 import moment from "moment";
 
@@ -32,16 +33,27 @@ class ListFeedback extends React.Component {
   render() {
     const { itemsPerPage } = this.state;
     const { page } = this.state;
-    const totalPages = Math.floor(this.props.posts.length / itemsPerPage);
-    const items = this.props.posts.slice(
+    const totalPages = this.props.posts ? Math.floor(this.props.posts.length / itemsPerPage) : 0;
+    const items = this.props.posts ? this.props.posts.slice(
       (page - 1) * itemsPerPage,
       (page - 1) * itemsPerPage + itemsPerPage
-    );
+    ) : 0;
+    
     return (
       <MainListContainer>
         <SubListContainer className="Listfeedback">
           <H2>My Feedback</H2>
-          {this.props.posts.length > 0 ? (
+          {(this.props.loading === true) && (
+                            <div class="ui icon message">
+                                <i class="notched circle loading icon"></i>
+                                <div class="content">
+                                    <div class="header">Just one second</div>
+                                    <p>We're fetching that content for you.</p>
+                                </div>
+                            </div>
+                        )}
+
+          {(this.props.posts && this.props.loading === false && this.props.posts.length > 0) && (
             <div>
               <Table celled>
                 <Table.Header>
@@ -86,24 +98,26 @@ class ListFeedback extends React.Component {
                 </Table.Footer>
               </Table>
             </div>
-          ) : (
-            <Message negative>
-              <Message.Header>
-                It doesn't look like you have any feedback
-              </Message.Header>
-              <p>Maybe ask a coworker to give you some?</p>
-            </Message>
           )}
+
+          {(this.props.posts && this.props.posts.length < 1 && !this.props.loading) && (
+              <Message negative>
+                <Message.Header>
+                  It doesn't look like you have any feedback
+              </Message.Header>
+                <p>Maybe ask a coworker to give you some?</p>
+              </Message>
+            )}
         </SubListContainer>
       </MainListContainer>
     );
   }
 }
 
-const MapStateToProps = ({ postsReducer: state }) => {
+const MapStateToProps = (state) => {
   return {
-    posts: state.posts,
-    loading: state.loading
+    posts: state.postsReducer.posts,
+    loading: state.postsReducer.loading,
   };
 };
 

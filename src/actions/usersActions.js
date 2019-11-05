@@ -1,5 +1,9 @@
 import axios from "axios";
 import { saveAuthInfo, removeAuthInfo, getAuthInfo } from "../util/login.js";
+import {getTeamData} from './joinTeamRequestActions'
+import {
+  GET_TEAM_DATA_SUCCESS
+} from '../actions/joinTeamRequestActions'
 
 const host = "https://anonymous-team-feedback.herokuapp.com/api/";
 
@@ -10,7 +14,6 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export function login(email, password, history) {
   return dispatch => {
     dispatch({ type: LOGIN_START });
-
     const user = {
       email,
       password
@@ -20,6 +23,7 @@ export function login(email, password, history) {
       .post(`${host}auth/login`, user)
       .then(res => {
         saveAuthInfo(res.data.token, res.data._id);
+        if(res.data.team) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       })
       .catch(err => {
@@ -54,7 +58,6 @@ export const register = newUser => dispatch => {
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      alert(JSON.stringify(err));
       dispatch({ type: REGISTER_FAILURE, payload: err });
     });
 };
@@ -72,7 +75,7 @@ export const searchEmails = email => async dispatch => {
     .post(
       `${host}posts/users`,
       { email },
-      { headers: { ["x-auth-token"]: authInfo.token } }
+      { headers: { "x-auth-token": authInfo.token } }
     )
     .then(res => {
       dispatch({ type: SEARCH_EMAIL_SUCCESS, payload: res.data });
@@ -85,3 +88,42 @@ export const searchEmails = email => async dispatch => {
       dispatch({ type: SEARCH_EMAIL_FAILURE, payload: err });
     });
 };
+
+export const AUTO_LOGIN= "AUTO_LOGIN";
+export const AUTO_LOGIN_SUCCESS= "AUTO_LOGIN_SUCCESS";
+export const AUTO_LOGIN_FAIL= "AUTO_LOGIN_FAIL";
+
+export const autoLogin = () => async dispatch => {
+  const authInfo = await getAuthInfo();
+  dispatch({type: AUTO_LOGIN});
+
+  return axios
+  .get(`${host}user/${localStorage.getItem('_id')}`, 
+  {headers: {
+    "x-auth-token": authInfo.token
+  }})
+  .then(res => {
+    if(res.data.team) dispatch({type: GET_TEAM_DATA_SUCCESS, payload: res.data.team})
+    dispatch({type: AUTO_LOGIN_SUCCESS, payload: res.data})
+
+  })
+  .catch(err => {
+    dispatch({type: AUTO_LOGIN_FAIL, payload: err})
+  })
+}
+
+export const GET_MEMBERS_INFO_START = "GET_MEMBERS_INFO_START";
+export const GET_MEMBERS_INFO_SUCCESS = "GET_MEMBERS_INFO_SUCCESS";
+export const GET_MEMBERS_INFO_FAIL = "GET_MEMBERS_INFO_FAIL";
+
+export const findTeamBySlug = slug => async dispatch => {
+  const authInfo = await getAuthInfo()
+  dispatch({ type: GET_MEMBERS_INFO_START })
+  return axios
+    .get(`${host}teams/members/${slug}` , { headers: { 'x-auth-token': authInfo.token } })
+    .then(res => {
+      dispatch({ type: GET_MEMBERS_INFO_SUCCESS, payload: res.data })
+      console.log('membersInfo: ', res.data)
+    })
+    .catch(err => dispatch({ type: GET_MEMBERS_INFO_FAIL, payload: err }))
+}

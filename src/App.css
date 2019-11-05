@@ -1,4 +1,5 @@
 .App {
+  min-height: 100vh;
   text-align: center;
 }
 
@@ -32,14 +33,92 @@
   }
 }
 
+/* About page link color */
+
+a {
+  color: #51e3c2 !important;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #3aa189 !important;
+  text-decoration: none;
+}
+
+/* About page icon color */
+
+.ui.list>.item>i.icon {
+  filter: invert(1);
+}
+
+/* Dashboard Sidebar CSS */
+
+.ui.placeholder.segment {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.ui.thin.left.sidebar {
+  min-height: 82vh;
+  overflow: auto;
+}
+
+.ui.segment {
+  background: #32323E !important;
+  min-height: 82vh;
+}
+
+.ui.segment #sidebar{
+  overflow: auto;
+  margin: 0 auto !important;
+  width: 100% !important;
+  background: #32323E !important;
+  border: none !important;
+}
+
+.ui.segment #main-content{
+  background: #32323E !important;
+  border: none !important;
+}
+
+.ui.segment #showing-content{
+  background: #32323E !important;
+  width: 80% !important;
+  border: none !important;
+}
+
+.ui.inverted.menu {
+  background: #2c2c31 !important;
+}
+
+.ui.sidebar.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Login Input Email and Password Styling */
+
+input[type="email"]#LoginFormEmail,
+input[type="password"]#LoginFormPassword {
+  width: 100%;
+  margin: 0.2rem;
+  background-color: #4d505f !important;
+  color: white !important;
+}
+
 /* Register Register Button Styling */
 
 .ui.button.RegisterSignupButton {
+  /* display: flex; */
+  margin: 0% 48% 0 20%;;
+  text-align: center;
+  margin-top: 25px;
+  max-width: 250px;
+
   background-color: #51e3c2;
   color: black;
   padding-top: 10px;
-  margin: 2.5% 0 0 25%;
-  width: 20%;
 }
 
 .ui.button.RegisterSignupButton:hover {
@@ -55,7 +134,8 @@
   color: black;
   padding-top: 10px;
   margin: 2.5% auto 0 auto;
-  width: 20%;
+  width: 50%;
+  max-width: 150px;
 }
 
 .ui.button.LoginSubmitButton:hover {
@@ -78,7 +158,95 @@
   border: 1px solid white !important;
 }
 
+/* Postfeedback Date Picker Styling */
+
+.react-date-picker{
+  min-width: 45% !important;
+}
+
+.react-date-picker__wrapper {
+  background-color: #32323f !important;
+  border: 1px solid #32323f !important;
+  color: white !important;
+  border-radius: 2px;
+  min-width: 100% !important;
+
+}
+
+.react-date-picker__button:enabled:hover .react-date-picker__button__icon {
+  stroke:   #51e3c2 !important;
+}
+
+.react-date-picker__button svg {
+  stroke:  #51e3c2 !important;
+  /* stroke:  #2c2c31 !important; */
+}
+
+.react-date-picker__inputGroup__input {
+  color: white !important;
+  padding: 0px 3px !important;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  /* color: #51e3c2 !important; */
+  color: white !important;
+}
+
+.react-date-picker__inputGroup__input:invalid {
+  background: #373746 !important;
+}
+
+.react-calendar {
+  background-color: #4d505f !important;
+  color: #51e3c2 !important;
+}
+
+.react-calendar button {
+  color: white !important;
+}
+.react-calendar button--active  {
+  background: #51e3c2 !important;
+  color: white !important;
+}
+
+.react-calendar__navigation button:enabled:focus {
+  background: #51e3c2 !important;
+  color: white !important;
+}
+
+.react-calendar__navigation button {
+  color: #51e3c2 !important;
+}
+
+.react-calendar__navigation__label button{
+  color: #51e3c2 !important;
+}
+
+.react-calendar__tile--active {
+  background: #51e3c2 !important;
+  color: white !important;
+}
+
+.react-calendar__tile--hasActive {
+  background: #51e3c2 !important;
+  color: white !important;
+}
+
+.react-calendar__navigation button:enabled:hover {
+  background: #51e3c2 !important;
+  color: white !important;
+}
+
+.react-calendar__tile:enabled:hover {
+  background: #51e3c2 !important;
+  color: white !important;
+}
+
 /* Feedback Input PostFeedback Component Styling */
+
+.ui.placeholder.segment textarea {
+  max-width: none !important;
+}
 
 textarea.FeedbackInput {
   background-color: #32323f !important;
@@ -91,7 +259,7 @@ textarea.FeedbackInput {
   max-height: 300px !important;
 }
 
-/* Search Field Name Input PostFeedback Component Styling */
+/* Search Field Name Input - PostFeedback Component Styling */
 
 .ui.fluid.dropdown.DropDownNameInput {
   background-color: #32323f !important;
@@ -178,16 +346,39 @@ textarea.FeedbackInput {
 }
 
 .ui.form .field {
-  width: 45%;
+  text-align: left;
+  display: block;
+  width: 70%;
 }
 
-/* NavBar Input Styling */
+/* Join Team Input Fields Styling */
+
+.ui.form .field#jointeamfield {
+  text-align: left;
+  display: block;
+  width: 100% !important;
+}
+
+/* Login and Register Input Fields Styling */
 
 input[type="email"],
 input[type="password"],
-input[type="search"],
 input[type="text"] {
-  width: 25%;
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+  min-width: 170px;
+  background-color: #4d505f !important;
+  color: white !important;
+}
+
+/* NavBar Input Email and Password Styling */
+
+input[type="email"].NavBarEmail,
+input[type="password"].NavBarPassword {
+  width: 45%;
+  max-width: 200px;
+  margin: 0.2rem;
   background-color: #4d505f !important;
   color: white !important;
 }
@@ -195,6 +386,8 @@ input[type="text"] {
 form .navbarContainer {
   width: 100% !important;
 }
+
+
 
 /* NavBar Buttons Styling */
 
@@ -207,25 +400,62 @@ form .navbarContainer {
   transition: color 0.1s ease-in-out !important;
 }
 
+/* About Us Buttons Styling */
+
+.ui.button.aboutButton {
+  color: white !important;
+  background-color: #393945 !important;
+  font-family: sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: bold !important;
+  transition: color 0.1s ease-in-out !important;
+}
+
+
+/* Team Name in Nav Bar */
+
+.ui.medium.header {
+  padding: auto !important;
+  margin: none !important;
+}
+
+/* Username */
+
+.ui.button.usernameButton {
+  color: white !important;
+  background-color: #393945 !important;
+  font-family: sans-serif !important;
+  font-size: .9rem !important;
+  font-weight: bold !important;
+  transition: color 0.1s ease-in-out !important;
+}
+
+/* NavBar Sign In Button Styling */
+
 .ui.button.signinButton {
   color: #51e3c2 !important;
   background-color: #393945 !important;
   border: 1px solid #51e3c2 !important;
   font-weight: bold !important;
-  padding: 0.6rem 0.6rem !important;
+  padding: 0.7rem !important;
   font-size: 0.9rem !important;
+  margin: 0.2rem;
   margin-left: 0.5rem !important;
 }
+
+/* NavBar Register Button Styling */
 
 .ui.button.registerButton {
   color: #51e3c2 !important;
   background-color: #393945 !important;
   border: 1px solid #51e3c2 !important;
   font-weight: bold !important;
-  padding: 0.6rem 0.6rem !important;
+  padding: 0.7rem !important;
   font-size: 0.9rem !important;
+  margin: 0.2rem;
   margin-left: 0.5rem !important;
-  margin-right: 2.5rem !important;
+  margin-right: 0.5rem !important;
+
 }
 
 .ui.button.logoutButton {
@@ -237,6 +467,7 @@ form .navbarContainer {
   font-size: 0.9rem !important;
   margin-left: 0.5rem !important;
   margin-right: 2rem !important;
+  margin-bottom: 0.5rem !important;
 }
 
 /* NavBar Buttons (Hover Effect) Styling */
@@ -259,3 +490,195 @@ form .navbarContainer {
   color: white !important;
   border: 1px solid white !important;
 }
+
+.ui.button.aboutButton:hover {
+  color: #51e3c2 !important;
+}
+
+/* Not Approved page */
+
+div#notApproved {
+  min-height: 72vh;
+}
+
+/* About page images hover effect */
+
+.ui.image img:hover {
+  opacity: 0.80;
+  z-index: 100;
+}
+
+/* Landing Page Text  */
+
+div#landingText {
+  padding-top: 50px;
+}
+
+h1#incogText {
+  color: #51e3c2 !important;
+}
+
+/* Landing Page Image  */
+
+.ui.image#landingImage {
+  padding-top: 6%;
+}
+
+/* About page images */
+
+.ui.image{
+  padding-top: 8%;
+}
+
+/* Landing Page Image Hover Effect  */
+
+.ui.image#landingImage:hover {
+  filter: contrast(1.75);
+  /* filter: brightness(1.75);
+  opacity: 0.80; */
+  z-index: 100;
+}
+
+/* OR horizontal divider */
+
+.ui.horizontal.inverted.divider {
+  display: none;
+}
+
+/* At 400px and below do the following for PostFeedback: */
+@media screen and (max-width: 400px){
+  .ui.medium.header {
+    margin: auto;
+  }
+}
+
+/* At 700px and below do the following for Login and Register: */
+
+@media screen and (max-width: 700px){
+  /* Login Fields Styling */
+  .ui.form .field {
+    width: 100%;
+  }
+
+  /* Login Input Email and Password Styling */
+  input[type="email"]#RegisterFormEmail,
+  input[type="password"]#RegisterFormLastName {
+  width: 100%;
+}
+
+  /* Login Button Styling */
+  .ui.button.LoginSubmitButton {
+    width: 100%;
+  }
+
+  /* NavBar Input Email and Password Styling */
+
+  input[type="email"]#NavBarEmail,
+  input[type="password"]#NavBarPassword {
+    width: 100%;
+    margin: 0px;
+  }
+
+
+    /* Register Input First and Last Name Styling */
+    input[type="text"]#RegisterFormFirstName,
+    input[type="text"]#RegisterFormLastName {
+    width: 100% !important;
+  }
+
+  /* Register Sign Up Button Styling */
+  .ui.button.RegisterSignupButton {
+    margin: 0% auto;
+    text-align: center;
+    margin-top: 25px;
+    width: 100%;
+    max-width: 250px;
+  }
+
+  /* NavBar Register Button Styling */
+  .ui.button.registerButton {
+    margin-right: 0.1rem !important;
+  }
+  
+  /* NavBar Sign In Button Styling */
+
+.ui.button.signinButton {
+  margin-left: 0rem !important;
+}
+
+/* NavBar Input Email and Password Styling */
+
+input[type="email"].NavBarEmail,
+input[type="password"].NavBarPassword {
+  width: 100%;
+  min-width: 0px;
+  padding: 0.5rem;
+  margin: 0.2rem;
+  background-color: #4d505f !important;
+  color: white !important;
+  }
+}
+
+/* At 770px and below do the following for PostFeedback: */
+
+@media screen and (max-width: 770px){
+  .ui.form .column#joinContainer{
+    padding-bottom: 45px !important;
+    border-bottom: 0.1px solid #44444F;
+  }
+
+  .ui.vertical.inverted.divider{
+    display: none;
+  }
+}
+
+/* At 800px and below do the following for PostFeedback: */
+
+@media screen and (max-width: 800px){
+  /* Search Field Name Input - PostFeedback Component Styling */
+  .ui.fluid.dropdown.DropDownNameInput {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  /* Search Field Name Input - PostFeedback Component Styling */
+  .ui.input #DateInput {
+    width: 100% !important;
+    text-align: left;
+  }
+
+  #DateInput {
+    width: 100%;
+  }
+
+  .ui.input > input {
+    margin: 0% !important;
+    width: 100%  !important;
+  }
+
+  /* Send Feedback Button Styling */
+  .ui.button.FeedbackButton {
+    margin: 5% 10% 5% 10%;
+    width: 80%;
+  }
+}
+
+/* At min-width 900px (bigger resolution) do the following: */
+
+@media screen and (min-width: 900px){
+  .ui.button.RegisterSignupButton {
+    margin: 0% 48% 0 20%;
+    margin-top: 25px;
+  }
+  
+}
+
+/* At min-width 1000px (bigger resolution) do the following: */
+
+@media screen and (min-width: 1000px){
+  .ui.button.RegisterSignupButton {
+    margin: 0% 26% 0 26%;
+    margin-top: 25px;
+  }
+}
+
