@@ -12,7 +12,7 @@
 |Alyssa Saez:<br>Team lead|
 |:-:|
 |<img src="https://bit.ly/36F53xu" width="100"/>|
-|<img src="https://bit.ly/32ekkBW" width="15"/> <img src="https://bit.ly/2NNTX0B" width="15"/>|
+|[<img src="https://bit.ly/32ekkBW" width="15"/>](https://github.com/xCthaeh) [<img src="https://bit.ly/2NNTX0B" width="15"/>](https://www.linkedin.com/in/alyssasaez)|
 
 <br>
 
