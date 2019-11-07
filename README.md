@@ -4,7 +4,7 @@
 ## Contributors
 |Triston Armstrong:<br>Full stack| Dexter Lewis:<br>Back end| Kaiser Wu:<br>Full stack| William Soukkachang:<br>Front end|                                       
 | :----------------------------: | :------------------------: | :---------------------: | :-------------------------------: |
-|  <img src="https://bit.ly/2PSt3Hk" width = "200" />|<img src="https://bit.ly/34AljxK" width = "200" />|<img src="https://bit.ly/2CkQu3W" width = "200" />|<img src="https://bit.ly/2WKGr1A" width = "200" />|
+|  <img src="https://bit.ly/2JVNj7l" width = "200" />|<img src="https://bit.ly/34AljxK" width = "200" />|<img src="https://bit.ly/2CkQu3W" width = "200" />|<img src="https://bit.ly/2WKGr1A" width = "200" />|
 | [<img src="https://bit.ly/32ekkBW" width="15">](https://github.com/Tarmstrong95) [<img src="https://bit.ly/2NNTX0B" width="15">](https://www.linkedin.com/in/triston95strong)| [<img src="https://bit.ly/32ekkBW" width="15">](https://github.com/dxtrlws) [<img src="https://bit.ly/2NNTX0B" width="15"> ](https://www.linkedin.com/in/dexterlewis/) | [<img src="https://bit.ly/32ekkBW" width="15">](https://github.com/kaiserawu) [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/kaiserwu) | [<img src="https://bit.ly/32ekkBW" width="15">](https://github.com/Wsoukkachang) [<img src="https://bit.ly/2NNTX0B" width="15">](https://www.linkedin.com/in/wsoukkachang)               
 
 <br>
@@ -12,7 +12,7 @@
 |Alyssa Saez:<br>Team lead|
 |:-:|
 |<img src="https://bit.ly/36F53xu" width="100"/>|
-|[<img src="https://bit.ly/32ekkBW" width="15"/>](https://github.com/xCthaeh) [<img src="https://bit.ly/2NNTX0B" width="15"/>](https://www.linkedin.com/in/alyssasaez)|
+|[<img src="https://bit.ly/32ekkBW" width="15"/>](https://github.com/AlyssaSaez) [<img src="https://bit.ly/2NNTX0B" width="15"/>](https://www.linkedin.com/in/alyssasaez)|
 
 <br>
 
