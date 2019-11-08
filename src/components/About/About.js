@@ -21,7 +21,7 @@ class About extends React.Component {
                 src="https://www.imageupload.net/upload-image/2019/11/01/Alyssa.png"
                 as="a"
                 size="small"
-                href="https://github.com/xCthaeh"
+                href="https://github.com/AlyssaSaez"
                 target="_blank"
                 bordered
               />
@@ -31,7 +31,7 @@ class About extends React.Component {
               <List.Item>
                 <List.Icon name='github' />
                 <List.Content>
-                  <a href="https://github.com/xCthaeh" target="_blank">GitHub</a>
+                  <a href="https://github.com/AlyssaSaez" target="_blank">GitHub</a>
                 </List.Content>
                 </List.Item>
 
